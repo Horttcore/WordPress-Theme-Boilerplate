@@ -6,7 +6,7 @@
 	</header>
 
 	<div class="entry clearfix">
-		<?php the_content( __( 'Weiterlesen &raquo;', '{TEXTDOMAIN}' ) ) ?>
+		<?php the_content( __( 'Weiterlesen &raquo;', 'TEXTDOMAIN' ) ) ?>
 	</div>
 
 	<footer>

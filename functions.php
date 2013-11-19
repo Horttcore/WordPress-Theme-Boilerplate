@@ -50,7 +50,7 @@ add_shortcode( 'KONTAKTFORMULAR', 'shortcode_kontakt' );
 
 
 
-
+if ( !function_exists( 'submit_contact_form' ) ) :
 /**
  * Kontaktformular
  *
@@ -80,6 +80,7 @@ function submit_contact_form()
 
 	die( '<div class="response success"><p>' . __( 'Vielen Dank für Ihre Nachricht', 'TEXTDOMAIN' ) . '</p></div>' );
 }
+endif;
 add_action( 'wp_ajax_nopriv_submit-contact-form', 'submit_contact_form' );
 add_action( 'wp_ajax_submit-contact-form', 'submit_contact_form' );
 
@@ -106,7 +107,7 @@ endif;
 
 
 
-if ( function_exists( 'theme_init' ) ) :
+if ( !function_exists( 'theme_init' ) ) :
 /**
  * Theme init
  *

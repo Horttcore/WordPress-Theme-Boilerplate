@@ -1,4 +1,4 @@
 WordPress-Theme-Boilerplate
 ===========================
 
-A WordPress Boilerplate for my build script
+A WordPress Theme Boilerplate for my build script

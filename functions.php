@@ -196,7 +196,7 @@ function theme_slider( $attachments )
 	$attachments->register( 'slider', array(
 
 		// title of the meta box (string)
-		'label'			=> _( 'Slideshow', 'TEXTDOMAIN' ),
+		'label'			=> __( 'Slideshow', 'TEXTDOMAIN' ),
 
 		// all post types to utilize (string|array)
 		'post_type'		=> array( 'page' ),

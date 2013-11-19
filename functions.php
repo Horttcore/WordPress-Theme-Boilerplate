@@ -23,7 +23,8 @@ if ( !function_exists( 'shortcode_kontakt' ) ) :
 /**
  * Shortcode [KONTAKT]
  *
- * @return void
+ * @param array $atts Attributes
+ * @return str HTML output
  * @author Ralf Hortt
  **/
 function shortcode_kontakt( $atts = array() )
@@ -52,9 +53,8 @@ add_shortcode( 'KONTAKTFORMULAR', 'shortcode_kontakt' );
 
 if ( !function_exists( 'submit_contact_form' ) ) :
 /**
- * Kontaktformular
+ * Contact form handler
  *
- * @return void
  * @author Ralf Hortt
  **/
 function submit_contact_form()
@@ -90,7 +90,6 @@ if ( !function_exists( 'theme_content_nav' ) ) :
 /**
  * Display navigation to next/previous pages when applicable
  *
- * @return void
  * @author Ralf Hortt
  */
 function theme_content_nav() {
@@ -109,9 +108,8 @@ endif;
 
 if ( !function_exists( 'theme_favicon' ) ) :
 /**
- * Theme init
+ * Theme favicon
  *
- * @return void
  * @author Ralf Hortt
  **/
 function theme_favicon()
@@ -133,7 +131,7 @@ if ( !function_exists( 'theme_init' ) ) :
  **/
 function theme_init()
 {
-	if ( !is_admin() && !in_array($GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' )) ) :
+	if ( !is_admin() && !in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) ) ) :
 		wp_enqueue_script( 'theme', get_stylesheet_directory_uri() . '/javascript/theme.min.js', array( 'jquery' ), FALSE, TRUE );
 		wp_enqueue_style( 'theme', get_stylesheet_directory_uri() . '/css/theme.min.css' );
 	endif;
@@ -151,7 +149,7 @@ if ( !function_exists( 'theme_login_headerurl' ) ) :
  * @return str URL
  * @author Ralf Hortt
  **/
-function theme_login_headerurl($url) {
+function theme_login_headerurl( $url ) {
 	return get_bloginfo( 'wpurl' );
 }
 endif;

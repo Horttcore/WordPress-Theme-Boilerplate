@@ -4,8 +4,6 @@
 		<?php the_content() ?>
 	</div>
 
-	<footer>
-		<?php edit_post_link() ?>
-	</footer>
+	<?php edit_post_link( __('Edit This'), '<footer class="entry-footer">', '</footer><!-- .entry-footer -->' ) ?>
 
 </article>

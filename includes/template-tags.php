@@ -1,4 +1,10 @@
 <?php
+/**
+ *
+ * Template tags
+ *
+ */
+
 if ( !function_exists( 'theme_content_nav' ) ) :
 /**
  * Display navigation to next/previous pages when applicable

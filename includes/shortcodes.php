@@ -5,7 +5,6 @@
  *
  */
 
-
 if ( !function_exists( 'shortcode_kontakt' ) ) :
 /**
  * Shortcode [KONTAKT]

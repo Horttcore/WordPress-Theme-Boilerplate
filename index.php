@@ -4,7 +4,7 @@
  * Load <head>
  *
  */
-get_template_part( 'partials/head', 'blog' );
+get_template_part( 'partials/head', 'archive' );
 
 
 
@@ -13,7 +13,7 @@ get_template_part( 'partials/head', 'blog' );
  * Load Header
  *
  */
-get_template_part( 'partials/header', 'blog' );
+get_template_part( 'partials/header', 'archive' );
 
 
 
@@ -26,7 +26,7 @@ theme_content_nav();
 
 while ( have_posts() ) : the_post();
 
-	get_template_part( 'partials/content', 'blog' );
+	get_template_part( 'partials/content', 'archive' );
 
 endwhile;
 
@@ -39,4 +39,4 @@ theme_content_nav();
  * Load Footer
  *
  */
-get_template_part( 'partials/footer', 'blog' );
+get_template_part( 'partials/footer', 'archive' );

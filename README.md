@@ -1,42 +1,42 @@
 # WordPress Theme Boilerplate
 
-## Features
-
-### Menus
+## Menus
 * Metamenu
 * Mainmenu
 * Footermenu
 
-### Sidebar
+## Sidebar
 
 * Sidebar
 
-### Customization
+## Customization
 
 * Support customized login
 
-### Localization
+## Localization
 
 * German
 
-### Plugin
+## Plugin
 
 * [Attachments Support](http://wordpress.org/plugins/attachments/)
 
-### Ajax
+## Ajax
 
 * Inject ajaxurl in WordPress header
 
-### jQuery
+## jQuery
 
-* bXSlider
-* Fancybox 2
+* [bXSlider](http://bxslider.com/)
+* [Fancybox](http://fancyapps.com/fancybox/)
 
-### Changelog
+## Changelog
 
-####
+### v1.0.11
 
-#### v1.0.10
+* Enhancement: File structure changed
+
+### v1.0.10
 
 * Added: includes/ajax.php
 * Added: includes/locale.php

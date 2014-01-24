@@ -10,6 +10,8 @@ include 'includes/menus.php';
 include 'includes/shortcodes.php';
 include 'includes/sidebars.php';
 include 'includes/template-tags.php';
+include 'includes/customizer/customizer.php';
+include 'includes/widgets/widgets.php';
 
 
 

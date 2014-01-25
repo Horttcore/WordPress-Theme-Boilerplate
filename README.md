@@ -40,6 +40,10 @@
 
 ## Changelog
 
+### v1.0.14
+
+* Added: Viewport meta tag - #11
+
 ### v1.0.13
 
 * Added: Main, meta and footer menu by default

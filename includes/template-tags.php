@@ -31,7 +31,7 @@ if ( !function_exists( 'theme_pagination' ) ) :
  *
  * @author Ralf Hortt
  */
-function theme_pagination( $before = '<div class="pagination">', $after = '</div><!-- .pagination -->' );
+function theme_pagination( $before = '<div class="pagination">', $after = '</div><!-- .pagination -->' )
 {
 	global $wp_query;
 

@@ -6,6 +6,7 @@
 <title><?php wp_title(''); ?></title>
 <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <link rel="icon" href="<?php echo get_stylesheet_directory_uri() ?>/images/favicon.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width, user-scalable=no">
 <?php wp_head(); ?>
 </head>
 

@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Load <head>
+ * <head>
  *
  */
 get_template_part( 'partials/head', 'archive' );
@@ -10,7 +10,7 @@ get_template_part( 'partials/head', 'archive' );
 
 /**
  *
- * Load Header
+ * Header
  *
  */
 get_template_part( 'partials/header', 'archive' );
@@ -19,7 +19,7 @@ get_template_part( 'partials/header', 'archive' );
 
 /**
  *
- * Loop
+ * Content loop
  *
  */
 theme_content_nav();
@@ -36,7 +36,16 @@ theme_content_nav();
 
 /**
  *
- * Load Footer
+ * Footer
  *
  */
 get_template_part( 'partials/footer', 'archive' );
+
+
+
+/**
+ *
+ * Foot
+ *
+ */
+get_template_part( 'partials/foot', 'archive' );

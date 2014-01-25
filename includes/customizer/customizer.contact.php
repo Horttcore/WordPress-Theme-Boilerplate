@@ -11,18 +11,18 @@ function theme_customizer_address( $wp_customize )
 {
 
 	$settings = array(
-		'company' => __( 'Firma', 'diro' ),
-		'street' => __( 'Straße', 'diro' ),
-		'street-number' => __( 'Nr', 'diro' ),
-		'zip' => __( 'PLZ', 'diro' ),
-		'city' => __( 'Stadt', 'diro' ),
-		'phone' => __( 'Telefon', 'diro' ),
-		'fax' => __( 'Fax', 'diro' ),
-		'email' => __( 'E-Mail', 'diro' ),
+		'company' => __( 'Firma', 'TEXTDOMAIN' ),
+		'street' => __( 'Straße', 'TEXTDOMAIN' ),
+		'street-number' => __( 'Nr', 'TEXTDOMAIN' ),
+		'zip' => __( 'PLZ', 'TEXTDOMAIN' ),
+		'city' => __( 'Stadt', 'TEXTDOMAIN' ),
+		'phone' => __( 'Telefon', 'TEXTDOMAIN' ),
+		'fax' => __( 'Fax', 'TEXTDOMAIN' ),
+		'email' => __( 'E-Mail', 'TEXTDOMAIN' ),
 	);
 
 	$wp_customize->add_section( 'address' , array(
-		'title'		=> __( 'Adresse', 'diro' ),
+		'title'		=> __( 'Adresse', 'TEXTDOMAIN' ),
 		'priority'	=> 100,
 	) );
 

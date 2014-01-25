@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Load <head>
+ * <head>
  *
  */
 get_template_part( 'partials/head', get_post_type() );
@@ -10,7 +10,7 @@ get_template_part( 'partials/head', get_post_type() );
 
 /**
  *
- * Load Header
+ * Header
  *
  */
 get_template_part( 'partials/header', get_post_type() );
@@ -19,7 +19,7 @@ get_template_part( 'partials/header', get_post_type() );
 
 /**
  *
- * Loop
+ * Content
  *
  */
 the_post();
@@ -29,7 +29,16 @@ get_template_part( 'partials/content', get_post_type() );
 
 /**
  *
- * Load Footer
+ * Footer
  *
  */
 get_template_part( 'partials/footer', get_post_type() );
+
+
+
+/**
+ *
+ * Foot
+ *
+ */
+get_template_part( 'partials/foot', get_post_type() );

@@ -3,7 +3,7 @@
  * Customizer
  *
  * @param obj $wp_customize WordPress Customizer
- * @since v1.0
+ * @since v1.0.12
  * @author Ralf Hortt
  */
 if ( !class_exists( 'WP_Widget_Subnav' ) ) :
@@ -33,7 +33,7 @@ class WP_Widget_Subnav extends WP_Widget {
 	 *
 	 * @param array $args Arguments
 	 * @param array $instance Widget instance
-	 * @since v1.0
+	 * @since v1.0.12
 	 * @author Ralf Hortt
 	 */
 	function widget( $args, $instance ) {
@@ -74,7 +74,7 @@ class WP_Widget_Subnav extends WP_Widget {
 	 *
 	 * @param array $new_instance New widget instance
 	 * @param array $old_instance Old widget instance
-	 * @since v1.0
+	 * @since v1.0.12
 	 * @author Ralf Hortt
 	 */
 	function update( $new_instance, $old_instance ) {}
@@ -85,7 +85,7 @@ class WP_Widget_Subnav extends WP_Widget {
 	 * Widget settings
 	 *
 	 * @param array $instance Widget instance
-	 * @since v1.0
+	 * @since v1.0.12
 	 * @author Ralf Hortt
 	 */
 	function form( $instance ) {}

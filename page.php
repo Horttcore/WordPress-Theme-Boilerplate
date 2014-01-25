@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Load <head>
+ * <head>
  *
  */
 get_template_part( 'partials/head', 'page' );
@@ -10,7 +10,7 @@ get_template_part( 'partials/head', 'page' );
 
 /**
  *
- * Load Header
+ * Header
  *
  */
 get_template_part( 'partials/header', 'page' );
@@ -19,7 +19,7 @@ get_template_part( 'partials/header', 'page' );
 
 /**
  *
- * Loop
+ * Content
  *
  */
 the_post();
@@ -29,7 +29,16 @@ get_template_part( 'partials/content', 'page' );
 
 /**
  *
- * Load Footer
+ * Footer
  *
  */
 get_template_part( 'partials/footer', 'page' );
+
+
+
+/**
+ *
+ * Foot
+ *
+ */
+get_template_part( 'partials/foot', 'page' );

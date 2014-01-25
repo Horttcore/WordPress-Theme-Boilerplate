@@ -33,17 +33,16 @@ function submit_contact_form()
 	if ( !wp_verify_nonce( $_POST['contact-form-nonce'], 'submit-contact-form' ) )
 		die( '<div class="message error"><p>' . __( 'Ihre Anfrage konnte nicht verschickt werden.', 'TEXTDOMAIN' ) . '</p></div>' );
 
-	$headers = "FROM:" . get_bloginfo( 'blogname' ) . '<' . sanitize_email( get_bloginfo( 'admin_email' ) ) . '>' . "\n";
-	$headers.= "REPLY-TO: " . sanitize_text_field( $_POST['contact-name'] ) . '<' . sanitize_email( $_POST['email'] ) . '>' . "\n";
+	$headers = "FROM:" . get_bloginfo( 'blogname' ) . ' <' . sanitize_email( get_bloginfo( 'admin_email' ) ) . '>' . "\n";
+	$headers.= "REPLY-TO: " . sanitize_text_field( $_POST['contact-name'] ) . ' <' . sanitize_email( $_POST['email'] ) . '>' . "\n";
 
 	$to = get_bloginfo( 'admin_email' );
 
-	$subject = '[' . get_bloginfo( 'blogname' ) . '] Kontaktformular';
+	$subject = '[' . get_bloginfo( 'blogname' ) . '] ' . __( 'Kontaktformular', 'TEXTDOMAIN' );
 
 	$text = "Name: " .  sanitize_text_field( $_POST['contact-name'] ) . "\n";
 	$text .= "E-Mail: " .  sanitize_text_field( $_POST['email'] ) . "\n";
-	$text .= "Thema: " .  sanitize_text_field( $_POST['subject'] ) . "\n";
-	$text .= "Aufmerksam durch: " .  sanitize_text_field( $_POST['attentive'] ) . "\n";
+	$text .= "Telefon: " .  sanitize_text_field( $_POST['phone'] ) . "\n";
 	$text .= "\nNachricht:\n " .  esc_html( $_POST['message'] ) . "\n\n";
 
 	wp_mail( $to, $subject, $text, $headers );

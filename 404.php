@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Load <head>
+ * <head>
  *
  */
 get_template_part( 'partials/head', '404' );
@@ -10,7 +10,7 @@ get_template_part( 'partials/head', '404' );
 
 /**
  *
- * Load Header
+ * Header
  *
  */
 get_template_part( 'partials/header', '404' );
@@ -19,7 +19,7 @@ get_template_part( 'partials/header', '404' );
 
 /**
  *
- * Loop
+ * Content
  *
  */
 get_template_part( 'partials/content', '404' );
@@ -28,7 +28,16 @@ get_template_part( 'partials/content', '404' );
 
 /**
  *
- * Load Footer
+ * Footer
  *
  */
 get_template_part( 'partials/footer', '404' );
+
+
+
+/**
+ *
+ * Foot
+ *
+ */
+get_template_part( 'partials/foot', '404' );

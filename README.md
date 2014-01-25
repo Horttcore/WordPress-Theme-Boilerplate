@@ -9,6 +9,14 @@
 
 * Sidebar
 
+## Widgets
+
+* Subnav
+
+## Customizer
+
+* Website contact
+
 ## Customization
 
 * Support customized login
@@ -31,6 +39,17 @@
 * [Fancybox](http://fancyapps.com/fancybox/)
 
 ## Changelog
+
+### v1.0.13
+
+* Added: Main, meta and footer menu by default
+* Enhancement: Split footer in two partials
+* Enhancement: Code cleanup
+
+### v1.0.12
+
+* Added: Customizer - Contact data
+* Added: Widget - Subnav
 
 ### v1.0.11
 

@@ -3,7 +3,7 @@
  * Customizer
  *
  * @param obj $wp_customize WordPress Customizer
- * @since v1.0
+ * @since v1.0.14
  * @author Ralf Hortt
  */
 if ( !function_exists( 'theme_customizer_address' ) ) :

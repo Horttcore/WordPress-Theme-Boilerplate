@@ -28,6 +28,7 @@
 ## Plugin
 
 * [Attachments Support](http://wordpress.org/plugins/attachments/)
+* [Custom Background Image Size](https://github.com/Horttcore/Custom-Background-Image-Size)
 
 ## Ajax
 
@@ -39,6 +40,12 @@
 * [Fancybox](http://fancyapps.com/fancybox/)
 
 ## Changelog
+
+### v1.0.15
+
+* Added: Custom background support
+* Added: Plugin support for [Custom Background Image Size](https://github.com/Horttcore/Custom-Background-Image-Size)
+* Enhancement: File structure changed
 
 ### v1.0.14
 

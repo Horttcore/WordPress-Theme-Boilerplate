@@ -6,6 +6,7 @@
  */
 
 $customizers = array(
+	'customizer-background' => 'customizer.custom-background.php',
 	'customizer-contact' => 'customizer.contact.php',
 );
 

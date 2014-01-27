@@ -5,7 +5,7 @@
 * Mainmenu
 * Footermenu
 
-## Sidebar
+## Sidebars
 
 * Sidebar
 
@@ -13,7 +13,7 @@
 
 * Subnav
 
-## Customizer
+## Customizer modules
 
 * Website contact
 

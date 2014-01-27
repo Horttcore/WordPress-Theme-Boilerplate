@@ -25,16 +25,16 @@
 
 * German
 
-## Plugin
+## Plugins
 
-* [Attachments Support](http://wordpress.org/plugins/attachments/)
+* [Attachments](http://wordpress.org/plugins/attachments/)
 * [Custom Background Image Size](https://github.com/Horttcore/Custom-Background-Image-Size)
 
 ## Ajax
 
 * Inject ajaxurl in WordPress header
 
-## jQuery
+## jQuery plugins
 
 * [bXSlider](http://bxslider.com/)
 * [Fancybox](http://fancyapps.com/fancybox/)

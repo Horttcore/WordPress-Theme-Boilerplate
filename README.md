@@ -44,7 +44,7 @@
 ### v1.0.16
 
 * Added: Visual partial - #13
-* Enhancement: Updated screenshot size
+* Enhancement: Updated screenshot size - #12
 * Enhancement: Correct viewport meta tag - #11
 * Fix: Correct file name for content-archive ( content-blog ) partial file
 

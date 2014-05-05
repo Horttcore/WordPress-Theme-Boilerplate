@@ -41,6 +41,13 @@
 
 ## Changelog
 
+### v1.0.16
+
+* Added: Visual partial - #13
+* Enhancement: Updated screenshot size
+* Enhancement: Correct viewport meta tag - #11
+* Fix: Correct file name for content-archive ( content-blog ) partial file
+
 ### v1.0.15
 
 * Added: Custom background support

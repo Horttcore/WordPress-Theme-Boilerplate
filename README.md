@@ -21,6 +21,10 @@
 
 * Support customized login
 
+## Submodules
+
+* [Template Meta Boxes](https://github.com/Horttcore/Template-Meta-Boxes)
+
 ## Localization
 
 * German
@@ -40,6 +44,15 @@
 * [Fancybox](http://fancyapps.com/fancybox/)
 
 ## Changelog
+
+### v1.0.17
+
+* Added: Template folder
+* Added: CodeKit default config
+* Added: Submodule Template Meta Boxes - #9
+* Added: Basic form handling in javascript - #5
+* Enhancement: Updated bxSlider
+* Enhancement: Stylus using SMACSS principle
 
 ### v1.0.16
 

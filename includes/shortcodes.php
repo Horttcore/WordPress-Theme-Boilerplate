@@ -25,7 +25,7 @@ function shortcode_kontakt( $atts = array() )
 	$output.= '<p><label for="email">' . __( 'Ihre E-Mail Adresse:', 'TEXTDOMAIN' ) . '*</label><input name="email" type="text" class="required email" id="email" data-error="' . __( 'Das Feld E-Mail ist ein Pflichtfeld', 'TEXTDOMAIN' ) . '"></p>';
 	$output.= '<p><label for="phone">' . __( 'Ihre Telefonnummer:', 'TEXTDOMAIN' ) . '*</label><input name="phone" type="text" class="required phone" id="phone" data-error="' . __( 'Das Feld Telefon ist ein Pflichtfeld', 'TEXTDOMAIN' ) . '"></p>';
 	$output.= '<p><label for="message">' . __( 'Ihre Nachricht:', 'TEXTDOMAIN' ) . '*</label><textarea name="message" class="required" id="message" data-error="' . __( 'Das Feld Nachricht ist ein Pflichtfeld', 'TEXTDOMAIN' ) . '"></textarea></p>';
-	$output.= '<p class="submit"><button type="submit"><i class="icon-envelope-alt"></i> ' . __( 'Senden', 'TEXTDOMAIN' ) . '</button></p>';
+	$output.= '<p class="submit"><button type="submit"> ' . __( 'Absenden', 'TEXTDOMAIN' ) . '</button></p>';
 	$output.= '<input type="hidden" name="action" value="submit-contact-form">';
 	$output.= wp_nonce_field( 'submit-contact-form', 'contact-form-nonce', TRUE, FALSE );
 	$output.= '</form>';

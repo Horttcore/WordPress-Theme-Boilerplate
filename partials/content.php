@@ -1,10 +1,10 @@
-<article id="post-<?php the_ID() ?>" <?php post_class( 'clearfix' ) ?>>
+<article id="post-<?php the_ID() ?>" <?php post_class( 'clearfix' ) ?> role="main">
 
 	<header class="entry-header">
 
 		<div class="post-date"><?php the_date() ?></div>
 
-		<h2><?php the_title() ?></h2>
+		<h1><?php the_title() ?></h1>
 
 	</header><!-- .entry-header -->
 

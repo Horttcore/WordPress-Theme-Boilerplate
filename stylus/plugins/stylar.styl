@@ -1,0 +1,90 @@
+$stylar_imagepath = '../images'
+$stylar_spritename = 'sprite.png'
+
+
+
+/**
+ *
+ * Positioning elements
+ *
+ */
+_position( $position = false, $top = false, $right = false, $bottom = false, $left = false )
+	if ( $bottom )
+		bottom $bottom
+	if ( $left )
+		left $left
+	position absolute
+	if $right
+		right $right
+	if $top
+		top $top
+
+absolute( $top = false, $right = false, $bottom = false, $left = false )
+	_position( 'absolute', $top, $right, $bottom, $left )
+
+fixed( $top = false, $right = false, $bottom = false, $left = false )
+	_position( 'fixed', $top, $right, $bottom, $left )
+
+relative( $top = false, $right = false, $bottom = false, $left = false )
+	_position( 'relative', $top, $right, $bottom, $left )
+
+
+
+/**
+ *
+ * NAVIGATION
+ *
+ */
+
+/* Nav horizontal */
+nav-horizontal()
+
+	&
+
+		> ul
+
+			> li
+				float left
+				position relative
+
+				> a
+					display inline-block
+
+				> ul
+					display none
+
+				&:hover > ul
+					display block
+
+					> li
+
+						> a
+							display block
+
+/* Nav vertical */
+nav-vertical()
+
+	&
+
+		> ul
+
+			> li
+
+				> a
+					display block
+
+
+
+/**
+ *
+ * SPRITE
+ *
+ */
+sprite( $x = false, $y = false, $w = false, $h = false, $pseudo = false )
+	background url( '$stylar_imagepath/$stylar_spritename'  ) $x $y transparent no-repeat
+	if $pseudo
+		content ''
+	display inline-block
+	height $h
+	width $w
+

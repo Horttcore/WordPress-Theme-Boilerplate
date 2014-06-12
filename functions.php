@@ -5,6 +5,7 @@
 include 'includes/ajax.php';
 include 'includes/locale.php';
 include 'includes/login.php';
+include 'includes/mail.php';
 include 'includes/menus.php';
 include 'includes/shortcodes.php';
 include 'includes/sidebars.php';
@@ -44,8 +45,8 @@ if ( !function_exists( 'theme_init' ) ) :
 /**
  * Theme init
  *
- * @return void
  * @author Ralf Hortt
+ * @since v1.0.0
  **/
 function theme_init()
 {

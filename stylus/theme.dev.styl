@@ -3,18 +3,204 @@
  * VARS
  *
  */
+
+// Document
+$base_width = 980
+
+// Font
 fontstack = sans-serif
+fontsize = 16px
+fontheight = 1.5
+
+// Colors
 
 
 /**
  *
- * IMPORT
+ * IMPORTING
  *
  */
-@import "reset.styl"
+@import "plugins/reset.styl"
 @import "plugins/jquery.bxslider.styl"
 @import "plugins/jquery.fancybox.styl"
-@import "base.styl"
-@import "layout.styl"
-@import "modules.styl"
-@import "state.styl"
+@import "plugins/stylar.styl"
+
+
+
+/**
+ *
+ * HTML
+ *
+ */
+body
+	font fontsize/fontheight fontstack
+
+ul
+ol
+table
+blockquote
+p
+ 	margin 0 0 1.5625em
+
+ul
+ol
+	li
+ 		margin 0 0 .3125em
+
+ul
+ 	list-style disc
+
+ol
+ 	list-style numeric
+
+nav
+
+	ul
+ 		list-style none
+ 		margin 0
+
+	li
+ 		margin 0
+
+img
+	max-width 100%
+	height auto
+
+form
+
+	input
+		border 1px solid black
+
+	input[type="checkbox"]
+	input[type="radio"]
+		border none
+		width auto
+
+	p.submit
+		text-align right
+
+:first-child
+ 	margin-top 0
+
+:last-child
+ 	margin-bottom 0
+
+
+
+/**
+ *
+ * HEADER
+ *
+ */
+.header
+
+	.logo
+		display inline-block
+
+
+/**
+ *
+ * NAV
+ *
+ */
+.nav-main
+.nav-meta
+.nav-footer
+	nav-horizontal()
+
+
+
+/**
+ *
+ * CONTENT
+ *
+ */
+//.content
+
+
+
+/**
+ *
+ * SIDEBAR
+ *
+ */
+//.sidebar
+
+
+
+/**
+ *
+ * FOOTER
+ *
+ */
+//.footer
+
+
+
+/**
+ *
+ * HELPER
+ *
+ */
+.aligncenter
+	display block
+	margin 0 auto 1.5625em
+	text-align center
+
+.alignleft
+	float left
+	margin 0 1.5625em 1.5625em 0
+
+.alignright
+	float right
+	margin 0 0 1.5625em 1.5625em
+
+.clear
+	clear both
+
+.clearleft
+	clear left
+
+.clearright
+	clear right
+
+.container
+	margin-left auto
+	margin-right auto
+	padding 0 .625em
+	max-width unit( $base_width, 'px' )
+
+.error
+	color red
+
+.error-input
+	border 1px solid red
+
+.error-message
+	background red
+	color white
+	padding .625em
+
+.left
+	float left
+
+.right
+	float right
+
+
+
+/**
+ *
+ * TEMPLATE: Home
+ *
+ */
+//.home
+
+
+
+/**
+ *
+ * BLOG
+ *
+ */
+//.blog

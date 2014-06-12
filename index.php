@@ -22,18 +22,25 @@ get_template_part( 'partials/header', 'archive' );
  * Content loop
  *
  */
-theme_content_nav();
+?>
+<section>
 
-while ( have_posts() ) : the_post();
+	<?php
+	theme_content_nav();
 
-	get_template_part( 'partials/content', 'archive' );
+	while ( have_posts() ) : the_post();
 
-endwhile;
+		get_template_part( 'partials/content', 'archive' );
 
-theme_content_nav();
+	endwhile;
+
+	theme_content_nav();
+	?>
+</section>
 
 
 
+<?php
 /**
  *
  * Footer

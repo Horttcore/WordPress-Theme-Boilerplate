@@ -1,3 +1,7 @@
+	</div><!-- .container -->
+
+</div><!-- .content-container -->
+
 <footer class="footer">
 
 	<?php

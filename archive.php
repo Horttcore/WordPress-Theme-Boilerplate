@@ -22,18 +22,34 @@ get_template_part( 'partials/header', 'archive' );
  * Content loop
  *
  */
-theme_content_nav();
+?>
+<section>
 
-while ( have_posts() ) : the_post();
+	<h1><?php single_cat_title() ?></h1>
 
-	get_template_part( 'partials/content', 'archive' );
+	<div class="posts">
 
-endwhile;
+		<?php
 
-theme_content_nav();
+		theme_content_nav();
+
+		while ( have_posts() ) : the_post();
+
+			get_template_part( 'partials/content', 'archive' );
+
+		endwhile;
+
+		theme_content_nav();
+
+		?>
+
+	</div><!-- .posts -->
+
+</section>
 
 
 
+<?php
 /**
  *
  * Footer

@@ -19,10 +19,11 @@ function theme_customizer_address( $wp_customize )
 		'phone' => __( 'Telefon', 'TEXTDOMAIN' ),
 		'fax' => __( 'Fax', 'TEXTDOMAIN' ),
 		'email' => __( 'E-Mail', 'TEXTDOMAIN' ),
+		'url' => __( 'URL', 'TEXTDOMAIN' ),
 	);
 
 	$wp_customize->add_section( 'address' , array(
-		'title'		=> __( 'Adresse', 'TEXTDOMAIN' ),
+		'title'		=> __( 'Kontakt', 'TEXTDOMAIN' ),
 		'priority'	=> 100,
 	) );
 
@@ -39,7 +40,7 @@ function theme_customizer_address( $wp_customize )
 			$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'contact-' . $setting, array(
 				'label'		=> $label,
 				'section'	=> 'address',
-				'settings'	=> 'contact-' . $setting,
+				'settings'	=> $setting,
 				'priority'  => $i
 			) ) );
 

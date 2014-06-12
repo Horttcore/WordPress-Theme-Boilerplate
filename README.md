@@ -45,6 +45,14 @@
 
 ## Changelog
 
+### v1.0.18
+
+* Added: Mail headers
+* Added: ARIA roles
+* Added: Sidebar partial
+* Added: Stylar Stylus mixin library
+* Removed: SMACSS principle
+
 ### v1.0.17
 
 * Added: Template folder

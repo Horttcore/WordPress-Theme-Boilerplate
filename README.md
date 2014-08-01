@@ -45,6 +45,14 @@
 
 ## Changelog
 
+### v1.1
+
+* Added: Gulp
+* Added: package.json
+* Changed: Various file names have changed
+* Changed: Folder structure changed slightly ( Source folder )
+* Removed: CodeKit config
+
 ### v1.0.18
 
 * Added: Mail headers

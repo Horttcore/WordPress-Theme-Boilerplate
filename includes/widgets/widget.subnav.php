@@ -56,14 +56,21 @@ class WP_Widget_Subnav extends WP_Widget {
 		if ( !$nav )
 			return;
 
+		echo $args['before_widget'];
+
+		echo $args['before_title'] . get_the_title( $ancestor ) . $args['after_title'];
+
 		?>
-		<aside class="widget widget-subnav widget-subnav-<?php echo $ancestor ?>">
-			<h3 class="widget-title"><?php echo get_the_title( $ancestor ) ?></h3>
-			<ul>
-				<?php echo $nav ?>
-			</ul>
-		</aside>
+
+		<ul>
+
+			<?php echo $nav ?>
+
+		</ul>
+
 		<?php
+
+		echo $args['after_widget'];
 
 	}
 

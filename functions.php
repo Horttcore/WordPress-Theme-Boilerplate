@@ -51,8 +51,8 @@ if ( !function_exists( 'theme_init' ) ) :
 function theme_init()
 {
 	if ( !is_admin() && !in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) ) ) :
-		wp_enqueue_script( 'theme', get_stylesheet_directory_uri() . '/javascript/theme.min.js', array( 'jquery' ), FALSE, TRUE );
-		wp_enqueue_style( 'theme', get_stylesheet_directory_uri() . '/css/theme.min.css' );
+		wp_enqueue_script( 'theme', get_stylesheet_directory_uri() . '/scripts/scripts.combined.min.js', array( 'jquery' ), FALSE, TRUE );
+		wp_enqueue_style( 'theme', get_stylesheet_directory_uri() . '/styles/styles.min.css' );
 	endif;
 }
 endif;

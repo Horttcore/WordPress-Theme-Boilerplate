@@ -45,13 +45,21 @@
 
 ## Changelog
 
-### v1.1
+### v1.1.1
+
+* Fixed #18 - Replaced next/prev links with pagination on archive pages
+* Fixed #19 - Remove whitespace
+* Fixed #20 - Gulp config
+
+### v1.1.0
 
 * Added: Gulp
 * Added: package.json
 * Changed: Various file names have changed
 * Changed: Folder structure changed slightly ( Source folder )
 * Removed: CodeKit config
+* Fixed #15
+* Fixed #17
 
 ### v1.0.18
 

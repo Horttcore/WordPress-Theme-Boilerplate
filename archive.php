@@ -31,7 +31,7 @@ get_template_part( 'partials/header', 'archive' );
 
 		<?php
 
-		theme_content_nav();
+		theme_pagination();
 
 		while ( have_posts() ) : the_post();
 
@@ -39,7 +39,7 @@ get_template_part( 'partials/header', 'archive' );
 
 		endwhile;
 
-		theme_content_nav();
+		theme_pagination();
 
 		?>
 

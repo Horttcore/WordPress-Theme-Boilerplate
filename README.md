@@ -33,6 +33,7 @@
 
 * [Attachments](http://wordpress.org/plugins/attachments/)
 * [Custom Background Image Size](https://github.com/Horttcore/Custom-Background-Image-Size)
+* [Multiple Post Thumbnails](https://wordpress.org/plugins/multiple-post-thumbnails/)
 
 ## Ajax
 
@@ -40,10 +41,17 @@
 
 ## jQuery plugins
 
-* [bXSlider](http://bxslider.com/)
-* [Fancybox](http://fancyapps.com/fancybox/)
+* [bXSlider](http://bxslider.com/) ( Slider )
+* [Fancybox](http://fancyapps.com/fancybox/) ( Lightbox )
 
 ## Changelog
+
+### v1.2
+
+* Fixed #22 - Added: Multiple Post Thumbnail support
+* Fixed #23 - Added: Template Meta Box integration
+* Fixed #21 - Customizer was broken
+* Fixed #24 - Gulp LiveReload watched wrong folder
 
 ### v1.1.1
 

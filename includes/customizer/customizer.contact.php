@@ -37,7 +37,7 @@ function theme_customizer_address( $wp_customize )
 				'transport'	=> 'refresh',
 			) );
 
-			$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'contact-' . $setting, array(
+			$wp_customize->add_control( new WP_Customize_Control( $wp_customize, $setting, array(
 				'label'		=> $label,
 				'section'	=> 'address',
 				'settings'	=> $setting,

@@ -8,6 +8,7 @@
 $plugins = array(
 	'attachments' => 'attachments.php',
 	'custom-background-image-size' => 'custom-background-image-size.php',
+	'multiple-post-thumbnails' => 'multiple-post-thumbnails.php',
 );
 
 if ( !is_array( $plugins ) )

@@ -89,7 +89,7 @@ gulp.task('watch', function() {
     gulp.watch('src/svg/*.svg', ['sprites']);
 
 	livereload.listen();
-	gulp.watch('css/*').on('change', livereload.changed);
+	gulp.watch('styles/*').on('change', livereload.changed);
 	gulp.watch('scripts/*').on('change', livereload.changed);
 	gulp.watch('images/*').on('change', livereload.changed);
 	gulp.watch('**/*.php').on('change', livereload.changed);

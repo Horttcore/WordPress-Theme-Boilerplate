@@ -33,7 +33,7 @@ function theme_customizer_address( $wp_customize )
 
 		foreach ( $settings as $setting => $label ) :
 
-			$wp_customize->add_setting( 'contact-' . $setting, array(
+			$wp_customize->add_setting( $setting, array(
 				'transport'	=> 'refresh',
 			) );
 

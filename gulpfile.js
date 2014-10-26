@@ -79,9 +79,8 @@ gulp.task('scripts', function() {
 });
 
 // Cleanup
-gulp.task('clean', function() {
-  return gulp.src(['css','images','scripts'], { read: false })
-    .pipe(del({ force: true }));
+gulp.task('clean', function(cb) {
+	del(['styles/**', 'images/**', 'scripts/**'], cb);
 });
 
 // Default gulp task to run

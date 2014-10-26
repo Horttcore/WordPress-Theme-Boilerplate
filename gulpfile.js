@@ -18,7 +18,7 @@ var gulp = require('gulp'),
 	// Livereload
 	livereload = require('gulp-livereload'),
 	// Utils
-	rimraf = require('gulp-rimraf'),
+	del = require('del'),
 	watch = require('gulp-watch'),
 	rename = require('gulp-rename'),
 	fs = require("fs");
@@ -74,7 +74,7 @@ gulp.task('scripts', function() {
 // Cleanup
 gulp.task('clean', function() {
   return gulp.src(['css','images','scripts'], { read: false })
-    .pipe(rimraf({ force: true }));
+    .pipe(del({ force: true }));
 });
 
 // Default gulp task to run

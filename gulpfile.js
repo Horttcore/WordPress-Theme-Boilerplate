@@ -4,6 +4,8 @@ var gulp = require('gulp'),
 	stylus = require('gulp-stylus'),
 	minifyCSS = require('gulp-minify-css'),
 	prefix = require('gulp-autoprefixer'),
+	rupture = require('rupture'),
+	jeet = require('jeet'),
 	// Javascript combine and minify
 	concat = require('gulp-concat'),
 	uglify = require('gulp-uglify'),
@@ -53,7 +55,12 @@ gulp.task('images', function(cb) {
 // Get and render all .styl files recursively
 gulp.task('styles', function () {
     gulp.src('./src/styles/styles.styl')
-        .pipe(stylus())
+        .pipe(stylus({
+        	use: [
+        		jeet(),
+        		rupture()
+        	]
+        }))
         .pipe(prefix('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
         .pipe(rename({suffix: '.min'}))
         .pipe(minifyCSS())

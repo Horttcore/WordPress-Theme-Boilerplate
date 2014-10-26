@@ -30,7 +30,8 @@ gulp.task('sprites', function () {
 			cssFile: "../../src/styles/sprite.styl",
 			templates: {
         		css: fs.readFileSync("src/svg/style.tpl", "utf-8")
-		    }
+		    },
+			padding: 2
 		}))
         .pipe(gulp.dest("images/sprites")) // Write the sprite-sheet + CSS + Preview
         .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file

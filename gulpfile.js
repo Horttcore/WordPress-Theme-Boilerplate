@@ -6,6 +6,8 @@ var gulp = require('gulp'),
 	prefix = require('gulp-autoprefixer'),
 	rupture = require('rupture'),
 	jeet = require('jeet'),
+	axis = require('axis'),
+	typographic = require('typographic'),
 	// Javascript combine and minify
 	concat = require('gulp-concat'),
 	uglify = require('gulp-uglify'),
@@ -54,17 +56,36 @@ gulp.task('images', function(cb) {
 
 // Get and render all .styl files recursively
 gulp.task('styles', function () {
-    gulp.src('./src/styles/styles.styl')
-        .pipe(stylus({
-        	use: [
-        		jeet(),
-        		rupture()
-        	]
-        }))
-        .pipe(prefix('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-        .pipe(rename({suffix: '.min'}))
-        .pipe(minifyCSS())
-        .pipe(gulp.dest('./styles'));
+	gulp.src('./src/styles/styles.styl')
+		.pipe(stylus({
+			use: [
+				jeet(),
+				rupture(),
+				axis(),
+				typographic(),
+			]
+		}))
+		.pipe(prefix('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+		.pipe(rename({suffix: '.min'}))
+		.pipe(minifyCSS())
+		.pipe(gulp.dest('./styles'));
+});
+
+gulp.task('loginstyles', function () {
+	gulp.src('./src/styles/login.styl')
+		.pipe(stylus({
+			use: [
+				jeet(),
+				rupture(),
+				axis(),
+				typographic(),
+			]
+		}))
+		.pipe(prefix('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+		.pipe(gulp.dest('./styles'))
+		.pipe(rename({suffix: '.min'}))
+		.pipe(minifyCSS())
+		.pipe(gulp.dest('./styles'));
 });
 
 // Concat and minify scripts with sourcemap
@@ -91,7 +112,7 @@ gulp.task('default', ['clean'], function(){
 // Watch Files For Changes
 gulp.task('watch', function() {
     gulp.watch('src/scripts/*.js', ['scripts']);
-    gulp.watch('src/styles/*.styl', ['styles']);
+    gulp.watch('src/styles/*.styl', ['styles', 'loginstyles']);
     gulp.watch('src/images/*', ['images']);
     gulp.watch('src/svg/*.svg', ['sprites']);
 
@@ -104,5 +125,5 @@ gulp.task('watch', function() {
 
 // Developer gulp task to run
 gulp.task('dev', ['clean'], function(){
-	gulp.start('sprites', 'images', 'scripts', 'styles'  );
+	gulp.start('sprites', 'images', 'scripts', 'styles', 'loginstyles'  );
 });

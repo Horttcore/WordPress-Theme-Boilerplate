@@ -20,6 +20,9 @@ jQuery(document).ready(function(){
 
 		bindings:function(){
 
+			// Lightbox
+			jQuery('a[href$=".jpg"],a[href$=".jepg"],a[href$=".png"]').fancybox();
+
 		},
 
 		submitForm:function( form, options ) {

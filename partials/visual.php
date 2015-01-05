@@ -1,16 +1,17 @@
 <?php
 // Get slides
-$attachments = new Attachments( 'slider' );
+if ( class_exists( 'Attachments' ) )
+	$attachments = new Attachments( 'slider' );
 
 // No output if there is no visual elemet
-if ( !has_post_thumbnail() && !$attachments->exist() )
+if ( !has_post_thumbnail() && !class_exists( 'Attachments' ) && !$attachments->exist() )
 	return;
 
 ?>
 
-<div class="visual">
+<div class="visual cf">
 
-	<?php if ( $attachments->exist() ) : ?>
+	<?php if ( class_exists( 'Attachments' ) && $attachments->exist() ) : ?>
 
 		<div class="slider">
 

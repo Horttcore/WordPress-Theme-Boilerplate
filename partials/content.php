@@ -1,4 +1,4 @@
-<article id="post-<?php the_ID() ?>" <?php post_class( 'clearfix' ) ?> role="main">
+<article id="post-<?php the_ID() ?>" <?php post_class( 'cf' ) ?> role="main">
 
 	<header class="entry-header">
 

@@ -1,4 +1,4 @@
-<article id="post-error-404" <?php post_class( 'clearfix' ) ?>>
+<article id="post-error-404" <?php post_class( 'cf' ) ?>>
 
 	<h1><?php _e( 'Seite nicht gefunden', 'TEXTDOMAIN' ) ?></h1>
 

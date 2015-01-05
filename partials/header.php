@@ -1,4 +1,4 @@
-<header class="header clearfix" role="banner">
+<header class="header cf" role="banner">
 
 	<a class="logo" href="<?php echo home_url() ?>">
 		<img src="<?php echo get_stylesheet_directory_uri() ?>/images/logo-WP_SLUG.png" alt="<?php bloginfo('name') ?>" title="<?php bloginfo('description') ?>">

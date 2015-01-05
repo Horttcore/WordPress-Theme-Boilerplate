@@ -1,4 +1,4 @@
-<article id="post-<?php the_ID() ?>" <?php post_class( 'clearfix' ) ?>>
+<article id="post-<?php the_ID() ?>" <?php post_class( 'cf' ) ?>>
 
 	<div class="entry clearfix">
 

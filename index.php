@@ -23,7 +23,7 @@ get_template_part( 'partials/header', 'archive' );
  *
  */
 ?>
-<section>
+<section class="cf">
 
 	<?php
 	theme_pagination();

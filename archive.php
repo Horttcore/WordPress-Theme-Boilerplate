@@ -23,7 +23,7 @@ get_template_part( 'partials/header', 'archive' );
  *
  */
 ?>
-<section>
+<section class="cf">
 
 	<h1><?php single_cat_title() ?></h1>
 

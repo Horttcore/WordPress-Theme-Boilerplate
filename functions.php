@@ -5,24 +5,16 @@
 include 'includes/ajax.php';
 include 'includes/locale.php';
 include 'includes/login.php';
+include 'includes/images.php';
 include 'includes/mail.php';
 include 'includes/menus.php';
+include 'includes/theme-support.php';
 include 'includes/shortcodes.php';
 include 'includes/sidebars.php';
 include 'includes/template-tags.php';
 include 'includes/customizer/index.php';
 include 'includes/plugins/index.php';
 include 'includes/widgets/index.php';
-
-
-
-/**
- *
- * Support
- *
- */
-add_theme_support( 'post-thumbnails' );
-add_theme_support( 'title-tag' );
 
 
 

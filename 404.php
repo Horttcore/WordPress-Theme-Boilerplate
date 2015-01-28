@@ -22,7 +22,20 @@ get_template_part( 'partials/header', '404' );
  * Content
  *
  */
-get_template_part( 'partials/content', '404' );
+
+?>
+
+<div class="content-container">
+
+	<div class="container">
+
+		<?php get_template_part( 'partials/content-404' ) ?>
+
+	</div><!-- .container -->
+
+</div><!-- .content-container -->
+
+<?php
 
 
 

@@ -1,11 +1,15 @@
-<article id="post-error-404" <?php post_class( 'cf' ) ?>>
+<div class="content">
 
-	<h1><?php _e( 'Seite nicht gefunden', 'TEXTDOMAIN' ) ?></h1>
+	<article id="post-error-404" <?php post_class( 'cf' ) ?>>
 
-	<div class="entry clearfix">
+		<h1 class="entry-title"><?php _e( 'Seite nicht gefunden', 'TEXTDOMAIN' ) ?></h1>
 
-		<p><?php _e( 'Der von Ihnen gewünschte Inhalt konnte nicht gefunden werden', 'TEXTDOMAIN' ) ?>
+		<div class="entry cf">
 
-	</div><!-- .entry -->
+			<p><?php _e( 'Der von Ihnen gewünschte Inhalt konnte nicht gefunden werden', 'TEXTDOMAIN' ) ?></p>
 
-</article><!-- #post-error-404 -->
+		</div><!-- .entry -->
+
+	</article><!-- #post-error-404 -->
+
+</div><!-- .content -->

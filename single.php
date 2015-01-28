@@ -22,11 +22,24 @@ get_template_part( 'partials/header', get_post_type() );
  * Content
  *
  */
-the_post();
-get_template_part( 'partials/content', get_post_type() );
+?>
+
+<div class="content-container">
+
+	<div class="container">
+
+		<?php
+		the_post();
+		get_template_part( 'partials/content', get_post_type() );
+		?>
+
+	</div><!-- .container -->
+
+</div><!-- .content-container -->
 
 
 
+<?php
 /**
  *
  * Footer

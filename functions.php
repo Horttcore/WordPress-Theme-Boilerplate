@@ -13,6 +13,7 @@ include 'includes/shortcodes.php';
 include 'includes/sidebars.php';
 include 'includes/template-tags.php';
 include 'includes/customizer/index.php';
+include 'includes/modules/index.php';
 include 'includes/plugins/index.php';
 include 'includes/widgets/index.php';
 

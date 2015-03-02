@@ -1,19 +1,21 @@
-<article id="post-<?php the_ID() ?>" <?php post_class( 'cf' ) ?> role="main">
+<div class="content">
 
-	<header class="entry-header">
+	<article id="post-<?php the_ID() ?>" <?php post_class( 'cf' ) ?> role="main">
 
-		<div class="post-date"><?php the_date() ?></div>
+		<header class="entry-header">
 
-		<h1><?php the_title() ?></h1>
+			<h1 class="entry-title"><?php the_title() ?></h1>
 
-	</header><!-- .entry-header -->
+		</header><!-- .entry-header -->
 
-	<div class="entry clearfix">
+		<div class="entry cf">
 
-		<?php the_content( __( 'Weiterlesen &raquo;', 'TEXTDOMAIN' ) ) ?>
+			<?php the_content( __( 'Weiterlesen &raquo;', 'TEXTDOMAIN' ) ) ?>
 
-	</div><!-- .entry -->
+		</div><!-- .entry -->
 
-	<?php edit_post_link( __('Edit This'), '<footer class="entry-footer">', '</footer><!-- .entry-footer -->' ) ?>
+		<?php edit_post_link( __('Edit This'), '<footer class="entry-footer">', '</footer><!-- .entry-footer -->' ) ?>
 
-</article><!-- #post-<?php the_ID() ?> -->
+	</article><!-- #post-<?php the_ID() ?> -->
+
+</div><!-- .content -->

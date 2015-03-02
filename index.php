@@ -23,21 +23,30 @@ get_template_part( 'partials/header', 'archive' );
  *
  */
 ?>
-<section class="cf">
 
-	<?php
-	theme_pagination();
+<div class="content-container">
 
-	while ( have_posts() ) : the_post();
+	<div class="container">
 
-		get_template_part( 'partials/content', 'archive' );
+		<section class="content cf">
 
-	endwhile;
+			<?php
 
-	theme_pagination();
-	?>
+			while ( have_posts() ) : the_post();
 
-</section>
+				get_template_part( 'partials/content-archive', get_post_type() );
+
+			endwhile;
+
+			theme_pagination();
+
+			?>
+
+		</section><!-- .content -->
+
+	</div><!-- .container -->
+
+</div><!-- .content-container -->
 
 
 

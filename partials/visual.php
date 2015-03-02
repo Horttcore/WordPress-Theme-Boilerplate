@@ -21,15 +21,11 @@ if ( !has_post_thumbnail() && !class_exists( 'Attachments' ) && !$attachments->e
 
 					<?php echo $attachments->image( 'slider' ) ?>
 
-					<div class="slide-wrapper">
+					<div class="slide-content">
 
-						<span class="slide-content">
+						<?php echo apply_filters( 'the_content', $attachments->field( 'caption' ) ) ?>
 
-							<?php echo apply_filters( 'the_content', $attachments->field( 'caption' ) ) ?>
-
-						</span><!-- .slide-content -->
-
-					</div><!-- .slide-wrapper -->
+					</div><!-- .slide-content -->
 
 				</div><!-- .slide -->
 

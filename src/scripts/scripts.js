@@ -12,6 +12,8 @@ jQuery(document).ready(function(){
 			// Cache elements
 			Theme.w = jQuery(window);
 			Theme.html = jQuery('html');
+			Theme.body = jQuery('body');
+			Theme.toggleNavButton = jQuery('.toggle-nav');
 
 			// Go!
 			Theme.bindings();
@@ -22,6 +24,12 @@ jQuery(document).ready(function(){
 
 			// Lightbox
 			jQuery('a[href$=".jpg"],a[href$=".jepg"],a[href$=".png"]').fancybox();
+
+			// Toggle nav
+			Theme.toggleNavButton.click(function(e){
+				e.preventDefault();
+				Theme.toggleNav();
+			});
 
 		},
 
@@ -59,6 +67,12 @@ jQuery(document).ready(function(){
 
 			}
 
+		},
+
+		toggleNav:function(){
+
+			Theme.body.toggleClass( 'nav-visible' );
+			
 		},
 
 		validateForm:function( form ){

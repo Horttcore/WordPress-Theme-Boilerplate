@@ -6,8 +6,8 @@
  * @since v1.0.14
  * @author Ralf Hortt
  */
-if ( !function_exists( 'theme_customizer_address' ) ) :
-function theme_customizer_address( $wp_customize )
+if ( !function_exists( 'theme_customizer_contact' ) ) :
+function theme_customizer_contact( $wp_customize )
 {
 
 	$settings = array(
@@ -22,34 +22,33 @@ function theme_customizer_address( $wp_customize )
 		'url' => __( 'URL', 'TEXTDOMAIN' ),
 	);
 
-	$wp_customize->add_section( 'address' , array(
+	$wp_customize->add_section( 'contact' , array(
 		'title'		=> __( 'Kontakt', 'TEXTDOMAIN' ),
 		'priority'	=> 100,
 	) );
 
-	if ( $settings ) :
+	if ( !$settings )
+		return;
 
-		$i = 1;
+	$i = 1;
 
-		foreach ( $settings as $setting => $label ) :
+	foreach ( $settings as $setting => $label ) :
 
-			$wp_customize->add_setting( $setting, array(
-				'transport'	=> 'refresh',
-			) );
+		$wp_customize->add_setting( $setting, array(
+			'transport'	=> 'refresh',
+		) );
 
-			$wp_customize->add_control( new WP_Customize_Control( $wp_customize, $setting, array(
-				'label'		=> $label,
-				'section'	=> 'address',
-				'settings'	=> $setting,
-				'priority'  => $i
-			) ) );
+		$wp_customize->add_control( new WP_Customize_Control( $wp_customize, $setting, array(
+			'label'		=> $label,
+			'section'	=> 'contact',
+			'settings'	=> $setting,
+			'priority'  => $i
+		) ) );
 
-			$i ++;
+		$i ++;
 
-		endforeach;
-
-	endif;
+	endforeach;
 
 }
 endif;
-add_action( 'customize_register', 'theme_customizer_address' );
+add_action( 'customize_register', 'theme_customizer_contact' );

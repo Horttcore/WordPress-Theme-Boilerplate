@@ -30,7 +30,7 @@ if ( !function_exists( 'theme_login_style' ) ) :
  */
 function theme_login_style()
 {
-	?><link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() ?>/css/login.min.css"><?php
+	?><link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() ?>/dest/styles/login.min.css"><?php
 }
 endif;
 add_action( 'login_head', 'theme_login_style' );

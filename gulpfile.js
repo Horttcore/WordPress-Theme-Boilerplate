@@ -25,7 +25,9 @@ var gulp = require('gulp'),
 	del = require('del'),
 	watch = require('gulp-watch'),
 	rename = require('gulp-rename'),
-	fs = require("fs");
+	fs = require("fs"),
+	plumber = require('gulp-plumber'),
+	notify = require("gulp-notify");
 
 // SVG spriting
 gulp.task('sprites', function () {

@@ -13,6 +13,6 @@ if ( !class_exists( 'Custom_Background_Image_Size' ) )
  **/
 function theme_background_image_selector()
 {
-	return 'html.custom-background';
+	return 'html';
 }
 add_filter( 'background-image-selector', 'theme_background_image_selector' );

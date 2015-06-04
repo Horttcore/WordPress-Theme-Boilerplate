@@ -29,7 +29,7 @@ get_template_part( 'partials/header', 'archive' );
 
 		<section class="content cf">
 
-			<h1><?php single_cat_title() ?></h1>
+			<h1><?php the_archive_title() ?></h1>
 
 			<div class="posts">
 

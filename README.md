@@ -20,6 +20,7 @@
 ## Customization
 
 * Support customized login
+* Custom background
 
 ## Submodules
 
@@ -45,6 +46,10 @@
 * [Fancybox](http://fancyapps.com/fancybox/) ( Lightbox )
 
 ## Changelog
+
+### v1.3 
+
+* Refactoring
 
 ### v1.2
 

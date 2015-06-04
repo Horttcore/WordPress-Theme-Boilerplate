@@ -33,16 +33,16 @@ var gulp = require('gulp'),
 gulp.task('sprites', function () {
     return gulp.src('src/svg/*.svg')
         .pipe(svgSprite({
-			cssFile: "../../src/styles/sprite.styl",
+			cssFile: "../../src/styles/plugins/sprite.styl",
 			templates: {
         		css: fs.readFileSync("src/svg/style.tpl", "utf-8")
 		    },
 			padding: 2
 		}))
-        .pipe(gulp.dest("images/sprites")) // Write the sprite-sheet + CSS + Preview
+        .pipe(gulp.dest('dest/images/sprites')) // Write the sprite-sheet + CSS + Preview
         .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file
         .pipe(svg2png())           // Create a PNG
-        .pipe(gulp.dest("images/sprites"));
+        .pipe(gulp.dest('dest/images/sprites'));
 });
 
 // Image optimization
@@ -53,7 +53,7 @@ gulp.task('images', function(cb) {
             svgoPlugins: [{removeViewBox: false}],
             use: [pngcrush()]
         }))
-        .pipe(gulp.dest('images'));
+        .pipe(gulp.dest('dest/images'));
 });
 
 // Get and render all .styl files recursively
@@ -70,7 +70,7 @@ gulp.task('styles', function () {
 		.pipe(prefix('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
 		.pipe(rename({suffix: '.min'}))
 		.pipe(minifyCSS())
-		.pipe(gulp.dest('./styles'));
+		.pipe(gulp.dest('dest/styles'));
 });
 
 gulp.task('loginstyles', function () {
@@ -84,10 +84,10 @@ gulp.task('loginstyles', function () {
 			]
 		}))
 		.pipe(prefix('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-		.pipe(gulp.dest('./styles'))
+		.pipe(gulp.dest('dest/styles'))
 		.pipe(rename({suffix: '.min'}))
 		.pipe(minifyCSS())
-		.pipe(gulp.dest('./styles'));
+		.pipe(gulp.dest('dest/styles'));
 });
 
 // Concat and minify scripts with sourcemap
@@ -98,7 +98,7 @@ gulp.task('scripts', function() {
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
 		.pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('scripts'));
+        .pipe(gulp.dest('dest/scripts'));
 });
 
 // Cleanup

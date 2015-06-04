@@ -101,7 +101,7 @@ gulp.task('scripts', function() {
 
 // Cleanup
 gulp.task('clean', function(cb) {
-	del(['styles/**', 'images/**', 'scripts/**'], cb);
+	del(['dest/**'], cb);
 });
 
 // Default gulp task to run

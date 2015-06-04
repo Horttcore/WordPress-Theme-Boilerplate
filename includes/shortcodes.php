@@ -20,7 +20,7 @@ function shortcode_kontakt( $atts = array() )
 		'id' => false
 	), $atts ) );
 
-	$output = '<form class="contact-form" class="cf ' . $class . '">';
+	$output = '<form class="' . $class . ' cf" class="">';
 	$output.= '<p><label for="contact-name">' . __( 'Ihr Name:', 'TEXTDOMAIN' ) . '*</label><input name="contact-name" type="text" class="required contact-name" id="contact-name" data-error="' . __( 'Das Feld Name ist ein Pflichtfeld', 'TEXTDOMAIN' ) . '"></p>';
 	$output.= '<p><label for="email">' . __( 'Ihre E-Mail Adresse:', 'TEXTDOMAIN' ) . '*</label><input name="email" type="text" class="required email" id="email" data-error="' . __( 'Das Feld E-Mail ist ein Pflichtfeld', 'TEXTDOMAIN' ) . '"></p>';
 	$output.= '<p><label for="phone">' . __( 'Ihre Telefonnummer:', 'TEXTDOMAIN' ) . '*</label><input name="phone" type="text" class="required phone" id="phone" data-error="' . __( 'Das Feld Telefon ist ein Pflichtfeld', 'TEXTDOMAIN' ) . '"></p>';

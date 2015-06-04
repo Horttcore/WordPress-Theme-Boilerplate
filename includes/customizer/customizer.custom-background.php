@@ -63,7 +63,7 @@ function theme_custom_background_cb()
 	}
 	?>
 	<style type="text/css" id="custom-background-css">
-		<?php echo apply_filters( 'custom-background-element', 'html.custom-background' ) ?> { <?php echo trim( $style ); ?> }
+		<?php echo apply_filters( 'custom-background-element', 'html' ) ?> { <?php echo trim( $style ); ?> }
 	</style>
 	<?php
 }

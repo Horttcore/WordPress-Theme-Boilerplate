@@ -43,7 +43,7 @@ get_template_part( 'partials/header', 'archive' );
 
 				endwhile;
 
-				theme_pagination();
+				the_pagination();
 
 				?>
 

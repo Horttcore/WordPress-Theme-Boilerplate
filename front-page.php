@@ -1,11 +1,5 @@
 <?php
 /**
- * Template Name: Startseite
- */
-
-
-
-/**
  *
  * <head>
  *
@@ -28,11 +22,24 @@ get_template_part( 'partials/header', 'home' );
  * Content
  *
  */
-the_post();
-get_template_part( 'partials/content', 'home' );
+?>
+
+<div class="content-container">
+
+	<div class="container">
+
+		<?php
+		the_post();
+		get_template_part( 'partials/content', 'home' );
+		?>
+
+	</div><!-- .container -->
+
+</div><!-- .content-container -->
 
 
 
+<?php
 /**
  *
  * Footer

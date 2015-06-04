@@ -44,6 +44,8 @@ get_template_part( 'partials/header', 'archive' );
 
 		</section><!-- .content -->
 
+		<?php get_template_part( 'partials/sidebar', get_post_type() ) ?>
+
 	</div><!-- .container -->
 
 </div><!-- .content-container -->

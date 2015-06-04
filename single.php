@@ -33,6 +33,8 @@ get_template_part( 'partials/header', get_post_type() );
 		get_template_part( 'partials/content', get_post_type() );
 		?>
 
+		<?php get_template_part( 'partials/sidebar', get_post_type() ) ?>
+
 	</div><!-- .container -->
 
 </div><!-- .content-container -->

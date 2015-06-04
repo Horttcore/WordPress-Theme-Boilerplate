@@ -1,8 +1,3 @@
-$stylar_imagepath = '../images'
-$stylar_spritename = 'sprite.png'
-
-
-
 /**
  *
  * Positioning elements
@@ -73,19 +68,3 @@ nav-vertical()
 
 				> a
 					display block
-
-
-
-/**
- *
- * SPRITE
- *
- */
-sprite( $x = false, $y = false, $w = false, $h = false, $pseudo = false )
-	background url( '$stylar_imagepath/$stylar_spritename'  ) $x $y transparent no-repeat
-	if $pseudo
-		content ''
-	display inline-block
-	height $h
-	width $w
-

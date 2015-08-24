@@ -35,15 +35,13 @@ get_template_part( 'partials/header', 'archive' );
 
 				<?php
 
-				theme_pagination();
-
 				while ( have_posts() ) : the_post();
 
 					get_template_part( 'partials/content-archive', get_post_type() );
 
 				endwhile;
 
-				the_pagination();
+				the_posts_pagination();
 
 				?>
 

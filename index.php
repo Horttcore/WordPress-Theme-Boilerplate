@@ -38,7 +38,7 @@ get_template_part( 'partials/header', 'archive' );
 
 			endwhile;
 
-			the_pagination();
+			the_posts_pagination();
 
 			?>
 

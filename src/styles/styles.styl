@@ -28,7 +28,6 @@ fontheight = 1.5
 @import 'plugins/polyfill.object-fit.styl'
 @import 'plugins/stylar.styl'
 @import 'plugins/sprite.styl'
-@import 'jeet'
 
 
 // Colors
@@ -42,8 +41,11 @@ fontheight = 1.5
  * HTML
  *
  */
+html
+	font-size 16px
+
 body
-	font fontsize/fontheight fontstack
+	font 1rem/fontheight fontstack
 
 ul
 ol
@@ -68,9 +70,14 @@ nav
 	ul
 		list-style none
 		margin 0
+		padding 0
 
 	li
 		margin 0
+		padding 0
+
+a
+	color inherit
 
 img
 	max-width 100%
@@ -177,7 +184,7 @@ form
 .container
 	margin-left auto
 	margin-right auto
-	padding 0 .625em
+	padding 0 1rem
 	max-width unit( $base_width, 'px' )
 
 .error

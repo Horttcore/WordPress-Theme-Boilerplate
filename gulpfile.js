@@ -1,12 +1,14 @@
 // Gulp
 var gulp = require('gulp'),
+	// PostCSS
+	postcss = require('gulp-postcss'),
+	lost = require('lost'),
+	rucksack = require('gulp-rucksack'),
 	// Stylus
 	stylus = require('gulp-stylus'),
 	minifyCSS = require('gulp-minify-css'),
 	prefix = require('gulp-autoprefixer'),
 	rupture = require('rupture'),
-	jeet = require('jeet'),
-	axis = require('axis'),
 	typographic = require('typographic'),
 	// Javascript combine and minify
 	concat = require('gulp-concat'),
@@ -29,6 +31,63 @@ var gulp = require('gulp'),
 	plumber = require('gulp-plumber'),
 	notify = require("gulp-notify");
 
+// Get and render all .styl files recursively
+gulp.task('styles', function () {
+	gulp.src('./src/styles/styles.styl')
+		.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+		.pipe(sourcemaps.init())
+		.pipe(stylus({
+			use: [
+				rupture(),
+				typographic(),
+			]
+		}))
+		.pipe(postcss([
+			lost(),
+		]))
+		.pipe(rucksack())
+		.pipe(prefix('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+		.pipe(gulp.dest('dist/styles'))
+		.pipe(minifyCSS())
+		.pipe(rename({suffix: '.min'}))
+		.pipe(sourcemaps.write('.'))
+		.pipe(gulp.dest('dist/styles'));
+});
+
+gulp.task('loginstyles', function () {
+	gulp.src('./src/styles/login.styl')
+		.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+		.pipe(sourcemaps.init())
+		.pipe(stylus({
+			use: [
+				rupture(),
+				typographic(),
+			]
+		}))
+		.pipe(postcss([
+			lost(),
+		]))
+		.pipe(rucksack())
+		.pipe(prefix('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+		.pipe(gulp.dest('dist/styles'))
+		.pipe(minifyCSS())
+		.pipe(rename({suffix: '.min'}))
+		.pipe(sourcemaps.write('.'))
+		.pipe(gulp.dest('dist/styles'));
+});
+
+// Concat and minify scripts with sourcemap
+gulp.task('scripts', function() {
+    return gulp.src('src/scripts/**/*.js')
+    	.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+		.pipe(sourcemaps.init())
+        .pipe(concat('scripts.combined.js'))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(uglify())
+		.pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('dist/scripts'));
+});
+
 // SVG spriting
 gulp.task('sprites', function () {
     return gulp.src('src/svg/*.svg')
@@ -39,71 +98,27 @@ gulp.task('sprites', function () {
 		    },
 			padding: 2
 		}))
-        .pipe(gulp.dest('dest/images/sprites')) // Write the sprite-sheet + CSS + Preview
+        .pipe(gulp.dest('dist/images/sprites')) // Write the sprite-sheet + CSS + Preview
         .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file
         .pipe(svg2png())           // Create a PNG
-        .pipe(gulp.dest('dest/images/sprites'));
+        .pipe(gulp.dest('dist/images/sprites'));
 });
 
 // Image optimization
 gulp.task('images', function(cb) {
     return gulp.src('src/images/**/*')
+    	.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
             use: [pngcrush()]
         }))
-        .pipe(gulp.dest('dest/images'));
-});
-
-// Get and render all .styl files recursively
-gulp.task('styles', function () {
-	gulp.src('./src/styles/styles.styl')
-		.pipe(stylus({
-			use: [
-				jeet(),
-				rupture(),
-				axis(),
-				typographic(),
-			]
-		}))
-		.pipe(prefix('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-		.pipe(rename({suffix: '.min'}))
-		.pipe(minifyCSS())
-		.pipe(gulp.dest('dest/styles'));
-});
-
-gulp.task('loginstyles', function () {
-	gulp.src('./src/styles/login.styl')
-		.pipe(stylus({
-			use: [
-				jeet(),
-				rupture(),
-				axis(),
-				typographic(),
-			]
-		}))
-		.pipe(prefix('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-		.pipe(gulp.dest('dest/styles'))
-		.pipe(rename({suffix: '.min'}))
-		.pipe(minifyCSS())
-		.pipe(gulp.dest('dest/styles'));
-});
-
-// Concat and minify scripts with sourcemap
-gulp.task('scripts', function() {
-    return gulp.src('src/scripts/**/*.js')
-		.pipe(sourcemaps.init())
-        .pipe(concat('scripts.combined.js'))
-        .pipe(rename({suffix: '.min'}))
-        .pipe(uglify())
-		.pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('dest/scripts'));
+        .pipe(gulp.dest('dist/images'));
 });
 
 // Cleanup
 gulp.task('clean', function(cb) {
-	del(['dest/**'], cb);
+	del(['dist/**'], cb);
 });
 
 // Default gulp task to run
@@ -119,7 +134,7 @@ gulp.task('watch', function() {
     gulp.watch('src/svg/*.svg', ['sprites']);
 
 	livereload.listen();
-	gulp.watch('dest/**').on('change', livereload.changed);
+	gulp.watch('dist/**').on('change', livereload.changed);
 	gulp.watch('**.php').on('change', livereload.changed);
 });
 

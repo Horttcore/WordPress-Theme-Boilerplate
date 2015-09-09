@@ -1,9 +1,15 @@
 <?php
 /**
+ * ajax
  *
- * Ajax
+ * This file is for functions that are hooked by ajax
  *
- */
+ * @package WordPress Theme Boilerplate
+ * @author Ralf Hortt <hello@horttcore.de>
+ **/
+
+
+
 if ( !function_exists( 'submit_contact_form' ) ) :
 /**
  * Contact form handler

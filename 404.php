@@ -22,14 +22,16 @@ get_template_part( 'partials/header', '404' );
  * Content
  *
  */
-
 ?>
 
 <div class="content-container">
 
 	<div class="container">
 
-		<?php get_template_part( 'partials/content-404' ) ?>
+		<?php
+		the_post();
+		get_template_part( 'partials/content', '404' );
+		?>
 
 		<?php get_template_part( 'partials/sidebar', '404' ) ?>
 
@@ -37,10 +39,9 @@ get_template_part( 'partials/header', '404' );
 
 </div><!-- .content-container -->
 
+
+
 <?php
-
-
-
 /**
  *
  * Footer

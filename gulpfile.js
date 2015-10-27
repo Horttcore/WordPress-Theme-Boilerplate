@@ -22,7 +22,7 @@ var gulp = require('gulp'),
 	filter    = require('gulp-filter'),
 	svg2png   = require('gulp-svg2png'),
 	// Utils
-	reload = browserSync.reload;
+	browserSync = require('browser-sync').create(),
 	del = require('del'),
 	watch = require('gulp-watch'),
 	rename = require('gulp-rename'),
@@ -36,15 +36,15 @@ gulp.task('browser-sync', function() {
 
 	//watch files
 	var files = [
-		'./*.css',
-		'./*.js',
-		'./*.php'
+		'./dist/**/*.css',
+		'./dist/**/*.js',
+		'./**/*.php',
 	];
 
 	//initialize browsersync
 	browserSync.init(files, {
 		//browsersync with a php server
-		proxy: "localhost/WP_SLUG/",
+		proxy: "localhost/vecodyn/",
 		notify: false
 	});
 
@@ -71,7 +71,7 @@ gulp.task('styles', function () {
 		.pipe(rename({suffix: '.min'}))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('dist/styles'))
-		.pipe(reload({stream:true}));
+		.pipe(browserSync.stream());
 });
 
 gulp.task('loginstyles', function () {
@@ -94,7 +94,7 @@ gulp.task('loginstyles', function () {
 		.pipe(rename({suffix: '.min'}))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('dist/styles'))
-		.pipe(reload({stream:true}));
+		.pipe(browserSync.stream());
 });
 
 // Concat and minify scripts with sourcemap
@@ -107,7 +107,7 @@ gulp.task('scripts', function() {
         .pipe(uglify())
 		.pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('dist/scripts'))
-        .pipe(reload({stream:true}));
+		.pipe(browserSync.stream());
 });
 
 // SVG spriting
@@ -124,7 +124,7 @@ gulp.task('sprites', function () {
         .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file
         .pipe(svg2png())           // Create a PNG
         .pipe(gulp.dest('dist/images/sprites'))
-        .pipe(reload({stream:true}));
+		.pipe(browserSync.stream());
 });
 
 // Image optimization
@@ -137,7 +137,7 @@ gulp.task('images', function(cb) {
 			interlaced: true
 		}))
         .pipe(gulp.dest('dist/images'))
-        .pipe(reload({stream:true}));
+		.pipe(browserSync.stream());
 });
 
 // Cleanup

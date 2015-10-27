@@ -1,0 +1,24 @@
+{
+  "name": "WordPress-Theme-Boilerplate",
+  "version": "2.0.0",
+  "homepage": "https://github.com/Horttcore/WordPress-Theme-Boilerplate",
+  "authors": [
+    "Ralf Hortt <me@horttcore.de>"
+  ],
+  "description": "Boilerplate by Horttcore",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "fancyBox": "~2.1.5",
+    "bxslider-4": "dw-bxslider-4#~4.2.5"
+  }
+}

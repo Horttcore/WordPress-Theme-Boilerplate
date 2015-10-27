@@ -15,21 +15,40 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	sourcemaps = require('gulp-sourcemaps'),
 	// Image optimization
-	imagemin = require('gulp-imagemin'),
-	pngcrush = require('imagemin-pngcrush'),
+	imageop = require('gulp-image-optimization'),
+	pngquant = require('imagemin-pngquant'),
 	// SVG Sprite
 	svgSprite = require('gulp-svg-sprites'),
 	filter    = require('gulp-filter'),
 	svg2png   = require('gulp-svg2png'),
-	// Livereload
-	livereload = require('gulp-livereload'),
 	// Utils
+	reload = browserSync.reload;
 	del = require('del'),
 	watch = require('gulp-watch'),
 	rename = require('gulp-rename'),
 	fs = require("fs"),
 	plumber = require('gulp-plumber'),
 	notify = require("gulp-notify");
+
+
+// browser-sync task for starting the server.
+gulp.task('browser-sync', function() {
+
+	//watch files
+	var files = [
+		'./*.css',
+		'./*.js',
+		'./*.php'
+	];
+
+	//initialize browsersync
+	browserSync.init(files, {
+		//browsersync with a php server
+		proxy: "localhost/WP_SLUG/",
+		notify: false
+	});
+
+});
 
 // Get and render all .styl files recursively
 gulp.task('styles', function () {
@@ -51,7 +70,8 @@ gulp.task('styles', function () {
 		.pipe(minifyCSS())
 		.pipe(rename({suffix: '.min'}))
 		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest('dist/styles'));
+		.pipe(gulp.dest('dist/styles'))
+		.pipe(reload({stream:true}));
 });
 
 gulp.task('loginstyles', function () {
@@ -73,7 +93,8 @@ gulp.task('loginstyles', function () {
 		.pipe(minifyCSS())
 		.pipe(rename({suffix: '.min'}))
 		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest('dist/styles'));
+		.pipe(gulp.dest('dist/styles'))
+		.pipe(reload({stream:true}));
 });
 
 // Concat and minify scripts with sourcemap
@@ -85,14 +106,15 @@ gulp.task('scripts', function() {
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
 		.pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('dist/scripts'));
+        .pipe(gulp.dest('dist/scripts'))
+        .pipe(reload({stream:true}));
 });
 
 // SVG spriting
 gulp.task('sprites', function () {
     return gulp.src('src/svg/*.svg')
         .pipe(svgSprite({
-			cssFile: "../../src/styles/plugins/sprite.styl",
+			cssFile: "../../../src/styles/plugins/sprite.styl",
 			templates: {
         		css: fs.readFileSync("src/svg/style.tpl", "utf-8")
 		    },
@@ -101,19 +123,21 @@ gulp.task('sprites', function () {
         .pipe(gulp.dest('dist/images/sprites')) // Write the sprite-sheet + CSS + Preview
         .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file
         .pipe(svg2png())           // Create a PNG
-        .pipe(gulp.dest('dist/images/sprites'));
+        .pipe(gulp.dest('dist/images/sprites'))
+        .pipe(reload({stream:true}));
 });
 
 // Image optimization
 gulp.task('images', function(cb) {
-    return gulp.src('src/images/**/*')
+    return gulp.src(['src/images/**/*.png','src/images/**/*.jpg','src/images/**/*.gif','src/images/**/*.jpeg'])
     	.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-        .pipe(imagemin({
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngcrush()]
-        }))
-        .pipe(gulp.dest('dist/images'));
+        .pipe(imageop({
+			optimizationLevel: 5,
+			progressive: true,
+			interlaced: true
+		}))
+        .pipe(gulp.dest('dist/images'))
+        .pipe(reload({stream:true}));
 });
 
 // Cleanup
@@ -123,19 +147,16 @@ gulp.task('clean', function(cb) {
 
 // Default gulp task to run
 gulp.task('default', ['clean'], function(){
-	gulp.start( 'styles', 'scripts', 'images', 'sprites', 'watch' );
+	gulp.start( 'styles', 'scripts', 'images', 'sprites', 'watch', 'browser-sync' );
 });
 
 // Watch Files For Changes
 gulp.task('watch', function() {
     gulp.watch('src/scripts/*.js', ['scripts']);
     gulp.watch('src/styles/*.styl', ['styles', 'loginstyles']);
+    gulp.watch('src/styles/**/*.styl', ['styles', 'loginstyles']);
     gulp.watch('src/images/*', ['images']);
     gulp.watch('src/svg/*.svg', ['sprites']);
-
-	livereload.listen();
-	gulp.watch('dist/**').on('change', livereload.changed);
-	gulp.watch('**.php').on('change', livereload.changed);
 });
 
 // Developer gulp task to run

@@ -22,10 +22,10 @@ class WP_Widget_Contact extends WP_Widget {
 
 		$widget_ops = array(
 			'classname' => 'widget-contact',
-			'description' => __( 'Kontakt', 'diro' ),
+			'description' => __( 'Kontakt', 'TEXTDOMAIN' ),
 		);
 		$control_ops = array( 'id_base' => 'widget-contact' );
-		$this->WP_Widget( 'widget-contact', __( 'Kontakt', 'diro' ), $widget_ops, $control_ops );
+		parent::__construct( 'widget-contact', __( 'Kontakt', 'TEXTDOMAIN' ), $widget_ops, $control_ops );
 	}
 
 
@@ -57,7 +57,7 @@ class WP_Widget_Contact extends WP_Widget {
 		if ( $phone )	printf( 'Tel.: %s<br>', $phone );
 		if ( $fax )	printf( 'Fax: %s<br>', $fax );
 		if ( $email )	printf( 'E-Mail: <a href="mailto:%s">%s</a>', $email, $email );
-	
+
 		echo $args['after_widget'];
 
 	}

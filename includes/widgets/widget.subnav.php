@@ -20,10 +20,10 @@ class WP_Widget_Subnav extends WP_Widget {
 	function __construct() {
 		$widget_ops = array(
 			'classname' => 'widget-subnav',
-			'description' => __( 'Unternavigation', 'diro' ),
+			'description' => __( 'Unternavigation', 'TEXTDOMAIN' ),
 		);
 		$control_ops = array( 'id_base' => 'widget-subnav' );
-		$this->WP_Widget( 'widget-subnav', __( 'Unternavigation', 'diro' ), $widget_ops, $control_ops );
+		parent::__construct( 'widget-subnav', __( 'Unternavigation', 'TEXTDOMAIN' ), $widget_ops, $control_ops );
 	}
 
 

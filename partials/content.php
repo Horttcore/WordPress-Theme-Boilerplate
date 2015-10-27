@@ -8,7 +8,7 @@
 
 		</header><!-- .entry-header -->
 
-		<div class="entry cf">
+		<div class="entry-content cf">
 
 			<?php the_content( __( 'Weiterlesen &raquo;', 'TEXTDOMAIN' ) ) ?>
 

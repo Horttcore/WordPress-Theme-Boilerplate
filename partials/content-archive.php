@@ -2,13 +2,13 @@
 
 	<header class="entry-header">
 
-		<div class="post-date"><?php the_date() ?></div>
+		<div class="entry-date"><?php the_time( get_option( 'date_format' ) ) ?></div>
 
 		<h1 class="entry-title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h1>
 
 	</header><!-- .entry-header -->
 
-	<div class="entry cf">
+	<div class="entry-content cf">
 
 		<?php the_content( __( 'Weiterlesen &raquo;', 'TEXTDOMAIN' ) ) ?>
 

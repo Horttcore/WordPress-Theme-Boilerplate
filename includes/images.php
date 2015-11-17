@@ -19,15 +19,17 @@ $theme_image_sizes = array(
 	*/
 );
 
-if ( $theme_image_sizes ) :
+if ( !$theme_image_sizes )
+	return;
 
-	foreach ( $theme_image_sizes as $theme_image_size ) :
 
-		add_image_size( $theme_image_size['name'], $theme_image_size['width'], $theme_image_size['height'], $theme_image_size['crop'] );
 
-	endforeach;
+foreach ( $theme_image_sizes as $theme_image_size ) :
 
-endif;
+	add_image_size( $theme_image_size['name'], $theme_image_size['width'], $theme_image_size['height'], $theme_image_size['crop'] );
+
+endforeach;
+
 
 
 /**

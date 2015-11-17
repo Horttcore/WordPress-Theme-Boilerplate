@@ -2,14 +2,21 @@
 /**
  * Add custom image sizes
  *
- * @package WP_TITLE
+ * @package SHW Golden Spices
  * @author Ralf Hortt <me@horttcore.de>
  **/
 global $theme_image_sizes;
 
 $theme_image_sizes = array(
+	/*
 	array(
+		'name' => '',
+		'label' => __( 'Name', 'TEXTDOMAIN' ),
+		'width' => ,
+		'height' => ,
+		'crop' => TRUE,
 	),
+	*/
 );
 
 if ( $theme_image_sizes ) :

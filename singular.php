@@ -19,6 +19,15 @@ get_template_part( 'partials/header', get_post_type() );
 
 /**
  *
+ * VISUAL
+ *
+ */
+get_template_part( 'partials/visual', get_post_type() );
+
+
+
+/**
+ *
  * Content
  *
  */

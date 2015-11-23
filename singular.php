@@ -28,10 +28,14 @@ get_template_part( 'partials/header', get_post_type() );
 
 	<div class="container">
 
-		<?php
-		the_post();
-		get_template_part( 'partials/content', get_post_type() );
-		?>
+		<div class="content">
+			
+			<?php
+			the_post();
+			get_template_part( 'partials/content', get_post_type() );
+			?>
+
+		</div><!-- .content -->
 
 		<?php get_template_part( 'partials/sidebar', get_post_type() ) ?>
 

@@ -1,4 +1,4 @@
-<article id="post-<?php the_ID() ?>" <?php post_class( 'cf' ) ?>>
+<article id="post-<?php the_ID() ?>" <?php post_class( 'entry cf' ) ?>>
 
 	<header class="entry-header">
 

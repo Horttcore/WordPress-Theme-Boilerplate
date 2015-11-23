@@ -1,7 +1,3 @@
-	</div><!-- .container -->
-
-</div><!-- .content-container -->
-
 <footer class="footer cf">
 
 	<div class="container">

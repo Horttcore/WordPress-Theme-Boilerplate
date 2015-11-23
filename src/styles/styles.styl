@@ -12,22 +12,6 @@ fontstack = sans-serif
 fontsize = 16px
 fontheight = 1.5
 
-
-
-/**
- *
- * IMPORTING
- *
- */
-@import 'plugins/border-box.styl'
-@import 'plugins/clearfix.styl'
-@import 'plugins/dashicons.styl'
-@import 'plugins/normalize.styl'
-@import 'plugins/polyfill.object-fit.styl'
-@import 'plugins/stylar.styl'
-@import 'plugins/sprite.styl'
-
-
 // Colors
 
 
@@ -50,6 +34,7 @@ ol
 table
 blockquote
 p
+form
 	margin 0 0 1.5625em
 
 ul
@@ -76,23 +61,31 @@ nav
 
 a
 	color inherit
+	text-decoration none
+	transition all .2s
 
 img
 	max-width 100%
 	height auto
 
-form
+input
+textarea
+	border 1px solid black
 
-	input
-		border 1px solid black
+input[type="checkbox"]
+input[type="radio"]
+	border none
+	width auto
 
-	input[type="checkbox"]
-	input[type="radio"]
-		border none
-		width auto
+textarea
+	resize vertical
+	
+button
+.button
+	transition all .2s
 
-	p.submit
-		text-align right
+p.submit
+	text-align right
 
 :first-child
 	margin-top 0
@@ -101,23 +94,17 @@ form
 	margin-bottom 0
 
 
-
-/**
- *
- * WordPress
- *
- */
-@import 'modules/wordpress.comments.styl'
-@import 'modules/wordpress.widgets.styl'
-@import 'modules/wordpress.wysiwyg.styl'
-
-
 /**
  *
  * HEADER
  *
  */
-@import 'modules/header.styl'
+//.header
+
+.toggle-nav
+	
+	+above(728px)
+		display none
 
 
 
@@ -126,7 +113,46 @@ form
  * NAV
  *
  */
-@import 'modules/nav.main.styl'
+.nav-main
+
+	> ul
+
+		> li
+
+			> a
+
+				&:hover
+					color inherit
+
+			> ul
+
+				> li
+
+					> a
+
+						&:hover
+							color inherit
+
+				> .current-menu-item
+				> .current-menu-ancestor
+
+					> a
+						color inherit
+
+		> .current-menu-item
+		> .current-menu-ancestor
+
+			> a
+				color inherit
+				
+
+
+/**
+ *
+ * VISUAL
+ *
+ */
+//.visual				
 
 
 
@@ -135,7 +161,19 @@ form
  * CONTENT
  *
  */
-@import 'modules/entry.styl'
+/*
+.entry
+
+	&-header
+
+	&-title
+
+	&-date
+
+	&-content
+
+	&-footer
+*/
 
 
 
@@ -144,8 +182,7 @@ form
  * SIDEBAR
  *
  */
-@import 'modules/entry.styl'
-
+//.sidebar
 
 
 /**
@@ -153,13 +190,4 @@ form
  * FOOTER
  *
  */
-@import 'modules/footer.styl'
-
-
-
-/**
- *
- * HELPER
- *
- */
-@import 'modules/helpers.styl'
+//.footer

@@ -4,7 +4,7 @@ if ( class_exists( 'Attachments' ) )
 	$attachments = new Attachments( 'slider' );
 
 // No output if there is no visual elemet
-if ( !has_post_thumbnail() && !class_exists( 'Attachments' ) && !$attachments->exist() )
+if ( !has_post_thumbnail() && ( !class_exists( 'Attachments' ) || !$attachments->exist() ) )
 	return;
 
 ?>
@@ -19,13 +19,7 @@ if ( !has_post_thumbnail() && !class_exists( 'Attachments' ) && !$attachments->e
 
 				<div class="slide">
 
-					<?php echo $attachments->image( 'slider' ) ?>
-
-					<div class="slide-content">
-
-						<?php echo apply_filters( 'the_content', $attachments->field( 'caption' ) ) ?>
-
-					</div><!-- .slide-content -->
+					<?php echo $attachments->image( 'large' ) ?>
 
 				</div><!-- .slide -->
 
@@ -35,7 +29,7 @@ if ( !has_post_thumbnail() && !class_exists( 'Attachments' ) && !$attachments->e
 
 	<?php elseif ( has_post_thumbnail() ) : ?>
 
-		<?php the_post_thumbnail( 'visual' ); ?>
+		<?php the_post_thumbnail( 'large' ); ?>
 
 	<?php endif; ?>
 

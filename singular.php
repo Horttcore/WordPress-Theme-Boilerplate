@@ -37,14 +37,14 @@ get_template_part( 'partials/visual', get_post_type() );
 
 	<div class="container">
 
-		<div class="content">
-			
+		<main class="content" role="main">
+
 			<?php
 			the_post();
 			get_template_part( 'partials/content', get_post_type() );
 			?>
 
-		</div><!-- .content -->
+		</main><!-- .content -->
 
 		<?php get_template_part( 'partials/sidebar', get_post_type() ) ?>
 

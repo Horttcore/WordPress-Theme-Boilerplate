@@ -28,10 +28,14 @@ get_template_part( 'partials/header', 'home' );
 
 	<div class="container">
 
-		<?php
-		the_post();
-		get_template_part( 'partials/content', 'home' );
-		?>
+		<main class="content" role="main">
+
+			<?php
+			the_post();
+			get_template_part( 'partials/content', 'home' );
+			?>
+
+		</main><!-- .content -->
 
 	</div><!-- .container -->
 

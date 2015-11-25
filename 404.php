@@ -28,10 +28,14 @@ get_template_part( 'partials/header', '404' );
 
 	<div class="container">
 
-		<?php
-		the_post();
-		get_template_part( 'partials/content', '404' );
-		?>
+		<main class="content" role="main">
+
+			<?php
+			the_post();
+			get_template_part( 'partials/content', '404' );
+			?>
+
+		</main><!-- .content -->
 
 		<?php get_template_part( 'partials/sidebar', '404' ) ?>
 

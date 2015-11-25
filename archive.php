@@ -27,9 +27,9 @@ get_template_part( 'partials/header', 'archive' );
 
 	<div class="container">
 
-		<section class="content cf">
+		<main class="content cf" role="main">
 
-			<h1><?php the_archive_title() ?></h1>
+			<h1 class="archive-title"><?php the_archive_title() ?></h1>
 
 			<div class="posts">
 
@@ -47,7 +47,7 @@ get_template_part( 'partials/header', 'archive' );
 
 			</div><!-- .posts -->
 
-		</section><!-- .content -->
+		</main><!-- .content -->
 
 		<?php get_template_part( 'partials/sidebar', get_post_type() ) ?>
 

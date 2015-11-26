@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* [Bower](http://bower.io)``
+* [Bower](http://bower.io)
 * [Gulp](http://gulpjs.com/)
 
 ## Installation
@@ -41,7 +41,7 @@
 
 * [Attachments](http://wordpress.org/plugins/attachments/)
 * [Multiple Post Thumbnails](https://wordpress.org/plugins/multiple-post-thumbnails/)
-* Kirki
+* [Kirki](http://kirki.org/)
 
 ## Ajax
 

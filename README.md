@@ -1,5 +1,17 @@
 # WordPress Theme Boilerplate
 
+## Requirements
+
+* [Bower](http://bower.io)``
+* [Gulp](http://gulpjs.com/)
+
+## Installation
+
+* `~sudo npm install`
+* `~bower-installer`
+* `~gulp browser-sync`
+* `~gulp watch`
+
 ## Menus
 * Metamenu
 * Mainmenu
@@ -13,14 +25,9 @@
 
 * Subnav
 
-## Customizer modules
-
-* Website contact
-
 ## Customization
 
-* Support customized login
-* Custom background
+* Support customized login style
 
 ## Submodules
 
@@ -33,19 +40,48 @@
 ## Plugins
 
 * [Attachments](http://wordpress.org/plugins/attachments/)
-* [Custom Background Image Size](https://github.com/Horttcore/Custom-Background-Image-Size)
 * [Multiple Post Thumbnails](https://wordpress.org/plugins/multiple-post-thumbnails/)
+* Kirki
 
 ## Ajax
 
 * Inject ajaxurl in WordPress header
 
-## jQuery plugins
+## Gulp
+
+### Scripts
+
+### Styles
+
+### Loginstyles
+
+### Image optimization
+
+### SVG Spriting
+
+## Bower
+
+**Run bower-installer**
 
 * [bXSlider](http://bxslider.com/) ( Slider )
 * [Fancybox](http://fancyapps.com/fancybox/) ( Lightbox )
+* [SweetAlert](http://t4t5.github.io/sweetalert/) ( Prompt/Modal )
+* [jQuery](https://jquery.com/) ( Javascript Lib )
+
+## Pattern lab
+
+* Create a page called `Test` to get a simple pattern lab
 
 ## Changelog
+
+### v2.0
+
+* Added Bower integration
+* Added Browser Sync
+* Added Kirki Support
+* Changed Gulp workflows
+* Removed LiveReload
+* Refactoring
 
 ### v1.3 
 

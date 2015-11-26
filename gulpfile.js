@@ -15,7 +15,9 @@ var gulp = require('gulp'),
 	prefix = require('gulp-autoprefixer'),
 	rupture = require('rupture'),
 	typographic = require('typographic'),
-	// Javascript combine and minify
+	// Bower
+	mainBowerFiles = require('main-bower-files'),
+	// JavaScript
 	concat = require('gulp-concat'),
 	uglify = require('gulp-uglify'),
 	sourcemaps = require('gulp-sourcemaps'),
@@ -25,30 +27,37 @@ var gulp = require('gulp'),
 	// SVG Sprite
 	svgSprite = require('gulp-svg-sprite');
 	svgSprites = require('gulp-svg-sprites'),
-	filter    = require('gulp-filter'),
 	svg2png   = require('gulp-svg2png'),
 	// Utils
 	browserSync = require('browser-sync').create(),
+	debug = require('gulp-debug'),
 	del = require('del'),
-	watch = require('gulp-watch'),
-	rename = require('gulp-rename'),
+	flatten = require('gulp-flatten'),
+	filter    = require('gulp-filter'),
 	fs = require("fs"),
-	plumber = require('gulp-plumber'),
+	modernizr = require('gulp-modernizr'),
 	notify = require("gulp-notify"),
-	debug = require('gulp-debug');
+	plumber = require('gulp-plumber'),
+	rename = require('gulp-rename'),
+	replace = require('gulp-replace'),
+	watch = require('gulp-watch');
+
 
 
 /**
  *
  * Task: Browser Sync
  *
+ * - Watch for file changes in dist folder
+ * - Watch for a php file change
+ * - Update browsers
+ *
  */
 gulp.task('browser-sync', function() {
 
 	//watch files
 	var files = [
-		'./dist/**/*.css',
-		'./dist/**/*.js',
+		'./dist/**/*',
 		'./**/*.php',
 	];
 
@@ -67,12 +76,63 @@ gulp.task('browser-sync', function() {
  *
  * Task: Styles
  *
+ * - Sourcemap
+ * - Combine
+ * - Concat
+ * - Minify
+ * - Sync browsers
+ *
  */
 gulp.task('styles', function () {
-	gulp.src(['./src/styles/plugins/**.styl','./src/styles/modules/**.styl','./src/styles/styles.styl'])
+	return gulp.src([
+			'./src/vendor/**/**.css',
+			'./src/styles/plugins/**.styl',
+			'./src/styles/modules/**.styl',
+			'./src/styles/styles.styl'
+		])
 		.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
 		//.pipe(debug({title: 'Files:'}))
 		.pipe(concat('styles.combined.styl'))
+		.pipe(sourcemaps.init())
+		.pipe(stylus({
+			use: [
+				rupture(),
+				typographic(),
+			]
+		}))
+		.pipe(postcss([
+			lost(),
+		]))
+		.pipe(rucksack())
+		.pipe(prefix('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+		.pipe(replace('url(\'images', 'url(\'../images'))
+		.pipe(replace('url("images', 'url("../images'))
+		.pipe(replace('../images/fancyBox/', '../images/'))
+		.pipe(gulp.dest('dist/styles'))
+		.pipe(nano())
+		.pipe(rename({suffix: '.min'}))
+		.pipe(sourcemaps.write('.'))
+		.pipe(gulp.dest('dist/styles'))
+		.pipe(browserSync.stream());
+});
+
+
+
+/**
+ *
+ * Task: Login styles
+ *
+ * - Sourcemap
+ * - Combine
+ * - Concat
+ * - Minify
+ * - Sync browsers
+ *
+ */
+gulp.task('loginstyles', function () {
+	return gulp.src('./src/styles/login.styl')
+		.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+		//.pipe(debug({title: 'Files:'}))
 		.pipe(sourcemaps.init())
 		.pipe(stylus({
 			use: [
@@ -98,50 +158,38 @@ gulp.task('styles', function () {
 
 /**
  *
- * Task: Login styles
- *
- */
-gulp.task('loginstyles', function () {
-	gulp.src('./src/styles/login.styl')
-		.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-		//.pipe(debug({title: 'Files:'}))
-		.pipe(sourcemaps.init())
-		.pipe(stylus({
-			use: [
-				rupture(),
-				typographic(),
-			]
-		}))
-		.pipe(postcss([
-			lost(),
-		]))
-		.pipe(rucksack())
-		.pipe(prefix('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-		.pipe(gulp.dest('dist/styles'))
-		.pipe(minifyCSS())
-		.pipe(rename({suffix: '.min'}))
-		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest('dist/styles'))
-		.pipe(browserSync.stream());
-});
-
-
-
-/**
- *
  * Task: Scripts
+ *
+ * - Sourcemap
+ * - Modernizr
+ * - Combine
+ * - Concat
+ * - Minify
+ * - Sync browsers
  *
  */
 gulp.task('scripts', function() {
-    return gulp.src('src/scripts/**/*.js')
-    	.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+	return gulp.src([
+			'src/vendor/jquery/jquery.js',
+			'src/vendor/**/!(jquery.js)*.js',
+			'src/bower_components/fancyBox/source/jquery.fancybox.pack.js', // No main files in bower.json
+			'src/scripts/**/*.js',
+		])
+		.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+		//.pipe(debug({title: 'Files:'}))
+		//.pipe(modernizr())
 		.pipe(sourcemaps.init())
-        .pipe(concat('scripts.combined.js'))
-        .pipe(rename({suffix: '.min'}))
-        .pipe(uglify())
+		.pipe(concat('scripts.combined.js'))
+		.pipe(gulp.dest('dist/scripts'))
+		.pipe(rename({suffix: '.min'}))
+		.pipe(uglify())
 		.pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('dist/scripts'))
+		.pipe(gulp.dest('dist/scripts'))
 		.pipe(browserSync.stream());
+});
+
+gulp.task('bower', function(){
+
 });
 
 
@@ -190,17 +238,30 @@ gulp.task('sprites-new', function () {
  *
  * Task: Images
  *
- * Get gif, jpg and png files and optimize them
+ * - Get gif, jpg and png files and optimize them
  *
  */
 gulp.task('images', function(cb) {
-    return gulp.src(['src/images/**/*.png','src/images/**/*.jpg','src/images/**/*.gif','src/images/**/*.jpeg'])
+    return gulp.src([
+    		'src/bower_components/fancyBox/source/*.png', // Missing main files in bower.json
+    		'src/bower_components/fancyBox/source/*.gif', // Missing main files in bower.json
+    		'src/vendor/**/*.png',
+    		'src/vendor/**/*.jpg',
+    		'src/vendor/**/*.gif',
+    		'src/vendor/**/*.jpeg',
+    		'src/images/**/*.png',
+    		'src/images/**/*.jpg',
+    		'src/images/**/*.gif',
+    		'src/images/**/*.jpeg',
+    	])
+    	.pipe(debug({title: 'Files:'}))
     	.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
         .pipe(imageop({
 			optimizationLevel: 5,
 			progressive: true,
 			interlaced: true
 		}))
+		.pipe(flatten())
         .pipe(gulp.dest('dist/images'))
 		.pipe(browserSync.stream());
 });
@@ -210,6 +271,8 @@ gulp.task('images', function(cb) {
 /**
  *
  * Task: Clean
+ *
+ * - Delete dist folder
  *
  */
 gulp.task('clean', function(cb) {
@@ -222,7 +285,7 @@ gulp.task('clean', function(cb) {
  *
  * Task: Watch
  *
- * Watch file changes and start corresponding tasks
+ * - Watch file changes and start corresponding tasks
  *
  */
 gulp.task('watch', function() {
@@ -239,7 +302,7 @@ gulp.task('watch', function() {
  *
  * Task: Default task
  *
- * Run all tasks and start watching
+ * - Run all tasks and start watching
  *
  */
 gulp.task('default', ['clean'], function(){
@@ -252,7 +315,7 @@ gulp.task('default', ['clean'], function(){
  *
  * Task: Dev
  *
- * Run default task once
+ * - Run default task once
  *
  */
 gulp.task('dev', ['clean'], function(){

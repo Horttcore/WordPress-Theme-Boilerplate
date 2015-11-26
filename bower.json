@@ -18,7 +18,12 @@
     "tests"
   ],
   "devDependencies": {
-    "fancyBox": "~2.1.5",
-    "bxslider-4": "dw-bxslider-4#~4.2.5"
-  }
+    "fancyBox": "fancybox#~2.1.5",
+    "bxslider-4": "latest",
+    "sweetalert": "latest",
+    "jquery": "latest"
+  },
+  "install": {
+    "path": "src/vendor"
+  },
 }

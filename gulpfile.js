@@ -16,14 +16,12 @@ var gulp = require('gulp'),
 	rupture = require('rupture'),
 	typographic = require('typographic'),
 	// Bower
-	mainBowerFiles = require('main-bower-files'),
 	// JavaScript
 	concat = require('gulp-concat'),
 	uglify = require('gulp-uglify'),
 	sourcemaps = require('gulp-sourcemaps'),
 	// Image optimization
 	imageop = require('gulp-image-optimization'),
-	pngquant = require('imagemin-pngquant'),
 	// SVG Sprite
 	svgSprite = require('gulp-svg-sprite');
 	svgSprites = require('gulp-svg-sprites'),
@@ -35,7 +33,6 @@ var gulp = require('gulp'),
 	flatten = require('gulp-flatten'),
 	filter    = require('gulp-filter'),
 	fs = require("fs"),
-	modernizr = require('gulp-modernizr'),
 	notify = require("gulp-notify"),
 	plumber = require('gulp-plumber'),
 	rename = require('gulp-rename'),
@@ -113,6 +110,7 @@ gulp.task('styles', function () {
 		.pipe(rename({suffix: '.min'}))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('dist/styles'))
+		.pipe(notify("Styles updated"))
 		.pipe(browserSync.stream());
 });
 
@@ -151,6 +149,7 @@ gulp.task('loginstyles', function () {
 		.pipe(rename({suffix: '.min'}))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('dist/styles'))
+		.pipe(notify("Login styles updated"))
 		.pipe(browserSync.stream());
 });
 
@@ -172,12 +171,11 @@ gulp.task('scripts', function() {
 	return gulp.src([
 			'src/vendor/jquery/jquery.js',
 			'src/vendor/**/!(jquery.js)*.js',
-			'src/bower_components/fancyBox/source/jquery.fancybox.pack.js', // No main files in bower.json
+			'!src/vendor/fancybox/jquery.fancybox.js', // No main files in bower.json
 			'src/scripts/**/*.js',
 		])
 		.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-		//.pipe(debug({title: 'Files:'}))
-		//.pipe(modernizr())
+		.pipe(debug({title: 'Files:'}))
 		.pipe(sourcemaps.init())
 		.pipe(concat('scripts.combined.js'))
 		.pipe(gulp.dest('dist/scripts'))
@@ -185,6 +183,7 @@ gulp.task('scripts', function() {
 		.pipe(uglify())
 		.pipe(sourcemaps.write('./'))
 		.pipe(gulp.dest('dist/scripts'))
+		.pipe(notify("Scripts updated"))
 		.pipe(browserSync.stream());
 });
 
@@ -212,6 +211,7 @@ gulp.task('sprites', ['styles'], function () {
         .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file
         .pipe(svg2png())           // Create a PNG
         .pipe(gulp.dest('dist/images/sprites'))
+		.pipe(notify("Sprites updated"))
 		.pipe(browserSync.stream());
 });
 
@@ -254,7 +254,7 @@ gulp.task('images', function(cb) {
     		'src/images/**/*.gif',
     		'src/images/**/*.jpeg',
     	])
-    	.pipe(debug({title: 'Files:'}))
+    	//.pipe(debug({title: 'Files:'}))
     	.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
         .pipe(imageop({
 			optimizationLevel: 5,
@@ -263,6 +263,7 @@ gulp.task('images', function(cb) {
 		}))
 		.pipe(flatten())
         .pipe(gulp.dest('dist/images'))
+		.pipe(notify("Images optimized"))
 		.pipe(browserSync.stream());
 });
 

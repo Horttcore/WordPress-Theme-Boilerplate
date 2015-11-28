@@ -12,7 +12,7 @@
 
 		<?php the_content( __( 'Weiterlesen &raquo;', 'TEXTDOMAIN' ) ) ?>
 
-	</div><!-- .entry -->
+	</div><!-- .entry-content -->
 
 	<?php edit_post_link( __('Edit This'), '<footer class="entry-footer">', '</footer><!-- .entry-footer -->' ) ?>
 

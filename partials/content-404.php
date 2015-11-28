@@ -6,6 +6,6 @@
 
 		<p><?php _e( 'Der von Ihnen gewünschte Inhalt konnte nicht gefunden werden', 'TEXTDOMAIN' ) ?></p>
 
-	</div><!-- .entry -->
+	</div><!-- .entry-content -->
 
 </article><!-- #post-error-404 -->

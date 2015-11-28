@@ -18,12 +18,12 @@
     "tests"
   ],
   "devDependencies": {
-    "fancyBox": "fancybox#~2.1.5",
     "bxslider-4": "latest",
     "sweetalert": "latest",
-    "jquery": "latest"
+    "jquery": "latest",
+    "fancybox": "fancyBox#master"
   },
   "install": {
     "path": "src/vendor"
-  },
+  }
 }

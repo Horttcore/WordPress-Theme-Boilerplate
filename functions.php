@@ -29,10 +29,12 @@ if ( !function_exists( 'theme_init' ) ) :
  **/
 function theme_init()
 {
+
 	if ( !is_admin() && !in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) ) ) :
 		wp_enqueue_script( 'theme', get_stylesheet_directory_uri() . '/dist/scripts/scripts.combined.min.js', FALSE, TRUE );
 		wp_enqueue_style( 'theme', get_stylesheet_directory_uri() . '/dist/styles/styles.combined.min.css' );
 	endif;
+
 }
 endif;
 add_action( 'init', 'theme_init' );

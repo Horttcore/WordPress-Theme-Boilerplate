@@ -17,7 +17,7 @@
     "test",
     "tests"
   ],
-  "devDependencies": {
+  "dependencies": {
     "bxslider-4": "latest",
     "sweetalert": "latest",
     "jquery": "latest",

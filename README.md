@@ -12,6 +12,7 @@
 * `~gulp watch`
 
 ## Menus
+
 * Metamenu
 * Mainmenu
 * Footermenu
@@ -73,6 +74,10 @@
 
 ### v2.1
 
+* Add: Page content partial
+* Add: Full bower integration
+* Update: Build process
+* Remove: Sweet Alert
 * Remove: bower-installer
 
 ### v2.0

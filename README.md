@@ -8,7 +8,6 @@
 ## Installation
 
 * `~sudo npm install`
-* `~bower-installer`
 * `~gulp browser-sync`
 * `~gulp watch`
 
@@ -61,18 +60,20 @@
 
 ## Bower
 
-**Run bower-installer**
-
-* [bXSlider](http://bxslider.com/) ( Slider )
+* [bxSlider](http://bxslider.com/) ( Slider )
 * [Fancybox](http://fancyapps.com/fancybox/) ( Lightbox )
-* [SweetAlert](http://t4t5.github.io/sweetalert/) ( Prompt/Modal )
 * [jQuery](https://jquery.com/) ( Javascript Lib )
+* [objectFit](https://github.com/anselmh/object-fit) ( polyfill )
 
 ## Pattern lab
 
 * Create a page called `Test` to get a simple pattern lab
 
 ## Changelog
+
+### v2.1
+
+* Remove: bower-installer
 
 ### v2.0
 
@@ -83,7 +84,7 @@
 * Removed LiveReload
 * Refactoring
 
-### v1.3 
+### v1.3
 
 * Refactoring
 

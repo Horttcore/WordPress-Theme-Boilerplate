@@ -74,6 +74,7 @@
 
 ### v2.1
 
+* Add: .stylint
 * Add: Page content partial
 * Add: Full bower integration
 * Update: Build process

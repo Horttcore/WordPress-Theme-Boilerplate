@@ -19,9 +19,9 @@
   ],
   "dependencies": {
     "bxslider-4": "latest",
-    "sweetalert": "latest",
     "jquery": "latest",
-    "fancybox": "fancyBox#master"
+    "fancybox": "fancyBox#master",
+    "object-fit": "^0.4.2"
   },
   "install": {
     "path": "src/vendor"

@@ -4,40 +4,13 @@
  *
  */
 var gulp = require('gulp'),
-	// PostCSS
-	postcss = require('gulp-postcss'),
-	lost = require('lost'),
-	rucksack = require('gulp-rucksack'),
-	nano = require('gulp-cssnano'),
-	// Stylus
-	stylus = require('gulp-stylus'),
-	minifyCSS = require('gulp-minify-css'),
-	prefix = require('gulp-autoprefixer'),
-	rupture = require('rupture'),
-	typographic = require('typographic'),
-	// Bower
-	// JavaScript
-	concat = require('gulp-concat'),
-	uglify = require('gulp-uglify'),
-	sourcemaps = require('gulp-sourcemaps'),
-	// Image optimization
-	imageop = require('gulp-image-optimization'),
-	// SVG Sprite
-	svgSprite = require('gulp-svg-sprite');
-	svgSprites = require('gulp-svg-sprites'),
-	svg2png   = require('gulp-svg2png'),
-	// Utils
-	browserSync = require('browser-sync').create(),
-	debug = require('gulp-debug'),
-	del = require('del'),
-	flatten = require('gulp-flatten'),
-	filter    = require('gulp-filter'),
-	fs = require("fs"),
-	notify = require("gulp-notify"),
-	plumber = require('gulp-plumber'),
-	rename = require('gulp-rename'),
-	replace = require('gulp-replace'),
-	watch = require('gulp-watch');
+	plugins = require('gulp-load-plugins')({
+		pattern: ['gulp-*', 'gulp.*',
+			'rupture', 'typographic', 'lost', 'del', 'fs'
+		],
+	}),
+	mainBowerFiles = require('main-bower-files'),
+	browserSync = require('browser-sync').create();
 
 
 
@@ -61,7 +34,7 @@ gulp.task('browser-sync', function() {
 	//initialize browsersync
 	browserSync.init(files, {
 		//browsersync with a php server
-		proxy: "localhost/WP_SLUG/",
+		proxy: "localhost/estragon/",
 		notify: false
 	});
 
@@ -81,36 +54,44 @@ gulp.task('browser-sync', function() {
  *
  */
 gulp.task('styles', function () {
-	return gulp.src([
-			'./src/vendor/**/**.css',
-			'./src/styles/plugins/**.styl',
-			'./src/styles/modules/**.styl',
-			'./src/styles/styles.styl'
-		])
-		.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-		//.pipe(debug({title: 'Files:'}))
-		.pipe(concat('styles.combined.styl'))
-		.pipe(sourcemaps.init())
-		.pipe(stylus({
+	var filterCSS = plugins.filter(['**/*.css']); // Broken by fancy
+	return gulp.src(mainBowerFiles({
+		    paths: {
+		        bowerDirectory: 'src/bower_components',
+		        bowerrc: '.bowerrc',
+		        bowerJson: 'bower.json'
+		    }
+		}))
+		.pipe(filterCSS)
+		.pipe(plugins.addSrc.prepend('./src/styles/vars.styl'))
+		.pipe(plugins.addSrc.append('./src/styles/plugins/**.styl'))
+		.pipe(plugins.addSrc.append('./src/styles/modules/**.styl'))
+		.pipe(plugins.addSrc.append('./src/styles/styles.styl'))
+		.pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
+		//.pipe(plugins.debug({title: 'Files:'}))
+		.pipe(plugins.concat('styles.combined.styl'))
+		.pipe(plugins.sourcemaps.init())
+		.pipe(plugins.stylus({
 			use: [
-				rupture(),
-				typographic(),
+				plugins.rupture(),
+				plugins.typographic(),
 			]
 		}))
-		.pipe(postcss([
-			lost(),
+		.pipe(plugins.postcss([
+			plugins.lost(),
 		]))
-		.pipe(rucksack())
-		.pipe(prefix('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-		.pipe(replace('url(\'images', 'url(\'../images'))
-		.pipe(replace('url("images', 'url("../images'))
-		.pipe(replace('../images/fancyBox/', '../images/'))
+		.pipe(plugins.rucksack())
+		.pipe(plugins.autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+		.pipe(plugins.replace('url(\'images', 'url(\'../images'))
+		.pipe(plugins.replace('url("images', 'url("../images'))
+		.pipe(plugins.replace('../images/fancyBox/', '../images/'))
+		.pipe(plugins.replace('../images/bxSlider/', '../images/'))
 		.pipe(gulp.dest('dist/styles'))
-		.pipe(nano())
-		.pipe(rename({suffix: '.min'}))
-		.pipe(sourcemaps.write('.'))
+		.pipe(plugins.cssnano())
+		.pipe(plugins.rename({suffix: '.min'}))
+		.pipe(plugins.sourcemaps.write('.'))
 		.pipe(gulp.dest('dist/styles'))
-		.pipe(notify("Styles updated"))
+		.pipe(plugins.notify("Styles updated"))
 		.pipe(browserSync.stream());
 });
 
@@ -129,27 +110,28 @@ gulp.task('styles', function () {
  */
 gulp.task('loginstyles', function () {
 	return gulp.src('./src/styles/login.styl')
-		.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+		.pipe(plugins.addSrc.prepend('./src/styles/vars.styl'))
+		.pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
 		//.pipe(debug({title: 'Files:'}))
-		.pipe(sourcemaps.init())
-		.pipe(stylus({
+		.pipe(plugins.sourcemaps.init())
+		.pipe(plugins.stylus({
 			use: [
-				rupture(),
-				typographic(),
+				plugins.rupture(),
+				plugins.typographic(),
 			]
 		}))
-		.pipe(postcss([
-			lost(),
+		.pipe(plugins.postcss([
+			plugins.lost(),
 		]))
-		.pipe(rucksack())
-		.pipe(prefix('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+		.pipe(plugins.rucksack())
+		.pipe(plugins.autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
 		.pipe(gulp.dest('dist/styles'))
-		.pipe(nano())
-		.pipe(minifyCSS())
-		.pipe(rename({suffix: '.min'}))
-		.pipe(sourcemaps.write('.'))
+		.pipe(plugins.cssnano())
+		.pipe(plugins.minifyCss())
+		.pipe(plugins.rename({suffix: '.min'}))
+		.pipe(plugins.sourcemaps.write('.'))
 		.pipe(gulp.dest('dist/styles'))
-		.pipe(notify("Login styles updated"))
+		.pipe(plugins.notify("Login styles updated"))
 		.pipe(browserSync.stream());
 });
 
@@ -168,30 +150,28 @@ gulp.task('loginstyles', function () {
  *
  */
 gulp.task('scripts', function() {
-	return gulp.src([
-			'src/vendor/jquery/jquery.js',
-			'src/vendor/**/!(jquery.js)*.js',
-			'!src/vendor/fancybox/jquery.fancybox.js', // No main files in bower.json
-			'src/scripts/**/*.js',
-		])
-		.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-		.pipe(debug({title: 'Files:'}))
-		.pipe(sourcemaps.init())
-		.pipe(concat('scripts.combined.js'))
+	var filterJS = plugins.filter(['**/*.js','!jquery.fancybox.pack.js']); // Broken by fancy
+	return gulp.src(mainBowerFiles({
+		    paths: {
+		        bowerDirectory: 'src/bower_components',
+		        bowerrc: '.bowerrc',
+		        bowerJson: 'bower.json'
+		    },
+		}))
+		.pipe(filterJS)
+		.pipe(plugins.addSrc.append('src/scripts/plugins/*.js'))
+		.pipe(plugins.addSrc.append('src/scripts/*.js'))
+		.pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
+		.pipe(plugins.sourcemaps.init())
+		.pipe(plugins.concat('scripts.combined.js'))
 		.pipe(gulp.dest('dist/scripts'))
-		.pipe(rename({suffix: '.min'}))
-		.pipe(uglify())
-		.pipe(sourcemaps.write('./'))
+		.pipe(plugins.rename({suffix: '.min'}))
+		.pipe(plugins.uglify())
+		.pipe(plugins.sourcemaps.write('./'))
 		.pipe(gulp.dest('dist/scripts'))
-		.pipe(notify("Scripts updated"))
+		.pipe(plugins.notify("Scripts updated"))
 		.pipe(browserSync.stream());
 });
-
-gulp.task('bower', function(){
-
-});
-
-
 
 /**
  *
@@ -200,18 +180,18 @@ gulp.task('bower', function(){
  */
 gulp.task('sprites', ['styles'], function () {
     return gulp.src('src/svg/*.svg')
-        .pipe(svgSprites({
+        .pipe(plugins.svgSprites({
 			cssFile: "../../../src/styles/plugins/sprite.styl",
 			templates: {
-        		css: fs.readFileSync("src/svg/style.tpl", "utf-8")
+        		css: plugins.fs.readFileSync("src/svg/style.tpl", "utf-8")
 		    },
 			padding: 2
 		}))
         .pipe(gulp.dest('dist/images/sprites')) // Write the sprite-sheet + CSS + Preview
-        .pipe(filter("**/*.svg"))  // Filter out everything except the SVG file
-        .pipe(svg2png())           // Create a PNG
+        .pipe(plugins.filter("**/*.svg"))  // Filter out everything except the SVG file
+        .pipe(plugins.svg2png())           // Create a PNG
         .pipe(gulp.dest('dist/images/sprites'))
-		.pipe(notify("Sprites updated"))
+		.pipe(plugins.notify("Sprites updated"))
 		.pipe(browserSync.stream());
 });
 
@@ -242,28 +222,29 @@ gulp.task('sprites-new', function () {
  *
  */
 gulp.task('images', function(cb) {
-    return gulp.src([
-    		'src/bower_components/fancyBox/source/*.png', // Missing main files in bower.json
-    		'src/bower_components/fancyBox/source/*.gif', // Missing main files in bower.json
-    		'src/vendor/**/*.png',
-    		'src/vendor/**/*.jpg',
-    		'src/vendor/**/*.gif',
-    		'src/vendor/**/*.jpeg',
-    		'src/images/**/*.png',
-    		'src/images/**/*.jpg',
-    		'src/images/**/*.gif',
-    		'src/images/**/*.jpeg',
-    	])
+	var filterImages = plugins.filter(['**/*.png','**/*.gif','**/*.jpg','**/*.jpeg']); // Broken by fancy
+	return gulp.src(mainBowerFiles({
+		    paths: {
+		        bowerDirectory: 'src/bower_components',
+		        bowerrc: '.bowerrc',
+		        bowerJson: 'bower.json'
+		    },
+		}))
+		.pipe(plugins.addSrc('src/images/*.png'))
+		.pipe(plugins.addSrc('src/images/*.jpg'))
+		.pipe(plugins.addSrc('src/images/*.jpeg'))
+		.pipe(plugins.addSrc('src/images/*.gif'))
+		.pipe(filterImages)
     	//.pipe(debug({title: 'Files:'}))
-    	.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-        .pipe(imageop({
+    	.pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
+        .pipe(plugins.imageOptimization({
 			optimizationLevel: 5,
 			progressive: true,
 			interlaced: true
 		}))
-		.pipe(flatten())
+		.pipe(plugins.flatten())
         .pipe(gulp.dest('dist/images'))
-		.pipe(notify("Images optimized"))
+		.pipe(plugins.notify("Images optimized"))
 		.pipe(browserSync.stream());
 });
 
@@ -277,7 +258,7 @@ gulp.task('images', function(cb) {
  *
  */
 gulp.task('clean', function(cb) {
-	del(['dist/**'], cb);
+	plugins.del(['dist/**'], cb);
 });
 
 

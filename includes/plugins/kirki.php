@@ -67,7 +67,7 @@ function kirki_controls( $controls )
 		// Header
 		$controls[] = array(
 			'type'        => 'text',
-			'setting'     => $setting,
+			'settings'     => $setting,
 			'label'       => $label,
 			'description' => '',
 			'help'        => '',

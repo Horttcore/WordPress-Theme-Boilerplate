@@ -34,7 +34,7 @@ gulp.task('browser-sync', function() {
 	//initialize browsersync
 	browserSync.init(files, {
 		//browsersync with a php server
-		proxy: "localhost/estragon/",
+		proxy: "localhost/TEXTDOMAIN/",
 		notify: false
 	});
 

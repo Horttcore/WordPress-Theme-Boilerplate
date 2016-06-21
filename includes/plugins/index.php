@@ -7,7 +7,6 @@
 
 $plugins = array(
 	'attachments' => 'attachments.php',
-	'custom-background-image-size' => 'custom-background-image-size.php',
 	'kirki' => 'kirki.php',
 	'multiple-post-thumbnails' => 'multiple-post-thumbnails.php',
 );

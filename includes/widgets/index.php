@@ -13,7 +13,6 @@ function theme_widgets_init()
 	 */
 	$widgets = array(
 		'WP_Widget_Contact' => 'widget.contact.php',
-		'WP_Widget_Subnav' => 'widget.subnav.php',
 	);
 
 	if ( !is_array( $widgets ) )

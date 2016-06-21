@@ -2,7 +2,6 @@
 /**
  * INCLUDES
  */
-include 'includes/ajax.php';
 include 'includes/emoji.php';
 include 'includes/head.php';
 include 'includes/locale.php';

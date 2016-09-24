@@ -1,0 +1,12 @@
+{
+    "name": "horttcore/wordpress-theme-boilerplate",
+    "description": "A WordPress Theme Boilerplate",
+    "type": "wordpress-theme",
+    "authors": [
+        {
+            "name": "Ralf Hortt",
+            "email": "me@horttcore.de"
+        }
+    ],
+    "require": {}
+}

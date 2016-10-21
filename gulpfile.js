@@ -178,39 +178,34 @@ gulp.task('scripts', function() {
  * Task: SVG Sprites
  *
  */
-gulp.task('sprites', ['styles'], function () {
-    return gulp.src('src/svg/*.svg')
-        .pipe(plugins.svgSprites({
-			cssFile: "../../../src/styles/plugins/sprite.styl",
-			templates: {
-        		css: plugins.fs.readFileSync("src/svg/style.tpl", "utf-8")
-		    },
-			padding: 2
-		}))
-        .pipe(gulp.dest('dist/images/sprites')) // Write the sprite-sheet + CSS + Preview
-        .pipe(plugins.filter("**/*.svg"))  // Filter out everything except the SVG file
-        .pipe(plugins.svg2png())           // Create a PNG
-        .pipe(gulp.dest('dist/images/sprites'))
-		.pipe(plugins.notify("Sprites updated"))
-		.pipe(browserSync.stream());
-});
-
-/* WIP */
-gulp.task('sprites-new', function () {
-    return gulp.src('src/svg/*.svg')
-    	.pipe(debug({title: 'Files:'}))
-    	.pipe(svgSprite({
+gulp.task('sprites', function () {
+    gulp.src('src/svg/*.svg')
+    	//.pipe(plugins.debug({title: 'Files:'}))
+    	.pipe(plugins.svgSprite({
 			mode : {
-				css                 : true,     // Create a «css» sprite
-				view                : true,     // Create a «view» sprite
-				defs                : true,     // Create a «defs» sprite
-				symbol              : true,     // Create a «symbol» sprite
-				stack               : true      // Create a «stack» sprite
+				css                 : {
+					render 			: {
+						styl		: {
+							template: 'src/svg/style.tpl',
+							dest	: '../../styles/plugins/sprite.styl',
+						}
+					},
+					bust: false,
+				},
+				view                : false,     // Create a «view» sprite
+				defs                : false,     // Create a «defs» sprite
+				symbol              : false,     // Create a «symbol» sprite
+				stack               : false      // Create a «stack» sprite
 			}
 		}))
-        .pipe(gulp.dest('dist/images/sprites')) // Write the sprite-sheet + CSS + Preview
-		.pipe(browserSync.stream());
+        .pipe(gulp.dest('src/sprites')); // Write the sprite-sheet + CSS + Preview
+
+	// Move svg to image dist
+	gulp.src('src/sprites/css/svg/*.svg')
+	 	.pipe(gulp.dest('dist/images'));
+
 });
+
 
 
 

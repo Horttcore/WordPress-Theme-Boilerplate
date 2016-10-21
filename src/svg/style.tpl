@@ -2,57 +2,42 @@
  * Global icon style
  */
 icon( val )
-
 	if val == 'after'
 		&:after
-			background-image url("../images/sprites/svg/sprite.png")
-			background-image url("../images/sprites/svg/sprite.svg"), none
+			background url("../images/sprite.css.png") no-repeat
+			background url("../images/sprite.css.svg") no-repeat, none
 			background-repeat no-repeat
-			background-size {relWidth}em {relHeight}em
 			content ''
 			display inline-block
-			font-size .625rem
 			vertical-align middle
 	else
 		&:before
-			background-image url("../images/sprites/svg/sprite.png")
-			background-image url("../images/sprites/svg/sprite.svg"), none
+			background url("../images/sprite.css.png") no-repeat
+			background url("../images/sprite.css.svg") no-repeat, none
 			background-repeat no-repeat
-			background-size {relWidth}em {relHeight}em
 			content ''
 			display inline-block
-			font-size .625rem
 			vertical-align middle
-{#common}
-
-.icon {
-	icon( before )
-}
-
-.icon-after {
-	icon( after )
-}
-{/common}
-
-{#svg}
+{{#shapes}}
 /**
- * Icon: {name}
+ * Icon: {{name}}
  */
-{common}-{name}( val = 'before'  )
+{{name}}( val = 'before' )
 	icon( val )
-
 	if val == 'after'
 		&:after
-			background-position {relPositionX}em {relPositionY}em
-			width {relWidth}em
-			height {relHeight}em
+			background-position {{position.relative.xy}}
+			height {{height.outer}}px
+			width {{width.outer}}px
 	else
 		&:before
-			background-position {relPositionX}em {relPositionY}em
-			width {relWidth}em
-			height {relHeight}em
+			background-position {{position.relative.xy}}
+			height {{height.outer}}px
+			width {{width.outer}}px
 
-.{common}-{name} {
-	{common}-{name}()
-}
-{/svg}
+.{{name}}
+	{{name}}()
+
+
+
+{{/shapes}}

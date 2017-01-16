@@ -10,7 +10,7 @@ include 'includes/images.php';
 include 'includes/mail.php';
 include 'includes/menus.php';
 include 'includes/theme-support.php';
-include 'includes/shortcodes.php';
+include 'includes/shortcodes/index.php';
 include 'includes/sidebars.php';
 include 'includes/template-tags.php';
 include 'includes/plugins/index.php';

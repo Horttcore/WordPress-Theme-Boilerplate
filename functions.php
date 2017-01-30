@@ -36,19 +36,3 @@ function theme_init()
 }
 endif;
 add_action( 'init', 'theme_init' );
-
-
-
-if ( !function_exists( 'theme_pre_get_posts' ) ) :
-/**
- * Pre get posts
- *
- * @author Ralf Hortt
- * @since v1.0.0
- **/
-function theme_pre_get_posts( $query )
-{
-
-}
-endif;
-add_action( 'pre_get_posts', 'theme_pre_get_posts' );

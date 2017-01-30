@@ -14,6 +14,4 @@
 
 	</div><!-- .entry-content -->
 
-	<?php edit_post_link( __('Edit This'), '<footer class="entry-footer">', '</footer><!-- .entry-footer -->' ) ?>
-
 </article><!-- #post-<?php the_ID() ?> -->

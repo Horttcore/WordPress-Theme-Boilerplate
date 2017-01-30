@@ -2,4 +2,4 @@
 /**
  * Shortcodes
  */
-require( 'class.shortcode.contactform.php' );
+require( 'class.shortcode.form.contact.php' );

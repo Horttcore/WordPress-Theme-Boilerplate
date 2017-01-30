@@ -34,7 +34,7 @@ gulp.task('browser-sync', function() {
 	//initialize browsersync
 	browserSync.init(files, {
 		//browsersync with a php server
-		proxy: "localhost/TEXTDOMAIN/",
+		proxy: "domain.dev",
 		notify: false
 	});
 
@@ -66,21 +66,18 @@ gulp.task('styles', function () {
 		.pipe(plugins.addSrc.prepend('./src/styles/vars.styl'))
 		.pipe(plugins.addSrc.append('./src/styles/plugins/**.styl'))
 		.pipe(plugins.addSrc.append('./src/styles/modules/**.styl'))
+		.pipe(plugins.addSrc.append('./src/styles/components/**.styl'))
 		.pipe(plugins.addSrc.append('./src/styles/styles.styl'))
-		.pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
 		//.pipe(plugins.debug({title: 'Files:'}))
 		.pipe(plugins.concat('styles.combined.styl'))
 		.pipe(plugins.sourcemaps.init())
 		.pipe(plugins.stylus({
 			use: [
 				plugins.rupture(),
-				plugins.typographic(),
 			]
 		}))
 		.pipe(plugins.postcss([
-			plugins.lost(),
 		]))
-		.pipe(plugins.rucksack())
 		.pipe(plugins.autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
 		.pipe(plugins.replace('url(\'images', 'url(\'../images'))
 		.pipe(plugins.replace('url("images', 'url("../images'))
@@ -91,7 +88,6 @@ gulp.task('styles', function () {
 		.pipe(plugins.rename({suffix: '.min'}))
 		.pipe(plugins.sourcemaps.write('.'))
 		.pipe(gulp.dest('dist/styles'))
-		.pipe(plugins.notify("Styles updated"))
 		.pipe(browserSync.stream());
 });
 
@@ -111,27 +107,21 @@ gulp.task('styles', function () {
 gulp.task('loginstyles', function () {
 	return gulp.src('./src/styles/login.styl')
 		.pipe(plugins.addSrc.prepend('./src/styles/vars.styl'))
-		.pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
 		//.pipe(debug({title: 'Files:'}))
 		.pipe(plugins.sourcemaps.init())
 		.pipe(plugins.stylus({
 			use: [
 				plugins.rupture(),
-				plugins.typographic(),
 			]
 		}))
 		.pipe(plugins.postcss([
-			plugins.lost(),
 		]))
-		.pipe(plugins.rucksack())
 		.pipe(plugins.autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
 		.pipe(gulp.dest('dist/styles'))
 		.pipe(plugins.cssnano())
-		.pipe(plugins.minifyCss())
 		.pipe(plugins.rename({suffix: '.min'}))
 		.pipe(plugins.sourcemaps.write('.'))
 		.pipe(gulp.dest('dist/styles'))
-		.pipe(plugins.notify("Login styles updated"))
 		.pipe(browserSync.stream());
 });
 
@@ -161,7 +151,6 @@ gulp.task('scripts', function() {
 		.pipe(filterJS)
 		.pipe(plugins.addSrc.append('src/scripts/plugins/*.js'))
 		.pipe(plugins.addSrc.append('src/scripts/*.js'))
-		.pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
 		.pipe(plugins.sourcemaps.init())
 		.pipe(plugins.concat('scripts.combined.js'))
 		.pipe(gulp.dest('dist/scripts'))
@@ -169,7 +158,6 @@ gulp.task('scripts', function() {
 		.pipe(plugins.uglify())
 		.pipe(plugins.sourcemaps.write('./'))
 		.pipe(gulp.dest('dist/scripts'))
-		.pipe(plugins.notify("Scripts updated"))
 		.pipe(browserSync.stream());
 });
 
@@ -231,15 +219,9 @@ gulp.task('images', function(cb) {
 		.pipe(plugins.addSrc('src/images/*.gif'))
 		.pipe(filterImages)
     	//.pipe(debug({title: 'Files:'}))
-    	.pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
-        .pipe(plugins.imageOptimization({
-			optimizationLevel: 5,
-			progressive: true,
-			interlaced: true
-		}))
+        .pipe(plugins.imagemin())
 		.pipe(plugins.flatten())
         .pipe(gulp.dest('dist/images'))
-		.pipe(plugins.notify("Images optimized"))
 		.pipe(browserSync.stream());
 });
 
@@ -282,7 +264,7 @@ gulp.task('watch', function() {
  * - Run all tasks and start watching
  *
  */
-gulp.task('default', ['clean'], function(){
+gulp.task('default', function(){
 	gulp.start( 'styles', 'scripts', 'images', 'sprites', 'watch', 'browser-sync' );
 });
 
@@ -295,6 +277,7 @@ gulp.task('default', ['clean'], function(){
  * - Run default task once
  *
  */
-gulp.task('dev', ['clean'], function(){
-	gulp.start('sprites', 'images', 'scripts', 'styles', 'loginstyles'  );
+gulp.task('build', function(){
+	gulp.start('clean');
+	gulp.start(['sprites', 'images', 'scripts', 'styles', 'loginstyles']);
 });

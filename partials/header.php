@@ -2,11 +2,9 @@
 
 	<div class="container">
 
-		<a class="logo" href="<?php echo home_url() ?>">
-			<img src="<?php echo get_stylesheet_directory_uri() ?>/dist/images/logo-WP_SLUG.png" alt="<?php bloginfo('name') ?>" title="<?php bloginfo('description') ?>">
-		</a>
+		<?php the_custom_logo() ?>
 
-		<a href="#" class="toggle-nav"><?php _e( 'Menu', 'TEXTDOMAIN' ) ?></a>
+		<a href="#" class="toggle-nav"><?php _e( 'Menü', 'TEXTDOMAIN' ) ?></a>
 
 		<?php
 		wp_nav_menu(array(

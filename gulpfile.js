@@ -23,11 +23,10 @@ var gulp = require('gulp'),
  * - Update browsers
  *
  */
-gulp.task('browser-sync', function() {
+gulp.task('serve', function() {
 
 	//watch files
 	var files = [
-		'./dist/**/*',
 		'./**/*.php',
 	];
 
@@ -67,6 +66,7 @@ gulp.task('styles', function () {
 		.pipe(plugins.addSrc.append('./src/styles/plugins/**.styl'))
 		.pipe(plugins.addSrc.append('./src/styles/modules/**.styl'))
 		.pipe(plugins.addSrc.append('./src/styles/components/**.styl'))
+		.pipe(plugins.addSrc.append('./src/styles/states/**.styl'))
 		.pipe(plugins.addSrc.append('./src/styles/styles.styl'))
 		//.pipe(plugins.debug({title: 'Files:'}))
 		.pipe(plugins.concat('styles.combined.styl'))
@@ -265,7 +265,7 @@ gulp.task('watch', function() {
  *
  */
 gulp.task('default', function(){
-	gulp.start( 'styles', 'scripts', 'images', 'sprites', 'watch', 'browser-sync' );
+	gulp.start( 'watch', 'serve' );
 });
 
 

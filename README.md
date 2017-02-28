@@ -7,8 +7,8 @@
 
 ## Installation
 
-* `~sudo npm install`
-* `~gulp browser-sync`
+* `~yarn`
+* `~gulp serve`
 * `~gulp watch`
 
 ## Menus
@@ -71,6 +71,13 @@
 * Create a page called `Test` to get a simple pattern lab
 
 ## Changelog
+
+## v2.2
+
+* Add: custom logo to header
+* Add: header.php for WooCommerce support
+* Add: footer.php for WooCommerce support
+* Fix: Typo `menu`
 
 ### v2.1
 

@@ -1,19 +1,10 @@
 <?php
 /**
  *
- * <head>
- *
- */
-get_template_part( 'partials/head', 'archive' );
-
-
-
-/**
- *
  * Header
  *
  */
-get_template_part( 'partials/header', 'archive' );
+get_header();
 
 
 
@@ -58,13 +49,4 @@ get_template_part( 'partials/header', 'archive' );
  * Footer
  *
  */
-get_template_part( 'partials/footer', 'archive' );
-
-
-
-/**
- *
- * Foot
- *
- */
-get_template_part( 'partials/foot', 'archive' );
+get_footer();

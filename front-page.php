@@ -1,19 +1,10 @@
 <?php
 /**
  *
- * <head>
- *
- */
-get_template_part( 'partials/head', 'home' );
-
-
-
-/**
- *
  * Header
  *
  */
-get_template_part( 'partials/header', 'home' );
+get_header();
 
 
 
@@ -49,13 +40,4 @@ get_template_part( 'partials/header', 'home' );
  * Footer
  *
  */
-get_template_part( 'partials/footer', 'home' );
-
-
-
-/**
- *
- * Foot
- *
- */
-get_template_part( 'partials/foot', 'home' );
+get_footer();

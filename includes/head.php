@@ -24,3 +24,20 @@ function theme_ajax_url()
 }
 endif;
 add_action( 'wp_head', 'theme_ajax_url' );
+
+
+
+// Remove generator meta tag
+remove_action( 'wp_head', 'wp_generator' );
+
+// Remove version
+add_filter( 'the_generator', '__return_null' );
+
+// Remove the EditURI/RSD link
+remove_action ('wp_head', 'rsd_link');
+
+// Remove wlwmanifest
+remove_action( 'wp_head', 'wlwmanifest_link');
+
+// Remove shorturl
+remove_action( 'wp_head', 'wp_shortlink_wp_head');

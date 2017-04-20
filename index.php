@@ -19,7 +19,7 @@ get_header();
 
 	<div class="container">
 
-		<main class="content cf" role="main">
+		<main class="content cf" role="main" id="main">
 
 			<?php
 

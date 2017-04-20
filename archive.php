@@ -18,7 +18,7 @@ get_header();
 
 	<div class="container">
 
-		<main class="content cf" role="main">
+		<main class="content cf" role="main" id="main">
 
 			<h1 class="archive-title"><?php the_archive_title() ?></h1>
 

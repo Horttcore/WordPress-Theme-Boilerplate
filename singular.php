@@ -28,7 +28,7 @@ get_template_part( 'partials/visual', get_post_type() );
 
 	<div class="container">
 
-		<main class="content" role="main">
+		<main class="content" role="main" id="main">
 
 			<?php
 			the_post();

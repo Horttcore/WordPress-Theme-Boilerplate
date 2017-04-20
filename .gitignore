@@ -1,5 +1,5 @@
 node_modules
 .DS_Store
 dist
-src/bower_components
+src/bower_components/*
 /vendor/

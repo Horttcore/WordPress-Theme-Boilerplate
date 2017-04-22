@@ -18,10 +18,9 @@
     "tests"
   ],
   "dependencies": {
-    "bxslider-4": "latest",
+    "slick-carousel": "latest",
     "jquery": "latest",
-    "fancybox": "fancyBox#master",
-    "object-fit": "^0.4.2"
+    "fancybox": "fancyBox#master"
   },
   "install": {
     "path": "src/vendor"

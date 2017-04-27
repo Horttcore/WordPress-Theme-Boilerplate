@@ -29,9 +29,6 @@
 
 * Support customized login style
 
-## Submodules
-
-* [Template Meta Boxes](https://github.com/Horttcore/Template-Meta-Boxes)
 
 ## Localization
 
@@ -61,16 +58,18 @@
 
 ## Bower
 
-* [bxSlider](http://bxslider.com/) ( Slider )
 * [Fancybox](http://fancyapps.com/fancybox/) ( Lightbox )
 * [jQuery](https://jquery.com/) ( Javascript Lib )
-* [objectFit](https://github.com/anselmh/object-fit) ( polyfill )
 
 ## Pattern lab
 
 * Create a page called `Test` to get a simple pattern lab
 
 ## Changelog
+
+## v2.3
+
+* Move css dependencies to bower workflow
 
 ## v2.2
 

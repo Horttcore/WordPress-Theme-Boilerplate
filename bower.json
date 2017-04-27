@@ -18,10 +18,12 @@
     "tests"
   ],
   "dependencies": {
-    "bxslider-4": "latest",
     "jquery": "latest",
     "fancybox": "fancyBox#master",
-    "object-fit": "^0.4.2"
+	"css-util-border-box": "latest",
+	"css-util-microclearfix": "latest",
+	"css-util-screenreader-text": "latest",
+	"normalize-css": "latest"
   },
   "install": {
     "path": "src/vendor"

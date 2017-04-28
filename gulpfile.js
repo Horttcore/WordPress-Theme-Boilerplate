@@ -82,7 +82,6 @@ gulp.task('styles', function () {
 		.pipe(plugins.replace('url(\'images', 'url(\'../images'))
 		.pipe(plugins.replace('url("images', 'url("../images'))
 		.pipe(plugins.replace('../images/fancyBox/', '../images/'))
-		.pipe(plugins.replace('../images/bxSlider/', '../images/'))
 		.pipe(gulp.dest('dist/styles'))
 		.pipe(plugins.cssnano())
 		.pipe(plugins.rename({suffix: '.min'}))

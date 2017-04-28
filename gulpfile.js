@@ -61,6 +61,7 @@ gulp.task('styles', function () {
 		        bowerJson: 'bower.json'
 		    }
 		}))
+		.pipe(plugins.plumber())
 		.pipe(filterCSS)
 		.pipe(plugins.addSrc.prepend('./src/styles/vars.styl'))
 		.pipe(plugins.addSrc.append('./src/styles/plugins/**.styl'))
@@ -87,7 +88,8 @@ gulp.task('styles', function () {
 		.pipe(plugins.rename({suffix: '.min'}))
 		.pipe(plugins.sourcemaps.write('.'))
 		.pipe(gulp.dest('dist/styles'))
-		.pipe(browserSync.stream());
+		.pipe(browserSync.stream())
+		.pipe(plugins.plumber.stop());
 });
 
 
@@ -105,6 +107,7 @@ gulp.task('styles', function () {
  */
 gulp.task('loginstyles', function () {
 	return gulp.src('./src/styles/login.styl')
+		.pipe(plugins.plumber())
 		.pipe(plugins.addSrc.prepend('./src/styles/vars.styl'))
 		//.pipe(debug({title: 'Files:'}))
 		.pipe(plugins.sourcemaps.init())
@@ -121,7 +124,8 @@ gulp.task('loginstyles', function () {
 		.pipe(plugins.rename({suffix: '.min'}))
 		.pipe(plugins.sourcemaps.write('.'))
 		.pipe(gulp.dest('dist/styles'))
-		.pipe(browserSync.stream());
+		.pipe(browserSync.stream())
+		.pipe(plugins.plumber.stop());
 });
 
 
@@ -139,7 +143,7 @@ gulp.task('loginstyles', function () {
  *
  */
 gulp.task('scripts', function() {
-	var filterJS = plugins.filter(['**/*.js','!jquery.fancybox.pack.js']); // Broken by fancy
+	var filterJS = plugins.filter(['**/*.js']);
 	return gulp.src(mainBowerFiles({
 		    paths: {
 		        bowerDirectory: 'src/bower_components',
@@ -147,9 +151,10 @@ gulp.task('scripts', function() {
 		        bowerJson: 'bower.json'
 		    },
 		}))
+		.pipe(plugins.plumber())
 		.pipe(filterJS)
 		.pipe(plugins.addSrc.append('src/scripts/plugins/*.js'))
-		.pipe(plugins.addSrc.append('src/scripts/*.js'))
+		.pipe(plugins.addSrc.append('src/scripts/scripts.js'))
 		.pipe(plugins.sourcemaps.init())
 		.pipe(plugins.concat('scripts.combined.js'))
 		.pipe(gulp.dest('dist/scripts'))
@@ -157,7 +162,8 @@ gulp.task('scripts', function() {
 		.pipe(plugins.uglify())
 		.pipe(plugins.sourcemaps.write('./'))
 		.pipe(gulp.dest('dist/scripts'))
-		.pipe(browserSync.stream());
+		.pipe(browserSync.stream())
+		.pipe(plugins.plumber.stop());
 });
 
 /**
@@ -201,27 +207,35 @@ gulp.task('sprites', function () {
  *
  * Task: Images
  *
- * - Get gif, jpg and png files and optimize them
+ * - Get gif, jpg, png and svg files and optimize them
  *
  */
 gulp.task('images', function(cb) {
-	var filterImages = plugins.filter(['**/*.png','**/*.gif','**/*.jpg','**/*.jpeg']); // Broken by fancy
+	var filterImages = plugins.filter(['**/*.png','**/*.gif','**/*.jpg','**/*.jpeg','**/*.svg']);
 	return gulp.src(mainBowerFiles({
-		    paths: {
-		        bowerDirectory: 'src/bower_components',
-		        bowerrc: '.bowerrc',
-		        bowerJson: 'bower.json'
-		    },
+			paths: {
+				bowerDirectory: 'src/bower_components',
+				bowerrc: '.bowerrc',
+				bowerJson: 'bower.json'
+			},
 		}))
-		.pipe(plugins.addSrc('src/images/*.png'))
-		.pipe(plugins.addSrc('src/images/*.jpg'))
-		.pipe(plugins.addSrc('src/images/*.jpeg'))
-		.pipe(plugins.addSrc('src/images/*.gif'))
 		.pipe(filterImages)
-    	//.pipe(debug({title: 'Files:'}))
-        .pipe(plugins.imagemin())
+		.pipe(plugins.addSrc('src/images/*'))
+		//.pipe(plugin.debug({title: 'Files:'}))
+		.pipe(plugins.image({
+			pngquant: true,
+			optipng: false,
+			zopflipng: false,
+			jpegRecompress: false,
+			jpegoptim: true,
+			mozjpeg: true,
+			guetzli: true,
+			gifsicle: true,
+			svgo: true,
+			concurrent: 10
+		}))
 		.pipe(plugins.flatten())
-        .pipe(gulp.dest('dist/images'))
+		.pipe(gulp.dest('dist/images'))
 		.pipe(browserSync.stream());
 });
 
@@ -249,8 +263,8 @@ gulp.task('clean', function(cb) {
  */
 gulp.task('watch', function() {
     gulp.watch('src/scripts/*.js', ['scripts']);
-    gulp.watch('src/styles/*.styl', ['styles', 'loginstyles']);
-    gulp.watch('src/styles/**/*.styl', ['styles', 'loginstyles']);
+    gulp.watch('src/styles/styles.styl', ['styles']);
+    gulp.watch('src/styles/**/*.styl', ['styles']);
     gulp.watch('src/images/*', ['images']);
     gulp.watch('src/svg/*.svg', ['sprites']);
 });

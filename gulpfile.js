@@ -185,7 +185,7 @@ gulp.task('sprites', function () {
 				stack               : false      // Create a «stack» sprite
 			}
 		}))
-        .pipe(plugins.flatten()); // Write the sprite-sheet + CSS + Preview
+        .pipe(plugins.flatten()) // Write the sprite-sheet + CSS + Preview
         .pipe(gulp.dest('src/sprites')); // Write the sprite-sheet + CSS + Preview
 
 	// Move svg to image dist

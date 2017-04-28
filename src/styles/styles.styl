@@ -4,29 +4,16 @@
  *
  */
 html
-	font-size 16px
+	font-size 12px
+
+	+above(540px)
+		font-size 14px
+
+	+above(782px)
+		font-size 16px
 
 body
-	font 1rem/fontheight fontstack
-
-ul
-ol
-table
-blockquote
-p
-form
-	margin 0 0 1.5625em
-
-ul
-ol
-	li
-		margin 0 0 .3125em
-
-ul
-	list-style disc
-
-ol
-	list-style numeric
+	font $font--size/$font--lineheight $font--fontstack
 
 nav
 
@@ -45,136 +32,12 @@ a
 	transition all .2s
 
 img
-	max-width 100%
 	height auto
+	max-width 100%
 
-input
-textarea
-	border 1px solid black
-
-input[type="checkbox"]
-input[type="radio"]
-	border none
-	width auto
-
-textarea
-	resize vertical
-
-button
-.button
-	transition all .2s
-
-p.submit
-	text-align right
 
 :first-child
 	margin-top 0
 
 :last-child
 	margin-bottom 0
-
-
-/**
- *
- * HEADER
- *
- */
-//.header
-
-
-
-
-/**
- *
- * NAV
- *
- */
-.nav-main
-
-	> ul
-
-		> li
-
-			> a
-
-				&:hover
-					color inherit
-
-			/*
-			> ul
-
-				> li
-
-					> a
-
-						&:hover
-							color inherit
-
-				> .current-menu-item
-				> .current-menu-ancestor
-
-					> a
-						color inherit
-			*/
-
-		> .current-menu-item
-		> .current-menu-ancestor
-
-			> a
-				color inherit
-
-
-
-/**
- *
- * VISUAL
- *
- */
-//.visual
-
-
-
-/**
- *
- * CONTENT
- *
- */
-
-//.content-container
-
-
-
-//.content
-
-
-
-/*
-.entry
-
-	&-header
-
-	&-title
-
-	&-date
-
-	&-content
-
-	&-footer
-*/
-
-
-
-/**
- *
- * SIDEBAR
- *
- */
-//.sidebar
-
-
-/**
- *
- * FOOTER
- *
- */
-//.footer

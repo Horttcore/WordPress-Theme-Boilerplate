@@ -1,36 +1,38 @@
 <?php
 // Get slides
-if ( class_exists( 'Attachments' ) )
-	$attachments = new Attachments( 'slider' );
+if (class_exists( 'Attachments' )) {
+    $attachments = new Attachments( 'slider' );
+}
 
 // No output if there is no visual elemet
-if ( !has_post_thumbnail() && ( !class_exists( 'Attachments' ) || !$attachments->exist() ) )
-	return;
+if (!has_post_thumbnail() && ( !class_exists( 'Attachments' ) || !$attachments->exist() )) {
+    return;
+}
 
 ?>
 
 <div class="visual cf">
 
-	<?php if ( class_exists( 'Attachments' ) && $attachments->exist() ) : ?>
+    <?php if (class_exists( 'Attachments' ) && $attachments->exist()) : ?>
 
-		<div class="slider">
+        <div class="slider">
 
-			<?php while( $attachments->get() ) : ?>
+            <?php while ($attachments->get()) : ?>
 
-				<div class="slide">
+                <div class="slide">
 
-					<?php echo $attachments->image( 'large' ) ?>
+                    <?php echo $attachments->image( 'large' ) ?>
 
-				</div><!-- .slide -->
+                </div><!-- .slide -->
 
-			<?php endwhile;	?>
+            <?php endwhile;     ?>
 
-		</div><!-- .slider -->
+        </div><!-- .slider -->
 
-	<?php elseif ( has_post_thumbnail() ) : ?>
+    <?php elseif (has_post_thumbnail()) : ?>
 
-		<?php the_post_thumbnail( 'large' ); ?>
+        <?php the_post_thumbnail( 'large' ); ?>
 
-	<?php endif; ?>
+    <?php endif; ?>
 
 </div><!-- .visual -->

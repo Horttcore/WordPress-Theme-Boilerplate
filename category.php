@@ -16,33 +16,33 @@ get_header();
 ?>
 <div class="content-container">
 
-	<div class="container">
+    <div class="container">
 
-		<main class="content cf" role="main" id="main">
+        <main class="content cf" role="main" id="main">
 
-			<h1 class="archive-title"><?php echo single_cat_title() ?></h1>
+            <h1 class="archive-title"><?php echo single_cat_title() ?></h1>
 
-			<div class="posts">
+            <div class="posts">
 
-				<?php
+                <?php
 
-				while ( have_posts() ) : the_post();
+                while (have_posts()) :
+                    the_post();
 
-					get_template_part( 'partials/content-archive', get_post_type() );
+                    get_template_part( 'partials/content-archive', get_post_type() );
+                endwhile;
 
-				endwhile;
+                the_posts_pagination();
 
-				the_posts_pagination();
+                ?>
 
-				?>
+            </div><!-- .posts -->
 
-			</div><!-- .posts -->
+        </main><!-- .content -->
 
-		</main><!-- .content -->
+        <?php get_template_part( 'partials/sidebar', get_post_type() ) ?>
 
-		<?php get_template_part( 'partials/sidebar', get_post_type() ) ?>
-
-	</div><!-- .container -->
+    </div><!-- .container -->
 
 </div><!-- .content-container -->
 

@@ -56,6 +56,7 @@ function kirki_controls( $controls )
 		'zip' => __( 'PLZ', 'TEXTDOMAIN' ),
 		'city' => __( 'Stadt', 'TEXTDOMAIN' ),
 		'phone' => __( 'Telefon', 'TEXTDOMAIN' ),
+		'mobile' => __( 'Mobil', 'TEXTDOMAIN' ),
 		'fax' => __( 'Mobil', 'TEXTDOMAIN' ),
 		'fax' => __( 'Fax', 'TEXTDOMAIN' ),
 		'email' => __( 'E-Mail', 'TEXTDOMAIN' ),

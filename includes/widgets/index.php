@@ -5,28 +5,22 @@
  * @since v1.0.12
  * @author Ralf Hortt
  **/
-if ( !function_exists( 'theme_widgets_init' ) ) :
-function theme_widgets_init()
-{
-	/**
-	 * Class name => file
-	 */
-	$widgets = array(
-		'WP_Widget_Contact' => 'widget.contact.php',
-	);
+if (!function_exists( 'theme_widgets_init' )) :
+    function theme_widgets_init()
+    {
 
-	if ( !is_array( $widgets ) )
-		return;
+        $widgets = array(
+            'WP_Widget_Contact' => 'widget.contact.php',
+        );
 
-	foreach ( $widgets as $widget_id => $widget_file ) :
+        if (empty( $widgets )) :
+            return;
+        endif;
 
-		if ( TRUE === apply_filters( 'supports-' . $widget_id, TRUE ) ) :
-			include( $widget_file );
-			register_widget( $widget_id );
-		endif;
-
-	endforeach;
-
-}
+        foreach ($widgets as $widget_id => $widget_file) :
+            require( $widget_file );
+            register_widget( $widget_id );
+        endforeach;
+    }
 endif;
 add_action( 'widgets_init', 'theme_widgets_init' );

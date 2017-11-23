@@ -1,22 +1,18 @@
 <?php
 /**
  *
- * Load customizers
+ * Load plugin files
  *
  */
 
 $plugins = array(
-	'attachments' => 'attachments.php',
-	'kirki' => 'kirki.php',
-	'multiple-post-thumbnails' => 'multiple-post-thumbnails.php',
+    'kirki.php',
 );
 
-if ( !is_array( $plugins ) )
-	return;
+if (empty( $plugins )) :
+    return;
+endif;
 
-foreach ( $plugins as $plugin_id => $plugin_file ) :
-
-	if ( TRUE === apply_filters( 'supports-' . $plugin_id, TRUE ) )
-		include( $plugin_file );
-
+foreach ($plugins as $plugin) :
+    require($plugin);
 endforeach;

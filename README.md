@@ -7,9 +7,8 @@
 
 ## Installation
 
-* `~yarn`
-* `~gulp serve`
-* `~gulp watch`
+* `~ yarn`
+* `~ gulp`
 
 ## Menus
 
@@ -23,12 +22,11 @@
 
 ## Widgets
 
-* Subnav
+* Contact
 
 ## Customization
 
 * Support customized login style
-
 
 ## Localization
 
@@ -36,8 +34,6 @@
 
 ## Plugins
 
-* [Attachments](http://wordpress.org/plugins/attachments/)
-* [Multiple Post Thumbnails](https://wordpress.org/plugins/multiple-post-thumbnails/)
 * [Kirki](http://kirki.org/)
 
 ## Ajax
@@ -58,14 +54,19 @@
 
 ## Bower
 
-* [Fancybox](http://fancyapps.com/fancybox/) ( Lightbox )
-* [jQuery](https://jquery.com/) ( Javascript Lib )
-
 ## Pattern lab
 
 * Create a page called `Test` to get a simple pattern lab
 
 ## Changelog
+
+## v3
+
+* Added: sass
+* Removed: stylus
+* Removed: Attachments support
+* Removed: MultiplePostThumbnails support
+* Changed: bower_components folder to vendor
 
 ## v2.3
 

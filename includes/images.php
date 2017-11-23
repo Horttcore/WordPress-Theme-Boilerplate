@@ -8,7 +8,7 @@
 global $theme_image_sizes;
 
 $theme_image_sizes = array(
-	/*
+    /*
 	array(
 		'name' => '',
 		'label' => __( 'Name', 'TEXTDOMAIN' ),
@@ -19,15 +19,14 @@ $theme_image_sizes = array(
 	*/
 );
 
-if ( !$theme_image_sizes )
-	return;
+if (!$theme_image_sizes) {
+    return;
+}
 
 
 
-foreach ( $theme_image_sizes as $theme_image_size ) :
-
-	add_image_size( $theme_image_size['name'], $theme_image_size['width'], $theme_image_size['height'], $theme_image_size['crop'] );
-
+foreach ($theme_image_sizes as $theme_image_size) :
+    add_image_size( $theme_image_size['name'], $theme_image_size['width'], $theme_image_size['height'], $theme_image_size['crop'] );
 endforeach;
 
 
@@ -38,25 +37,23 @@ endforeach;
  * @param array $sizes Image sizes
  * @return array Image Sizes
  */
-function theme_image_size_names_choose( $sizes )
+function theme_image_size_names_choose($sizes)
 {
 
-	global $theme_image_sizes;
+    global $theme_image_sizes;
 
-	if ( !$theme_image_sizes )
-		return $sizes;
+    if (!$theme_image_sizes) {
+        return $sizes;
+    }
 
-	foreach ( $theme_image_sizes as $theme_image_size ) :
+    foreach ($theme_image_sizes as $theme_image_size) :
+        $addsizes = array(
+            $theme_image_size['name'] => $theme_image_size['label'],
+        );
 
-		$addsizes = array(
-			$theme_image_size['name'] => $theme_image_size['label'],
-		);
+        $sizes = array_merge( $sizes, $addsizes );
+    endforeach;
 
-		$sizes = array_merge( $sizes, $addsizes );
-
-	endforeach;
-
-	return $sizes;
-
+    return $sizes;
 }
 add_filter('image_size_names_choose', 'theme_image_size_names_choose');

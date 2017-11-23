@@ -17,18 +17,18 @@ get_header();
 
 <div class="content-container">
 
-	<div class="container">
+    <div class="container">
 
-		<main class="content" role="main" id="main">
+        <main class="content" role="main" id="main">
 
-			<?php
-			the_post();
-			get_template_part( 'partials/content', 'home' );
-			?>
+            <?php
+            the_post();
+            get_template_part( 'partials/content', 'home' );
+            ?>
 
-		</main><!-- .content -->
+        </main><!-- .content -->
 
-	</div><!-- .container -->
+    </div><!-- .container -->
 
 </div><!-- .content-container -->
 

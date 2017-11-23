@@ -18,14 +18,9 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "latest",
-    "fancybox": "fancyBox#master",
-	"css-util-border-box": "latest",
-	"css-util-microclearfix": "latest",
-	"css-util-screenreader-text": "latest",
-	"normalize-css": "latest"
-  },
-  "install": {
-    "path": "src/vendor"
+    "css-util-border-box": "latest",
+    "css-util-microclearfix": "latest",
+    "css-util-screenreader-text": "latest",
+    "normalize-css": "latest"
   }
 }

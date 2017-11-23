@@ -5,7 +5,7 @@
  *
  */
 
-if ( !function_exists( 'theme_wp_mail_from' ) ) :
+if (!function_exists( 'theme_wp_mail_from' )) :
 /**
  * WordPress mail from email
  *
@@ -14,16 +14,16 @@ if ( !function_exists( 'theme_wp_mail_from' ) ) :
  * @since v1.0.18
  * @author Ralf Hortt
  **/
-function theme_wp_mail_from( $wp_mail_from )
-{
-	return get_option( 'admin_email' );
-}
+    function theme_wp_mail_from($wp_mail_from)
+    {
+        return get_option( 'admin_email' );
+    }
 endif;
 add_action( 'wp_mail_from', 'theme_wp_mail_from' );
 
 
 
-if ( !function_exists( 'theme_wp_mail_from_name' ) ) :
+if (!function_exists( 'theme_wp_mail_from_name' )) :
 /**
  * WordPress mail from name
  *
@@ -32,9 +32,9 @@ if ( !function_exists( 'theme_wp_mail_from_name' ) ) :
  * @since v1.0.18
  * @author Ralf Hortt
  **/
-function theme_wp_mail_from_name( $wp_mail_from_name )
-{
-	return get_option( 'name' );
-}
+    function theme_wp_mail_from_name($wp_mail_from_name)
+    {
+        return get_option( 'name' );
+    }
 endif;
 add_action( 'wp_mail_from_name', 'theme_wp_mail_from_name' );

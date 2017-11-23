@@ -26,20 +26,20 @@ get_template_part( 'partials/visual', get_post_type() );
 
 <div class="content-container">
 
-	<div class="container">
+    <div class="container">
 
-		<main class="content" role="main" id="main">
+        <main class="content" role="main" id="main">
 
-			<?php
-			the_post();
-			get_template_part( 'partials/content', get_post_type() );
-			?>
+            <?php
+            the_post();
+            get_template_part( 'partials/content', get_post_type() );
+            ?>
 
-		</main><!-- .content -->
+        </main><!-- .content -->
 
-		<?php get_template_part( 'partials/sidebar', get_post_type() ) ?>
+        <?php get_template_part( 'partials/sidebar', get_post_type() ) ?>
 
-	</div><!-- .container -->
+    </div><!-- .container -->
 
 </div><!-- .content-container -->
 

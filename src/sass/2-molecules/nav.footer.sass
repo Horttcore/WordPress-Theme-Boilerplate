@@ -1,0 +1,37 @@
+/**
+ *
+ * Component: Footer navigation
+ *
+ * @project {PROJECT}
+ * @package {SLUG}-theme
+ * @package {SLUG}-theme
+ * @author Ralf Hortt <me@horttcore.de>
+ *
+ */
+.nav-footer
+    flex: 1 0 auto
+
+    > ul
+        display: flex
+        justify-content: center
+
+        @media (min-width: 320px)
+            justify-content: flex-end
+
+        > li
+
+            &:not(:first-child)
+                margin: 0 0 0 1em
+
+            > a
+                color: $color--blue
+                font-weight: bold
+
+                &:hover
+                    color: $color--dark-blue
+
+        > .current-menu-ancestor
+        > .current-menu-item
+
+            > a
+                text-decoration: underline

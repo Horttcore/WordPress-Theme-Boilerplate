@@ -21,21 +21,11 @@ get_header();
 
         <main class="content cf" role="main" id="main">
 
-            <?php
-
-            while (have_posts()) :
-                the_post();
-
-                get_template_part( 'partials/content-archive', get_post_type() );
-            endwhile;
-
-            the_posts_pagination();
-
-            ?>
+            <?php get_template_part( 'views/loop' ) ?>
 
         </main><!-- .content -->
 
-        <?php get_template_part( 'partials/sidebar', get_post_type() ) ?>
+        <?php get_template_part( 'views/sidebar', get_post_type() ) ?>
 
     </div><!-- .container -->
 

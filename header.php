@@ -4,7 +4,7 @@
  * <head>
  *
  */
-get_template_part( 'partials/head', get_post_type() );
+get_template_part( 'views/head', get_post_type() );
 
 
 
@@ -13,4 +13,4 @@ get_template_part( 'partials/head', get_post_type() );
  * Header
  *
  */
-get_template_part( 'partials/header', get_post_type() );
+get_template_part( 'views/header', get_post_type() );

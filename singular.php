@@ -10,40 +10,28 @@ get_header();
 
 /**
  *
- * VISUAL
- *
- */
-get_template_part( 'partials/visual', get_post_type() );
-
-
-
-/**
- *
  * Content
  *
  */
 ?>
-
-<div class="content-container">
+<div class="content">
 
     <div class="container">
 
-        <main class="content" role="main" id="main">
+        <main class="main">
 
             <?php
             the_post();
-            get_template_part( 'partials/content', get_post_type() );
+            get_template_part( 'views/content', get_post_type() );
             ?>
 
         </main><!-- .content -->
 
-        <?php get_template_part( 'partials/sidebar', get_post_type() ) ?>
+        <?php get_template_part( 'views/sidebar', get_post_type() ) ?>
 
     </div><!-- .container -->
 
-</div><!-- .content-container -->
-
-
+</div><!-- .content -->
 
 <?php
 /**

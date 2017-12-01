@@ -14,27 +14,24 @@ get_header();
  *
  */
 ?>
-
-<div class="content-container">
+<div class="content">
 
     <div class="container">
 
-        <main class="content" role="main" id="main">
+        <main class="main">
 
             <?php
             the_post();
-            get_template_part( 'partials/content', 'test' );
+            get_template_part( 'views/content', 'test' );
             ?>
 
         </main><!-- .content -->
 
-        <?php get_template_part( 'partials/sidebar', get_post_type() ) ?>
+        <?php get_template_part( 'views/sidebar', get_post_type() ) ?>
 
     </div><!-- .container -->
 
-</div><!-- .content-container -->
-
-
+</div><!-- .content -->
 
 <?php
 /**

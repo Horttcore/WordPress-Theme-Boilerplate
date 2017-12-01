@@ -1,26 +1,17 @@
 {
     "name": "horttcore/wordpress-theme-boilerplate",
     "description": "A WordPress Theme Boilerplate",
-    "keywords": [
-		"wordpress",
-		"theme",
-        "boilerplate"
-	],
-	"homepage": "https://horttcore.de/",
-	"license": "GPL-2.0+",
     "type": "wordpress-theme",
-    "support": {
-		"issues": "https://github.com/Horttcore/WordPress-Theme-Boilerplate/issues",
-		"forum": "https://wordpress.org/support/plugin/WordPress-Theme-Boilerplate",
-		"wiki": "https://github.com/Horttcore/WordPress-Theme-Boilerplate/wiki",
-		"source": "https://github.com/Horttcore/WordPress-Theme-Boilerplate"
-	},
-    "minimum-stability": "dev",
-	"prefer-stable": true,
     "authors": [
         {
             "name": "Ralf Hortt",
             "email": "me@horttcore.de"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Horttcore\\WP_SLUG\\": "inc/"
+        }
+    },
+    "require": {}
 }

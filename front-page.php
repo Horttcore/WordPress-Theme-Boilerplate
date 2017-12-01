@@ -15,15 +15,15 @@ get_header();
  */
 ?>
 
-<div class="content-container">
+<div class="content">
 
     <div class="container">
 
-        <main class="content" role="main" id="main">
+        <main class="main" role="main" id="main">
 
             <?php
             the_post();
-            get_template_part( 'partials/content', 'home' );
+            get_template_part( 'views/content', 'home' );
             ?>
 
         </main><!-- .content -->

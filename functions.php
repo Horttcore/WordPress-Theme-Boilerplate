@@ -1,37 +1,26 @@
 <?php
 /**
- * INCLUDES
- */
-include 'includes/emoji.php';
-include 'includes/head.php';
-include 'includes/locale.php';
-include 'includes/login.php';
-include 'includes/images.php';
-include 'includes/mail.php';
-include 'includes/menus.php';
-include 'includes/theme-support.php';
-include 'includes/shortcodes/index.php';
-include 'includes/sidebars.php';
-include 'includes/template-tags.php';
-include 'includes/plugins/index.php';
-include 'includes/widgets/index.php';
-
-
-
-if (!function_exists( 'theme_init' )) :
-/**
- * Theme init
+ * WP_TITLE Theme bootstrap
  *
- * @author Ralf Hortt
- * @since v1.0.0
- **/
-    function theme_init()
-    {
+ * @package   Horttcore\WP_SLUG
+ * @license   GPL-2.0+
+ */
 
-        if (!is_admin() && !in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) )) :
-            wp_enqueue_script( 'theme', get_stylesheet_directory_uri() . '/dist/scripts/scripts.combined.min.js', array(), false, true );
-            wp_enqueue_style( 'theme', get_stylesheet_directory_uri() . '/dist/styles/styles.combined.min.css' );
-        endif;
-    }
+namespace Horttcore\WP_SLUG;
+
+// Load Composer autoloader. From https://github.com/brightnucleus/jasper-client/blob/master/tests/bootstrap.php#L55-L59
+$autoloader = dirname( __FILE__ ) . '/vendor/autoload.php';
+
+if (is_readable( $autoloader )) :
+    require_once $autoloader;
 endif;
-add_action( 'init', 'theme_init' );
+
+if (! defined( 'WPINC' )) :
+    die;
+endif;
+
+// Create object.
+$theme = new Theme();
+
+// Init the theme.
+$theme->init();

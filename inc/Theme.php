@@ -14,7 +14,6 @@ use Horttcore\WP_SLUG\Images;
 use Horttcore\WP_SLUG\Mail;
 use Horttcore\WP_SLUG\Menus;
 use Horttcore\WP_SLUG\Optimizations;
-use Horttcore\WP_SLUG\Plugin\Kirki;
 use Horttcore\WP_SLUG\Sidebars;
 use Horttcore\WP_SLUG\Translations;
 

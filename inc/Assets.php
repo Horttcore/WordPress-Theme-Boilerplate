@@ -50,11 +50,13 @@ class Assets
      */
     public function addScript(string $handle, string $source, array $dependencies = [], string $version = null, bool $inFooter = null):void
     {
-        if ( !wp_script_is($handle, 'registered') ) :
-            wp_register_script($handle, $this->prefixPath( $source, 'dist/js' ), $dependencies, $version, $inFooter);
-        endif;
-
-        $this->scripts[] = $handle;
+        $this->scripts[] = [
+            'handle' => $handle,
+            'source' => $source,
+            'dependencies' => $dependencies,
+            'version' => $version,
+            'inFooter' => $inFooter,
+        ];
     }
 
 
@@ -69,11 +71,12 @@ class Assets
      */
     public function addStyle(string $handle, string $source, array $dependencies = [], string $version = null):void
     {
-        if ( !wp_style_is($handle, 'registered') ) :
-            wp_register_style($handle, $this->prefixPath( $source, 'dist/css' ), $dependencies, $version);
-        endif;
-
-        $this->styles[] = $handle;
+        $this->styles[] = [
+            'handle' => $handle,
+            'source' => $source,
+            'dependencies' => $dependencies,
+            'version' => $version,
+        ];
     }
 
 
@@ -85,7 +88,7 @@ class Assets
     public function enqueueScript():void
     {
         foreach ( $this->scripts as $script ) :
-            wp_enqueue_script( $script );
+            wp_enqueue_script( $script['handle'], $script['source'], $script['dependencies'], $script['version'], $script['inFooter']);
         endforeach;
     }
 
@@ -98,7 +101,7 @@ class Assets
     public function enqueueStyle():void
     {
         foreach ( $this->styles as $style ) :
-            wp_enqueue_style( $style );
+            wp_enqueue_style( $style['handle'], $style['source'], $style['dependencies'], $style['version'] );
         endforeach;
     }
 
@@ -107,8 +110,8 @@ class Assets
      * Prefix path
      *
      * @access protected
-     * @param type var Description
-     * @return return type
+     * @param string $source File
+     * @return string Prefixed path
      */
     protected function prefixPath($source):string
     {

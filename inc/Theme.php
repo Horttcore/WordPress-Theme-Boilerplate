@@ -93,6 +93,6 @@ class Theme
         $this->optimizations = new Optimizations;
 
         # Translation
-        $this->translations = new Translation;
+        $this->translations = new Translations;
     }
 }

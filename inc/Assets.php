@@ -88,7 +88,7 @@ class Assets
     public function enqueueScript():void
     {
         foreach ( $this->scripts as $script ) :
-            wp_enqueue_script( $script['handle'], $script['source'], $script['dependencies'], $script['version'], $script['inFooter']);
+            wp_enqueue_script( $script['handle'], $this->prefixPath( $script['source'] ), $script['dependencies'], $script['version'], $script['inFooter']);
         endforeach;
     }
 
@@ -101,7 +101,7 @@ class Assets
     public function enqueueStyle():void
     {
         foreach ( $this->styles as $style ) :
-            wp_enqueue_style( $style['handle'], $style['source'], $style['dependencies'], $style['version'] );
+            wp_enqueue_style( $style['handle'], $this->prefixPath( $style['source'] ), $style['dependencies'], $style['version'] );
         endforeach;
     }
 
@@ -115,7 +115,11 @@ class Assets
      */
     protected function prefixPath($source):string
     {
-        return get_stylesheet_directory_uri() . DIRECTORY_SEPARATOR . $source;
+
+        if ( substr( $source, 0, 2) == '//' || substr( $source, 0, 7) == 'http://' || substr( $source, 0, 8) == 'https://' )
+            return $source;
+
+        return get_stylesheet_directory_uri() . $source;
     }
 
 }

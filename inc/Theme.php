@@ -35,7 +35,7 @@ class Theme
 
         # Assets
         $this->assets = new Assets();
-        $this->assets->addScript( 'theme', 'dist/js/scripts.combined.min.js' );
+        $this->assets->addScript( 'theme', 'dist/js/scripts.min.js' );
         $this->assets->addStyle( 'theme', 'dist/css/styles.combined.min.css' );
 
         # Customizer

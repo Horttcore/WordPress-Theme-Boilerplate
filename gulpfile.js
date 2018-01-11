@@ -123,7 +123,7 @@ gulp.task("images", function(cb) {
             )
             .pipe(plugins.addSrc("src/img/*"))
             .pipe(filterImages)
-            //.pipe(debug({title: 'Files:'}))
+            //.pipe(plugins.debug({title: 'Files:'}))
             .pipe(
                 plugins.image({
                     pngquant: true,
@@ -165,7 +165,7 @@ gulp.task("fonts", function() {
                 }
             })
         )
-        .pipe(plugins.debug({ title: "Files:" }))
+        //.pipe(plugins.debug({ title: "Files:" }))
         .pipe(filter)
         .pipe(gulp.dest("dist/fonts"))
         .pipe(browserSync.stream());

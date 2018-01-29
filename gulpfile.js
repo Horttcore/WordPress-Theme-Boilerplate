@@ -274,6 +274,7 @@ gulp.task("watch", ["serve"], function() {
     gulp.watch("src/sass/*/**.sass", ["styles"]);
     gulp.watch("src/img/*", ["images"]);
     gulp.watch("src/vendor/*", ["bower"]);
+    gulp.watch("src/fonts/*", ["fonts"]);
     gulp.watch("**.php").on("change", browserSync.reload);
 });
 
@@ -297,5 +298,5 @@ gulp.task("default", function() {
  */
 gulp.task("build", function() {
     gulp.start("clean");
-    gulp.start(["images", "scripts", "styles"]);
+    gulp.start(["images", "scripts", "styles", "bower", "fonts"]);
 });

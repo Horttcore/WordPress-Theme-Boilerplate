@@ -54,9 +54,10 @@ class Customizer
      * @param type var Description
      * @return void
      */
-    public function addOption(string $option, string $label, string $section):void
+    public function addOption(string $option, string $label, string $section, array $config = []):void
     {
-        $this->options[$section][$option] = $label;
+        $config['label'] = $label;
+        $this->options[$section][$option] = $config;
     }
 
 
@@ -95,18 +96,20 @@ class Customizer
     {
         foreach ($this->options as $section => $options) :
             $priority = 1;
-            foreach ($options as $option => $label) :
-                $controls[] = [
+            foreach ($options as $option => $config) :
+                $defaults = [
                     'type'        => 'text',
                     'settings'    => $option,
-                    'label'       => $label,
+                    'label'       => $config['label'],
                     'description' => '',
                     'help'        => '',
                     'section'     => $section,
                     'default'     => '',
                     'priority'    => $priority,
-                    'option_type' => 'option'
+                    'option_type' => 'theme_mod'
                 ];
+                $config = wp_parse_args( $config, $defaults);
+                $controls[] = $config;
                 $priority++;
             endforeach;
         endforeach;

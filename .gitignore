@@ -4,4 +4,4 @@ dist
 !src/bower_components/
 src/bower_components/*
 
-/vendor/
+vendor/

@@ -6,17 +6,6 @@
  */
 namespace Horttcore\WP_SLUG;
 
-use Horttcore\WP_SLUG\Assets;
-use Horttcore\WP_SLUG\Customizer;
-use Horttcore\WP_SLUG\Features;
-use Horttcore\WP_SLUG\Helpers;
-use Horttcore\WP_SLUG\Images;
-use Horttcore\WP_SLUG\Mail;
-use Horttcore\WP_SLUG\Menus;
-use Horttcore\WP_SLUG\Optimizations;
-use Horttcore\WP_SLUG\Sidebars;
-use Horttcore\WP_SLUG\Translations;
-
 /**
  * Class Theme
  *
@@ -35,8 +24,8 @@ class Theme
 
         # Assets
         $this->assets = new Assets();
-        $this->assets->addScript( 'theme', 'dist/js/scripts.min.js' );
-        $this->assets->addStyle( 'theme', 'dist/css/styles.combined.min.css' );
+        $this->assets->addScript( 'theme', '/dist/js/scripts.min.js' );
+        $this->assets->addStyle( 'theme', '/dist/css/styles.combined.min.css' );
 
         # Customizer
         $this->customizer = new Customizer;

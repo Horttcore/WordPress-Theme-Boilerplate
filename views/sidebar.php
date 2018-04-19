@@ -1,4 +1,4 @@
-<section class="sidebar cf" role="complementary ">
+<section class="sidebar" role="complementary ">
 
 	<?php dynamic_sidebar( 'sidebar' ) ?>
 

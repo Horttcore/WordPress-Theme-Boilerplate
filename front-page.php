@@ -19,7 +19,7 @@ get_header();
 
     <div class="container">
 
-        <main class="main" role="main" id="main">
+        <main class="main" id="main">
 
             <?php
             the_post();

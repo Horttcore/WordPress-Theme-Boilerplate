@@ -1,6 +1,6 @@
-<header class="header cf" role="banner">
+<header class="header" role="banner">
 
-	<div class="container">
+	<div class="header__container container">
 
 		<?php the_custom_logo() ?>
 
@@ -9,10 +9,10 @@
         <?php
         wp_nav_menu(array(
             'theme_location'    => 'main',
-            'container'             => 'nav',
-            'container_class'   => 'nav-main cf',
+            'container'         => 'nav',
+            'container_class'   => 'nav__main',
             'container_id'      => '',
-            'menu_class'        => 'cf',
+            'menu_class'        => '',
             'menu_id'           => '',
             'before'            => '',
             'fallback_cb'       => '',
@@ -22,10 +22,10 @@
         <?php
         wp_nav_menu(array(
             'theme_location'    => 'meta',
-            'container'             => 'nav',
-            'container_class'   => 'nav-meta cf',
+            'container'         => 'nav',
+            'container_class'   => 'nav__meta',
             'container_id'      => '',
-            'menu_class'        => 'cf',
+            'menu_class'        => '',
             'menu_id'           => '',
             'before'            => '',
             'fallback_cb'       => '',

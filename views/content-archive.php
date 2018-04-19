@@ -1,17 +1,17 @@
-<article id="post-<?php the_ID() ?>" <?php post_class( 'entry cf' ) ?>>
+<article id="post-<?php the_ID() ?>" <?php post_class( 'entry' ) ?>>
 
-    <header class="entry-header">
+    <header class="entry__header">
 
         <div class="entry-date"><?php the_time( get_option( 'date_format' ) ) ?></div>
 
-        <h1 class="entry-title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h1>
+        <h1 class="entry__title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h1>
 
-    </header><!-- .entry-header -->
+    </header><!-- .entry__header -->
 
-    <div class="entry-content cf">
+    <div class="entry__content cf">
 
         <?php the_content( __( 'Weiterlesen &raquo;', 'TEXTDOMAIN' ) ) ?>
 
-    </div><!-- .entry-content -->
+    </div><!-- .entry__content -->
 
 </article><!-- #post-<?php the_ID() ?> -->

@@ -24,15 +24,15 @@ http://peter.sh/examples/?/html/meter-progress.html
 
 -->
 
-<article id="post-<?php the_ID() ?>" <?php post_class( 'entry cf' ) ?> role="main">
+<article id="post-<?php the_ID() ?>" <?php post_class( 'entry' ) ?> role="main">
 
-    <header class="entry-header">
+    <header class="entry__header">
 
-        <h1 class="entry-title"><?php the_title() ?></h1>
+        <h1 class="entry__title"><?php the_title() ?></h1>
 
-    </header><!-- .entry-header -->
+    </header><!-- .entry__header -->
 
-    <div class="entry-content cf">
+    <div class="entry__content cf">
 
         <h1>Title 01 Heading</h1>
         <hr />
@@ -370,6 +370,6 @@ http://peter.sh/examples/?/html/meter-progress.html
             </li>
         </ul>
 
-    </div><!-- .entry-content -->
+    </div><!-- .entry__content -->
 
 </article><!-- article -->

@@ -22,7 +22,6 @@ get_header();
         <main class="main">
 
             <?php
-            the_post();
             get_template_part( 'view/content', '404' );
             ?>
 

@@ -1,9 +1,9 @@
-<article id="post-<?php the_ID() ?>" <?php post_class( 'entry cf' ) ?>>
+<article id="post-<?php the_ID() ?>" <?php post_class( 'entry' ) ?>>
 
-    <div class="entry-content cf">
+    <div class="entry__content cf">
 
         <?php the_content() ?>
 
-    </div><!-- .entry-content -->
+    </div><!-- .entry__content -->
 
 </article>

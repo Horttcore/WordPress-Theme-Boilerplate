@@ -1,14 +1,14 @@
-<footer class="footer cf">
+<footer class="footer">
 
 	<div class="container">
 
 		<?php
         wp_nav_menu(array(
             'theme_location'    => 'footer',
-            'container'             => 'nav',
-            'container_class'   => 'nav-footer cf',
+            'container'         => 'nav',
+            'container_class'   => 'nav-footer ',
             'container_id'      => '',
-            'menu_class'        => 'cf',
+            'menu_class'        => '',
             'menu_id'           => '',
             'before'            => '',
             'fallback_cb'       => '',

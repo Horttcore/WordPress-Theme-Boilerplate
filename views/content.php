@@ -1,15 +1,15 @@
-<article id="post-<?php the_ID() ?>" <?php post_class( 'entry cf' ) ?> role="main">
+<article id="post-<?php the_ID() ?>" <?php post_class( 'entry' ) ?> role="main">
 
-    <header class="entry-header">
+    <header class="entry__header">
 
-        <h1 class="entry-title"><?php the_title() ?></h1>
+        <h1 class="entry__title"><?php the_title() ?></h1>
 
-    </header><!-- .entry-header -->
+    </header><!-- .entry__header -->
 
-    <div class="entry-content cf">
+    <div class="entry__content cf">
 
         <?php the_content( __( 'Weiterlesen &raquo;', 'TEXTDOMAIN' ) ) ?>
 
-    </div><!-- .entry-content -->
+    </div><!-- .entry__content -->
 
 </article><!-- #post-<?php the_ID() ?> -->

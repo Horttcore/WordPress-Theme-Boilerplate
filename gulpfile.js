@@ -173,6 +173,18 @@ gulp.task("fonts", function() {
 
 /**
  *
+ * Task: Google Fonts
+ *
+ */
+gulp.task('googlefonts', function() {
+    gulp.src('./fonts.list')
+        .pipe(plugins.googleWebfonts({}))
+        .pipe(gulp.dest('./dist/fonts'));
+
+});
+
+/**
+ *
  * Task: Bower
  *
  */
@@ -273,7 +285,7 @@ gulp.task("watch", ["serve"], function() {
     gulp.watch("src/js/*.js", ["scripts"]);
     gulp.watch("src/sass/*/**.sass", ["styles"]);
     gulp.watch("src/img/*", ["images"]);
-    gulp.watch("src/vendor/*", ["bower"]);
+    gulp.watch("src/vendor/**", ["bower"]);
     gulp.watch("src/fonts/*", ["fonts"]);
     gulp.watch("**.php").on("change", browserSync.reload);
 });

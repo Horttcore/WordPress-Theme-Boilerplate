@@ -6,7 +6,7 @@
         wp_nav_menu(array(
             'theme_location'    => 'footer',
             'container'         => 'nav',
-            'container_class'   => 'nav-footer ',
+            'container_class'   => 'nav__footer ',
             'container_id'      => '',
             'menu_class'        => '',
             'menu_id'           => '',

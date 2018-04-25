@@ -25,7 +25,7 @@ if (!has_post_thumbnail() && ( !class_exists( 'Attachments' ) || !$attachments->
 
                 </div><!-- .slide -->
 
-            <?php endwhile;     ?>
+            <?php endwhile; ?>
 
         </div><!-- .slider -->
 

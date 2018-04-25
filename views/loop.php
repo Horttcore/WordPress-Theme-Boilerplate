@@ -8,8 +8,8 @@
 		get_template_part( 'views/content-archive', get_post_type() );
 	endwhile;
 
-	the_posts_pagination();
-
 	?>
 
 </div><!-- .posts -->
+
+<?php the_posts_pagination(); ?>

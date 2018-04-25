@@ -31,10 +31,6 @@ class Theme
         $this->customizer = new Customizer;
         $this->customizer->addPanel('settings', __('Einstellungen', 'TEXTDOMAIN'));
 
-        $this->customizer->addSection('sidebar', __('Seitenleiste', 'TEXTDOMAIN'), 'settings');
-        $this->customizer->addOption('title', __('Titel', 'TEXTDOMAIN'), 'sidebar');
-        $this->customizer->addOption('description', __('Beschreibung', 'TEXTDOMAIN'), 'sidebar');
-
         $this->customizer->addSection('contact', __('Kontaktdaten', 'TEXTDOMAIN'), 'settings', ['option_type' => 'option']);
         $this->customizer->addOption('company', __('Firma', 'TEXTDOMAIN'), 'contact', ['option_type' => 'option']);
         $this->customizer->addOption('street', __('Straße', 'TEXTDOMAIN'), 'contact', ['option_type' => 'option']);

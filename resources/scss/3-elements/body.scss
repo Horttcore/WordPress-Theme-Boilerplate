@@ -1,0 +1,19 @@
+/**
+ *
+ */
+body {
+    background-color: var(--color__white);
+    display: flex;
+    flex-direction: column;
+    font-family: $font__stack;
+    line-height: 1.5;
+    min-height: 100vh;
+
+    &.admin-bar {
+        min-height: calc(100vh - 46px);
+
+        @include above(48.875em) {
+            min-height: calc(100vh - 32px);
+        }
+    }
+}

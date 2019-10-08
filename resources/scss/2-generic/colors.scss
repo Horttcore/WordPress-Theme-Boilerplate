@@ -1,0 +1,16 @@
+/**
+ * Colors
+ *
+ * Defining colors as custom properties
+ * usage: `color: var(--color-primary);`
+ */
+:root {
+    // Fixed colors
+    --color__black: #000;
+    --color__white: #fff;
+    // Themed colors
+    --color__primary: red;
+    --color__secondary: green;
+    --color__tertiary: blue;
+    --color__accent: yellow;
+}

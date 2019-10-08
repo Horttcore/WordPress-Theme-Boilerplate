@@ -1,17 +1,26 @@
 {
-    "name": "horttcore/wordpress-theme-boilerplate",
-    "description": "A WordPress Theme Boilerplate",
+    "name": "fbo/phoenix",
+    "description": "A WordPress Boilerplate Theme by FBO",
     "type": "wordpress-theme",
-    "authors": [
-        {
-            "name": "Ralf Hortt",
-            "email": "me@horttcore.de"
-        }
-    ],
     "autoload": {
         "psr-4": {
-            "Horttcore\\WP_SLUG\\": "inc/"
-        }
+            "FBO\\Phoenix\\": "src/classes/"
+        },
+        "files": [
+            "functions.custom.php",
+            "functions.helpers.php"
+        ]
     },
-    "require": {}
+    "require": {
+        "horttcore/wp-customizer": "^2.0",
+        "horttcore/wp-assets": "^1.0",
+        "ralfhortt/wp-template-loader": "^1.0",
+        "ralfhortt/wp-image-sizes": "^1.0",
+        "ralfhortt/wp-content-width": "^1.0"
+    },
+    "scripts": {
+        "post-create-project-cmd": "composer run-script replace-textdomain && composer run-script copy-env",
+        "replace-textdomain": "DIR=$(basename $PWD); LC_ALL=C find ./ -not \\( -path \".//vendor/*\" -o -path \".//node_modules/*\" -o -path \".//.git/*\" \\) -type f \\( -iname '*.js' -o -iname '*.php' -o -iname '*.css' \\) -exec sed -i '' -e \"s/TEXTDOMAIN/${DIR}/g\" {} \\;",
+        "copy-env": "cp .env.sample .env"
+    }
 }

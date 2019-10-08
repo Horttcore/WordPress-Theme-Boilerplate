@@ -1,0 +1,20 @@
+/**
+ * Footer navigation
+ */
+.footer-navigation {
+
+    li {
+        display: inline-block;
+    }
+
+    a {
+
+        &:hover {
+
+        }
+    }
+
+    .current-menu-item {
+
+    }
+}

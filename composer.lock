@@ -1,0 +1,183 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "a5b705e2264e4ff1cab4a647bdc1ae24",
+    "packages": [
+        {
+            "name": "horttcore/wp-assets",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Horttcore/wp-assets.git",
+                "reference": "84325c19610e19123465450ebf8c7d754197fd6f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Horttcore/wp-assets/zipball/84325c19610e19123465450ebf8c7d754197fd6f",
+                "reference": "84325c19610e19123465450ebf8c7d754197fd6f",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Horttcore\\Assets\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralf Hortt",
+                    "email": "me@horttcore.de"
+                }
+            ],
+            "description": "A helper package for working with the WordPress assets",
+            "time": "2019-04-10T07:21:48+00:00"
+        },
+        {
+            "name": "horttcore/wp-customizer",
+            "version": "2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Horttcore/wp-customizer.git",
+                "reference": "8d6e0ce1e855756d49653b6fba0f5b8d1868b311"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Horttcore/wp-customizer/zipball/8d6e0ce1e855756d49653b6fba0f5b8d1868b311",
+                "reference": "8d6e0ce1e855756d49653b6fba0f5b8d1868b311",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Horttcore\\Customizer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralf Hortt",
+                    "email": "me@horttcore.de"
+                }
+            ],
+            "description": "A helper package for working with the WordPress Customizer",
+            "time": "2019-04-02T20:52:10+00:00"
+        },
+        {
+            "name": "ralfhortt/wp-content-width",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Horttcore/wp-content-width.git",
+                "reference": "82f2859f674bd202618c04b3ed2999841bda4b44"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Horttcore/wp-content-width/zipball/82f2859f674bd202618c04b3ed2999841bda4b44",
+                "reference": "82f2859f674bd202618c04b3ed2999841bda4b44",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RalfHortt\\ContentWidth\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Ralf Hortt",
+                    "email": "me@horttcore.de"
+                }
+            ],
+            "description": "Setting the global WordPress variable `$content_width` in a single place for php and css",
+            "time": "2019-08-16T12:27:52+00:00"
+        },
+        {
+            "name": "ralfhortt/wp-image-sizes",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Horttcore/wp-image-sizes.git",
+                "reference": "05418c0477dec8ca41754999aa030517fb7e1ef5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Horttcore/wp-image-sizes/zipball/05418c0477dec8ca41754999aa030517fb7e1ef5",
+                "reference": "05418c0477dec8ca41754999aa030517fb7e1ef5",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RalfHortt\\ImageSizes\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Ralf Hortt",
+                    "email": "me@horttcore.de"
+                }
+            ],
+            "description": "A helper class to register image sizes",
+            "time": "2019-05-31T20:45:23+00:00"
+        },
+        {
+            "name": "ralfhortt/wp-template-loader",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Horttcore/wp-template-loader.git",
+                "reference": "aab3c747644ef6597e97681378e47c4929322bd1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Horttcore/wp-template-loader/zipball/aab3c747644ef6597e97681378e47c4929322bd1",
+                "reference": "aab3c747644ef6597e97681378e47c4929322bd1",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RalfHortt\\TemplateLoader\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Ralf Hortt",
+                    "email": "me@horttcore.de"
+                }
+            ],
+            "description": "A helper class to load template files from another location",
+            "time": "2019-06-04T19:45:56+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

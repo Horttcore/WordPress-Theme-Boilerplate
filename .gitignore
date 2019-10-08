@@ -1,7 +1,5 @@
-node_modules
 .DS_Store
+.env
 dist
-!src/bower_components/
-src/bower_components/*
-
-vendor/
+node_modules
+vendor

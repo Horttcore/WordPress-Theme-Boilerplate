@@ -1,47 +1,41 @@
-# WordPress Theme Boilerplate
+# Phoenix Theme
 
-This theme is installed within an Alfred Workflow
+## Documentation
 
-## Requirements
-
-* [Bower](http://bower.io)
-* [Gulp](http://gulpjs.com/)
+Every folder contains a `README.md` with further instructions
 
 ## Installation
 
-* `~ yarn`
-* `~ gulp`
+Check `INSTALLATION.md` for all installation steps
 
-## Menus
+## Build Process
 
-* Metamenu
-* Mainmenu
-* Footermenu
+### Fonts
 
-## Sidebars
+* Set Google fonts url in `fonts.list` file
+* Run `npm run fonts` or `yarn fonts` for downloading google fonts
 
-* Sidebar
+### Production
 
-## Localization
+* Run `npm run production` or `yarn production` for production build
 
-* German
+### Development
 
-## Plugins
+* Run `npm run dev` or `yarn dev` on development systems
 
-* [Kirki](http://kirki.org/)
+#### Linters
 
-## Gulp
+Run `npm run lint` or `yarn lint` linting files
 
-### Scripts
+* [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) ([VScode](https://marketplace.visualstudio.com/items?itemName=ikappas.phpcs))
+* [phpmd](https://phpmd.org/) ([VScode](https://marketplace.visualstudio.com/items?itemName=ecodes.vscode-phpmd))
+* [eslint](https://eslint.org/) ([VScode](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint))
+* [stylelint](https://stylelint.io/) ([VScode](https://marketplace.visualstudio.com/items?itemName=shinnn.stylelint))
 
-### Styles
+#### Fixers
 
-### Loginstyles
+Run `npm run fix` or `yarn fix` for auto fixing
 
-### Image optimization
-
-## Bower
-
-## Pattern lab
-
-* Create a page called `Test` to get a simple pattern lab
+* [eslint](https://eslint.org/)
+* [stylelint](https://stylelint.io/)
+* [phpcbf](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Fixing-Errors-Automatically)

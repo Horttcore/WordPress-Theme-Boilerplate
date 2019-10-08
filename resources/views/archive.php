@@ -30,7 +30,7 @@ get_template_part('resources/views/header', get_post_type());
                 <?php
                 while (have_posts()) :
                     the_post();
-                    get_template_part('resources/views/content/content-archive', get_post_type());
+                    get_template_part('resources/views/template-parts/content-archive', get_post_type());
                 endwhile;
                 ?>
 
@@ -40,7 +40,7 @@ get_template_part('resources/views/header', get_post_type());
 
         </main><!-- .content -->
 
-        <?php get_template_part('resources/views/sidebar/sidebar', get_post_type()) ?>
+        <?php get_template_part('resources/views/template-parts/sidebar', get_post_type()) ?>
 
     </div><!-- .container -->
 

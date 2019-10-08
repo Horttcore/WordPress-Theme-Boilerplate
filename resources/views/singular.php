@@ -25,12 +25,12 @@ get_template_part('resources/views/header', get_post_type());
 
             <?php
             the_post();
-            get_template_part('resources/views/content/content', get_post_type());
+            get_template_part('resources/views/template-parts/content', get_post_type());
             ?>
 
         </main><!-- .content -->
 
-        <?php get_template_part('resources/views/sidebar/sidebar', get_post_type()) ?>
+        <?php get_template_part('resources/views/template-parts/sidebar', get_post_type()) ?>
 
     </div><!-- .container -->
 

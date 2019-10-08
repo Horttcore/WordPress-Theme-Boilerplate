@@ -10,10 +10,10 @@
 /**
  * <head>
  */
-get_template_part('resources/views/header/head', get_post_type());
+get_template_part('resources/views/template-parts/head', get_post_type());
 
 
 /**
  * Header
  */
-get_template_part('resources/views/header/header', get_post_type());
+get_template_part('resources/views/template-parts/header', get_post_type());

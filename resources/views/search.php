@@ -33,7 +33,7 @@ get_template_part('resources/views/header', 'search');
 
         </main><!-- .main -->
 
-        <?php get_template_part('resources/views/sidebar/sidebar', get_post_type()) ?>
+        <?php get_template_part('resources/views/template-parts/sidebar', get_post_type()) ?>
 
     </div><!-- .container -->
 

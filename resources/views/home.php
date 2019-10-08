@@ -33,7 +33,7 @@ get_template_part('resources/views/header', 'blog');
 
         </main><!-- .main -->
 
-        <?php get_template_part('resources/views/sidebar/sidebar', 'blog') ?>
+        <?php get_template_part('resources/views/template-parts/sidebar', 'blog') ?>
 
     </div><!-- .container -->
 

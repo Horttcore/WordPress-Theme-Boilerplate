@@ -2,7 +2,7 @@
 /**
  * Blog template
  *
- * @package FBO\Phoenix
+ * RalfHortt\Aurora
  * @version 1.0.0
  */
 
@@ -25,16 +25,16 @@ get_template_part('resources/views/header', get_post_type());
 
             <?php
             the_post();
-            get_template_part('resources/views/template-parts/content', 'test');
+            get_template_part('resources/views/contents/content', 'test');
             ?>
 
-        </main><!-- .content -->
+        </main>
 
         <?php get_template_part('resources/views/template-parts/sidebar', get_post_type()) ?>
 
-    </div><!-- .container -->
+    </div>
 
-</div><!-- .content -->
+</div>
 
 <?php
 /**

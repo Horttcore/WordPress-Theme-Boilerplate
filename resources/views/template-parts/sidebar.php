@@ -6,4 +6,4 @@
 
     <?php dynamic_sidebar('sidebar') ?>
 
-</section><!-- .sidebar -->
+</section>

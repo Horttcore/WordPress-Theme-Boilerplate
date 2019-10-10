@@ -1,10 +1,10 @@
 {
-    "name": "fbo/phoenix",
-    "description": "A WordPress Boilerplate Theme by FBO",
+    "name": "ralfhortt/aurora",
+    "description": "A WordPress Boilerplate Theme by Ralf Hortt",
     "type": "wordpress-theme",
     "autoload": {
         "psr-4": {
-            "FBO\\Phoenix\\": "src/classes/"
+            "RalfHortt\\Aurora\\": "src/classes/"
         },
         "files": [
             "functions.custom.php",
@@ -21,6 +21,6 @@
     "scripts": {
         "post-create-project-cmd": "composer run-script replace-textdomain && composer run-script copy-env",
         "replace-textdomain": "DIR=$(basename $PWD); LC_ALL=C find ./ -not \\( -path \".//vendor/*\" -o -path \".//node_modules/*\" -o -path \".//.git/*\" \\) -type f \\( -iname '*.js' -o -iname '*.php' -o -iname '*.css' \\) -exec sed -i '' -e \"s/TEXTDOMAIN/${DIR}/g\" {} \\;",
-        "copy-env": "cp .env.sample .env"
+        "copy-env": "cp .env.example .env"
     }
 }

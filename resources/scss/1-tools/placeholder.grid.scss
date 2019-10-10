@@ -1,0 +1,10 @@
+/**
+ * Basic grid container
+ *
+ * @see https://css-tricks.com/patterns-for-practical-css-custom-properties-use/
+ */
+%grid {
+    --columns: auto-fit;
+    display: grid;
+    grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+}

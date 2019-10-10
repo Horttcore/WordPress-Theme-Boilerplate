@@ -15,6 +15,6 @@
         ));
         ?>
 
-    </div><!-- .container -->
+    </div>
 
-</footer><!-- .footer -->
+</footer>

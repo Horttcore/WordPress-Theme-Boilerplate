@@ -1,43 +1,19 @@
 <?php
 /**
- * Front page template
+ * Header
  *
- * @package FBO\Phoenix
+ * RalfHortt\Aurora
  * @version 1.0.0
  */
 
 
 /**
+ * <head>
+ */
+get_template_part('resources/views/template-parts/head', get_post_type());
+
+
+/**
  * Header
  */
-get_template_part('resources/views/header', 'front-page');
-
-
-/**
- * Content
- */
-?>
-<div class="content">
-
-    <div class="container">
-
-        <main class="main">
-
-            <?php
-            the_post();
-            get_template_part('resources/views/template-parts/content', 'home');
-            ?>
-
-        </main><!-- .content -->
-
-        <?php get_template_part('resources/views/template-parts/sidebar', get_post_type()) ?>
-
-    </div><!-- .container -->
-
-</div><!-- .content -->
-
-<?php
-/**
- * Footer
- */
-get_template_part('resources/views/footer', 'front-page');
+get_template_part('resources/views/template-parts/header', get_post_type());

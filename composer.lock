@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a5b705e2264e4ff1cab4a647bdc1ae24",
+    "content-hash": "d8517423fd20b68a0ea0fe2fff0cd0c7",
     "packages": [
         {
             "name": "horttcore/wp-assets",
@@ -41,16 +41,16 @@
         },
         {
             "name": "horttcore/wp-customizer",
-            "version": "2.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Horttcore/wp-customizer.git",
-                "reference": "8d6e0ce1e855756d49653b6fba0f5b8d1868b311"
+                "reference": "e71109aea56738151a028b7d25bddae488dde235"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Horttcore/wp-customizer/zipball/8d6e0ce1e855756d49653b6fba0f5b8d1868b311",
-                "reference": "8d6e0ce1e855756d49653b6fba0f5b8d1868b311",
+                "url": "https://api.github.com/repos/Horttcore/wp-customizer/zipball/e71109aea56738151a028b7d25bddae488dde235",
+                "reference": "e71109aea56738151a028b7d25bddae488dde235",
                 "shasum": ""
             },
             "type": "library",
@@ -70,20 +70,20 @@
                 }
             ],
             "description": "A helper package for working with the WordPress Customizer",
-            "time": "2019-04-02T20:52:10+00:00"
+            "time": "2019-09-18T20:26:55+00:00"
         },
         {
             "name": "ralfhortt/wp-content-width",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Horttcore/wp-content-width.git",
-                "reference": "82f2859f674bd202618c04b3ed2999841bda4b44"
+                "reference": "fe0707072fbddfac2e3adbaeacb7854aafdc5336"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Horttcore/wp-content-width/zipball/82f2859f674bd202618c04b3ed2999841bda4b44",
-                "reference": "82f2859f674bd202618c04b3ed2999841bda4b44",
+                "url": "https://api.github.com/repos/Horttcore/wp-content-width/zipball/fe0707072fbddfac2e3adbaeacb7854aafdc5336",
+                "reference": "fe0707072fbddfac2e3adbaeacb7854aafdc5336",
                 "shasum": ""
             },
             "type": "library",
@@ -103,7 +103,7 @@
                 }
             ],
             "description": "Setting the global WordPress variable `$content_width` in a single place for php and css",
-            "time": "2019-08-16T12:27:52+00:00"
+            "time": "2019-09-10T11:32:46+00:00"
         },
         {
             "name": "ralfhortt/wp-image-sizes",

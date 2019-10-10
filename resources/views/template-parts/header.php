@@ -7,7 +7,7 @@
 
         <?php the_custom_logo() ?>
 
-        <button class="toggle-nav"><span class="toggle-nav__icon"></span></button>
+        <button class="navigation-toggle"><span class="navigation-toggle__icon"></span></button>
 
         <?php
         wp_nav_menu(array(
@@ -35,6 +35,6 @@
         ));
         ?>
 
-    </div><!-- .container -->
+    </div>
 
-</header><!-- .header -->
+</header>

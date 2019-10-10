@@ -3,10 +3,10 @@
     <?php
     while (have_posts()) :
         the_post();
-        get_template_part('resources/views/template-parts/content-archive', get_post_type());
+        get_template_part('resources/views/contents/content-archive', get_post_type());
     endwhile;
     ?>
 
-</div><!-- .posts -->
+</div>
 
 <?php the_posts_pagination(); ?>

@@ -1,19 +1,19 @@
 /**
- *
+ * Body
  */
 body {
     background-color: var(--color__white);
     display: flex;
     flex-direction: column;
-    font-family: $font__stack;
+    font-family: var(--font__copy);
     line-height: 1.5;
     min-height: 100vh;
 
     &.admin-bar {
-        min-height: calc(100vh - 46px);
+        min-height: calc(100vh - var(--adminbar__height--narrow));
 
-        @include above(48.875em) {
-            min-height: calc(100vh - 32px);
+        @media (--adminbar--full) {
+            min-height: calc(100vh - var(--adminbar__height));
         }
     }
 }

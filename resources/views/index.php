@@ -2,7 +2,7 @@
 /**
  * Index template
  *
- * @package FBO\Phoenix
+ * RalfHortt\Aurora
  * @version 1.0.0
  */
 

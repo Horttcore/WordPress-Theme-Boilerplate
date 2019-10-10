@@ -3,34 +3,34 @@
  * Gulp Plugins
  *
  */
-const gulp = require('gulp');
-const plugins = require('gulp-load-plugins')({
-    pattern: ['gulp-*', 'gulp.*', 'del', 'fs']
+const gulp = require("gulp");
+const plugins = require("gulp-load-plugins")({
+    pattern: ["gulp-*", "gulp.*", "del", "fs"]
 });
-const env = require('dotenv').config();
-const browserSync = require('browser-sync');
+const env = require("dotenv").config();
+const browserSync = require("browser-sync");
 const server = browserSync.create();
 
 const path = {
-    dist: './dist',
+    dist: "./dist",
     css: {
-        src: './resources/scss',
-        dest: './dist/css'
+        src: "./resources/scss",
+        dest: "./dist/css"
     },
     fonts: {
-        src: './resources/fonts',
-        dest: './dist/fonts'
+        src: "./resources/fonts",
+        dest: "./dist/fonts"
     },
     js: {
-        src: './resources/js',
-        dest: './dist/js'
+        src: "./resources/js",
+        dest: "./dist/js"
     },
     img: {
-        src: './resources/img',
-        dest: './dist/img'
+        src: "./resources/img",
+        dest: "./dist/img"
     },
     php: {
-        src: './views'
+        src: "./views"
     }
 };
 
@@ -43,8 +43,7 @@ const path = {
  * - Update browsers
  *
  */
-function reload(done)
-{
+function reload(done) {
     server.reload();
     done();
 }
@@ -55,7 +54,11 @@ function sync(done) {
     server.init({
         proxy: process.env.HOST,
         notify: false,
-        files: [`${path.css.dest}/app.css`, `${path.js.dest}/app.js`, `${path.img.dest}/**.*`]
+        files: [
+            `${path.css.dest}/app.css`,
+            `${path.js.dest}/app.js`,
+            `${path.img.dest}/**.*`
+        ]
     });
 }
 exports.sync = sync;
@@ -71,14 +74,13 @@ exports.sync = sync;
  * - Sync browsers
  *
  */
-function css()
-{
+function css() {
     return gulp
         .src([`${path.css.src}/app.scss`, `${path.css.src}/editor-styles.scss`])
         .pipe(plugins.sourcemaps.init())
         .pipe(plugins.sassGlob())
         .pipe(plugins.sass())
-        .pipe(plugins.autoprefixer('last 2 version', 'ie 10', 'ie 11'))
+        .pipe(plugins.autoprefixer("last 2 version", "ie 10", "ie 11"))
         .pipe(plugins.cssnano())
         .pipe(plugins.sourcemaps.write())
         .pipe(gulp.dest(path.css.dest))
@@ -101,6 +103,11 @@ exports.css = css;
 function js() {
     return gulp
         .src(`${path.js.src}/*.js`)
+        .pipe(
+            plugins.babel({
+                presets: ["@babel/preset-env"]
+            })
+        )
         .pipe(plugins.terser())
         .pipe(gulp.dest(path.js.dest));
 }
@@ -113,10 +120,15 @@ exports.js = js;
  * - Get gif, jpg and png files and optimize them
  *
  */
-function img()
-{
+function img() {
     return gulp
-        .src([`${path.img.src}/**/*.png`, `${path.img.src}/**/*.gif`, `${path.img.src}/**/*.jpg`, `${path.img.src}/**/*.jpeg`, `${path.img.src}/**/*.svg`])
+        .src([
+            `${path.img.src}/**/*.png`,
+            `${path.img.src}/**/*.gif`,
+            `${path.img.src}/**/*.jpg`,
+            `${path.img.src}/**/*.jpeg`,
+            `${path.img.src}/**/*.svg`
+        ])
         .pipe(plugins.image())
         .pipe(gulp.dest(path.img.dest))
         .pipe(browserSync.stream());
@@ -128,10 +140,15 @@ exports.img = img;
  * Task: Fonts
  *
  */
-function localFonts()
-{
+function localFonts() {
     return gulp
-        .src([`${path.fonts.src}/**/*.eot`, `${path.fonts.src}/**/*.otf`, `${path.fonts.src}/**/*.ttf`, `${path.fonts.src}/**/*.woff`, `${path.fonts.src}/**/*.woff2`])
+        .src([
+            `${path.fonts.src}/**/*.eot`,
+            `${path.fonts.src}/**/*.otf`,
+            `${path.fonts.src}/**/*.ttf`,
+            `${path.fonts.src}/**/*.woff`,
+            `${path.fonts.src}/**/*.woff2`
+        ])
         .pipe(gulp.dest(path.fonts.dest))
         .pipe(browserSync.stream());
 }
@@ -142,10 +159,9 @@ exports.localFonts = localFonts;
  * Task: Google Fonts
  *
  */
-function googleFonts()
-{
+function googleFonts() {
     return gulp
-        .src('./fonts.list')
+        .src("./fonts.list")
         .pipe(plugins.googleWebfonts({}))
         .pipe(gulp.dest(path.fonts.dest));
 }
@@ -171,21 +187,21 @@ exports.clean = clean;
  *
  */
 // Watch files
-function watchFiles()
-{
+function watchFiles() {
     gulp.watch(`${path.css.src}/**/*.scss`, css);
     gulp.watch(`${path.js.src}/**/*.js`, js);
     gulp.watch(`${path.img.src}/**/*.*`, img);
     gulp.watch(`${path.fonts.src}/**/*.*`, localFonts);
-    gulp.watch('font.list', googleFonts);
+    gulp.watch("font.list", googleFonts);
 }
 exports.watchFiles = watchFiles;
 
-
-
 // Complex tasks
 const fonts = gulp.parallel(localFonts, googleFonts);
-const build = gulp.series(clean, gulp.parallel(css, img, js, googleFonts, localFonts));
+const build = gulp.series(
+    clean,
+    gulp.parallel(css, img, js, googleFonts, localFonts)
+);
 const watch = gulp.parallel(watchFiles, sync);
 const dev = gulp.series(build, watch);
 

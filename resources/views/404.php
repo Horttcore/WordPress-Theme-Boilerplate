@@ -2,7 +2,7 @@
 /**
  * 404 template
  *
- * @package FBO\Phoenix
+ * RalfHortt\Aurora
  * @version 1.0.0
  */
 
@@ -23,18 +23,15 @@ get_template_part('resources/views/header', '404');
 
         <main class="main">
 
-            <?php
-            the_post();
-            get_template_part('resources/views/template-parts/content', '404');
-            ?>
+            <?php get_template_part('resources/views/template-parts/content', '404') ?>
 
-        </main><!-- .content -->
+        </main>
 
         <?php get_template_part('resources/views/template-parts/sidebar', '404') ?>
 
-    </div><!-- .container -->
+    </div>
 
-</div><!-- .content -->
+</div>
 
 <?php
 /**

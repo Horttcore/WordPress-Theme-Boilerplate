@@ -1,5 +1,5 @@
 {
-    "name": "phoenix",
+    "name": "aurora",
     "version": "1.0.0",
     "description": "A new WordPress Boilerplate Theme by Horttcore",
     "author": "Ralf Hortt <me@horttcore.de>",
@@ -14,31 +14,35 @@
         "lint:styles": "cross-env stylelint resources/scss/**/*.scss",
         "lint:scripts": "cross-env eslint 'resources/js/**/*.js'",
         "lint:php": "cross-env ./vendor/bin/phpcs .",
-        "lint": "npm run lint:styles && npm run lint:scripts",
+        "lint": "cross-env npm run lint:styles && cross-env npm run lint:scripts",
         "fix:styles": "cross-env stylelint ./resources/scss/**/*.scss --fix",
         "fix:scripts": "cross-env eslint 'resources/js/**/*.js' --fix",
-        "fix:php": "cross-env  phpcbf ./",
+        "fix:php": "cross-env phpcbf ./",
         "fix": "npm run fix:styles && npm run fix:scripts"
     },
     "devDependencies": {
-        "browser-sync": "^2.26.3",
-        "cross-env": "^5.2.0",
-        "del": "^4.1.0",
-        "dotenv": "^7.0.0",
-        "eslint-config-google": "^0.13.0",
-        "gulp": "^4.0.1",
-        "gulp-autoprefixer": "^6.1.0",
+        "browser-sync": "^2.26.7",
+        "cross-env": "^6.0.3",
+        "del": "^5.1.0",
+        "dotenv": "^8.1.0",
+        "eslint-config-google": "^0.14.0",
+        "gulp": "^4.0.2",
+        "gulp-autoprefixer": "^7.0.1",
+        "gulp-babel": "^8.0.0",
         "gulp-cssnano": "^2.1.3",
         "gulp-google-webfonts": "^2.1.0",
-        "gulp-image": "^4.4.1",
-        "gulp-load-plugins": "^1.5.0",
+        "gulp-image": "^5.1.0",
+        "gulp-load-plugins": "^2.0.1",
         "gulp-sass": "^4.0.2",
-        "gulp-sass-glob": "^1.0.9",
+        "gulp-sass-glob": "^1.1.0",
         "gulp-sourcemaps": "^2.6.5",
-        "gulp-terser": "^1.1.7",
+        "gulp-terser": "^1.2.0",
         "import-glob-loader": "^1.1.0",
-        "stylelint": "^9.9.0",
-        "stylelint-config-wordpress": "^13.1.0",
-        "stylelint-order": "^3.0.0"
+        "stylelint": "^11.1.1",
+        "stylelint-config-wordpress": "^15.0.0",
+        "stylelint-order": "^3.1.1"
+    },
+    "dependencies": {
+        "@babel/preset-env": "^7.6.3"
     }
 }

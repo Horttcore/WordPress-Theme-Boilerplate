@@ -1,41 +1,48 @@
 {
-  "name": "wordpress-theme-boilerplate",
-  "version": "2.1.0",
-  "description": "A WordPress Boilerplate Template",
-  "main": "gulpfile.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Ralf Hortt",
-  "license": "BSD",
-  "devDependencies": {
-    "bower": "^1.8.4",
-    "bower-files": "^4.0.0",
-    "browser-sync": "^2.23.7",
-    "del": "^3.0.0",
-    "gulp": "^3.9.1",
-    "gulp-add-src": "^1.0.0",
-    "gulp-autoprefixer": "^5.0.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-cssnano": "^2.1.3",
-    "gulp-debug": "^3.2.0",
-    "gulp-filter": "^5.1.0",
-    "gulp-flatten": "^0.4.0",
-    "gulp-image": "^4.3.0",
-    "gulp-load-plugins": "^1.5.0",
-    "gulp-plumber": "^1.2.0",
-    "gulp-postcss": "^7.0.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-replace": "^0.6.1",
-    "gulp-rev": "^8.1.1",
-    "gulp-sass": "^4.0.1",
-    "gulp-sourcemaps": "^2.6.4",
-    "gulp-svg-sprite": "^1.4.0",
-    "gulp-uglify": "^3.0.0",
-    "gulp-watch": "^5.0.0",
-    "main-bower-files": "^2.13.1"
-  },
-  "dependencies": {
-    "gulp-google-webfonts": "^1.0.0"
-  }
+    "name": "aurora",
+    "version": "1.0.0",
+    "description": "A new WordPress Boilerplate Theme by Horttcore",
+    "author": "Ralf Hortt <me@horttcore.de>",
+    "license": "GPL-2.0+",
+    "homepage": "https://horttcore.de",
+    "scripts": {
+        "default": "cross-env gulp",
+        "dev": "cross-env gulp",
+        "watch": "cross-env gulp watch",
+        "build": "cross-env gulp build && cross-env bower install --allow-root",
+        "fonts": "cross-env gulp fonts",
+        "lint:styles": "cross-env stylelint resources/scss/**/*.scss",
+        "lint:scripts": "cross-env eslint 'resources/js/**/*.js'",
+        "lint:php": "cross-env ./vendor/bin/phpcs .",
+        "lint": "cross-env npm run lint:styles && cross-env npm run lint:scripts",
+        "fix:styles": "cross-env stylelint ./resources/scss/**/*.scss --fix",
+        "fix:scripts": "cross-env eslint 'resources/js/**/*.js' --fix",
+        "fix:php": "cross-env phpcbf ./",
+        "fix": "npm run fix:styles && npm run fix:scripts"
+    },
+    "devDependencies": {
+        "browser-sync": "^2.26.7",
+        "cross-env": "^6.0.3",
+        "del": "^5.1.0",
+        "dotenv": "^8.1.0",
+        "eslint-config-google": "^0.14.0",
+        "gulp": "^4.0.2",
+        "gulp-autoprefixer": "^7.0.1",
+        "gulp-babel": "^8.0.0",
+        "gulp-cssnano": "^2.1.3",
+        "gulp-google-webfonts": "^2.1.0",
+        "gulp-image": "^5.1.0",
+        "gulp-load-plugins": "^2.0.1",
+        "gulp-sass": "^4.0.2",
+        "gulp-sass-glob": "^1.1.0",
+        "gulp-sourcemaps": "^2.6.5",
+        "gulp-terser": "^1.2.0",
+        "import-glob-loader": "^1.1.0",
+        "stylelint": "^11.1.1",
+        "stylelint-config-wordpress": "^15.0.0",
+        "stylelint-order": "^3.1.1"
+    },
+    "dependencies": {
+        "@babel/preset-env": "^7.6.3"
+    }
 }

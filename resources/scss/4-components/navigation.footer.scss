@@ -1,0 +1,21 @@
+/**
+ * Footer navigation
+ *
+ * nav
+ * - ul
+ * -- li
+ * --- a
+ */
+.footer-navigation {
+    li {
+        display: inline-block;
+    }
+
+    a {
+        &:hover {
+        }
+    }
+
+    .current-menu-item {
+    }
+}

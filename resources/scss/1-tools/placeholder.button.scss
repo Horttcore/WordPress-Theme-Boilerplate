@@ -1,0 +1,25 @@
+/**
+ * Button styles
+ *
+ * Define global button styles
+ */
+
+%button {
+    display: inline-block;
+}
+
+%button--primary {
+    @extend %button;
+}
+
+%button--secondary {
+    @extend %button;
+}
+
+%button--text {
+    @extend %button;
+}
+
+%button--cancel {
+    @extend %button;
+}

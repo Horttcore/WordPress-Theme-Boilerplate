@@ -1,0 +1,21 @@
+/**
+ * Input
+ */
+input:not([type="checkbox"]):not([type="radio"]) {
+}
+
+/**
+ * Input options
+ */
+input[type="checkbox"],
+input[type="radio"] {
+    width: auto;
+}
+
+/**
+ * Submit button
+ */
+button[type="submit"],
+input[type="submit"] {
+    @extend %button--primary !optional;
+}

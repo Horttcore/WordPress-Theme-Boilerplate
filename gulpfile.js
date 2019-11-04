@@ -3,12 +3,36 @@
  * Gulp Plugins
  *
  */
-var gulp = require("gulp"),
-    plugins = require("gulp-load-plugins")({
-        pattern: ["gulp-*", "gulp.*", "del", "fs"]
-    }),
-    mainBowerFiles = require("main-bower-files"),
-    browserSync = require("browser-sync").create();
+const gulp = require("gulp");
+const plugins = require("gulp-load-plugins")({
+    pattern: ["gulp-*", "gulp.*", "del", "fs"]
+});
+const env = require("dotenv").config();
+const browserSync = require("browser-sync");
+const server = browserSync.create();
+
+const path = {
+    dist: "./dist",
+    css: {
+        src: "./resources/scss",
+        dest: "./dist/css"
+    },
+    fonts: {
+        src: "./resources/fonts",
+        dest: "./dist/fonts"
+    },
+    js: {
+        src: "./resources/js",
+        dest: "./dist/js"
+    },
+    img: {
+        src: "./resources/img",
+        dest: "./dist/img"
+    },
+    php: {
+        src: "./views"
+    }
+};
 
 /**
  *
@@ -19,12 +43,25 @@ var gulp = require("gulp"),
  * - Update browsers
  *
  */
-gulp.task("serve", function() {
-    browserSync.init({
-        proxy: "http://WP_SLUG.localhost/",
-        notify: false
+function reload(done) {
+    server.reload();
+    done();
+}
+exports.reload = reload;
+
+function sync(done) {
+    done();
+    server.init({
+        proxy: process.env.HOST,
+        notify: false,
+        files: [
+            `${path.css.dest}/app.css`,
+            `${path.js.dest}/app.js`,
+            `${path.img.dest}/**.*`
+        ]
     });
-});
+}
+exports.sync = sync;
 
 /**
  *
@@ -37,41 +74,19 @@ gulp.task("serve", function() {
  * - Sync browsers
  *
  */
-gulp.task("styles", function() {
-    return (gulp
-            .src("src/sass/0-*/*.sass")
-            .pipe(plugins.plumber())
-            .pipe(plugins.addSrc.append("src/sass/1-*/*.sass"))
-            .pipe(plugins.addSrc.append("src/sass/2-*/*.sass"))
-            .pipe(plugins.addSrc.append("src/sass/3-*/*.sass"))
-            .pipe(plugins.addSrc.append("src/sass/4-*/*.sass"))
-            .pipe(plugins.addSrc.append("src/sass/5-*/*.sass"))
-            .pipe(plugins.addSrc.append("src/sass/6-*/*.sass"))
-            .pipe(plugins.addSrc.append("src/sass/7-*/*.sass"))
-            .pipe(plugins.sourcemaps.init())
-            .pipe(plugins.concat("styles.combined.sass"))
-            .pipe(plugins.sass())
-            .pipe(
-                plugins.addSrc.prepend(
-                    "src/vendor/normalize-css/normalize.css"
-                )
-            )
-            .pipe(
-                plugins.addSrc.append([
-                    "src/vendor/**/*.css",
-                    "!src/vendor/normalize-css/normalize.css"
-                ])
-            )
-            //.pipe(plugins.debug({ title: "Files:" }))
-            .pipe(plugins.concat("styles.combined.css"))
-            .pipe(plugins.autoprefixer("last 2 version", "ie 10", "ie 11"))
-            .pipe(gulp.dest("dist/css"))
-            .pipe(plugins.cssnano())
-            .pipe(plugins.rename({ suffix: ".min" }))
-            .pipe(plugins.sourcemaps.write("."))
-            .pipe(gulp.dest("dist/css"))
-            .pipe(browserSync.stream()) );
-});
+function css() {
+    return gulp
+        .src([`${path.css.src}/app.scss`, `${path.css.src}/editor-styles.scss`])
+        .pipe(plugins.sourcemaps.init())
+        .pipe(plugins.sassGlob())
+        .pipe(plugins.sass())
+        .pipe(plugins.autoprefixer("last 2 version", "ie 10", "ie 11"))
+        .pipe(plugins.cssnano())
+        .pipe(plugins.sourcemaps.write())
+        .pipe(gulp.dest(path.css.dest))
+        .pipe(browserSync.stream());
+}
+exports.css = css;
 
 /**
  *
@@ -85,17 +100,18 @@ gulp.task("styles", function() {
  * - Sync browsers
  *
  */
-gulp.task("scripts", function() {
-    gulp
-        .src("src/js/*.js")
-        //.pipe(plugins.debug({title: 'Files:'}))
-        .pipe(plugins.sourcemaps.init())
-        .pipe(gulp.dest("dist/js/"))
-        .pipe(plugins.rename({ suffix: ".min" }))
-        .pipe(plugins.uglify())
-        .pipe(plugins.sourcemaps.write("./"))
-        .pipe(gulp.dest("dist/js/"));
-});
+function js() {
+    return gulp
+        .src(`${path.js.src}/*.js`)
+        .pipe(
+            plugins.babel({
+                presets: ["@babel/preset-env"]
+            })
+        )
+        .pipe(plugins.terser())
+        .pipe(gulp.dest(path.js.dest));
+}
+exports.js = js;
 
 /**
  *
@@ -104,164 +120,52 @@ gulp.task("scripts", function() {
  * - Get gif, jpg and png files and optimize them
  *
  */
-gulp.task("images", function(cb) {
-    var filterImages = plugins.filter([
-        "**/*.png",
-        "**/*.gif",
-        "**/*.jpg",
-        "**/*.jpeg",
-        "**/*.svg"
-    ]);
-    return (gulp
-            .src(
-                mainBowerFiles({
-                    paths: {
-                        bowerrc: ".bowerrc",
-                        bowerJson: "bower.json"
-                    }
-                })
-            )
-            .pipe(plugins.addSrc("src/img/*"))
-            .pipe(filterImages)
-            //.pipe(plugins.debug({title: 'Files:'}))
-            .pipe(
-                plugins.image({
-                    pngquant: true,
-                    optipng: false,
-                    zopflipng: true,
-                    jpegRecompress: false,
-                    jpegoptim: true,
-                    mozjpeg: true,
-                    //guetzli: true,
-                    gifsicle: true,
-                    svgo: true,
-                    concurrent: 10
-                })
-            )
-            .pipe(plugins.flatten())
-            .pipe(gulp.dest("dist/img"))
-            .pipe(browserSync.stream()) );
-});
+function img() {
+    return gulp
+        .src([
+            `${path.img.src}/**/*.png`,
+            `${path.img.src}/**/*.gif`,
+            `${path.img.src}/**/*.jpg`,
+            `${path.img.src}/**/*.jpeg`,
+            `${path.img.src}/**/*.svg`
+        ])
+        .pipe(plugins.image())
+        .pipe(gulp.dest(path.img.dest))
+        .pipe(browserSync.stream());
+}
+exports.img = img;
 
 /**
  *
  * Task: Fonts
  *
  */
-gulp.task("fonts", function() {
-    var filter = plugins.filter([
-        "**/*.eot",
-        "**/*.otf",
-        "**/*.ttf",
-        "**/*.woff",
-        "**/*.woff2"
-    ]);
+function localFonts() {
     return gulp
-        .src(
-            mainBowerFiles({
-                paths: {
-                    bowerrc: ".bowerrc",
-                    bowerJson: "bower.json"
-                }
-            })
-        )
-        //.pipe(plugins.debug({ title: "Files:" }))
-        .pipe(filter)
-        .pipe(gulp.dest("dist/fonts"))
+        .src([
+            `${path.fonts.src}/**/*.eot`,
+            `${path.fonts.src}/**/*.otf`,
+            `${path.fonts.src}/**/*.ttf`,
+            `${path.fonts.src}/**/*.woff`,
+            `${path.fonts.src}/**/*.woff2`
+        ])
+        .pipe(gulp.dest(path.fonts.dest))
         .pipe(browserSync.stream());
-});
+}
+exports.localFonts = localFonts;
 
 /**
  *
  * Task: Google Fonts
  *
  */
-gulp.task('googlefonts', function() {
-    gulp.src('./fonts.list')
+function googleFonts() {
+    return gulp
+        .src("./fonts.list")
         .pipe(plugins.googleWebfonts({}))
-        .pipe(gulp.dest('./dist/fonts'));
-
-});
-
-/**
- *
- * Task: Bower
- *
- */
-gulp.task("bower", function() {
-    var filterCSS = plugins.filter(["**/*.css"]);
-    gulp
-        .src(
-            mainBowerFiles({
-                paths: {
-                    bowerDirectory: "./src/vendor",
-                    bowerrc: ".bowerrc",
-                    bowerJson: "bower.json"
-                }
-            }),
-            {
-                base: "./src/vendor"
-            }
-        )
-        .pipe(filterCSS)
-        .pipe(plugins.cssnano())
-        .pipe(gulp.dest("dist/vendor"));
-
-    var filterJS = plugins.filter(["**/*.js"]);
-    gulp
-        .src(
-            mainBowerFiles({
-                paths: {
-                    bowerDirectory: "./src/vendor",
-                    bowerrc: ".bowerrc",
-                    bowerJson: "bower.json"
-                }
-            }),
-            {
-                base: "./src/vendor"
-            }
-        )
-        .pipe(filterJS)
-        .pipe(plugins.uglify())
-        .pipe(gulp.dest("dist/vendor"));
-
-    var filterImages = plugins.filter([
-        "**/*.png",
-        "**/*.gif",
-        "**/*.jpg",
-        "**/*.jpeg",
-        "**/*.svg"
-    ]);
-    gulp
-        .src(
-            mainBowerFiles({
-                paths: {
-                    bowerDirectory: "./src/vendor",
-                    bowerrc: ".bowerrc",
-                    bowerJson: "bower.json"
-                }
-            }),
-            {
-                base: "./src/vendor"
-            }
-        )
-        .pipe(filterImages)
-        .pipe(
-            plugins.image({
-                pngquant: true,
-                optipng: false,
-                zopflipng: true,
-                jpegRecompress: false,
-                jpegoptim: true,
-                mozjpeg: true,
-                //guetzli: true,
-                gifsicle: true,
-                svgo: true,
-                concurrent: 10
-            })
-        )
-        .pipe(gulp.dest("dist/vendor"));
-});
+        .pipe(gulp.dest(path.fonts.dest));
+}
+exports.googleFonts = googleFonts;
 
 /**
  *
@@ -270,9 +174,10 @@ gulp.task("bower", function() {
  * - Delete dist folder
  *
  */
-gulp.task("clean", function(cb) {
-    plugins.del(["dist/**"], cb);
-});
+function clean() {
+    return plugins.del([`${path.dist}/**`]);
+}
+exports.clean = clean;
 
 /**
  *
@@ -281,34 +186,27 @@ gulp.task("clean", function(cb) {
  * - Watch file changes and start corresponding tasks
  *
  */
-gulp.task("watch", ["serve"], function() {
-    gulp.watch("src/js/*.js", ["scripts"]);
-    gulp.watch("src/sass/*/**.sass", ["styles"]);
-    gulp.watch("src/img/*", ["images"]);
-    gulp.watch("src/vendor/**", ["bower"]);
-    gulp.watch("src/fonts/*", ["fonts"]);
-    gulp.watch("**.php").on("change", browserSync.reload);
-});
+// Watch files
+function watchFiles() {
+    gulp.watch(`${path.css.src}/**/*.scss`, css);
+    gulp.watch(`${path.js.src}/**/*.js`, js);
+    gulp.watch(`${path.img.src}/**/*.*`, img);
+    gulp.watch(`${path.fonts.src}/**/*.*`, localFonts);
+    gulp.watch("font.list", googleFonts);
+}
+exports.watchFiles = watchFiles;
 
-/**
- *
- * Task: Default task
- *
- * - Run all tasks and start watching
- *
- */
-gulp.task("default", function() {
-    gulp.start("watch", "serve");
-});
+// Complex tasks
+const fonts = gulp.parallel(localFonts, googleFonts);
+const build = gulp.series(
+    clean,
+    gulp.parallel(css, img, js, googleFonts, localFonts)
+);
+const watch = gulp.parallel(watchFiles, sync);
+const dev = gulp.series(build, watch);
 
-/**
- *
- * Task: Dev
- *
- * - Run default task once
- *
- */
-gulp.task("build", function() {
-    gulp.start("clean");
-    gulp.start(["images", "scripts", "styles", "bower", "fonts"]);
-});
+// Export tasks
+exports.build = build;
+exports.default = dev;
+exports.fonts = fonts;
+exports.watch = watch;

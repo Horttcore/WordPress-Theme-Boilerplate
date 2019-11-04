@@ -1,0 +1,19 @@
+/**
+ * <body>
+ */
+body {
+    background-color: var(--color__white);
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font__copy);
+    line-height: 1.5;
+    min-height: 100vh;
+
+    &.admin-bar {
+        min-height: calc(100vh - var(--adminbar__height--narrow));
+
+        @media (--adminbar--full) {
+            min-height: calc(100vh - var(--adminbar__height));
+        }
+    }
+}

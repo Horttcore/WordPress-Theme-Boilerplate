@@ -1,0 +1,21 @@
+/**
+ * Meta navigation
+ *
+ * nav
+ * - ul
+ * -- li
+ * --- a
+ */
+.meta-navigation {
+    li {
+        display: inline-block;
+    }
+
+    a {
+        &:hover {
+        }
+    }
+
+    .current-menu-item {
+    }
+}

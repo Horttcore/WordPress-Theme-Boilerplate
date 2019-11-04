@@ -1,5 +1,5 @@
 {
-    "name": "ralfhortt/aurora",
+    "name": "ralfhortt/wordpress-theme-boilerplate",
     "description": "A WordPress Boilerplate Theme by Ralf Hortt",
     "type": "wordpress-theme",
     "autoload": {
@@ -12,11 +12,11 @@
         ]
     },
     "require": {
-        "horttcore/wp-customizer": "^2.0",
-        "horttcore/wp-assets": "^1.0",
-        "ralfhortt/wp-template-loader": "^1.0",
-        "ralfhortt/wp-image-sizes": "^1.0",
-        "ralfhortt/wp-content-width": "^1.0"
+        "horttcore/wp-customizer": "*",
+        "horttcore/wp-assets": "*",
+        "ralfhortt/wp-template-loader": "*",
+        "ralfhortt/wp-image-sizes": "*",
+        "ralfhortt/wp-content-width": "*"
     },
     "scripts": {
         "post-create-project-cmd": "composer run-script replace-textdomain && composer run-script copy-env",

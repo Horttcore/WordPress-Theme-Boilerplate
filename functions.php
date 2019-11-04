@@ -14,8 +14,6 @@
  * - Register new directory for WordPress template files
  * ------------------------------------------------------------------------------
  */
-namespace RalfHortt\Aurora;
-
 use \Horttcore\Assets\Script;
 use \Horttcore\Assets\Style;
 use \Horttcore\Customizer\Customize;

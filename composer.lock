@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d8517423fd20b68a0ea0fe2fff0cd0c7",
+    "content-hash": "a44b9b6f7416a77ffb9642a2848bc3c0",
     "packages": [
         {
             "name": "horttcore/wp-assets",
@@ -74,16 +74,16 @@
         },
         {
             "name": "ralfhortt/wp-content-width",
-            "version": "1.2.0",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Horttcore/wp-content-width.git",
-                "reference": "fe0707072fbddfac2e3adbaeacb7854aafdc5336"
+                "reference": "5ee7f3f97abbb01f8c2ad79eddd2a3501e6e78d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Horttcore/wp-content-width/zipball/fe0707072fbddfac2e3adbaeacb7854aafdc5336",
-                "reference": "fe0707072fbddfac2e3adbaeacb7854aafdc5336",
+                "url": "https://api.github.com/repos/Horttcore/wp-content-width/zipball/5ee7f3f97abbb01f8c2ad79eddd2a3501e6e78d1",
+                "reference": "5ee7f3f97abbb01f8c2ad79eddd2a3501e6e78d1",
                 "shasum": ""
             },
             "type": "library",
@@ -103,7 +103,7 @@
                 }
             ],
             "description": "Setting the global WordPress variable `$content_width` in a single place for php and css",
-            "time": "2019-09-10T11:32:46+00:00"
+            "time": "2019-10-11T06:18:21+00:00"
         },
         {
             "name": "ralfhortt/wp-image-sizes",

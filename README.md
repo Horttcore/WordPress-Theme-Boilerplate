@@ -6,7 +6,7 @@ Every folder contains a `README.md` with further instructions
 
 ## Installation
 
-`$ composer create-project ralfhortt/aurora my-theme`
+`$ composer create-project ralfhortt/wordpress-theme-boilerplate`
 Check `INSTALLATION.md` for detailed installation steps
 
 ## Build Process

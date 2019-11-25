@@ -14,5 +14,8 @@
     "dist/vendor",
     "test",
     "tests"
-  ]
+  ],
+  "devDependencies": {
+    "sanitize-css": "^8.0.0"
+  }
 }

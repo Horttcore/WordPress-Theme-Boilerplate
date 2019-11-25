@@ -1,15 +1,13 @@
 const App = {
-
     /**
      * Cache elenents and bind events
      */
-    boot: function () {
-
+    boot: function() {
         // Cache elements for reusing
-        App.html = jQuery('html');
-        App.body = jQuery('body');
-        App.toggleNavButton = jQuery('.toggle-nav');
-        App.toggleSubNavButton = jQuery('.menu-item-has-children > a');
+        App.html = jQuery("html");
+        App.body = jQuery("body");
+        App.toggleNavButton = jQuery(".toggle-nav");
+        App.toggleSubNavButton = jQuery(".menu-item-has-children > a");
 
         App.bindings();
     },
@@ -17,16 +15,14 @@ const App = {
     /**
      * Bind events
      */
-    bindings: function () {
-
-        App.toggleNavButton.click((e) => {
+    bindings: function() {
+        App.toggleNavButton.click(function(e) {
             e.preventDefault();
             App.toggleNav();
         });
 
-        App.toggleSubNavButton.click((e) => {
-            if ( !App.toggleNavButton.is(':visible') )
-                return;
+        App.toggleSubNavButton.click(function(e) {
+            if (!App.toggleNavButton.is(":visible")) return;
 
             e.preventDefault();
             App.toggleSubNav(jQuery(this));
@@ -36,22 +32,22 @@ const App = {
     /**
      * Toogle nav
      */
-    toggleNav: function () {
-        App.body.toggleClass('nav-is--visible');
+    toggleNav: function() {
+        App.body.toggleClass("nav-is--visible");
     },
 
     /**
      * Toggle subnav
      */
-    toggleSubNav: function (button) {
+    toggleSubNav: function(button) {
         let container = button.parent();
-        let subnav = container.find('> ul');
+        let subnav = container.find("> ul");
 
-        container.toggleClass('subnav-is--visible');
+        container.toggleClass("subnav-is--visible");
         subnav.slideToggle();
     }
-}
+};
 
-jQuery(document).ready(function(){
-    App.boot()
+jQuery(document).ready(function() {
+    App.boot();
 });

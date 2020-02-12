@@ -6,7 +6,7 @@ const App = {
         // Cache elements for reusing
         App.html = jQuery("html");
         App.body = jQuery("body");
-        App.toggleNavButton = jQuery(".toggle-nav");
+        App.toggleNavButton = jQuery(".navigation-toggle");
         App.toggleSubNavButton = jQuery(".menu-item-has-children > a");
 
         App.bindings();

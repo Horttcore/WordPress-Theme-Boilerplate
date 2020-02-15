@@ -1,3 +1,39 @@
 /**
  * Pagination
+ *
+ * nav.pagination
+ *     h2.screen-reader-text
+ *     div.nav-links
+ *         a.prev
+ *         span.current
+ *         a.page-numbers
+ *         span.dots
+ *         a.page-numbers
+ *         a.next
  */
+.pagination {
+    margin-top: 4em;
+}
+
+.page-numbers {
+    // background-color: var(--color__grey);
+    // color: var(--color__primary);
+    line-height: 1;
+    padding: .25em .5em;
+
+    &:not(.dots):not(.current):hover {
+        // background-color: var(--color__grey--dark);
+        // color: var(--color__white);
+    }
+}
+
+.prev,
+.dots,
+.next {
+    // background-color: transparent;
+}
+
+.current {
+    // background-color: var(--color__primary);
+    // color: var(--color__white);
+}

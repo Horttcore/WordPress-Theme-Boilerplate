@@ -9,67 +9,75 @@
  * ---- …
  */
 .main-navigation {
-    /* LVL 1 */
-    > ul {
-        display: inline-flex;
 
-        > li {
-            position: relative;
+    @media (--mobile-nav) {
+        /* LVL 1 */
+        > ul {
+            display: inline-flex;
 
-            /* Hover LVL 1 */
-            &:hover {
+            > li {
+                position: relative;
+
+                /* Hover LVL 1 */
+                &:hover {
+
+                    > a {
+                    }
+                }
+
                 > a {
                 }
-            }
 
-            > a {
-            }
+                /* LVL 2 */
+                &:hover {
 
-            /* LVL 2 */
-            &:hover {
-                > ul {
-                    height: auto;
-                    opacity: 1;
-                    overflow: visible;
+                    > ul {
+                        height: auto;
+                        opacity: 1;
+                        overflow: visible;
+                    }
                 }
-            }
 
-            > ul {
-                height: 0;
-                left: 0;
-                opacity: 0;
-                overflow: hidden;
-                position: absolute;
-                top: 0;
-                width: 240px;
+                > ul {
+                    height: 0;
+                    left: 0;
+                    opacity: 0;
+                    overflow: hidden;
+                    position: absolute;
+                    top: 0;
+                    width: 240px;
 
-                > li {
-                    position: relative;
+                    > li {
+                        position: relative;
 
-                    /* Hover LVL 2 */
-                    &:hover {
+                        /* Hover LVL 2 */
+                        &:hover {
+
+                            > a {
+                            }
+                        }
+
                         > a {
+                            display: block;
                         }
                     }
 
-                    > a {
-                        display: block;
-                    }
-                }
+                    /* Highlight LVL 2 */
+                    > .current-menu-ancestor,
+                    > .current-menu-item {
 
-                /* Highlight LVL 2 */
-                > .current-menu-ancestor,
-                > .current-menu-item {
-                    > a {
+                        > a {
+                        }
                     }
                 }
             }
-        }
 
-        /* Highlight LVL 1 */
-        > .current-menu-ancestor,
-        > .current-menu-item {
-            > a {
+            /* Highlight LVL 1 */
+            > .current-menu-ancestor,
+            > .current-menu-item {
+
+                > a {
+                }
             }
         }
     }

@@ -76,12 +76,16 @@ exports.sync = sync;
  */
 function css() {
     return gulp
-        .src([`${path.css.src}/app.scss`, `${path.css.src}/editor-styles.scss`])
+        .src([`${path.css.src}/app.scss`, `${path.css.src}/editor-styles.scss`, `${path.css.src}/login.scss`])
         .pipe(plugins.sourcemaps.init())
         .pipe(plugins.sassGlob())
         .pipe(plugins.sass())
-        .pipe(plugins.autoprefixer("last 2 version", "ie 10", "ie 11"))
-        .pipe(plugins.cssnano())
+        .pipe(plugins.postcss([
+            require('postcss-custom-media'),
+            require('postcss-easing-gradients'),
+            require('autoprefixer')
+            require('cssnano')
+        ]))
         .pipe(plugins.sourcemaps.write())
         .pipe(gulp.dest(path.css.dest))
         .pipe(browserSync.stream());

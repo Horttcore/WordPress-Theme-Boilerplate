@@ -1,21 +1,32 @@
 /**
  * Input
  */
-input:not([type="checkbox"]):not([type="radio"]) {
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+textarea {
 }
 
 /**
  * Input options
  */
-input[type="checkbox"],
-input[type="radio"] {
+input[type='checkbox'],
+input[type='radio'] {
     width: auto;
 }
 
 /**
  * Submit button
  */
-button[type="submit"],
-input[type="submit"] {
+button[type='submit'],
+input[type='submit'] {
     @extend %button--primary !optional;
+}
+
+/**
+ * Textarea
+ */
+textarea {
+    resize: vertical;
 }

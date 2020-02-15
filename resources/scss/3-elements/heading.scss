@@ -1,0 +1,23 @@
+/**
+ * <h>
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font__heading);
+}
+
+h1 {
+    @extend %heading--primary !optional;
+}
+
+h2 {
+    @extend %heading--secondary !optional;
+}
+
+h3 {
+    @extend %heading--teritary !optional;
+}

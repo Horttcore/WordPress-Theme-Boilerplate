@@ -209,7 +209,7 @@ add_action('after_setup_theme', function () {
     add_filter('the_generator', '__return_null'); // Remove generator output
     add_filter('login_headerurl', 'home_url'); // Replace the login logo link with home url
     add_filter('wp_mail_from', function ($from) {
-        if (false !== strpos($default, 'wordpress@')) {
+        if (false !== strpos($from, 'wordpress@')) {
             return $from;
         }
         return get_option('admin_email');

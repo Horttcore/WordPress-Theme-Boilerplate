@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a44b9b6f7416a77ffb9642a2848bc3c0",
+    "content-hash": "251f0a6f85695a27837a70911fee0761",
     "packages": [
         {
             "name": "horttcore/wp-assets",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Horttcore/wp-assets.git",
-                "reference": "84325c19610e19123465450ebf8c7d754197fd6f"
+                "reference": "7c95ef12da936752e98443a3d6bc384116920a8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Horttcore/wp-assets/zipball/84325c19610e19123465450ebf8c7d754197fd6f",
-                "reference": "84325c19610e19123465450ebf8c7d754197fd6f",
+                "url": "https://api.github.com/repos/Horttcore/wp-assets/zipball/7c95ef12da936752e98443a3d6bc384116920a8f",
+                "reference": "7c95ef12da936752e98443a3d6bc384116920a8f",
                 "shasum": ""
             },
             "type": "library",
@@ -37,7 +37,7 @@
                 }
             ],
             "description": "A helper package for working with the WordPress assets",
-            "time": "2019-04-10T07:21:48+00:00"
+            "time": "2019-11-04T21:56:02+00:00"
         },
         {
             "name": "horttcore/wp-customizer",

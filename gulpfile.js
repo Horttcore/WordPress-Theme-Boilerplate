@@ -83,7 +83,7 @@ function css() {
         .pipe(plugins.postcss([
             require('postcss-custom-media'),
             require('postcss-easing-gradients'),
-            require('autoprefixer')
+            require('autoprefixer'),
             require('cssnano')
         ]))
         .pipe(plugins.sourcemaps.write())

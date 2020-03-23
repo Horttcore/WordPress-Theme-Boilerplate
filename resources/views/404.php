@@ -23,7 +23,7 @@ get_template_part('resources/views/header', '404');
 
         <main class="main">
 
-            <?php get_template_part('resources/views/template-parts/content', '404') ?>
+            <?php get_template_part('resources/views/contents/content', '404') ?>
 
         </main>
 

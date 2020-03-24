@@ -33,7 +33,7 @@ get_template_part('resources/views/template-parts/header', get_post_type());
             <?php
             while (have_posts()) :
                 the_post();
-                get_template_part('resources/views/contents/content-archive', get_post_type());
+                get_template_part('resources/views/contents/content', get_post_type());
             endwhile;
             ?>
 

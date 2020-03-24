@@ -52,6 +52,7 @@ add_action('after_setup_theme', function () {
      * @see https://developer.wordpress.org/reference/functions/add_theme_support/
      * ------------------------------------------------------------------------------
      */
+    add_theme_support('custom-logo');
     add_theme_support('html5', ['comment-list', 'comment-form', 'search-form', 'gallery', 'caption']);
     add_theme_support('post-thumbnails');
     add_theme_support('responsive-embeds');

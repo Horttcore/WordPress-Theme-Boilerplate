@@ -109,9 +109,9 @@ add_action('after_setup_theme', function () {
      * @see https://github.com/Horttcore/wp-assets
      * ------------------------------------------------------------------------------
      */
-    (new Script('theme', get_stylesheet_directory_uri() . '/dist/js/app.js', ['jquery'], true, true))->register();
-    (new Style('sanitize-css', get_stylesheet_directory_uri() . '/dist/vendor/sanitize-css/sanitize.css'))->register();
-    (new Style('theme', get_stylesheet_directory_uri() . '/dist/css/app.css', ['sanitize-css']))->register();
+    (new Script('theme', get_template_directory_uri() . '/dist/js/app.js', ['jquery'], true, true))->register();
+    (new Style('sanitize-css', get_template_directory_uri() . '/dist/vendor/sanitize-css/sanitize.css'))->register();
+    (new Style('theme', get_template_directory_uri() . '/dist/css/app.css', ['sanitize-css']))->register();
 
 
     /**

@@ -196,7 +196,7 @@ function watchFiles() {
     gulp.watch(`${path.js.src}/**/*.js`, js);
     gulp.watch(`${path.img.src}/**/*.*`, img);
     gulp.watch(`${path.fonts.src}/**/*.*`, localFonts);
-    gulp.watch("font.list", googleFonts);
+    gulp.watch("fonts.list", googleFonts);
 }
 exports.watchFiles = watchFiles;
 

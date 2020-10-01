@@ -21,3 +21,16 @@ h2 {
 h3 {
     @extend %heading--teritary !optional;
 }
+
+h4 {
+    @extend %heading--quaternary !optional;
+}
+
+h5 {
+    @extend %heading--quinary !optional;
+
+}
+
+h6 {
+    @extend %heading--senary !optional;
+}

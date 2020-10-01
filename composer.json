@@ -13,10 +13,10 @@
     },
     "require": {
         "horttcore/wp-customizer": "*",
-        "horttcore/wp-assets": "*",
         "ralfhortt/wp-template-loader": "*",
         "ralfhortt/wp-image-sizes": "*",
-        "ralfhortt/wp-content-width": "*"
+        "ralfhortt/wp-content-width": "*",
+        "ralfhortt/wp-assets": "^2.0"
     },
     "scripts": {
         "post-create-project-cmd": "composer run-script replace-textdomain && composer run-script copy-env",

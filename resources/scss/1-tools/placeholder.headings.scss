@@ -2,13 +2,36 @@
  * Heading styles
  *
  * Define global heading styles for reusage in components
+ * @see: https://www.smashingmagazine.com/2020/07/css-techniques-legibility/
  */
 
 %heading--primary {
+    font-size: 2.5em;
+    line-height: calc(1ex / .42);
+    margin: calc(1ex / .42) 0;
 }
 
 %heading--secondary {
+    font-size: 2em;
+    line-height: calc(1ex / .42);
+    margin: calc(1ex / .42) 0;
 }
 
 %heading--tertiary {
+    font-size: 1.75em;
+    line-height: calc(1ex / .38);
+    margin: calc(1ex / .38) 0;
+}
+
+%heading--quaternary {
+    font-size: 1.5em;
+    line-height: calc(1ex / .37);
+    margin: calc(1ex / .37) 0;
+}
+
+%heading--quinary {
+
+}
+
+%heading--senary {
 }

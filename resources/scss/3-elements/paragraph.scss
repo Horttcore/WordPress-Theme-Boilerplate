@@ -1,0 +1,8 @@
+/**
+ * Paragraph (optimized)
+ *
+ * @see: https://www.smashingmagazine.com/2020/07/css-techniques-legibility/
+ */
+p {
+    margin: calc(1ex / .32) 0;
+}

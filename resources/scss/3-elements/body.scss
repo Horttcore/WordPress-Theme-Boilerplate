@@ -6,15 +6,16 @@ body {
     display: flex;
     flex-direction: column;
     font-family: var(--font__copy);
-    line-height: 1.5;
+    font-size: 1em;
+    line-height: calc(1ex / .32);
     min-height: 100vh;
     overflow-x: hidden;
+}
 
-    &.admin-bar {
-        min-height: calc(100vh - var(--adminbar__height--narrow));
+.admin-bar {
+    min-height: calc(100vh - var(--adminbar__height--narrow));
 
-        @media (--adminbar--full) {
-            min-height: calc(100vh - var(--adminbar__height));
-        }
+    @media (--adminbar--full) {
+        min-height: calc(100vh - var(--adminbar__height));
     }
 }

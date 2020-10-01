@@ -30,7 +30,7 @@ const path = {
         dest: "./dist/img"
     },
     php: {
-        src: "./views"
+        src: "./resources/views"
     }
 };
 
@@ -77,6 +77,22 @@ exports.sync = sync;
 function css() {
     return gulp
         .src([`${path.css.src}/app.scss`, `${path.css.src}/editor-styles.scss`, `${path.css.src}/login.scss`])
+        .pipe(plugins.sassGlob())
+        .pipe(plugins.sass())
+        .pipe(plugins.postcss([
+            require('postcss-custom-media'),
+            require('postcss-easing-gradients'),
+            require('autoprefixer'),
+            require('cssnano')
+        ]))
+        .pipe(gulp.dest(path.css.dest))
+        .pipe(browserSync.stream());
+}
+exports.css = css;
+
+function cssDev() {
+    return gulp
+        .src([`${path.css.src}/app.scss`, `${path.css.src}/editor-styles.scss`, `${path.css.src}/login.scss`])
         .pipe(plugins.sourcemaps.init())
         .pipe(plugins.sassGlob())
         .pipe(plugins.sass())
@@ -90,7 +106,7 @@ function css() {
         .pipe(gulp.dest(path.css.dest))
         .pipe(browserSync.stream());
 }
-exports.css = css;
+exports.css = cssDev;
 
 /**
  *
@@ -192,7 +208,7 @@ exports.clean = clean;
  */
 // Watch files
 function watchFiles() {
-    gulp.watch(`${path.css.src}/**/*.scss`, css);
+    gulp.watch(`${path.css.src}/**/*.scss`, cssDev);
     gulp.watch(`${path.js.src}/**/*.js`, js);
     gulp.watch(`${path.img.src}/**/*.*`, img);
     gulp.watch(`${path.fonts.src}/**/*.*`, localFonts);
@@ -206,8 +222,12 @@ const build = gulp.series(
     clean,
     gulp.parallel(css, img, js, googleFonts, localFonts)
 );
+const buildDev = gulp.series(
+    clean,
+    gulp.parallel(cssDev, img, js, googleFonts, localFonts)
+);
 const watch = gulp.parallel(watchFiles, sync);
-const dev = gulp.series(build, watch);
+const dev = gulp.series(buildDev, watch);
 
 // Export tasks
 exports.build = build;

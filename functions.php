@@ -14,8 +14,8 @@
  * - Register new directory for WordPress template files
  * ------------------------------------------------------------------------------
  */
-use \Horttcore\Assets\Script;
-use \Horttcore\Assets\Style;
+use \RalfHortt\Assets\Script;
+use \RalfHortt\Assets\Style;
 use \Horttcore\Customizer\Customize;
 use \RalfHortt\ContentWidth\ContentWidth;
 use \RalfHortt\ImageSizes\ImageSize;
@@ -52,6 +52,7 @@ add_action('after_setup_theme', function () {
      * @see https://developer.wordpress.org/reference/functions/add_theme_support/
      * ------------------------------------------------------------------------------
      */
+    load_theme_textdomain('TEXTDOMAIN', sprintf('%s/languages', get_stylesheet_directory()));
     add_theme_support('custom-logo');
     add_theme_support('html5', ['comment-list', 'comment-form', 'search-form', 'gallery', 'caption']);
     add_theme_support('post-thumbnails');
@@ -90,6 +91,7 @@ add_action('after_setup_theme', function () {
     ]);
     add_theme_support('editor-styles');
     add_editor_style('dist/css/editor-styles.css');
+    remove_theme_support('core-block-patterns');
 
 
     /**
@@ -137,26 +139,26 @@ add_action('after_setup_theme', function () {
      * @see https://developer.wordpress.org/reference/functions/register_sidebar/
      * ------------------------------------------------------------------------------
      */
-    register_sidebar(
-        [
-            'name' => __('Seitenleiste', 'TEXTDOMAIN'),
-            'id' => 'sidebar',
-            'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-            'after_widget'  => '</aside>',
-            'before_title'  => '<h1 class="widget__title">',
-            'after_title'   => '</h1>'
-        ]
-    );
+    // register_sidebar(
+    //     [
+    //         'name' => __('Seitenleiste', 'TEXTDOMAIN'),
+    //         'id' => 'sidebar',
+    //         'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    //         'after_widget'  => '</aside>',
+    //         'before_title'  => '<h1 class="widget__title">',
+    //         'after_title'   => '</h1>'
+    //     ]
+    // );
 
 
     /**
      * ------------------------------------------------------------------------------
      * Define custom image sizes
      *
-     * @see https://developer.wordpress.org/reference/functions/register_sidebar/
+     * @see https://github.com/Horttcore/wp-image-sizes
      * ------------------------------------------------------------------------------
      */
-    (new ImageSize('name', __('Label', 'TEXTDOMAIN'), 50, 50, true))->register();
+    // (new ImageSize('name', __('Label', 'TEXTDOMAIN'), 50, 50, true))->register();
 
 
     /**
@@ -228,7 +230,8 @@ add_action('after_setup_theme', function () {
      * ------------------------------------------------------------------------------
      * Template loader
      * ------------------------------------------------------------------------------
-     */ (new TemplateLocator('resources/views'))->register();
+     */
+    (new TemplateLocator('resources/views'))->register();
 });
 
 /**

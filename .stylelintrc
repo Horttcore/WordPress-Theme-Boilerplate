@@ -2,7 +2,6 @@
     "plugins": [
       "stylelint-order",
       "stylelint-scss",
-      "stylelint-no-indistinguishable-colors"
     ],
     "rules": {
         "color-no-invalid-hex": true,
@@ -42,7 +41,7 @@
                 "severity": "warning"
             }
         ],
-        
+
         "font-family-name-quotes": "always-unless-keyword",
         "font-family-no-duplicate-names": true,
         "font-family-no-missing-generic-family-keyword": true,
@@ -180,6 +179,5 @@
         "scss/double-slash-comment-whitespace-inside": "always",
         "scss/no-duplicate-mixins": true,
         "scss/selector-no-redundant-nesting-selector": true,
-        "plugin/stylelint-no-indistinguishable-colors": true,
     }
 }

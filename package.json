@@ -1,10 +1,10 @@
 {
     "name": "aurora",
     "version": "1.0.0",
-    "description": "A new WordPress Boilerplate Theme by Horttcore",
-    "author": "Ralf Hortt <me@horttcore.de>",
+    "description": "A new WordPress Boilerplate Theme by Ralf Hortt",
+    "author": "Ralf Hortt <mail@ralfhortt.dev>",
     "license": "GPL-2.0+",
-    "homepage": "https://horttcore.de",
+    "homepage": "https://ralfhortt.dev",
     "scripts": {
         "default": "cross-env gulp",
         "dev": "cross-env gulp",

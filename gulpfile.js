@@ -8,6 +8,7 @@ const plugins = require("gulp-load-plugins")({
     pattern: ["gulp-*", "gulp.*", "del", "fs"]
 });
 const env = require("dotenv").config();
+const sass = require('gulp-sass')(require('sass'));
 const browserSync = require("browser-sync");
 const server = browserSync.create();
 
@@ -78,7 +79,7 @@ function css() {
     return gulp
         .src([`${path.css.src}/app.scss`, `${path.css.src}/editor-styles.scss`, `${path.css.src}/login.scss`])
         .pipe(plugins.sassGlob())
-        .pipe(plugins.sass())
+        .pipe(sass())
         .pipe(plugins.postcss([
             require('postcss-custom-media'),
             require('postcss-easing-gradients'),
@@ -95,7 +96,7 @@ function cssDev() {
         .src([`${path.css.src}/app.scss`, `${path.css.src}/editor-styles.scss`, `${path.css.src}/login.scss`])
         .pipe(plugins.sourcemaps.init())
         .pipe(plugins.sassGlob())
-        .pipe(plugins.sass())
+        .pipe(sass())
         .pipe(plugins.postcss([
             require('postcss-custom-media'),
             require('postcss-easing-gradients'),

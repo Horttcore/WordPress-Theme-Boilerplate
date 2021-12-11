@@ -19,30 +19,24 @@ get_template_part('resources/views/header', get_post_type());
 ?>
 <div class="content">
 
-    <div class="container">
+    <main class="main">
 
-        <main class="main">
+        <?php the_archive_title('<h1 class="archive__title">', '</h1>') ?>
 
-            <?php the_archive_title('<h1 class="archive__title">', '</h1>') ?>
+        <div class="posts">
+            <?php
+            while (have_posts()) {
+                the_post();
+                get_template_part('resources/views/contents/content-archive', get_post_type());
+            }
+            ?>
+        </div>
 
-            <div class="posts">
+        <?php the_posts_pagination(); ?>
 
-                <?php
-                while (have_posts()) :
-                    the_post();
-                    get_template_part('resources/views/contents/content-archive', get_post_type());
-                endwhile;
-                ?>
+    </main>
 
-            </div>
-
-            <?php the_posts_pagination(); ?>
-
-        </main>
-
-        <?php get_template_part('resources/views/template-parts/sidebar', get_post_type()) ?>
-
-    </div>
+    <?php get_template_part('resources/views/template-parts/sidebar', get_post_type()) ?>
 
 </div>
 

@@ -19,17 +19,11 @@ get_template_part('resources/views/header', '404');
 ?>
 <div class="content">
 
-    <div class="container">
+    <main class="main">
+        <?php get_template_part('resources/views/contents/content', '404') ?>
+    </main>
 
-        <main class="main">
-
-            <?php get_template_part('resources/views/contents/content', '404') ?>
-
-        </main>
-
-        <?php get_template_part('resources/views/template-parts/sidebar', '404') ?>
-
-    </div>
+    <?php get_template_part('resources/views/template-parts/sidebar', '404') ?>
 
 </div>
 

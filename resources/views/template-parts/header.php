@@ -3,14 +3,14 @@
 
 <header class="header" role="banner">
 
-    <div class="header__container container">
+    <div class="header__container">
 
         <?php the_custom_logo() ?>
 
         <button class="navigation-toggle"><span class="navigation-toggle__icon"></span></button>
 
         <?php
-        wp_nav_menu(array(
+        wp_nav_menu([
             'theme_location'    => 'main',
             'container'         => 'nav',
             'container_class'   => 'main-navigation',
@@ -19,11 +19,9 @@
             'menu_id'           => '',
             'before'            => '',
             'fallback_cb'       => '',
-        ));
-        ?>
+        ]);
 
-        <?php
-        wp_nav_menu(array(
+        wp_nav_menu([
             'theme_location'    => 'meta',
             'container'         => 'nav',
             'container_class'   => 'meta-navigation',
@@ -32,7 +30,7 @@
             'menu_id'           => '',
             'before'            => '',
             'fallback_cb'       => '',
-        ));
+        ]);
         ?>
 
     </div>

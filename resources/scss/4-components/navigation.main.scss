@@ -10,73 +10,55 @@
  */
 .main-navigation {
 
-    @media (--mobile-nav) {
-        /* LVL 1 */
+    @media (--desktop) {
+        /* Lvl 1: Container */
         > ul {
-            display: inline-flex;
-
+            /* Lvl 1: List item */
             > li {
-                position: relative;
+                /* Lvl 1: Link */
+                > a {
+                }
 
-                /* Hover LVL 1 */
+                /* Lvl 1: Link:hover */
                 &:hover {
 
                     > a {
                     }
                 }
 
-                > a {
-                }
+                /* Lvl 1: Highlighted */
+                &.current-menu-ancestor,
+                &.current-menu-item {
 
-                /* LVL 2 */
-                &:hover {
-
-                    > ul {
-                        height: auto;
-                        opacity: 1;
-                        overflow: visible;
+                    > a {
                     }
                 }
 
+
+                /* Lvl 2: Container */
                 > ul {
-                    height: 0;
-                    left: 0;
-                    opacity: 0;
-                    overflow: hidden;
-                    position: absolute;
-                    top: 100%;
-                    width: 240px;
-
+                    /* Lvl 2: List item */
                     > li {
-                        position: relative;
+                        /* Lvl 2: Link */
+                        > a {
+                            display: block;
+                        }
 
-                        /* Hover LVL 2 */
+                        /* Lvl 2: Link:hover */
                         &:hover {
 
                             > a {
                             }
                         }
 
-                        > a {
-                            display: block;
+                        /* Lvl 2: Highlighted */
+                        &.current-menu-ancestor,
+                        &.current-menu-item {
+
+                            > a {
+                            }
                         }
                     }
-
-                    /* Highlight LVL 2 */
-                    > .current-menu-ancestor,
-                    > .current-menu-item {
-
-                        > a {
-                        }
-                    }
-                }
-            }
-
-            /* Highlight LVL 1 */
-            > .current-menu-ancestor,
-            > .current-menu-item {
-
-                > a {
                 }
             }
         }

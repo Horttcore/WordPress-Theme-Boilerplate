@@ -7,6 +7,7 @@
             "RalfHortt\\Aurora\\": "src/classes/"
         },
         "files": [
+            "block-styles.php",
             "functions.custom.php",
             "functions.helpers.php"
         ]
@@ -15,7 +16,6 @@
         "horttcore/wp-customizer": "*",
         "ralfhortt/wp-template-loader": "*",
         "ralfhortt/wp-image-sizes": "*",
-        "ralfhortt/wp-content-width": "*",
         "ralfhortt/wp-assets": "*"
     },
     "scripts": {

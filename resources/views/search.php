@@ -23,19 +23,15 @@ get_template_part('resources/views/header', 'search');
 ?>
 <div class="content">
 
-    <div class="container">
+    <main class="main">
 
-        <main class="main">
+        <h1 class="archive-title"><?php printf(__('Suchergebnis für: %s'), get_search_query()) ?></h1>
 
-            <h1 class="archive-title"><?php printf(__('Suchergebnis für: %s'), get_search_query()) ?></h1>
+        <?php get_template_part('resources/views/template-parts/loop-search') ?>
 
-            <?php get_template_part('resources/views/template-parts/loop') ?>
+    </main>
 
-        </main>
-
-        <?php get_template_part('resources/views/template-parts/sidebar', get_post_type()) ?>
-
-    </div>
+    <?php get_template_part('resources/views/template-parts/sidebar', get_post_type()) ?>
 
 </div>
 

@@ -2,10 +2,11 @@
  * <body>
  */
 body {
-    background-color: var(--color__white);
+    background-color: var(--wp--prest--color--white);
+    color: var(--wp--prest--color--black);
     display: flex;
     flex-direction: column;
-    font-family: var(--font__copy);
+    font-family: var(--wp--prest--font-family--copy);
     font-size: 1em;
     line-height: calc(1ex / .32);
     min-height: 100vh;
@@ -13,9 +14,11 @@ body {
 }
 
 .admin-bar {
-    min-height: calc(100vh - var(--adminbar__height--narrow));
+    --adminbar__height: 46px;
+    min-height: calc(100vh - var(--adminbar__height));
 
     @media (--adminbar--full) {
+        --adminbar__height: 32px;
         min-height: calc(100vh - var(--adminbar__height));
     }
 }

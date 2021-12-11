@@ -5,20 +5,8 @@
  * usage: `color: var(--color-primary);`
  */
 :root {
-    // Font stacks
-    --font__copy: sans-serif;
-    --font__heading: sans-serif;
-    // Color by name
-    --color__black: #000;
-    --color__white: #fff;
-    // Color by usage
-    --color__primary: red;
-    --color__secondary: green;
-    --color__tertiary: blue;
-    --color__accent: yellow;
-    // Animation
-    --animation__duration: .2s;
-    // Misc
-    --adminbar__height--narrow: 32px;
-    --adminbar__height: 46px;
+    --adminbar__height: 0;
+    --animation__speed: .2s;
+    --animation__speed--slow: .4s;
+    --radius: 0;
 }

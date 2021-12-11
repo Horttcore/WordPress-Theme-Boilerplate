@@ -1,9 +1,7 @@
 <footer class="footer">
-
-    <div class="footer__container container">
-
+    <div class="footer__container">
         <?php
-        wp_nav_menu(array(
+        wp_nav_menu([
             'theme_location'    => 'footer',
             'container'         => 'nav',
             'container_class'   => 'footer-navigation',
@@ -12,9 +10,7 @@
             'menu_id'           => '',
             'before'            => '',
             'fallback_cb'       => '',
-        ));
+        ]);
         ?>
-
     </div>
-
 </footer>

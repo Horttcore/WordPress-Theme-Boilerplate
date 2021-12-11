@@ -4,6 +4,6 @@
 .header {
 
     &__container {
-
+        @extend %container;
     }
 }

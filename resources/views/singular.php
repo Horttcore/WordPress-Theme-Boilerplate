@@ -19,20 +19,14 @@ get_template_part('resources/views/header', get_post_type());
 ?>
 <div class="content">
 
-    <div class="container">
+    <main class="main">
+        <?php
+        the_post();
+        get_template_part('resources/views/contents/content', get_post_type());
+        ?>
+    </main>
 
-        <main class="main">
-
-            <?php
-            the_post();
-            get_template_part('resources/views/contents/content', get_post_type());
-            ?>
-
-        </main>
-
-        <?php get_template_part('resources/views/template-parts/sidebar', get_post_type()) ?>
-
-    </div>
+    <?php get_template_part('resources/views/template-parts/sidebar', get_post_type()) ?>
 
 </div>
 

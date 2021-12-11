@@ -23,19 +23,12 @@ get_template_part('resources/views/header', 'blog');
 ?>
 <div class="content">
 
-    <div class="container">
+    <main class="main">
+        <h1 class="archive-title"><?php echo single_cat_title() ?></h1>
+        <?php get_template_part('resources/views/template-parts/loop', 'blog') ?>
+    </main><!-- .main -->
 
-        <main class="main">
-
-            <h1 class="archive-title"><?php echo single_cat_title() ?></h1>
-
-            <?php get_template_part('resources/views/template-parts/loop', 'blog') ?>
-
-        </main><!-- .main -->
-
-        <?php get_template_part('resources/views/template-parts/sidebar', 'blog') ?>
-
-    </div><!-- .container -->
+    <?php get_template_part('resources/views/template-parts/sidebar', 'blog') ?>
 
 </div><!-- .content -->
 

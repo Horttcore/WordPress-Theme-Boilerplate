@@ -2,7 +2,8 @@
  * <a>
  */
 a {
-    transition: all var(--animation__duration);
+    color: inherit;
+    transition: all var(--animation__speed);
 
     &:not([class]) {
         text-decoration: underline;

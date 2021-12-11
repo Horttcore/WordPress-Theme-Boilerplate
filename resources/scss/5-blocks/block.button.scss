@@ -1,0 +1,19 @@
+/**
+ * Block: core/buttons, core/button
+ *
+ * Template:
+ * div.wp-block-buttons
+ *   div.wp-block-button
+ *     a.wp-block-button__link
+ *
+ */
+.wp-block-buttons {
+
+}
+
+.wp-block-button {
+
+    &__link {
+        border-radius: var(--radius);
+    }
+}

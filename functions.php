@@ -17,7 +17,6 @@
 use Horttcore\Customizer\Customize;
 use RalfHortt\Assets\Script;
 use RalfHortt\Assets\Style;
-use RalfHortt\ContentWidth\ContentWidth;
 use RalfHortt\ImageSizes\ImageSize;
 use RalfHortt\TemplateLoader\TemplateLocator;
 
@@ -52,7 +51,7 @@ add_action('after_setup_theme', function () {
      * @see https://developer.wordpress.org/reference/functions/add_theme_support/
      * ------------------------------------------------------------------------------
      */
-    load_theme_textdomain('TEXTDOMAIN', sprintf('%s/languages', get_stylesheet_directory()));
+    load_theme_praxis - unbehend('praxis-unbehend', sprintf('%s/languages', get_stylesheet_directory()));
     add_theme_support('custom-logo');
     add_theme_support('html5', ['comment-list', 'comment-form', 'search-form', 'gallery', 'caption']);
     add_theme_support('post-thumbnails');
@@ -66,7 +65,7 @@ add_action('after_setup_theme', function () {
         'editor-color-palette',
         [
             [
-                'name' => __('Schwarz', 'TEXTDOMAIN'),
+                'name' => __('Schwarz', 'praxis-unbehend'),
                 'slug' => 'black',
                 'color' => '#000',
             ],
@@ -74,17 +73,17 @@ add_action('after_setup_theme', function () {
     );
     add_theme_support('editor-font-sizes', [
         [
-            'name' => __('Klein', 'TEXTDOMAIN'),
+            'name' => __('Klein', 'praxis-unbehend'),
             'size' => 12,
             'slug' => 'small',
         ],
         [
-            'name' => __('Normal', 'TEXTDOMAIN'),
+            'name' => __('Normal', 'praxis-unbehend'),
             'size' => 16,
             'slug' => 'normal',
         ],
         [
-            'name' => __('Groß', 'TEXTDOMAIN'),
+            'name' => __('Groß', 'praxis-unbehend'),
             'size' => 32,
             'slug' => 'large',
         ],
@@ -92,15 +91,6 @@ add_action('after_setup_theme', function () {
     add_theme_support('editor-styles');
     add_editor_style('dist/css/editor-styles.css');
     remove_theme_support('core-block-patterns');
-
-    /**
-     * ------------------------------------------------------------------------------
-     * Set content width
-     *
-     * @see https://codex.wordpress.org/Content_Width
-     * ------------------------------------------------------------------------------
-     */
-    (new ContentWidth(980))->register();
 
     /**
      * ------------------------------------------------------------------------------
@@ -122,9 +112,9 @@ add_action('after_setup_theme', function () {
      */
     register_nav_menus(
         [
-            'meta' => __('Metamenü', 'TEXTDOMAIN'),
-            'main' => __('Hauptmenü', 'TEXTDOMAIN'),
-            'footer' => __('Footermenü', 'TEXTDOMAIN'),
+            'meta' => __('Metamenü', 'praxis-unbehend'),
+            'main' => __('Hauptmenü', 'praxis-unbehend'),
+            'footer' => __('Footermenü', 'praxis-unbehend'),
         ]
     );
 
@@ -137,7 +127,7 @@ add_action('after_setup_theme', function () {
      */
     // register_sidebar(
     //     [
-    //         'name' => __('Seitenleiste', 'TEXTDOMAIN'),
+    //         'name' => __('Seitenleiste', 'praxis-unbehend'),
     //         'id' => 'sidebar',
     //         'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     //         'after_widget'  => '</aside>',
@@ -153,7 +143,7 @@ add_action('after_setup_theme', function () {
      * @see https://github.com/Horttcore/wp-image-sizes
      * ------------------------------------------------------------------------------
      */
-    // (new ImageSize('name', __('Label', 'TEXTDOMAIN'), 50, 50, true))->register();
+    // (new ImageSize('name', __('Label', 'praxis-unbehend'), 50, 50, true))->register();
 
     /**
      * ------------------------------------------------------------------------------
@@ -163,25 +153,25 @@ add_action('after_setup_theme', function () {
      * ------------------------------------------------------------------------------
      */
     (new Customize)
-        ->panel(__('Einstellungen', 'TEXTDOMAIN'))
-        ->section(__('Kontakt', 'TEXTDOMAIN'))
-        ->text('company', __('Unternehmen', 'TEXTDOMAIN'))
-        ->text('street', __('Straße', 'TEXTDOMAIN'))
-        ->text('street-number', __('Hausnummer', 'TEXTDOMAIN'))
-        ->text('zip', __('PLZ', 'TEXTDOMAIN'))
-        ->text('city', __('Ort', 'TEXTDOMAIN'))
-        ->text('phone', __('Telefon', 'TEXTDOMAIN'))
-        ->text('fax', __('Fax', 'TEXTDOMAIN'))
-        ->text('mobile', __('Mobil', 'TEXTDOMAIN'))
-        ->text('email', __('E-Mail', 'TEXTDOMAIN'))
-        ->url('website', __('Webseite', 'TEXTDOMAIN'))
-        ->url('map', __('Karte', 'TEXTDOMAIN'))
-        ->section(__('Social Media', 'TEXTDOMAIN'))
-        ->url('facebook', __('Facebook', 'TEXTDOMAIN'))
-        ->url('twitter', __('Twitter', 'TEXTDOMAIN'))
-        ->url('instagram', __('Instagram', 'TEXTDOMAIN'))
-        ->section(__('Tracking Codes', 'TEXTDOMAIN'))
-        ->textarea('google-tag-manager', __('Google Tag Manager', 'TEXTDOMAIN'))
+        ->panel(__('Einstellungen', 'praxis-unbehend'))
+        ->section(__('Kontakt', 'praxis-unbehend'))
+        ->text('company', __('Unternehmen', 'praxis-unbehend'))
+        ->text('street', __('Straße', 'praxis-unbehend'))
+        ->text('street-number', __('Hausnummer', 'praxis-unbehend'))
+        ->text('zip', __('PLZ', 'praxis-unbehend'))
+        ->text('city', __('Ort', 'praxis-unbehend'))
+        ->text('phone', __('Telefon', 'praxis-unbehend'))
+        ->text('fax', __('Fax', 'praxis-unbehend'))
+        ->text('mobile', __('Mobil', 'praxis-unbehend'))
+        ->text('email', __('E-Mail', 'praxis-unbehend'))
+        ->url('website', __('Webseite', 'praxis-unbehend'))
+        ->url('map', __('Karte', 'praxis-unbehend'))
+        ->section(__('Social Media', 'praxis-unbehend'))
+        ->url('facebook', __('Facebook', 'praxis-unbehend'))
+        ->url('twitter', __('Twitter', 'praxis-unbehend'))
+        ->url('instagram', __('Instagram', 'praxis-unbehend'))
+        ->section(__('Tracking Codes', 'praxis-unbehend'))
+        ->textarea('google-tag-manager', __('Google Tag Manager', 'praxis-unbehend'))
         ->register();
 
     /**

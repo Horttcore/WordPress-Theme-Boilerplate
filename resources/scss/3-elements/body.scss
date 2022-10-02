@@ -2,11 +2,11 @@
  * <body>
  */
 body {
-    background-color: var(--wp--prest--color--white);
-    color: var(--wp--prest--color--black);
+    background-color: var(--wp--preset--color--white);
+    color: var(--wp--preset--color--black);
     display: flex;
     flex-direction: column;
-    font-family: var(--wp--prest--font-family--copy);
+    font-family: var(--wp--preset--font-family--copy);
     font-size: 1em;
     line-height: calc(1ex / .32);
     min-height: 100vh;

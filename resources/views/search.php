@@ -3,22 +3,17 @@
  * Search template
  *
  * RalfHortt\Aurora
+ *
  * @version 1.0.0
  */
 
-
 /**
- *
  * <head>
- *
  */
 get_template_part('resources/views/header', 'search');
 
-
 /**
- *
  * Content loop
- *
  */
 ?>
 <div class="content">
@@ -38,8 +33,6 @@ get_template_part('resources/views/header', 'search');
 
 <?php
 /**
- *
  * Footer
- *
  */
 get_template_part('resources/views/footer', 'search');

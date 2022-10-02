@@ -8,7 +8,7 @@
         </div>
         <?php
     }
-    ?>
+?>
 
     <header class="entry__header">
         <div class="entry__date"><?php the_time(get_option('date_format')) ?></div>

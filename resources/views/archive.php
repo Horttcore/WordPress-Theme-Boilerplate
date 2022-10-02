@@ -3,15 +3,14 @@
  * Single view template
  *
  * RalfHortt\Aurora
+ *
  * @version 1.0.0
  */
-
 
 /**
  * Header
  */
 get_template_part('resources/views/header', get_post_type());
-
 
 /**
  * Content
@@ -29,7 +28,7 @@ get_template_part('resources/views/header', get_post_type());
                 the_post();
                 get_template_part('resources/views/contents/content-archive', get_post_type());
             }
-            ?>
+?>
         </div>
 
         <?php the_posts_pagination(); ?>

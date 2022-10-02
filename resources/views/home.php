@@ -3,22 +3,17 @@
  * Blog template
  *
  * RalfHortt\Aurora
+ *
  * @version 1.0.0
  */
 
-
 /**
- *
  * <head>
- *
  */
 get_template_part('resources/views/header', 'blog');
 
-
 /**
- *
  * Content loop
- *
  */
 ?>
 <div class="content">
@@ -35,8 +30,6 @@ get_template_part('resources/views/header', 'blog');
 
 <?php
 /**
- *
  * Footer
- *
  */
 get_template_part('resources/views/footer', 'blog');

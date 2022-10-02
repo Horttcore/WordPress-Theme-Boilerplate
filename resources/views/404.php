@@ -3,15 +3,14 @@
  * 404 template
  *
  * RalfHortt\Aurora
+ *
  * @version 1.0.0
  */
-
 
 /**
  * Header
  */
 get_template_part('resources/views/header', '404');
-
 
 /**
  * Content

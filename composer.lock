@@ -1,0 +1,232 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "fa95eb17b72f03d34ca124b20c540ce8",
+    "packages": [
+        {
+            "name": "horttcore/wp-customizer",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Horttcore/wp-customizer.git",
+                "reference": "e71109aea56738151a028b7d25bddae488dde235"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Horttcore/wp-customizer/zipball/e71109aea56738151a028b7d25bddae488dde235",
+                "reference": "e71109aea56738151a028b7d25bddae488dde235",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Horttcore\\Customizer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralf Hortt",
+                    "email": "me@horttcore.de"
+                }
+            ],
+            "description": "A helper package for working with the WordPress Customizer",
+            "support": {
+                "issues": "https://github.com/Horttcore/wp-customizer/issues",
+                "source": "https://github.com/Horttcore/wp-customizer/tree/2.1.0"
+            },
+            "time": "2019-09-18T20:26:55+00:00"
+        },
+        {
+            "name": "laravel/pint",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/pint.git",
+                "reference": "1d276e4c803397a26cc337df908f55c2a4e90d86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/1d276e4c803397a26cc337df908f55c2a4e90d86",
+                "reference": "1d276e4c803397a26cc337df908f55c2a4e90d86",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "ext-tokenizer": "*",
+                "ext-xml": "*",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.11.0",
+                "illuminate/view": "^9.27",
+                "laravel-zero/framework": "^9.1.3",
+                "mockery/mockery": "^1.5.0",
+                "nunomaduro/larastan": "^2.2",
+                "nunomaduro/termwind": "^1.14.0",
+                "pestphp/pest": "^1.22.1"
+            },
+            "bin": [
+                "builds/pint"
+            ],
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "App\\": "app/",
+                    "Database\\Seeders\\": "database/seeders/",
+                    "Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nuno Maduro",
+                    "email": "enunomaduro@gmail.com"
+                }
+            ],
+            "description": "An opinionated code formatter for PHP.",
+            "homepage": "https://laravel.com",
+            "keywords": [
+                "format",
+                "formatter",
+                "lint",
+                "linter",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/pint/issues",
+                "source": "https://github.com/laravel/pint"
+            },
+            "time": "2022-09-13T15:07:15+00:00"
+        },
+        {
+            "name": "ralfhortt/wp-assets",
+            "version": "2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Horttcore/wp-assets.git",
+                "reference": "abe562d3a7a6b07eddea6833e45568042fa4268f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Horttcore/wp-assets/zipball/abe562d3a7a6b07eddea6833e45568042fa4268f",
+                "reference": "abe562d3a7a6b07eddea6833e45568042fa4268f",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RalfHortt\\Assets\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralf Hortt",
+                    "email": "me@horttcore.de"
+                }
+            ],
+            "description": "A helper package for working with the WordPress assets",
+            "support": {
+                "source": "https://github.com/Horttcore/wp-assets/tree/2.0"
+            },
+            "time": "2020-03-27T08:06:12+00:00"
+        },
+        {
+            "name": "ralfhortt/wp-image-sizes",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Horttcore/wp-image-sizes.git",
+                "reference": "05418c0477dec8ca41754999aa030517fb7e1ef5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Horttcore/wp-image-sizes/zipball/05418c0477dec8ca41754999aa030517fb7e1ef5",
+                "reference": "05418c0477dec8ca41754999aa030517fb7e1ef5",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RalfHortt\\ImageSizes\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Ralf Hortt",
+                    "email": "me@horttcore.de"
+                }
+            ],
+            "description": "A helper class to register image sizes",
+            "support": {
+                "issues": "https://github.com/Horttcore/wp-image-sizes/issues",
+                "source": "https://github.com/Horttcore/wp-image-sizes/tree/1.0.0"
+            },
+            "time": "2019-05-31T20:45:23+00:00"
+        },
+        {
+            "name": "ralfhortt/wp-template-loader",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Horttcore/wp-template-loader.git",
+                "reference": "e0a8c24b10eb0cb0eb64d2c17c49ba7618862db2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Horttcore/wp-template-loader/zipball/e0a8c24b10eb0cb0eb64d2c17c49ba7618862db2",
+                "reference": "e0a8c24b10eb0cb0eb64d2c17c49ba7618862db2",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RalfHortt\\TemplateLoader\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Ralf Hortt",
+                    "email": "me@horttcore.de"
+                }
+            ],
+            "description": "A helper class to load template files from another location",
+            "support": {
+                "issues": "https://github.com/Horttcore/wp-template-loader/issues",
+                "source": "https://github.com/Horttcore/wp-template-loader/tree/master"
+            },
+            "time": "2019-06-04T20:00:05+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.2.0"
+}

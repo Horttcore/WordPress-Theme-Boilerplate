@@ -1,10 +1,8 @@
 <?php
 /**
- *
  * Pattern lab
  *
  * This is a really simple pattern lab with all HTML elements
- *
  */
 ?>
 

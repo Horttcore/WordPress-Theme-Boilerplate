@@ -3,15 +3,14 @@
  * Single view template
  *
  * RalfHortt\Aurora
+ *
  * @version 1.0.0
  */
-
 
 /**
  * Header
  */
 get_template_part('resources/views/header', get_post_type());
-
 
 /**
  * Content
@@ -22,8 +21,8 @@ get_template_part('resources/views/header', get_post_type());
     <main class="main">
         <?php
         the_post();
-        get_template_part('resources/views/contents/content', get_post_type());
-        ?>
+get_template_part('resources/views/contents/content', get_post_type());
+?>
     </main>
 
     <?php get_template_part('resources/views/template-parts/sidebar', get_post_type()) ?>

@@ -14,12 +14,12 @@
  * - Register new directory for WordPress template files
  * ------------------------------------------------------------------------------
  */
-use \RalfHortt\Assets\Script;
-use \RalfHortt\Assets\Style;
-use \Horttcore\Customizer\Customize;
-use \RalfHortt\ContentWidth\ContentWidth;
-use \RalfHortt\ImageSizes\ImageSize;
-use \RalfHortt\TemplateLoader\TemplateLocator;
+use Horttcore\Customizer\Customize;
+use RalfHortt\Assets\Script;
+use RalfHortt\Assets\Style;
+use RalfHortt\ContentWidth\ContentWidth;
+use RalfHortt\ImageSizes\ImageSize;
+use RalfHortt\TemplateLoader\TemplateLocator;
 
 /**
  * ------------------------------------------------------------------------------
@@ -28,15 +28,15 @@ use \RalfHortt\TemplateLoader\TemplateLocator;
  * Load composer autoloader file
  * ------------------------------------------------------------------------------
  */
-$autoloader = __DIR__ . '/vendor/autoload.php';
+$autoloader = __DIR__.'/vendor/autoload.php';
 
-if (is_readable($autoloader)) :
+if (is_readable($autoloader)) {
     include $autoloader;
-endif;
+}
 
-if (!defined('WPINC')) :
-    die;
-endif;
+if (! defined('WPINC')) {
+    exit;
+}
 
 /**
  * ------------------------------------------------------------------------------
@@ -76,23 +76,22 @@ add_action('after_setup_theme', function () {
         [
             'name' => __('Klein', 'TEXTDOMAIN'),
             'size' => 12,
-            'slug' => 'small'
+            'slug' => 'small',
         ],
         [
             'name' => __('Normal', 'TEXTDOMAIN'),
             'size' => 16,
-            'slug' => 'normal'
+            'slug' => 'normal',
         ],
         [
             'name' => __('Groß', 'TEXTDOMAIN'),
             'size' => 32,
-            'slug' => 'large'
+            'slug' => 'large',
         ],
     ]);
     add_theme_support('editor-styles');
     add_editor_style('dist/css/editor-styles.css');
     remove_theme_support('core-block-patterns');
-
 
     /**
      * ------------------------------------------------------------------------------
@@ -103,7 +102,6 @@ add_action('after_setup_theme', function () {
      */
     (new ContentWidth(980))->register();
 
-
     /**
      * ------------------------------------------------------------------------------
      * Assets management
@@ -111,10 +109,9 @@ add_action('after_setup_theme', function () {
      * @see https://github.com/Horttcore/wp-assets
      * ------------------------------------------------------------------------------
      */
-    (new Script('theme', get_template_directory_uri() . '/dist/js/app.js', ['jquery'], true, true))->register();
-    (new Style('sanitize-css', get_template_directory_uri() . '/dist/vendor/sanitize-css/sanitize.css'))->register();
-    (new Style('theme', get_template_directory_uri() . '/dist/css/app.css', ['sanitize-css']))->register();
-
+    (new Script('theme', get_template_directory_uri().'/dist/js/app.js', ['jquery'], true, true))->register();
+    (new Style('sanitize-css', get_template_directory_uri().'/dist/vendor/sanitize-css/sanitize.css'))->register();
+    (new Style('theme', get_template_directory_uri().'/dist/css/app.css', ['sanitize-css']))->register();
 
     /**
      * ------------------------------------------------------------------------------
@@ -130,7 +127,6 @@ add_action('after_setup_theme', function () {
             'footer' => __('Footermenü', 'TEXTDOMAIN'),
         ]
     );
-
 
     /**
      * ------------------------------------------------------------------------------
@@ -150,7 +146,6 @@ add_action('after_setup_theme', function () {
     //     ]
     // );
 
-
     /**
      * ------------------------------------------------------------------------------
      * Define custom image sizes
@@ -159,7 +154,6 @@ add_action('after_setup_theme', function () {
      * ------------------------------------------------------------------------------
      */
     // (new ImageSize('name', __('Label', 'TEXTDOMAIN'), 50, 50, true))->register();
-
 
     /**
      * ------------------------------------------------------------------------------
@@ -190,7 +184,6 @@ add_action('after_setup_theme', function () {
         ->textarea('google-tag-manager', __('Google Tag Manager', 'TEXTDOMAIN'))
         ->register();
 
-
     /**
      * ------------------------------------------------------------------------------
      * Optimizations
@@ -215,6 +208,7 @@ add_action('after_setup_theme', function () {
         if (false !== strpos($from, 'wordpress@')) {
             return $from;
         }
+
         return get_option('admin_email');
     }); // Replace mail from with current admin email
     // Replace mail from name with site name
@@ -224,7 +218,6 @@ add_action('after_setup_theme', function () {
             return get_bloginfo('name');
         }
     );
-
 
     /**
      * ------------------------------------------------------------------------------

@@ -8,7 +8,7 @@
         </div>
         <?php
     }
-    ?>
+?>
 
     <header class="entry__header">
         <h1 class="entry__title"><?php the_title() ?></h1>

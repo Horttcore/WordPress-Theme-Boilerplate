@@ -16,7 +16,8 @@
         "horttcore/wp-customizer": "*",
         "ralfhortt/wp-template-loader": "*",
         "ralfhortt/wp-image-sizes": "*",
-        "ralfhortt/wp-assets": "*"
+        "ralfhortt/wp-assets": "*",
+        "laravel/pint": "^1.2"
     },
     "scripts": {
         "post-create-project-cmd": "composer run-script replace-textdomain && composer run-script copy-env",

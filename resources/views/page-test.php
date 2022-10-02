@@ -3,15 +3,14 @@
  * Blog template
  *
  * RalfHortt\Aurora
+ *
  * @version 1.0.0
  */
-
 
 /**
  * Header
  */
 get_template_part('resources/views/header', get_post_type());
-
 
 /**
  * Content
@@ -25,8 +24,8 @@ get_template_part('resources/views/header', get_post_type());
 
             <?php
             the_post();
-            get_template_part('resources/views/contents/content', 'test');
-            ?>
+get_template_part('resources/views/contents/content', 'test');
+?>
 
         </main>
 

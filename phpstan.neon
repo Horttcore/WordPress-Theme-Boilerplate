@@ -1,0 +1,15 @@
+parameters:
+    level: 5
+    paths:
+        - src
+        - functions.custom.php
+        - functions.helpers.php
+    excludePaths:
+        - vendor/*
+        - node_modules/*
+    ignoreErrors:
+        # Beispiel: Fehler in bestimmten Dateien ignorieren
+        # - '#Some error message pattern#'
+    scanFiles:
+        # Optional: weitere Dateien zum Scannen hinzufügen
+        # - some/other/file.php

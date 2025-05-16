@@ -21,7 +21,7 @@ use RalfHortt\Assets\Style;
  * Load composer autoloader file
  * ------------------------------------------------------------------------------
  */
-$autoloader = __DIR__ . '/vendor/autoload.php';
+$autoloader = __DIR__.'/vendor/autoload.php';
 
 if (is_readable($autoloader)) {
     include $autoloader;
@@ -55,8 +55,8 @@ add_action('after_setup_theme', function () {
      * @see https://github.com/Horttcore/wp-assets
      * ------------------------------------------------------------------------------
      */
-    (new Script('theme', get_template_directory_uri() . '/build/js/app.ts.js', [], true, true))->register();
-    (new Style('theme', get_template_directory_uri() . '/build/css/app.scss.css', []))->register();
+    (new Script('theme', get_template_directory_uri().'/build/js/app.ts.js', [], true, true))->register();
+    (new Style('theme', get_template_directory_uri().'/build/css/app.scss.css', []))->register();
 
     /**
      * ------------------------------------------------------------------------------
@@ -89,7 +89,7 @@ add_action('after_setup_theme', function () {
     add_filter('the_generator', '__return_null'); // Remove generator output
     add_filter('login_headerurl', 'home_url'); // Replace the login logo link with home url
     add_filter('wp_mail_from', function ($from) {
-        if (false !== strpos($from, 'wordpress@')) {
+        if (strpos($from, 'wordpress@') !== false) {
             return $from;
         }
 

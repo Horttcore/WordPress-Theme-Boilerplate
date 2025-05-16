@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ------------------------------------------------------------------------------
  * Helper functions
@@ -7,7 +8,7 @@
 function inlineSvgAttachment(int $attachmentId): string
 {
     $type = get_post_mime_type($attachmentId);
-    if ('image/svg+xml' != $type) {
+    if ($type != 'image/svg+xml') {
         return '';
     }
 

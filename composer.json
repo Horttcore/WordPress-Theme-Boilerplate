@@ -12,15 +12,16 @@
         ]
     },
     "require": {
-        "laravel/pint": "*",
+        "laravel/pint": "^1.22",
         "ralfhortt/wp-assets": "*",
         "ralfhortt/wp-image-sizes": "*"
     },
     "scripts": {
         "post-create-project-cmd": "composer run-script replace-textdomain && composer run-script copy-env",
         "replace-textdomain": "DIR=$(basename $PWD); LC_ALL=C find ./ -not \\( -path \".//vendor/*\" -o -path \".//node_modules/*\" -o -path \".//.git/*\" \\) -type f \\( -iname '*.js' -o -iname '*.php' -o -iname '*.css' \\) -exec sed -i '' -e \"s/TEXTDOMAIN/${DIR}/g\" {} \\;",
-        "copy-env": "cp .env.example .env",
-        "lint": "phpstan analyse .  --memory-limit=2048M"
+        "lint": "phpstan analyse .  --memory-limit=2048M",
+        "format": "pint",
+        "format:prettier": "prettier --write ."
     },
     "require-dev": {
         "phpstan/phpstan": "^2.1",

@@ -7,7 +7,7 @@
     "homepage": "https://ralfhortt.dev",
     "scripts": {
         "start": "wp-scripts start src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts & npm run watch:theme",
-        "build": "wp-scripts build src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts & npm run build:theme",
+        "build": "wp-scripts build src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts && npm run build:theme",
         "lint:css": "stylelint **/*.scss -i .gitignore",
         "lint:css:fix": "stylelint **/*.scss -i .gitignore --fix",
         "lint:php": "composer run-script lint",

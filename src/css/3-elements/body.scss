@@ -1,0 +1,19 @@
+/**
+ * <body>
+ */
+body {
+    background-color: var(--wp--preset--color--white);
+    display: flex;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.admin-bar {
+    --adminbar__height: 46px;
+    min-height: calc(100vh - var(--adminbar__height));
+
+    @media (--adminbar--full) {
+        --adminbar__height: 32px;
+        min-height: calc(100vh - var(--adminbar__height));
+    }
+}

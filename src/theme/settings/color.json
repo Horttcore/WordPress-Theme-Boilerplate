@@ -1,0 +1,29 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 3,
+    "settings": {
+        "color": {
+            "defaultDuotone": false,
+            "custom": false,
+            "customDuotone": false,
+            "customGradient": false,
+            "defaultGradients": false,
+            "defaultPalette": false,
+            "link": false,
+            "palette": [
+                {
+                    "color": "var:custom|color|neutral-0",
+                    "name": "Weiß",
+                    "slug": "white"
+                },
+                {
+                    "color": "var:custom|color|neutral-900",
+                    "name": "Schwarz",
+                    "slug": "black"
+                }
+            ],
+            "text": true,
+            "heading": true
+        }
+    }
+}

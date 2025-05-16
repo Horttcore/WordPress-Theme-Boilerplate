@@ -1,5 +1,8 @@
 .DS_Store
 .env
-dist
+build
 node_modules
 vendor
+theme.json
+styles/*
+!styles/README.md

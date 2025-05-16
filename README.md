@@ -9,24 +9,27 @@ Every folder contains a `README.md` with further instructions
 `$ composer create-project ralfhortt/wordpress-theme-boilerplate`
 Check `INSTALLATION.md` for detailed installation steps
 
+## Development
+
+### Commands
+
+-   `npm run make:block namespace/block-name` to create a new json file for a block in `src/themes/blocks/blockname`.
+-   `npm run make:style namepsace/blockname Title` to create a block style in `src/themes/namespace/blockname
+-   `npm run build:theme` to build the theme.json file from `src/themes/`
+
 ## Build Process
-
-### Fonts
-
--   Set Google fonts url in `fonts.list` file
--   Run `npm run fonts` or `yarn fonts` for downloading google fonts
 
 ### Production
 
--   Run `npm run production` or `yarn production` for production build
+-   Run `npm run build` for production build
 
 ### Development
 
--   Run `npm run dev` or `yarn dev` on development systems
+-   Run `npm run start`
 
 #### Linters
 
-Run `npm run lint` or `yarn lint` linting files
+Run `npm run lint`
 
 -   [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) ([VScode](https://marketplace.visualstudio.com/items?itemName=ikappas.phpcs))
 -   [phpmd](https://phpmd.org/) ([VScode](https://marketplace.visualstudio.com/items?itemName=ecodes.vscode-phpmd))
@@ -35,7 +38,7 @@ Run `npm run lint` or `yarn lint` linting files
 
 #### Fixers
 
-Run `npm run fix` or `yarn fix` for auto fixing
+Run `npm run fix` for auto fixing
 
 -   [eslint](https://eslint.org/)
 -   [stylelint](https://stylelint.io/)

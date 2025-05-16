@@ -1,0 +1,11 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 3,
+    "settings": {
+        "layout": {
+            "allowEditing": true,
+            "contentSize": "57.5rem",
+            "wideSize": "80rem"
+        }
+    }
+}

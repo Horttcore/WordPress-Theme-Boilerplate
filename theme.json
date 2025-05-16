@@ -1,86 +1,94 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/theme.json",
-    "version": 2,
-    "settings": {
-        "border": {
-            "color": false,
-            "style": false,
-            "width": false,
-            "radius": false
-        },
-        "appearanceTools": false,
-        "layout": {
-            "contentSize": "640px",
-            "wideSize": "1024px"
-        },
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "blocks": {
+      "core/site-logo": {},
+      "core/query": {},
+      "core/pullquote": {},
+      "core/post-title": {},
+      "core/post-template": {},
+      "core/post-excerpt": {},
+      "core/post-date": {},
+      "core/paragraph": {},
+      "core/navigation-link": {},
+      "core/navigation": {},
+      "core/media-text": {},
+      "core/list-item": {},
+      "core/list": {},
+      "core/image": {},
+      "core/heading": {},
+      "core/group": {},
+      "core/details": {},
+      "core/cover": {},
+      "core/columns": {},
+      "core/buttons": {},
+      "core/button": {}
+    },
+    "appearanceTools": true,
+    "useRootPaddingAwareAlignments": true
+  },
+  "styles": {
+    "blocks": {
+      "core/site-logo": {},
+      "core/query": {},
+      "core/pullquote": {},
+      "core/post-title": {},
+      "core/post-template": {},
+      "core/post-excerpt": {},
+      "core/post-date": {},
+      "core/paragraph": {},
+      "core/navigation-link": {},
+      "core/navigation": {},
+      "core/media-text": {},
+      "core/list-item": {},
+      "core/list": {},
+      "core/image": {},
+      "core/heading": {},
+      "core/group": {},
+      "core/details": {},
+      "core/cover": {},
+      "core/columns": {},
+      "core/buttons": {},
+      "core/button": {}
+    },
+    "color": {
+      "text": "var:preset|color|grey"
+    },
+    "typography": {
+      "fontFamily": "var:preset|font-family|default",
+      "lineHeight": "normal"
+    },
+    "spacing": {
+      "padding": {
+        "right": "2rem",
+        "left": "2rem"
+      }
+    },
+    "elements": {
+      "link": {
         "color": {
-            "custom": false,
-            "background": false,
-            "customDuotone": false,
-            "customGradient": false,
-            "link": false,
-            "palette": [
-                {
-                    "name": "Black",
-                    "slug": "black",
-                    "color": "#000000"
-                },
-                {
-                    "name": "White",
-                    "slug": "white",
-                    "color": "#ffffff"
-                }
-            ]
-        },
-        "spacing": {
-            "margin": false,
-            "padding": false,
-            "units": [
-                "em",
-                "rem",
-                "vh",
-                "vw",
-                "%"
-            ]
+          "text": "inherit"
         },
         "typography": {
-            "customFontSize": false,
-            "lineHeight": false,
-            "dropCap": false,
-            "fontFamilies": [
-                {
-                    "fontFamily": "sans-serif",
-                    "name": "Copy",
-                    "slug": "copy"
-                },
-                {
-                    "fontFamily": "sans-serif",
-                    "name": "Heading",
-                    "slug": "heading"
-                }
-            ],
-            "fontSizes": [
-                {
-                    "name": "S",
-                    "size": ".875rem",
-                    "slug": "s"
-                },
-                {
-                    "name": "M",
-                    "size": "1.25rem",
-                    "slug": "m"
-                },
-                {
-                    "name": "L",
-                    "size": "1.375rem",
-                    "slug": "l"
-                },
-                {
-                    "name": "XL",
-                    "size": "3.25rem",
-                    "slug": "xl"
-                }
-            ]
+          "textDecoration": "underline"
+        },
+        ":hover": {
+          "typography": {
+            "textDecoration": "none"
+          }
+        },
+        ":active": {
+          "color": {
+            "text": "inherit"
+          }
+        },
+        ":visited": {
+          "color": {
+            "text": "inherit"
+          }
         }
+      }
     }
+  }
 }

@@ -1,24 +1,18 @@
 <?php
+
 /**
  * ------------------------------------------------------------------------------
  * Theme configuration
  *
  * - Composer autoloader
- * - Adding theme support for features
  * - Register assets
- * - Register menus
- * - Register sidebars
  * - Register image sizes
- * - Register customizer fields
  * - Optimize WordPress output
- * - Register new directory for WordPress template files
  * ------------------------------------------------------------------------------
  */
-use Horttcore\Customizer\Customize;
+
 use RalfHortt\Assets\Script;
 use RalfHortt\Assets\Style;
-use RalfHortt\ImageSizes\ImageSize;
-use RalfHortt\TemplateLoader\TemplateLocator;
 
 /**
  * ------------------------------------------------------------------------------
@@ -27,7 +21,7 @@ use RalfHortt\TemplateLoader\TemplateLocator;
  * Load composer autoloader file
  * ------------------------------------------------------------------------------
  */
-$autoloader = __DIR__.'/vendor/autoload.php';
+$autoloader = __DIR__ . '/vendor/autoload.php';
 
 if (is_readable($autoloader)) {
     include $autoloader;
@@ -51,46 +45,8 @@ add_action('after_setup_theme', function () {
      * @see https://developer.wordpress.org/reference/functions/add_theme_support/
      * ------------------------------------------------------------------------------
      */
-    load_theme_praxis - unbehend('praxis-unbehend', sprintf('%s/languages', get_stylesheet_directory()));
-    add_theme_support('custom-logo');
-    add_theme_support('html5', ['comment-list', 'comment-form', 'search-form', 'gallery', 'caption']);
-    add_theme_support('post-thumbnails');
-    add_theme_support('responsive-embeds');
-    add_theme_support('title-tag');
-    add_theme_support('custom-logo');
-    add_theme_support('align-wide');
-    add_theme_support('disable-custom-colors');
-    add_theme_support('disable-custom-font-sizes');
-    add_theme_support(
-        'editor-color-palette',
-        [
-            [
-                'name' => __('Schwarz', 'praxis-unbehend'),
-                'slug' => 'black',
-                'color' => '#000',
-            ],
-        ]
-    );
-    add_theme_support('editor-font-sizes', [
-        [
-            'name' => __('Klein', 'praxis-unbehend'),
-            'size' => 12,
-            'slug' => 'small',
-        ],
-        [
-            'name' => __('Normal', 'praxis-unbehend'),
-            'size' => 16,
-            'slug' => 'normal',
-        ],
-        [
-            'name' => __('Groß', 'praxis-unbehend'),
-            'size' => 32,
-            'slug' => 'large',
-        ],
-    ]);
-    add_theme_support('editor-styles');
+    load_theme_textdomain('TEXTDOMAIN', sprintf('%s/languages', get_stylesheet_directory()));
     add_editor_style('dist/css/editor-styles.css');
-    remove_theme_support('core-block-patterns');
 
     /**
      * ------------------------------------------------------------------------------
@@ -99,42 +55,8 @@ add_action('after_setup_theme', function () {
      * @see https://github.com/Horttcore/wp-assets
      * ------------------------------------------------------------------------------
      */
-    (new Script('theme', get_template_directory_uri().'/dist/js/app.js', ['jquery'], true, true))->register();
-    (new Style('sanitize-css', get_template_directory_uri().'/dist/vendor/sanitize-css/sanitize.css'))->register();
-    (new Style('theme', get_template_directory_uri().'/dist/css/app.css', ['sanitize-css']))->register();
-
-    /**
-     * ------------------------------------------------------------------------------
-     * Register menu location
-     *
-     * @see https://developer.wordpress.org/reference/functions/register_nav_menus/
-     * ------------------------------------------------------------------------------
-     */
-    register_nav_menus(
-        [
-            'meta' => __('Metamenü', 'praxis-unbehend'),
-            'main' => __('Hauptmenü', 'praxis-unbehend'),
-            'footer' => __('Footermenü', 'praxis-unbehend'),
-        ]
-    );
-
-    /**
-     * ------------------------------------------------------------------------------
-     * Register sidebars
-     *
-     * @see https://developer.wordpress.org/reference/functions/register_sidebar/
-     * ------------------------------------------------------------------------------
-     */
-    // register_sidebar(
-    //     [
-    //         'name' => __('Seitenleiste', 'praxis-unbehend'),
-    //         'id' => 'sidebar',
-    //         'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    //         'after_widget'  => '</aside>',
-    //         'before_title'  => '<h1 class="widget__title">',
-    //         'after_title'   => '</h1>'
-    //     ]
-    // );
+    (new Script('theme', get_template_directory_uri() . '/build/js/app.ts.js', [], true, true))->register();
+    (new Style('theme', get_template_directory_uri() . '/build/css/app.scss.css', []))->register();
 
     /**
      * ------------------------------------------------------------------------------
@@ -143,42 +65,14 @@ add_action('after_setup_theme', function () {
      * @see https://github.com/Horttcore/wp-image-sizes
      * ------------------------------------------------------------------------------
      */
-    // (new ImageSize('name', __('Label', 'praxis-unbehend'), 50, 50, true))->register();
-
-    /**
-     * ------------------------------------------------------------------------------
-     * Customizer
-     *
-     * @see https://github.com/Horttcore/wp-customizer
-     * ------------------------------------------------------------------------------
-     */
-    (new Customize)
-        ->panel(__('Einstellungen', 'praxis-unbehend'))
-        ->section(__('Kontakt', 'praxis-unbehend'))
-        ->text('company', __('Unternehmen', 'praxis-unbehend'))
-        ->text('street', __('Straße', 'praxis-unbehend'))
-        ->text('street-number', __('Hausnummer', 'praxis-unbehend'))
-        ->text('zip', __('PLZ', 'praxis-unbehend'))
-        ->text('city', __('Ort', 'praxis-unbehend'))
-        ->text('phone', __('Telefon', 'praxis-unbehend'))
-        ->text('fax', __('Fax', 'praxis-unbehend'))
-        ->text('mobile', __('Mobil', 'praxis-unbehend'))
-        ->text('email', __('E-Mail', 'praxis-unbehend'))
-        ->url('website', __('Webseite', 'praxis-unbehend'))
-        ->url('map', __('Karte', 'praxis-unbehend'))
-        ->section(__('Social Media', 'praxis-unbehend'))
-        ->url('facebook', __('Facebook', 'praxis-unbehend'))
-        ->url('twitter', __('Twitter', 'praxis-unbehend'))
-        ->url('instagram', __('Instagram', 'praxis-unbehend'))
-        ->section(__('Tracking Codes', 'praxis-unbehend'))
-        ->textarea('google-tag-manager', __('Google Tag Manager', 'praxis-unbehend'))
-        ->register();
+    // (new ImageSize('name', __('Label', 'TEXTDOMAIN'), 50, 50, true))->register();
 
     /**
      * ------------------------------------------------------------------------------
      * Optimizations
      * ------------------------------------------------------------------------------
      */
+    remove_theme_support('core-block-patterns');
     remove_action('admin_print_styles', 'print_emoji_styles'); // Emoji
     remove_action('wp_head', 'print_emoji_detection_script', 7); // Emoji
     remove_action('admin_print_scripts', 'print_emoji_detection_script'); // Emoji
@@ -208,13 +102,6 @@ add_action('after_setup_theme', function () {
             return get_bloginfo('name');
         }
     );
-
-    /**
-     * ------------------------------------------------------------------------------
-     * Template loader
-     * ------------------------------------------------------------------------------
-     */
-    (new TemplateLocator('resources/views'))->register();
 });
 
 /**

@@ -1,0 +1,16 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 3,
+    "settings": {
+        "spacing": {
+            "blockGap": true,
+            "customSpacingSize": false,
+            "defaultSpacingSizes": true,
+            "units": [
+                "rem",
+                "%"
+            ],
+            "spacingSizes": []
+        }
+    }
+}

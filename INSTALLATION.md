@@ -5,7 +5,6 @@
 -   [composer](https://getcomposer.org/)
 -   [node](https://nodejs.org/)
 -   [npm](https://nodejs.org/) / [yarn](https://yarnpkg.com/)
--   [bower](https://bower.io/)
 
 ## Optional
 
@@ -18,5 +17,4 @@
 ## Installation
 
 -   Run `composer create-project ralfhortt/aurora my-theme`
--   Run `npm install` or `yarn` to install dependencies
--   Edit `.env` for browser sync support
+-   Run `npm install` to install dependencies

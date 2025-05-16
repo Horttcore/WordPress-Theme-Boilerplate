@@ -15,7 +15,7 @@ Check `INSTALLATION.md` for detailed installation steps
 
 -   `npm run make:block namespace/block-name` to create a new json file for a block in `src/themes/blocks/blockname`.
 -   `npm run make:style namepsace/blockname Title` to create a block style in `src/themes/namespace/blockname
--   `npm run build:theme` to build the theme.json file from `src/themes/`
+-   `npm run build:theme` to build the theme.json file from `src/themes/` and copying the block styles to `styles` folder
 
 ## Build Process
 

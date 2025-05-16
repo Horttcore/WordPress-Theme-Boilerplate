@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * ------------------------------------------------------------------------------
  * Theme configuration
@@ -89,7 +91,7 @@ add_action('after_setup_theme', function () {
     add_filter('the_generator', '__return_null'); // Remove generator output
     add_filter('login_headerurl', 'home_url'); // Replace the login logo link with home url
     add_filter('wp_mail_from', function ($from) {
-        if (strpos($from, 'wordpress@') !== false) {
+        if (mb_strpos($from, 'wordpress@') !== false) {
             return $from;
         }
 

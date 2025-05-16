@@ -1,5 +1,8 @@
 # Aurora Theme
 
+[![Build Status](https://github.com/ralfhortt/wordpress-theme-boilerplate/actions/workflows/php.yml/badge.svg)](https://github.com/ralfhortt/wordpress-theme-boilerplate/actions/workflows/php.yml)
+[![Lint Status](https://github.com/ralfhortt/wordpress-theme-boilerplate/actions/workflows/lint.yml/badge.svg)](https://github.com/ralfhortt/wordpress-theme-boilerplate/actions/workflows/lint.yml)
+
 ## Documentation
 
 Every folder contains a `README.md` with further instructions

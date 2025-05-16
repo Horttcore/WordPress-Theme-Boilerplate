@@ -83,6 +83,30 @@ function buildTheme() {
         }
     });
 
+    // Alle JSON - Dateien aus src / theme / settings mergen
+    const settingsDir = path.join(srcDir, "settings");
+    if (fs.existsSync(settingsDir)) {
+        fs.readdirSync(settingsDir).forEach((file) => {
+            if (file.endsWith(".json")) {
+                const filePath = path.join(settingsDir, file);
+                try {
+                    const fileContent = JSON.parse(
+                        fs.readFileSync(filePath, "utf8"),
+                    );
+                    themeJson = deepMerge(themeJson, fileContent);
+                    mergedFiles.push(path.relative(srcDir, filePath));
+                } catch (error) {
+                    console.error(`❌ Error parsing JSON in file: ${filePath}`);
+                    console.error(`💡 Details: ${error.message}`);
+                    console.error(
+                        "🚨 Build process stopped due to JSON parsing error.",
+                    );
+                    return; // Stop the build process
+                }
+            }
+        });
+    }
+
     // Log the merged files
     if (DEBUG) {
         console.log("Merged files:", mergedFiles);

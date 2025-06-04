@@ -2,6 +2,95 @@
   "$schema": "https://schemas.wp.org/trunk/theme.json",
   "version": 3,
   "settings": {
+    "typography": {
+      "writingMode": false,
+      "customFontSize": false,
+      "defaultFontSizes": false,
+      "dropCap": false,
+      "fluid": false,
+      "fontFamilies": [
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Roboto Flex",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "src": [
+                "file:./assets/fonts/roboto-flex-v27-latin-regular.woff2"
+              ]
+            }
+          ],
+          "fontFamily": "'Roboto Flex', Roboto, 'Helvetica Neue', 'Segoe UI', Oxygen-Sans, Ubuntu, Cantarell, sans-serif",
+          "name": "Roboto Flex",
+          "slug": "default"
+        }
+      ],
+      "fontSizes": [],
+      "fontStyle": false,
+      "fontWeight": false,
+      "letterSpacing": false,
+      "lineHeight": false,
+      "textDecoration": false,
+      "textTransform": false
+    },
+    "spacing": {
+      "blockGap": true,
+      "customSpacingSize": false,
+      "defaultSpacingSizes": true,
+      "units": [
+        "rem",
+        "%"
+      ],
+      "spacingSizes": []
+    },
+    "shadow": {
+      "defaultPresets": false
+    },
+    "position": {
+      "sticky": false
+    },
+    "layout": {
+      "allowEditing": true,
+      "contentSize": "57.5rem",
+      "wideSize": "80rem"
+    },
+    "dimensions": {
+      "aspectRatios": [],
+      "aspectRatio": true,
+      "defaultAspectRatios": true
+    },
+    "custom": {
+      "color": {}
+    },
+    "color": {
+      "defaultDuotone": false,
+      "custom": false,
+      "customDuotone": false,
+      "customGradient": false,
+      "defaultGradients": false,
+      "defaultPalette": false,
+      "link": false,
+      "palette": [
+        {
+          "color": "var:custom|color|neutral-0",
+          "name": "Weiß",
+          "slug": "white"
+        },
+        {
+          "color": "var:custom|color|neutral-900",
+          "name": "Schwarz",
+          "slug": "black"
+        }
+      ],
+      "text": true,
+      "heading": true
+    },
+    "border": {
+      "color": false,
+      "radius": false,
+      "style": false,
+      "width": false
+    },
     "blocks": {
       "core/site-logo": {},
       "core/query": {},
@@ -53,7 +142,7 @@
       "core/button": {}
     },
     "color": {
-      "text": "var:preset|color|grey"
+      "text": ""
     },
     "typography": {
       "fontFamily": "var:preset|font-family|default",

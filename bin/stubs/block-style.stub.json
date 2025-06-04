@@ -3,7 +3,9 @@
     "version": 3,
     "title": "Title",
     "slug": "slug",
-    "blockTypes": [ "namespace/block" ],
+    "blockTypes": [
+        "namespace/block"
+    ],
     "settings": {},
     "styles": {}
 }

@@ -26,7 +26,7 @@ const blocksBaseDir = path.join(__dirname, "..", "src/theme/blocks");
 const blockDir = path.join(blocksBaseDir, namespace, block);
 // Change: filename is <block>.<slug>.json
 const destFile = path.join(blockDir, `${block}.${slug}.json`);
-const stubFile = path.join(__dirname, "..", "bin/stubs/block-style.json.stub");
+const stubFile = path.join(__dirname, "..", "bin/stubs/block-style.stub.json");
 
 if (!fs.existsSync(stubFile)) {
     console.error("❌ Stub file not found:", stubFile);

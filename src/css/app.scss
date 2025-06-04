@@ -6,6 +6,7 @@
 // @use "1-tools" as tools;
 
 // Generic
+@use "2-generic/_reset.scss" as reset;
 @use "2-generic/custom-media-queries.scss" as customMediaQueries;
 @use "2-generic/custom-properties.scss" as customProperties;
 @use "2-generic/global.animations.scss" as animations;

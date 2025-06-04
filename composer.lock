@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1dfc923485ab4ce1cb43f1efd1b01977",
+    "content-hash": "f3def3403c7b284a00ab500adb7903ef",
     "packages": [
         {
             "name": "laravel/pint",
@@ -74,17 +74,23 @@
         },
         {
             "name": "ralfhortt/wp-assets",
-            "version": "2.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Horttcore/wp-assets.git",
-                "reference": "abe562d3a7a6b07eddea6833e45568042fa4268f"
+                "reference": "d75b97fde3454bb228e04597c9e56372a9ddc0ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Horttcore/wp-assets/zipball/abe562d3a7a6b07eddea6833e45568042fa4268f",
-                "reference": "abe562d3a7a6b07eddea6833e45568042fa4268f",
+                "url": "https://api.github.com/repos/Horttcore/wp-assets/zipball/d75b97fde3454bb228e04597c9e56372a9ddc0ef",
+                "reference": "d75b97fde3454bb228e04597c9e56372a9ddc0ef",
                 "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1.12"
             },
             "type": "library",
             "autoload": {
@@ -99,14 +105,14 @@
             "authors": [
                 {
                     "name": "Ralf Hortt",
-                    "email": "me@horttcore.de"
+                    "email": "mail@ralfhortt.dev"
                 }
             ],
             "description": "A helper package for working with the WordPress assets",
             "support": {
-                "source": "https://github.com/Horttcore/wp-assets/tree/2.0"
+                "source": "https://github.com/Horttcore/wp-assets/tree/3.0.0"
             },
-            "time": "2020-03-27T08:06:12+00:00"
+            "time": "2024-11-06T22:00:25+00:00"
         },
         {
             "name": "ralfhortt/wp-image-sizes",
@@ -248,16 +254,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.15",
+            "version": "2.1.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "402d11c1aa40ae2e1c3a512e6a4edb957527b20b"
+                "reference": "89b5ef665716fa2a52ecd2633f21007a6a349053"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/402d11c1aa40ae2e1c3a512e6a4edb957527b20b",
-                "reference": "402d11c1aa40ae2e1c3a512e6a4edb957527b20b",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/89b5ef665716fa2a52ecd2633f21007a6a349053",
+                "reference": "89b5ef665716fa2a52ecd2633f21007a6a349053",
                 "shasum": ""
             },
             "require": {
@@ -302,7 +308,66 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-05-14T11:16:08+00:00"
+            "time": "2025-05-21T20:55:28+00:00"
+        },
+        {
+            "name": "rector/rector",
+            "version": "2.0.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rectorphp/rector.git",
+                "reference": "caa4ffda1d48bde44434e6ba95d132ec32e7fd40"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/caa4ffda1d48bde44434e6ba95d132ec32e7fd40",
+                "reference": "caa4ffda1d48bde44434e6ba95d132ec32e7fd40",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0",
+                "phpstan/phpstan": "^2.1.17"
+            },
+            "conflict": {
+                "rector/rector-doctrine": "*",
+                "rector/rector-downgrade-php": "*",
+                "rector/rector-phpunit": "*",
+                "rector/rector-symfony": "*"
+            },
+            "suggest": {
+                "ext-dom": "To manipulate phpunit.xml via the custom-rule command"
+            },
+            "bin": [
+                "bin/rector"
+            ],
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Instant Upgrade and Automated Refactoring of any PHP code",
+            "keywords": [
+                "automation",
+                "dev",
+                "migration",
+                "refactoring"
+            ],
+            "support": {
+                "issues": "https://github.com/rectorphp/rector/issues",
+                "source": "https://github.com/rectorphp/rector/tree/2.0.17"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/tomasvotruba",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-05-30T10:59:08+00:00"
         },
         {
             "name": "szepeviktor/phpstan-wordpress",

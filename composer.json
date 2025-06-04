@@ -14,19 +14,21 @@
     "require": {
         "laravel/pint": "^1.22",
         "ralfhortt/wp-assets": "*",
-        "ralfhortt/wp-image-sizes": "*"
+        "ralfhortt/wp-image-sizes": "^1.0"
     },
     "scripts": {
         "post-create-project-cmd": "composer run-script replace-textdomain && composer run-script copy-env",
         "replace-textdomain": "DIR=$(basename $PWD); LC_ALL=C find ./ -not \\( -path \".//vendor/*\" -o -path \".//node_modules/*\" -o -path \".//.git/*\" \\) -type f \\( -iname '*.js' -o -iname '*.php' -o -iname '*.css' \\) -exec sed -i '' -e \"s/TEXTDOMAIN/${DIR}/g\" {} \\;",
         "lint": "phpstan analyse .  --memory-limit=2048M",
         "format": "pint",
-        "format:prettier": "prettier --write ."
+        "format:prettier": "prettier --write .",
+        "rector": "vendor/bin/rector process"
     },
     "require-dev": {
-        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan": "^2",
         "szepeviktor/phpstan-wordpress": "^2.0",
-        "phpstan/extension-installer": "^1.4"
+        "phpstan/extension-installer": "^1.4",
+        "rector/rector": "^2.0"
     },
     "config": {
         "allow-plugins": {

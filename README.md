@@ -46,3 +46,23 @@ Run `npm run fix` for auto fixing
 -   [eslint](https://eslint.org/)
 -   [stylelint](https://stylelint.io/)
 -   [phpcbf](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Fixing-Errors-Automatically)
+
+## Code Formatting
+
+Use [Laravel Pint](https://laravel.com/docs/10.x/pint) to automatically format PHP code:
+
+```sh
+composer run format
+```
+
+You can customize Pint's rules by adding a `pint.json` or `pint.json5` configuration file to your project root.
+
+## Code Upgrades
+
+Run Rector to automatically upgrade and refactor PHP code:
+
+```sh
+composer run rector
+```
+
+See [Rector documentation](https://getrector.com/docs/) for configuration and usage details.

@@ -7,27 +7,23 @@
     "homepage": "https://ralfhortt.dev",
     "scripts": {
         "start": "wp-scripts start src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts & npm run watch:theme",
-        "start:hot": "wp-scripts src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts --hot & npm run watch:theme",
-        "build": "wp-scripts build src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts && npm run build:theme",
-        "build:analyze": "wp-scripts build src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts --webpack-bundle-analyzer && npm run build:theme",
+        "build": "wp-scripts build src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts & npm run build:theme",
         "lint:css": "stylelint **/*.scss -i .gitignore",
         "lint:css:fix": "stylelint **/*.scss -i .gitignore --fix",
         "lint:php": "composer run-script lint",
         "lint:php:fix": "composer run-script format",
         "build:theme": "node bin/theme-build.js",
         "watch:theme": "node bin/theme-build.js --watch",
-        "make:config": "node bin/make-block-config.js",
-        "make:style": "node bin/make-block-style.js",
-        "make:block": "node bin/make-block.js"
+        "make:block": "php bin/make-block.php",
+        "make:style": "php bin/make-style.php",
+        "make:clamp": "php bin/make-clamp.php",
+        "css:clamp": "php bin/make-clamp.php"
     },
     "devDependencies": {
-        "@wordpress/block-editor": "^14.20.0",
-        "@wordpress/blocks": "^14.14.0",
-        "@wordpress/i18n": "^5.25.0",
-        "@wordpress/scripts": "^30.18.0",
-        "postcss-custom-media": "^11.0.6",
+        "@wordpress/scripts": "^30.16.0",
+        "postcss-custom-media": "^11.0.5",
         "postcss-easing-gradients": "^3.0.1",
-        "stylelint": "^16.20.0",
+        "stylelint": "^16.19.1",
         "stylelint-order": "^7.0.0",
         "stylelint-scss": "^6.12.0"
     }

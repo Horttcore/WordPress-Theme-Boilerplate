@@ -30,7 +30,7 @@ if (is_readable($autoloader)) {
 }
 
 if (! defined('WPINC')) {
-    exit;
+    return;
 }
 
 /**

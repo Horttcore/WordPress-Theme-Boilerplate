@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+if (! defined('WPINC')) {
+    return;
+}
+
 /**
  * ------------------------------------------------------------------------------
  * Helper functions

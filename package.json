@@ -16,7 +16,6 @@
         "watch:theme": "node bin/theme-build.js --watch",
         "make:block": "php bin/make-block.php",
         "make:style": "php bin/make-style.php",
-        "make:clamp": "php bin/make-clamp.php",
         "css:clamp": "php bin/make-clamp.php"
     },
     "devDependencies": {

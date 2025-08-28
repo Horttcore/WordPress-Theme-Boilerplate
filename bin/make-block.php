@@ -89,7 +89,7 @@ $blocksBaseDir = __DIR__ . '/../src/theme/blocks';
 $namespaceDir = $blocksBaseDir . '/' . $namespace;
 $destDir = $namespaceDir . '/' . $block;
 $destFile = $destDir . '/' . $block . '.json';
-$stubFile = __DIR__ . '/stubs/block.json.stub';
+$stubFile = __DIR__ . '/stubs/block.stub.json';
 
 // Check if stub file exists
 if (!file_exists($stubFile)) {

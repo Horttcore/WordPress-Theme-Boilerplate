@@ -192,6 +192,17 @@ function parseColor($color, $namedColors) {
         return hslToRgb($hsl['h'], $hsl['s'], $hsl['l'], $hsl['a']);
     }
 
+    // OKLCH colors
+    if (preg_match('/^oklch\(\s*([\d.]+)\s+([\d.]+)\s+([\d.]+)(?:\s*\/\s*([\d.]+))?\s*\)$/i', $color, $matches)) {
+        $oklch = [
+            'l' => (float)$matches[1],
+            'c' => (float)$matches[2],
+            'h' => (float)$matches[3],
+            'a' => isset($matches[4]) ? (float)$matches[4] : 1
+        ];
+        return oklchToRgb($oklch['l'], $oklch['c'], $oklch['h'], $oklch['a']);
+    }
+
     return false;
 }
 
@@ -253,6 +264,94 @@ function hslToRgb($h, $s, $l, $a = 1) {
         'g' => round($g * 255),
         'b' => round($b * 255),
         'a' => $a
+    ];
+}
+
+/**
+ * Convert OKLCH to RGB
+ */
+function oklchToRgb($l, $c, $h, $a = 1) {
+    // Convert OKLCH to OKLab
+    $hRad = deg2rad($h);
+    $lab_a = $c * cos($hRad);
+    $lab_b = $c * sin($hRad);
+
+    // Convert OKLab to linear RGB
+    $l_ = $l + 0.3963377774 * $lab_a + 0.2158037573 * $lab_b;
+    $m_ = $l - 0.1055613458 * $lab_a - 0.0638541728 * $lab_b;
+    $s_ = $l - 0.0894841775 * $lab_a - 1.2914855480 * $lab_b;
+
+    $l = $l_ * $l_ * $l_;
+    $m = $m_ * $m_ * $m_;
+    $s = $s_ * $s_ * $s_;
+
+    // Convert to linear RGB
+    $r_linear = +4.0767416621 * $l - 3.3077115913 * $m + 0.2309699292 * $s;
+    $g_linear = -1.2684380046 * $l + 2.6097574011 * $m - 0.3413193965 * $s;
+    $b_linear = -0.0041960863 * $l - 0.7034186147 * $m + 1.7076147010 * $s;
+
+    // Apply gamma correction
+    $gammaCorrect = function($val) {
+        return $val >= 0.0031308 ? 1.055 * pow($val, 1/2.4) - 0.055 : 12.92 * $val;
+    };
+
+    $r = $gammaCorrect($r_linear);
+    $g = $gammaCorrect($g_linear);
+    $b = $gammaCorrect($b_linear);
+
+    // Clamp to [0,1] and convert to [0,255]
+    $r = max(0, min(1, $r)) * 255;
+    $g = max(0, min(1, $g)) * 255;
+    $b = max(0, min(1, $b)) * 255;
+
+    return [
+        'r' => round($r),
+        'g' => round($g),
+        'b' => round($b),
+        'a' => $a
+    ];
+}
+
+/**
+ * Convert RGB to OKLCH
+ */
+function rgbToOklch($r, $g, $b) {
+    // Normalize RGB to [0,1]
+    $r = $r / 255;
+    $g = $g / 255;
+    $b = $b / 255;
+
+    // Apply inverse gamma correction
+    $linearize = function($val) {
+        return $val >= 0.04045 ? pow(($val + 0.055) / 1.055, 2.4) : $val / 12.92;
+    };
+
+    $r_linear = $linearize($r);
+    $g_linear = $linearize($g);
+    $b_linear = $linearize($b);
+
+    // Convert to OKLab
+    $l = 0.4122214708 * $r_linear + 0.5363325363 * $g_linear + 0.0514459929 * $b_linear;
+    $m = 0.2119034982 * $r_linear + 0.6806995451 * $g_linear + 0.1073969566 * $b_linear;
+    $s = 0.0883024619 * $r_linear + 0.2817188376 * $g_linear + 0.6299787005 * $b_linear;
+
+    $l_ = pow($l, 1/3);
+    $m_ = pow($m, 1/3);
+    $s_ = pow($s, 1/3);
+
+    $lab_l = 0.2104542553 * $l_ + 0.7936177850 * $m_ - 0.0040720468 * $s_;
+    $lab_a = 1.9779984951 * $l_ - 2.4285922050 * $m_ + 0.4505937099 * $s_;
+    $lab_b = 0.0259040371 * $l_ + 0.7827717662 * $m_ - 0.8086757660 * $s_;
+
+    // Convert OKLab to OKLCH
+    $c = sqrt($lab_a * $lab_a + $lab_b * $lab_b);
+    $h = rad2deg(atan2($lab_b, $lab_a));
+    if ($h < 0) $h += 360;
+
+    return [
+        'l' => round($lab_l, 3),
+        'c' => round($c, 3),
+        'h' => round($h, 1)
     ];
 }
 
@@ -319,6 +418,7 @@ function findClosestNamedColor($r, $g, $b, $namedColors) {
     return $closestColor;
 }
 
+
 // Get color input from command line arguments or interactive prompt
 if ($argc > 1) {
     // Use command line argument
@@ -344,19 +444,21 @@ if ($rgb === false) {
 // Convert to all formats
 $hex = rgbToHex($rgb['r'], $rgb['g'], $rgb['b']);
 $hsl = rgbToHsl($rgb['r'], $rgb['g'], $rgb['b']);
+$oklch = rgbToOklch($rgb['r'], $rgb['g'], $rgb['b']);
 $closestNamed = findClosestNamedColor($rgb['r'], $rgb['g'], $rgb['b'], $namedColors);
 
-// Display all color formats
-info("Color conversions for: $colorInput");
-info("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-info("HEX:        $hex");
-info("RGB:        rgb({$rgb['r']}, {$rgb['g']}, {$rgb['b']})");
+// Display all color formats in compact format
+$formats = [];
+$formats[] = "HEX: $hex";
+$formats[] = "RGB: rgb({$rgb['r']}, {$rgb['g']}, {$rgb['b']})";
 if ($rgb['a'] < 1) {
-    info("RGBA:       rgba({$rgb['r']}, {$rgb['g']}, {$rgb['b']}, {$rgb['a']})");
+    $formats[] = "RGBA: rgba({$rgb['r']}, {$rgb['g']}, {$rgb['b']}, {$rgb['a']})";
 }
-info("HSL:        hsl({$hsl['h']}, {$hsl['s']}%, {$hsl['l']}%)");
+$formats[] = "HSL: hsl({$hsl['h']}, {$hsl['s']}%, {$hsl['l']}%)";
 if ($rgb['a'] < 1) {
-    info("HSLA:       hsla({$hsl['h']}, {$hsl['s']}%, {$hsl['l']}%, {$rgb['a']})");
+    $formats[] = "HSLA: hsla({$hsl['h']}, {$hsl['s']}%, {$hsl['l']}%, {$rgb['a']})";
 }
-info("Named:      $closestNamed (closest match)");
-info("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+$formats[] = "OKLCH: oklch({$oklch['l']} {$oklch['c']} {$oklch['h']})";
+$formats[] = "Named: $closestNamed";
+
+info("$colorInput → " . implode(" | ", $formats));

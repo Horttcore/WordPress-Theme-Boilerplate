@@ -15,7 +15,9 @@ Check `INSTALLATION.md` for detailed installation steps
 
 -   `npm run make:block` to interactively create a new json file for a block in `src/themes/blocks/blockname`.
 -   `npm run make:style` to interactively create a block style in `src/themes/namespace/blockname
--   `npm run make:clamp` to calculate CSS clamp values for responsive design based on viewport sizes.
+-   `npm run css:clamp` to calculate CSS clamp values for responsive design based on viewport sizes.
+-   `npm run css:color` to show a color in different notations (i.e. rgb hex oklch …)
+-   `npm run css:contrast` to show a color in different notations (i.e. rgb hex oklch …)
 -   `npm run build:theme` to build the theme.json file from `src/themes/` and copying the block styles to `styles` folder
 
 ## Build Process

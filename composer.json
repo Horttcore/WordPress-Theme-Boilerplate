@@ -26,7 +26,9 @@
         "make:block": "php bin/make-block.php",
         "make:style": "php bin/make-style.php",
         "make:clamp": "php bin/make-clamp.php",
-        "css:clamp": "php bin/make-clamp.php"
+        "css:clamp": "php bin/make-clamp.php",
+        "css:color": "php bin/css-color.php",
+        "css:contrast": "php bin/css-contrast.php"
     },
     "require-dev": {
         "phpstan/phpstan": "^2.1",

@@ -16,7 +16,9 @@
         "watch:theme": "node bin/theme-build.js --watch",
         "make:block": "php bin/make-block.php",
         "make:style": "php bin/make-style.php",
-        "css:clamp": "php bin/make-clamp.php"
+        "css:clamp": "php bin/make-clamp.php",
+        "css:color": "php bin/css-color.php",
+        "css:contrast": "php bin/css-contrast.php"
     },
     "devDependencies": {
         "@wordpress/scripts": "^30.16.0",

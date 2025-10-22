@@ -15,7 +15,8 @@
         "build:theme": "node bin/theme-build.js",
         "watch:theme": "node bin/theme-build.js --watch",
         "make:block": "php bin/make-block.php",
-        "make:style": "php bin/make-style.php",
+        "make:block-style": "php bin/make-block-style.php",
+        "make:pattern": "php bin/make-pattern.php",
         "css:clamp": "php bin/make-clamp.php",
         "css:color": "php bin/css-color.php",
         "css:contrast": "php bin/css-contrast.php"

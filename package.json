@@ -1,13 +1,13 @@
 {
-    "name": "aurora",
+    "name": "lhs-potsdam",
     "version": "1.0.0",
     "description": "A new WordPress Boilerplate Theme by Ralf Hortt",
     "author": "Ralf Hortt <mail@ralfhortt.dev>",
     "license": "GPL-2.0+",
     "homepage": "https://ralfhortt.dev",
     "scripts": {
-        "start": "wp-scripts start src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts & npm run watch:theme",
-        "build": "wp-scripts build src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts & npm run build:theme",
+        "start": "wp-scripts start --source-path=src/blocks/ --blocks-manifest --experimental-modules --output-path=build/blocks & wp-scripts start src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts --output-path=build/assets & npm run watch:theme",
+        "build": "wp-scripts build src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts --output-path=build/assets && wp-scripts build --source-path=src/blocks/ --blocks-manifest --experimental-modules --output-path=build/blocks && npm run build:theme",
         "lint:css": "stylelint **/*.scss -i .gitignore",
         "lint:css:fix": "stylelint **/*.scss -i .gitignore --fix",
         "lint:php": "composer run-script lint",
@@ -21,11 +21,12 @@
         "css:contrast": "php bin/css-contrast.php"
     },
     "devDependencies": {
-        "@wordpress/scripts": "^30.16.0",
-        "postcss-custom-media": "^11.0.5",
+        "@wordpress/icons": "^10.32.0",
+        "@wordpress/scripts": "^30.24.0",
+        "postcss-custom-media": "^11.0.6",
         "postcss-easing-gradients": "^3.0.1",
-        "stylelint": "^16.19.1",
+        "stylelint": "^16.24.0",
         "stylelint-order": "^7.0.0",
-        "stylelint-scss": "^6.12.0"
+        "stylelint-scss": "^6.12.1"
     }
 }

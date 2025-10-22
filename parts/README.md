@@ -4,4 +4,8 @@ Houses custom template parts for your theme. Parts are smaller sections that you
 
 ## How to
 
-Create a `.html` file with no content and edit the template part in the site editor
+* Copy the HTML from the Block Editor to the pattern
+
+## Documentation
+
+[WordPress Developer Resources - Template Parts](https://developer.wordpress.org/themes/templates/template-parts/)

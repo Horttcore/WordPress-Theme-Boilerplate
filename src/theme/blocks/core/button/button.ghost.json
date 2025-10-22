@@ -1,9 +1,0 @@
-{
-    "$schema": "https://schemas.wp.org/trunk/theme.json",
-    "version": 3,
-    "title": "Ghost",
-    "slug": "ghost",
-    "blockTypes": [ "core/button" ],
-    "settings": {},
-    "styles": {}
-}

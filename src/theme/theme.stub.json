@@ -6,9 +6,6 @@
         "useRootPaddingAwareAlignments": true
     },
     "styles": {
-        "color": {
-            "text": ""
-        },
         "typography": {
             "fontFamily": "var:preset|font-family|default",
             "lineHeight": "normal"

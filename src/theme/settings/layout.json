@@ -4,8 +4,8 @@
     "settings": {
         "layout": {
             "allowEditing": true,
-            "contentSize": "57.5rem",
-            "wideSize": "80rem"
+            "contentSize": "var:custom|layout|max-width|content",
+            "wideSize": "var:custom|layout|max-width|feature"
         }
     }
 }

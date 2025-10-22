@@ -47,7 +47,6 @@ add_action('after_setup_theme', function (): void {
      * @see https://developer.wordpress.org/reference/functions/add_theme_support/
      * ------------------------------------------------------------------------------
      */
-    load_theme_textdomain('TEXTDOMAIN', __DIR__ . '/languages');
     add_editor_style('build/css/editor.scss.css');
 
     /**
@@ -57,8 +56,8 @@ add_action('after_setup_theme', function (): void {
      * @see https://github.com/Horttcore/wp-assets
      * ------------------------------------------------------------------------------
      */
-    (new Script('theme', get_template_directory_uri() . '/build/js/app.ts.js', [], true))->register();
-    (new Style('theme', get_template_directory_uri() . '/build/css/app.scss.css', []))->register();
+    (new Script('theme', get_template_directory_uri() . '/build/assets/app.ts.js', [], true))->register();
+    (new Style('theme', get_template_directory_uri() . '/build/assets/app.scss.css', []))->register();
 
     /**
      * ------------------------------------------------------------------------------

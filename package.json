@@ -21,11 +21,11 @@
         "css:contrast": "php bin/css-contrast.php"
     },
     "devDependencies": {
-        "@wordpress/icons": "^10.32.0",
-        "@wordpress/scripts": "^30.24.0",
+        "@wordpress/icons": "^11.0.0",
+        "@wordpress/scripts": "^30.26.0",
         "postcss-custom-media": "^11.0.6",
         "postcss-easing-gradients": "^3.0.1",
-        "stylelint": "^16.24.0",
+        "stylelint": "^16.25.0",
         "stylelint-order": "^7.0.0",
         "stylelint-scss": "^6.12.1"
     }

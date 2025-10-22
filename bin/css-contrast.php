@@ -159,7 +159,7 @@ $namedColors = [
  * Parse color input and convert to RGB values
  */
 function parseColor($color, $namedColors) {
-    $color = trim(strtolower($color));
+    $color = trim(strtolower((string) $color));
 
     // Named colors
     if (isset($namedColors[$color])) {
@@ -199,7 +199,7 @@ function parseColor($color, $namedColors) {
  * Convert hex to RGB
  */
 function hexToRgb($hex) {
-    $hex = ltrim($hex, '#');
+    $hex = ltrim((string) $hex, '#');
 
     if (strlen($hex) == 3) {
         $hex = $hex[0].$hex[0].$hex[1].$hex[1].$hex[2].$hex[2];
@@ -217,9 +217,9 @@ function hexToRgb($hex) {
  * Convert HSL to RGB
  */
 function hslToRgb($h, $s, $l, $a = 1) {
-    $h = $h / 360;
-    $s = $s / 100;
-    $l = $l / 100;
+    $h /= 360;
+    $s /= 100;
+    $l /= 100;
 
     if ($s == 0) {
         $r = $g = $b = $l;
@@ -259,9 +259,9 @@ function calculateRelativeLuminance($r, $g, $b) {
     $bsRGB = $b / 255;
 
     // Apply gamma correction
-    $rLinear = $rsRGB <= 0.03928 ? $rsRGB / 12.92 : pow(($rsRGB + 0.055) / 1.055, 2.4);
-    $gLinear = $gsRGB <= 0.03928 ? $gsRGB / 12.92 : pow(($gsRGB + 0.055) / 1.055, 2.4);
-    $bLinear = $bsRGB <= 0.03928 ? $bsRGB / 12.92 : pow(($bsRGB + 0.055) / 1.055, 2.4);
+    $rLinear = $rsRGB <= 0.03928 ? $rsRGB / 12.92 : (($rsRGB + 0.055) / 1.055) ** 2.4;
+    $gLinear = $gsRGB <= 0.03928 ? $gsRGB / 12.92 : (($gsRGB + 0.055) / 1.055) ** 2.4;
+    $bLinear = $bsRGB <= 0.03928 ? $bsRGB / 12.92 : (($bsRGB + 0.055) / 1.055) ** 2.4;
 
     // Calculate luminance using WCAG coefficients
     return 0.2126 * $rLinear + 0.7152 * $gLinear + 0.0722 * $bLinear;
@@ -284,7 +284,7 @@ function calculateContrastRatio($rgb1, $rgb2) {
 /**
  * Get accessibility compliance status based on contrast ratio
  */
-function getAccessibilityStatus($contrastRatio) {
+function getAccessibilityStatus($contrastRatio): array {
     $status = [];
 
     // WCAG 2.1 AA Standards

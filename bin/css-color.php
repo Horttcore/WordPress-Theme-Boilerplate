@@ -3,9 +3,9 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use function Laravel\Prompts\text;
-use function Laravel\Prompts\info;
 use function Laravel\Prompts\error;
+use function Laravel\Prompts\info;
+use function Laravel\Prompts\text;
 
 /**
  * CSS Color Converter - Convert between different CSS color formats
@@ -158,8 +158,9 @@ $namedColors = [
 /**
  * Parse color input and convert to RGB values
  */
-function parseColor($color, $namedColors) {
-    $color = trim(strtolower($color));
+function parseColor($color, $namedColors)
+{
+    $color = trim(strtolower((string) $color));
 
     // Named colors
     if (isset($namedColors[$color])) {
@@ -209,11 +210,12 @@ function parseColor($color, $namedColors) {
 /**
  * Convert hex to RGB
  */
-function hexToRgb($hex) {
-    $hex = ltrim($hex, '#');
+function hexToRgb($hex)
+{
+    $hex = ltrim((string) $hex, '#');
 
     if (strlen($hex) == 3) {
-        $hex = $hex[0].$hex[0].$hex[1].$hex[1].$hex[2].$hex[2];
+        $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
     }
 
     return [
@@ -227,36 +229,38 @@ function hexToRgb($hex) {
 /**
  * Convert RGB to hex
  */
-function rgbToHex($r, $g, $b) {
+function rgbToHex($r, $g, $b)
+{
     return sprintf("#%02x%02x%02x", $r, $g, $b);
 }
 
 /**
  * Convert HSL to RGB
  */
-function hslToRgb($h, $s, $l, $a = 1) {
-    $h = $h / 360;
-    $s = $s / 100;
-    $l = $l / 100;
+function hslToRgb($h, $s, $l, $a = 1)
+{
+    $h /= 360;
+    $s /= 100;
+    $l /= 100;
 
     if ($s == 0) {
         $r = $g = $b = $l;
     } else {
-        $hue2rgb = function($p, $q, $t) {
+        $hue2rgb = function ($p, $q, $t) {
             if ($t < 0) $t += 1;
             if ($t > 1) $t -= 1;
-            if ($t < 1/6) return $p + ($q - $p) * 6 * $t;
-            if ($t < 1/2) return $q;
-            if ($t < 2/3) return $p + ($q - $p) * (2/3 - $t) * 6;
+            if ($t < 1 / 6) return $p + ($q - $p) * 6 * $t;
+            if ($t < 1 / 2) return $q;
+            if ($t < 2 / 3) return $p + ($q - $p) * (2 / 3 - $t) * 6;
             return $p;
         };
 
         $q = $l < 0.5 ? $l * (1 + $s) : $l + $s - $l * $s;
         $p = 2 * $l - $q;
 
-        $r = $hue2rgb($p, $q, $h + 1/3);
+        $r = $hue2rgb($p, $q, $h + 1 / 3);
         $g = $hue2rgb($p, $q, $h);
-        $b = $hue2rgb($p, $q, $h - 1/3);
+        $b = $hue2rgb($p, $q, $h - 1 / 3);
     }
 
     return [
@@ -270,7 +274,8 @@ function hslToRgb($h, $s, $l, $a = 1) {
 /**
  * Convert OKLCH to RGB
  */
-function oklchToRgb($l, $c, $h, $a = 1) {
+function oklchToRgb($l, $c, $h, $a = 1)
+{
     // Convert OKLCH to OKLab
     $hRad = deg2rad($h);
     $lab_a = $c * cos($hRad);
@@ -291,9 +296,7 @@ function oklchToRgb($l, $c, $h, $a = 1) {
     $b_linear = -0.0041960863 * $l - 0.7034186147 * $m + 1.7076147010 * $s;
 
     // Apply gamma correction
-    $gammaCorrect = function($val) {
-        return $val >= 0.0031308 ? 1.055 * pow($val, 1/2.4) - 0.055 : 12.92 * $val;
-    };
+    $gammaCorrect = (fn($val): float => $val >= 0.0031308 ? 1.055 * $val ** (1 / 2.4) - 0.055 : 12.92 * $val);
 
     $r = $gammaCorrect($r_linear);
     $g = $gammaCorrect($g_linear);
@@ -315,16 +318,15 @@ function oklchToRgb($l, $c, $h, $a = 1) {
 /**
  * Convert RGB to OKLCH
  */
-function rgbToOklch($r, $g, $b) {
+function rgbToOklch($r, $g, $b)
+{
     // Normalize RGB to [0,1]
-    $r = $r / 255;
-    $g = $g / 255;
-    $b = $b / 255;
+    $r /= 255;
+    $g /= 255;
+    $b /= 255;
 
     // Apply inverse gamma correction
-    $linearize = function($val) {
-        return $val >= 0.04045 ? pow(($val + 0.055) / 1.055, 2.4) : $val / 12.92;
-    };
+    $linearize = (fn($val): float => $val >= 0.04045 ? (($val + 0.055) / 1.055) ** 2.4 : $val / 12.92);
 
     $r_linear = $linearize($r);
     $g_linear = $linearize($g);
@@ -335,9 +337,9 @@ function rgbToOklch($r, $g, $b) {
     $m = 0.2119034982 * $r_linear + 0.6806995451 * $g_linear + 0.1073969566 * $b_linear;
     $s = 0.0883024619 * $r_linear + 0.2817188376 * $g_linear + 0.6299787005 * $b_linear;
 
-    $l_ = pow($l, 1/3);
-    $m_ = pow($m, 1/3);
-    $s_ = pow($s, 1/3);
+    $l_ = $l ** (1 / 3);
+    $m_ = $m ** (1 / 3);
+    $s_ = $s ** (1 / 3);
 
     $lab_l = 0.2104542553 * $l_ + 0.7936177850 * $m_ - 0.0040720468 * $s_;
     $lab_a = 1.9779984951 * $l_ - 2.4285922050 * $m_ + 0.4505937099 * $s_;
@@ -358,7 +360,8 @@ function rgbToOklch($r, $g, $b) {
 /**
  * Convert RGB to HSL
  */
-function rgbToHsl($r, $g, $b) {
+function rgbToHsl($r, $g, $b)
+{
     $r /= 255;
     $g /= 255;
     $b /= 255;
@@ -366,9 +369,10 @@ function rgbToHsl($r, $g, $b) {
     $max = max($r, $g, $b);
     $min = min($r, $g, $b);
     $l = ($max + $min) / 2;
+    $h = 0;
 
     if ($max == $min) {
-        $h = $s = 0;
+        $s = 0;
     } else {
         $d = $max - $min;
         $s = $l > 0.5 ? $d / (2 - $max - $min) : $d / ($max + $min);
@@ -397,16 +401,17 @@ function rgbToHsl($r, $g, $b) {
 /**
  * Find the closest named color
  */
-function findClosestNamedColor($r, $g, $b, $namedColors) {
+function findClosestNamedColor($r, $g, $b, $namedColors)
+{
     $minDistance = PHP_INT_MAX;
     $closestColor = '';
 
     foreach ($namedColors as $name => $hex) {
         $namedRgb = hexToRgb($hex);
         $distance = sqrt(
-            pow($r - $namedRgb['r'], 2) +
-            pow($g - $namedRgb['g'], 2) +
-            pow($b - $namedRgb['b'], 2)
+            ($r - $namedRgb['r']) ** 2 +
+            ($g - $namedRgb['g']) ** 2 +
+            ($b - $namedRgb['b']) ** 2
         );
 
         if ($distance < $minDistance) {

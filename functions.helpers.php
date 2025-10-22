@@ -26,7 +26,6 @@ function inlineSvg(string $file): string
     return file_get_contents($file);
 }
 
-
 /**
  * ------------------------------------------------------------------------------
  * Optimizations
@@ -60,7 +59,7 @@ add_filter(
     'wp_mail_from_name',
     function () {
         return get_bloginfo('name');
-    }
+    },
 );
 
 /**
@@ -77,7 +76,7 @@ add_action('login_enqueue_scripts', function () {
     if (! $logo) {
         return;
     }
-?>
+    ?>
     <style type="text/css">
         .login h1 a {
             background-image: url('<?php echo esc_url($logo[0]); ?>');

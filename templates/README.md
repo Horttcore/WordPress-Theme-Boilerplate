@@ -9,5 +9,5 @@ Create a `.html` file with no content and edit the template part in the site edi
 
 ## Documentation
 
-* [WordPress Developer Resources - Templates](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-templates/)
+* [WordPress Developer Resources - Templates](https://developer.wordpress.org/themes/core-concepts/templates/)
 * Learn more about the [WP Hierarchy](https://developer.wordpress.org/themes/templates/template-hierarchy/)

@@ -6,4 +6,13 @@
  */
 @custom-media --adminbar--sticky (min-width: 37.5em);
 @custom-media --adminbar--full (min-width: 48.875em);
-@custom-media --desktop (min-width: 48.875em);
+
+@custom-media --only-mobile (max-width: 49.9375em);
+
+@custom-media --tablet (min-width: 50em);
+@custom-media --only-tablet (min-width: 50em and max-width: 49.9375em);
+
+@custom-media --desktop (min-width: 80em);
+@custom-media --only-desktop (min-width: 80em and max-width: 119.9375em);
+
+@custom-media --full (min-width: 120em);

@@ -67,7 +67,7 @@ add_filter(
  * Use custom site logo as login logo
  * ------------------------------------------------------------------------------
  */
-add_action('login_enqueue_scripts', function () {
+add_action('login_enqueue_scripts', function (): void {
     $custom_logo_id = get_theme_mod('custom_logo');
     if (! $custom_logo_id) {
         return;

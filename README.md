@@ -1,82 +1,270 @@
 # Aurora Theme
 
-## Documentation
+<p align="center">
+  <img src="https://img.shields.io/badge/WordPress-6.8+-21759B?style=for-the-badge&logo=wordpress&logoColor=white" alt="WordPress">
+  <img src="https://img.shields.io/badge/PHP-8.4+-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP">
+  <img src="https://img.shields.io/badge/Node-22.11+-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node">
+  <img src="https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/License-GPL--2.0+-blue?style=for-the-badge" alt="License">
+</p>
 
-Every folder contains a `README.md` with further instructions
+---
 
-## Installation
+## 🛠️ Technologies
 
-`$ composer create-project ralfhortt/wordpress-theme-boilerplate`
-Check `INSTALLATION.md` for detailed installation steps
+<table>
+<tr>
+<td>
 
-## Development
+**Frontend**
 
-### Commands
+-   ![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=flat-square&logo=sass&logoColor=white) PostCSS
+-   ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) Native Support
 
-#### Development Helpers
+</td>
+<td>
 
--   `npm run make:block-config` / `composer run make:block-config` to interactively create a new TypeScript configuration file for a block in `src/theme/blocks/namespace/blockname`.
--   `npm run make:block-style` / `composer run make:block-style` to interactively create a TypeScript block style variation file.
--   `npm run make:block` / `composer run make:block` to interactively create a block pattern.
--   `npm run make:pattern` / `composer run make:pattern` to interactively create a block pattern.
--   `npm run css:clamp` / `composer run css:clamp` to calculate CSS clamp values for responsive design based on viewport sizes.
--   `npm run css:color` / `composer run css:color` to show a color in different notations (i.e. rgb hex oklch …)
--   `npm run css:contrast` / `composer run css:contrast` to calculate color contrast ratios and accessibility compliance.
--   `npm run generate:theme-types` to generate TypeScript type definitions from the WordPress theme.json schema.
+**Build Tools**
 
-#### Build Commands
+-   ![WordPress](https://img.shields.io/badge/@wordpress/scripts-21759B?style=flat-square&logo=wordpress&logoColor=white) 30.26
+-   ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white) ESM
 
--   `npm run build:theme` to build the theme.json file from TypeScript files in `src/theme/` and generate block style variations as JSON files in the `styles/` folder
--   `npm run watch:theme` to watch and auto-rebuild theme files during development
--   `npm run build` for production build (includes theme.json generation)
--   `npm start` for development with file watchers (includes automatic theme.json rebuilding)
+</td>
+<td>
 
-## Build Process
+**Code Quality**
 
-The theme uses TypeScript for theme.json configuration with full type safety:
+-   ![PHPStan](https://img.shields.io/badge/PHPStan-777BB4?style=flat-square&logo=php&logoColor=white) Level Max
+-   ![Rector](https://img.shields.io/badge/Rector-777BB4?style=flat-square&logo=php&logoColor=white) Refactoring
+-   ![Stylelint](https://img.shields.io/badge/Stylelint-263238?style=flat-square&logo=stylelint&logoColor=white) 16
+-   ![Pint](https://img.shields.io/badge/Pint-FF2D20?style=flat-square&logo=laravel&logoColor=white) 1.22
 
--   **Theme Configuration**: All theme.json settings are defined in TypeScript files in `src/theme/`
-    -   `src/theme/theme.ts` - Main theme configuration
-    -   `src/theme/blocks/core/*/` - Block-specific settings and styles
-    -   Block style variations (files matching `blockname.*.ts`) are automatically generated as separate JSON files in the `styles/` directory
--   **Type Safety**: TypeScript types are auto-generated from the official WordPress theme.json schema
--   **Build System**: Node.js directly loads TypeScript files using `--experimental-strip-types` flag (no compilation step needed)
+</td>
+</tr>
+</table>
 
-### Production
+---
 
--   Run `npm run build` for production build (includes theme.json generation)
+---
 
-### Development
+## 📚 Documentation
 
--   Run `npm start` for development with file watchers (automatically rebuilds theme.json when TypeScript files change)
+Comprehensive guides to help you get started and understand the project structure:
 
-#### Linters
+<table>
+<tr>
+<td width="33%">
 
--   `npm run lint:css` / `composer run lint:css` - Run stylelint for CSS/SCSS files
--   `npm run lint:php` / `composer run lint:php` - Run PHP linters (phpcs, phpmd)
--   `composer run lint` - Run PHPStan static analysis
+### 📦 [Installation Guide](INSTALLATION.md)
 
-Available linters:
+Step-by-step installation instructions including requirements (Composer, Node.js) and setup process.
 
--   [phpcs](https://github.com/squizlabs/PHP_CodeSniffer) ([VScode](https://marketplace.visualstudio.com/items?itemName=ikappas.phpcs))
--   [phpmd](https://phpmd.org/) ([VScode](https://marketplace.visualstudio.com/items?itemName=ecodes.vscode-phpmd))
--   [stylelint](https://stylelint.io/) ([VScode](https://marketplace.visualstudio.com/items?itemName=shinnn.stylelint))
--   [PHPStan](https://phpstan.org/) - Static analysis for PHP
+</td>
+<td width="33%">
 
-#### Fixers
+### 🎨 [Theme.json Workflow](THEME-JSON-WORKFLOW.md)
 
--   `npm run lint:css:fix` / `composer run lint:css:fix` - Auto-fix stylelint issues
--   `npm run lint:php:fix` / `composer run lint:php:fix` - Auto-fix PHP formatting with phpcbf
--   `composer run format` - Format PHP code with Laravel Pint
--   `composer run format:prettier` - Format files with Prettier
+Learn how to work with TypeScript-based theme.json configuration, including type safety benefits and daily development workflow.
 
-Available fixers:
+</td>
+<td width="33%">
 
--   [stylelint](https://stylelint.io/)
--   [phpcbf](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Fixing-Errors-Automatically)
--   [Laravel Pint](https://github.com/laravel/pint) - PHP code style fixer
+### 📋 [Dependencies](DEPENDENCIES.md)
 
-#### Project Setup
+Detailed breakdown of all npm and Composer dependencies, explaining what each package does and why it's included.
 
--   `composer run replace-textdomain` - Replace textdomain placeholders with project name
--   `composer run copy-env` - Copy environment configuration files
+</td>
+</tr>
+<tr>
+<td width="33%">
+
+### 📝 [Changelog](CHANGELOG.md)
+
+Track version history and changes to the project.
+
+</td>
+<td width="33%">
+
+### 📁 Folder READMEs
+
+Every major folder contains its own `README.md` with specific instructions for that section.
+
+</td>
+<td width="33%">
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🚀 Installation
+
+```bash
+composer create-project ralfhortt/wordpress-theme-boilerplate
+```
+
+> 📖 Check `INSTALLATION.md` for detailed installation steps
+
+---
+
+## 💻 Development
+
+### ⚡ Quick Start
+
+<table>
+<tr>
+<td width="50%">
+
+**🏗️ Production Build**
+
+```bash
+npm run build
+```
+
+Builds all assets and generates theme.json
+
+</td>
+<td width="50%">
+
+**👀 Development Mode**
+
+```bash
+npm start
+```
+
+Starts file watchers with auto-rebuild
+
+</td>
+</tr>
+</table>
+
+### 🔧 Commands
+
+<details>
+<summary><b>🎨 Development Helpers</b></summary>
+
+| Command                        | Description                                     |
+| ------------------------------ | ----------------------------------------------- |
+| `npm run make:block-config`    | Create TypeScript block configuration           |
+| `npm run make:block-style`     | Create TypeScript block style variation         |
+| `npm run make:block`           | Create a block pattern                          |
+| `npm run make:pattern`         | Create a block pattern                          |
+| `npm run css:clamp`            | Calculate CSS clamp values                      |
+| `npm run css:color`            | Convert color notations (rgb, hex, oklch)       |
+| `npm run css:contrast`         | Calculate color contrast ratios                 |
+| `npm run generate:theme-types` | Generate TypeScript types from WordPress schema |
+
+</details>
+
+<details>
+<summary><b>🏗️ Build Commands</b></summary>
+
+| Command               | Description                            |
+| --------------------- | -------------------------------------- |
+| `npm run build:theme` | Build theme.json from TypeScript files |
+| `npm run watch:theme` | Watch and auto-rebuild theme files     |
+| `npm run build`       | Production build (includes theme.json) |
+| `npm start`           | Development mode with file watchers    |
+
+</details>
+
+<details>
+<summary><b>🔍 Linters</b></summary>
+
+| Command             | Description                 |
+| ------------------- | --------------------------- |
+| `npm run lint:css`  | Run Stylelint for CSS/SCSS  |
+| `npm run lint:php`  | Run PHPStan analysis        |
+| `composer run lint` | Run PHPStan static analysis |
+
+**Available Tools:**
+
+-   ![PHPStan](https://img.shields.io/badge/PHPStan-777BB4?style=flat-square&logo=php&logoColor=white) [PHPStan](https://phpstan.org/) - Static analysis
+-   ![Stylelint](https://img.shields.io/badge/Stylelint-263238?style=flat-square&logo=stylelint&logoColor=white) [Stylelint](https://stylelint.io/) - CSS/SCSS linting
+
+</details>
+
+<details>
+<summary><b>🔧 Fixers & Formatters</b></summary>
+
+| Command                        | Description                       |
+| ------------------------------ | --------------------------------- |
+| `npm run lint:css:fix`         | Auto-fix Stylelint issues         |
+| `npm run lint:php:fix`         | Format PHP with Laravel Pint      |
+| `composer run format`          | Format PHP code with Laravel Pint |
+| `composer run format:prettier` | Format all files with Prettier    |
+| `composer run refactor`        | Refactor PHP code with Rector     |
+| `composer run refactor:dry`    | Preview Rector changes            |
+
+**Available Tools:**
+
+-   ![Pint](https://img.shields.io/badge/Pint-FF2D20?style=flat-square&logo=laravel&logoColor=white) [Laravel Pint](https://github.com/laravel/pint) - PHP formatter
+-   ![Rector](https://img.shields.io/badge/Rector-777BB4?style=flat-square&logo=php&logoColor=white) [Rector](https://getrector.com/) - PHP refactoring
+-   ![Stylelint](https://img.shields.io/badge/Stylelint-263238?style=flat-square&logo=stylelint&logoColor=white) [Stylelint](https://stylelint.io/) - Auto-fix CSS
+-   ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=prettier&logoColor=black) [Prettier](https://prettier.io/) - Code formatter
+
+</details>
+
+<details>
+<summary><b>⚙️ Project Setup</b></summary>
+
+| Command                           | Description                          |
+| --------------------------------- | ------------------------------------ |
+| `composer run replace-textdomain` | Replace textdomain with project name |
+| `composer run copy-env`           | Copy environment configuration files |
+
+</details>
+
+---
+
+## 🏗️ Build Process
+
+The theme uses **TypeScript** for theme.json configuration with full type safety:
+
+### 📁 Project Structure
+
+```
+src/theme/
+├── theme.ts                    # Main theme configuration
+├── theme.d.ts                  # Auto-generated TypeScript types
+└── blocks/core/*/              # Block-specific settings and styles
+    ├── blockname.ts            # Block configuration
+    └── blockname.stylename.ts  # Block style variations → styles/blockname.stylename.json
+```
+
+### ✨ Features
+
+-   **🎯 Type Safety**: TypeScript types auto-generated from official WordPress theme.json schema
+-   **⚡ No Compilation**: Node.js loads TypeScript directly with `--experimental-strip-types` flag
+-   **🎨 Block Styles**: Style variations (files matching `blockname.*.ts`) automatically generate separate JSON files in `styles/` directory
+-   **🔄 Live Reload**: Watch mode automatically rebuilds when TypeScript files change
+
+### 🚀 Workflows
+
+<table>
+<tr>
+<td width="50%">
+
+**Production**
+
+```bash
+npm run build
+```
+
+Complete production build with theme.json generation
+
+</td>
+<td width="50%">
+
+**Development**
+
+```bash
+npm start
+```
+
+File watchers with automatic theme.json rebuild
+
+</td>
+</tr>
+</table>

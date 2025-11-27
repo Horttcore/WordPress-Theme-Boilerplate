@@ -8,17 +8,9 @@
 // Generic
 @use "2-generic/_reset.scss" as reset;
 @use "2-generic/custom-media-queries.scss" as customMediaQueries;
-@use "2-generic/custom-properties.scss" as customProperties;
-@use "2-generic/global.animations.scss" as animations;
-@use "2-generic/global.margins.scss" as margins;
 
 // Elements
-@use "3-elements/body" as body;
-@use "3-elements/figure" as figure;
 @use "3-elements/form" as form;
-@use "3-elements/html" as html;
-@use "3-elements/images" as images;
-@use "3-elements/navigation" as navigation;
 
 // Components
 @use "4-components/footer" as footer;

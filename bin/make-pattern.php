@@ -295,7 +295,7 @@ function getRegisteredBlockTypes()
             // Add option for custom block
             $blockTypes[] = 'custom-block';
 
-            return !empty($blockTypes) ? $blockTypes : $fallbackBlocks;
+            return $blockTypes;
         } catch (Exception $e) {
             // Fall back to default blocks if there's an error
             return $fallbackBlocks;

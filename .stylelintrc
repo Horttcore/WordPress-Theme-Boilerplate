@@ -1,5 +1,7 @@
 {
-    "extends": ["@wordpress/stylelint-config/scss"],
+    "extends": [
+        "@wordpress/stylelint-config/scss"
+    ],
     "customSyntax": "postcss-scss",
     "ignoreFiles": [
         "**/node_modules/**",
@@ -9,14 +11,22 @@
         "**/build/**",
         "**/assets/**"
     ],
-    "plugins": ["stylelint-scss", "stylelint-order"],
+    "plugins": [
+        "stylelint-scss",
+        "stylelint-order"
+    ],
     "rules": {
         "color-no-invalid-hex": true,
         "comment-empty-line-before": [
             "always",
             {
-                "except": ["first-nested"],
-                "ignore": ["after-comment", "stylelint-commands"]
+                "except": [
+                    "first-nested"
+                ],
+                "ignore": [
+                    "after-comment",
+                    "stylelint-commands"
+                ]
             }
         ],
         "comment-no-empty": true,
@@ -53,8 +63,16 @@
             3,
             {
                 "severity": "warning",
-                "ignore": ["pseudo-classes", "blockless-at-rules"],
-                "ignoreAtRules": ["each", "media", "supports", "include"]
+                "ignore": [
+                    "pseudo-classes",
+                    "blockless-at-rules"
+                ],
+                "ignoreAtRules": [
+                    "each",
+                    "media",
+                    "supports",
+                    "include"
+                ]
             }
         ],
         "no-duplicate-at-import-rules": true,
@@ -70,13 +88,22 @@
         "rule-empty-line-before": [
             "always",
             {
-                "ignore": ["after-comment"]
+                "ignore": [
+                    "after-comment"
+                ]
             }
         ],
         "at-rule-empty-line-before": [
             "always",
             {
-                "ignoreAtRules": ["import", "extend", "include", "mixin", "use", "custom-media"]
+                "ignoreAtRules": [
+                    "import",
+                    "extend",
+                    "include",
+                    "mixin",
+                    "use",
+                    "custom-media"
+                ]
             }
         ],
         "selector-attribute-quotes": "always",
@@ -89,7 +116,9 @@
         "selector-type-no-unknown": [
             true,
             {
-                "ignore": ["custom-elements"]
+                "ignore": [
+                    "custom-elements"
+                ]
             }
         ],
         "shorthand-property-no-redundant-values": true,
@@ -102,7 +131,14 @@
         "scss/at-function-pattern": "^[a-z]+([a-z0-9-]+[a-z0-9]+)?$",
         "scss/at-mixin-argumentless-call-parentheses": "always",
         "scss/at-mixin-parentheses-space-before": "never",
-        "scss/at-rule-no-unknown": true,
+        "scss/at-rule-no-unknown": [
+            true,
+            {
+                "ignoreAtRules": [
+                    "custom-media"
+                ]
+            }
+        ],
         "scss/declaration-nested-properties": "never",
         "scss/dimension-no-non-numeric-values": true,
         "scss/dollar-variable-colon-space-after": "always",
@@ -110,7 +146,10 @@
         "scss/double-slash-comment-empty-line-before": [
             "always",
             {
-                "ignore": ["between-comments", "inside-block"]
+                "ignore": [
+                    "between-comments",
+                    "inside-block"
+                ]
             }
         ],
         "scss/double-slash-comment-whitespace-inside": "always",

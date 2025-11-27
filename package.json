@@ -6,28 +6,32 @@
     "license": "GPL-2.0+",
     "homepage": "https://ralfhortt.dev",
     "scripts": {
-        "start": "wp-scripts start --source-path=src/blocks/ --blocks-manifest --experimental-modules --output-path=build/blocks & wp-scripts start src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts --output-path=build/assets & npm run watch:theme",
+        "build:theme": "node --experimental-strip-types --no-warnings bin/build-theme-json.js",
         "build": "wp-scripts build src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts --output-path=build/assets && wp-scripts build --source-path=src/blocks/ --blocks-manifest --experimental-modules --output-path=build/blocks && npm run build:theme",
-        "lint:css": "stylelint **/*.scss -i .gitignore",
-        "lint:css:fix": "stylelint **/*.scss -i .gitignore --fix",
-        "lint:php": "composer run-script lint",
-        "lint:php:fix": "composer run-script format",
-        "build:theme": "node bin/theme-build.js",
-        "watch:theme": "node bin/theme-build.js --watch",
-        "make:block": "php bin/make-block.php",
-        "make:block-style": "php bin/make-block-style.php",
-        "make:pattern": "php bin/make-pattern.php",
         "css:clamp": "php bin/make-clamp.php",
         "css:color": "php bin/css-color.php",
-        "css:contrast": "php bin/css-contrast.php"
+        "css:contrast": "php bin/css-contrast.php",
+        "generate:theme-types": "node bin/generate-theme-types.js",
+        "lint:css:fix": "stylelint **/*.scss -i .gitignore --fix",
+        "lint:css": "stylelint **/*.scss -i .gitignore",
+        "lint:php:fix": "composer run-script format",
+        "lint:php": "composer run-script lint",
+        "make:block-config": "php bin/make-block-config.php",
+        "make:block-style": "php bin/make-block-style.php",
+        "make:block": "php bin/make-block.php",
+        "make:pattern": "php bin/make-pattern.php",
+        "start": "wp-scripts start --source-path=src/blocks/ --blocks-manifest --experimental-modules --output-path=build/blocks & wp-scripts start src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts --output-path=build/assets & npm run watch:theme",
+        "watch:theme": "node --experimental-strip-types --no-warnings --watch-path=src/theme bin/build-theme-json.js"
     },
     "devDependencies": {
         "@wordpress/icons": "^11.0.0",
         "@wordpress/scripts": "^30.26.0",
+        "json-schema-to-typescript": "^15.0.4",
         "postcss-custom-media": "^11.0.6",
         "postcss-easing-gradients": "^3.0.1",
         "stylelint": "^16.25.0",
         "stylelint-order": "^7.0.0",
-        "stylelint-scss": "^6.12.1"
+        "stylelint-scss": "^6.12.1",
+        "typescript": "^5.9.3"
     }
 }

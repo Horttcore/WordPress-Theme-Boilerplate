@@ -68,7 +68,7 @@ const config: ThemeJson = {
 							"fontStretch": "normal",
 							"fontStyle": "normal",
 							"src": [
-								"file:./assets/fonts/roboto-flex-v27-latin-regular.woff2"
+								"file:./src/fonts/roboto-flex-v27-latin-regular.woff2"
 							]
 						}
 					],

@@ -117,8 +117,8 @@ $slug = slugify($styleName);
 // Define paths
 $blocksBaseDir = __DIR__ . '/../src/theme/blocks';
 $blockDir = $blocksBaseDir . '/' . $namespace . '/' . $block;
-$destFile = $blockDir . '/' . $block . '.' . $slug . '.json';
-$stubFile = __DIR__ . '/stubs/block-style.stub.json';
+$destFile = $blockDir . '/' . $block . '.' . $slug . '.ts';
+$stubFile = __DIR__ . '/stubs/block-style.ts';
 
 // Check if stub file exists
 if (!file_exists($stubFile)) {
@@ -140,8 +140,8 @@ if (file_exists($destFile)) {
 // Read stub file and replace placeholders
 $content = file_get_contents($stubFile);
 $content = str_replace('namespace/block', $namespace . '/' . $block, $content);
-$content = preg_replace('/"title":\s*"[^"]*"/', '"title": "' . $styleName . '"', $content);
-$content = preg_replace('/"slug":\s*"[^"]*"/', '"slug": "' . $slug . '"', (string)$content);
+$content = str_replace('"Title"', '"' . $styleName . '"', $content);
+$content = str_replace('"slug"', '"' . $slug . '"', $content);
 
 // Write to destination file
 file_put_contents($destFile, $content);

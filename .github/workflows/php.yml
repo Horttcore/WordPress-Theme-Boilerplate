@@ -7,18 +7,23 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v1
+            - uses: actions/checkout@v4
+
+            - name: Set up PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: "8.4"
 
             - name: Validate composer.json and composer.lock
               run: composer validate
 
             - name: Install PHP dependencies
-              run: composer install --prefer-dist --no-progress --no-suggest
+              run: composer install --prefer-dist --no-progress --no-interaction
 
             - name: Set up Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: '22'
+                  node-version: "22"
 
             - name: Install Node.js dependencies
               run: npm install

@@ -1,5 +1,5 @@
 {
-    "name": "lhs-potsdam",
+    "name": "wordpress-theme-boilerplate",
     "version": "1.0.0",
     "description": "A new WordPress Boilerplate Theme by Ralf Hortt",
     "author": "Ralf Hortt <mail@ralfhortt.dev>",
@@ -7,7 +7,7 @@
     "homepage": "https://ralfhortt.dev",
     "scripts": {
         "build:theme": "node --experimental-strip-types --no-warnings bin/build-theme-json.js",
-        "build": "wp-scripts build src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts --output-path=build/assets && wp-scripts build --source-path=src/blocks/ --blocks-manifest --experimental-modules --output-path=build/blocks && npm run build:theme",
+        "build": "npm run generate:theme-types && wp-scripts build src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts --output-path=build/assets && wp-scripts build --source-path=src/blocks/ --blocks-manifest --experimental-modules --output-path=build/blocks && npm run build:theme",
         "css:clamp": "php bin/make-clamp.php",
         "css:color": "php bin/css-color.php",
         "css:contrast": "php bin/css-contrast.php",

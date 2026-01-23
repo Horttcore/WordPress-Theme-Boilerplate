@@ -47,7 +47,7 @@ add_action('after_setup_theme', function (): void {
      * @see https://developer.wordpress.org/reference/functions/add_theme_support/
      * ------------------------------------------------------------------------------
      */
-    add_editor_style('build/css/editor.scss.css');
+    add_editor_style('build/assets/editor-styles.scss.css');
 
     /**
      * ------------------------------------------------------------------------------

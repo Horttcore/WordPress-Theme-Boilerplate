@@ -15,7 +15,8 @@
         "laravel/pint": "^1.22",
         "laravel/prompts": "*",
         "ralfhortt/wp-assets": "*",
-        "ralfhortt/wp-image-sizes": "*"
+        "ralfhortt/wp-image-sizes": "*",
+        "ralfhortt/wp-block": "^2.3"
     },
     "scripts": {
         "post-create-project-cmd": "composer run-script replace-textdomain && composer run-script copy-env",

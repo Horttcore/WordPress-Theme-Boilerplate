@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e715a0159063352a82ec3e4bdb8700ed",
+    "content-hash": "2d2facf9a3fc123d5fb072dd84237580",
     "packages": [
         {
             "name": "laravel/pint",
@@ -186,6 +186,43 @@
             "time": "2021-11-05T16:47:00+00:00"
         },
         {
+            "name": "ralfhortt/service-contracts",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Horttcore/ServiceContract.git",
+                "reference": "56f3a5b13dc403e18848b5a3197ce4f085501914"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Horttcore/ServiceContract/zipball/56f3a5b13dc403e18848b5a3197ce4f085501914",
+                "reference": "56f3a5b13dc403e18848b5a3197ce4f085501914",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RalfHortt\\ServiceContracts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralf Hortt",
+                    "email": "me@horttcore.de"
+                }
+            ],
+            "description": "A service contract",
+            "support": {
+                "issues": "https://github.com/Horttcore/ServiceContract/issues",
+                "source": "https://github.com/Horttcore/ServiceContract/tree/master"
+            },
+            "time": "2019-12-03T14:57:47+00:00"
+        },
+        {
             "name": "ralfhortt/wp-assets",
             "version": "3.0.0",
             "source": {
@@ -226,6 +263,53 @@
                 "source": "https://github.com/Horttcore/wp-assets/tree/3.0.0"
             },
             "time": "2024-11-06T22:00:25+00:00"
+        },
+        {
+            "name": "ralfhortt/wp-block",
+            "version": "2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Horttcore/wp-block.git",
+                "reference": "1e1674cdb334081fb08c0dfdcd6d4b7c9c54118f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Horttcore/wp-block/zipball/1e1674cdb334081fb08c0dfdcd6d4b7c9c54118f",
+                "reference": "1e1674cdb334081fb08c0dfdcd6d4b7c9c54118f",
+                "shasum": ""
+            },
+            "require": {
+                "ralfhortt/service-contracts": "^1.0"
+            },
+            "require-dev": {
+                "brain/monkey": "^2.6",
+                "mockery/mockery": "^1.6",
+                "pestphp/pest": "^4.1",
+                "phpstan/phpstan": "^1.10",
+                "szepeviktor/phpstan-wordpress": "^1.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RalfHortt\\WPBlock\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Ralf Hortt",
+                    "email": "mail@ralfhortt.dev"
+                }
+            ],
+            "description": "A composer wrapper for registering WordPress blocks.",
+            "support": {
+                "issues": "https://github.com/Horttcore/wp-block/issues",
+                "source": "https://github.com/Horttcore/wp-block/tree/2.3"
+            },
+            "time": "2025-12-05T12:12:34+00:00"
         },
         {
             "name": "ralfhortt/wp-image-sizes",

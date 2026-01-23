@@ -2,10 +2,10 @@
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/helpers.php';
 
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\info;
-use function Laravel\Prompts\suggest;
 use function Laravel\Prompts\text;
 
 /**
@@ -24,88 +24,8 @@ function slugify($str)
     return $str;
 }
 
-/**
- * Get available blocks from the project
- *
- * @return array List of available blocks in namespace/block format
- */
-function getAvailableBlocks(): array
-{
-    $blocksBaseDir = __DIR__ . '/../src/theme/blocks';
-    $blocks = [];
-
-    // Theme Blocks
-    $themeBlocks = [
-        'core/avatar', 'core/comment-author-name', 'core/comment-content', 'core/comment-date',
-        'core/comment-edit-link', 'core/comment-reply-link', 'core/comments', 'core/comments-pagination',
-        'core/comments-pagination-next', 'core/comments-pagination-numbers', 'core/comments-pagination-previous',
-        'core/comments-title', 'core/loginout', 'core/navigation', 'core/pattern', 'core/post-author',
-        'core/post-author-biography', 'core/post-author-name', 'core/post-comments-form', 'core/post-content',
-        'core/post-date', 'core/post-excerpt', 'core/post-featured-image', 'core/post-navigation-link',
-        'core/post-template', 'core/post-terms', 'core/post-title', 'core/query', 'core/query-no-results',
-        'core/query-pagination', 'core/query-pagination-next', 'core/query-pagination-numbers',
-        'core/query-pagination-previous', 'core/query-title', 'core/query-total', 'core/read-more',
-        'core/site-logo', 'core/site-tagline', 'core/site-title', 'core/template-part', 'core/term-description',
-        'core/archives', 'core/calendar', 'core/categories', 'core/html', 'core/latest-comments',
-        'core/latest-posts', 'core/legacy-widget', 'core/page-list', 'core/page-list-item', 'core/rss',
-        'core/search', 'core/shortcode', 'core/social-link', 'core/social-links', 'core/tag-cloud',
-        'core/widget-group', 'core/button', 'core/buttons', 'core/column', 'core/columns', 'core/comment-template',
-        'core/group', 'core/home-link', 'core/more', 'core/navigation-link', 'core/navigation-submenu',
-        'core/nextpage', 'core/separator', 'core/spacer', 'core/code', 'core/details', 'core/footnotes',
-        'core/freeform', 'core/heading', 'core/list', 'core/list-item', 'core/missing', 'core/paragraph',
-        'core/preformatted', 'core/pullquote', 'core/quote', 'core/table', 'core/verse'
-    ];
-
-    // Add theme blocks to the list
-    $blocks = array_merge($blocks, $themeBlocks);
-
-    // Scan local blocks
-    if (is_dir($blocksBaseDir)) {
-        $namespaces = scandir($blocksBaseDir);
-        foreach ($namespaces as $namespace) {
-            if ($namespace === '.' || $namespace === '..') {
-                continue;
-            }
-
-            $namespacePath = $blocksBaseDir . '/' . $namespace;
-            if (is_dir($namespacePath)) {
-                $blockNames = scandir($namespacePath);
-                foreach ($blockNames as $blockName) {
-                    if ($blockName === '.' || $blockName === '..') {
-                        continue;
-                    }
-
-                    $blockPath = $namespacePath . '/' . $blockName;
-                    if (is_dir($blockPath)) {
-                        $blocks[] = $namespace . '/' . $blockName;
-                    }
-                }
-            }
-        }
-    }
-
-    // Remove duplicates and sort
-    $blocks = array_unique($blocks);
-    sort($blocks);
-
-    return $blocks;
-}
-
 // Get the namespace and block name using Laravel Prompts with autocomplete
-$namespaceBlock = suggest(
-    'Enter namespace/block',
-    getAvailableBlocks(),
-    'e.g. core/button',
-    '',
-    5,
-    true,
-    function ($value) {
-        if (!str_contains((string)$value, '/')) {
-            return 'Input must be in the format "namespace/block"';
-        }
-        return null;
-    }
-);
+$namespaceBlock = ct_prompt_namespace_block();
 
 // Get the style name
 $styleName = text('Enter Style Name', 'e.g. Rounded Corners', '', true);

@@ -31,7 +31,10 @@
         "format:prettier": "prettier --write .",
         "make:block": "php bin/make-block.php",
         "make:block-style": "php bin/make-block-style.php",
+        "make:block-config": "php bin/make-block-config.php",
         "make:pattern": "php bin/make-pattern.php",
+        "make:starter-content": "php bin/make-starter-content.php",
+        "make:query-loop": "php bin/make-query-loop.php",
         "css:clamp": "php bin/css-clamp.php",
         "css:color": "php bin/css-color.php",
         "css:contrast": "php bin/css-contrast.php"

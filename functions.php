@@ -68,7 +68,8 @@ add_action('after_setup_theme', function (): void {
      */
     // (new ImageSize('name', __('Label', 'TEXTDOMAIN'), 50, 50, true))->register();
 
-
+    // Register blocks from a manifest file
+    (new BlockManifest(__DIR__ . '/build/blocks/blocks-manifest.php'))->register();
 });
 
 /**

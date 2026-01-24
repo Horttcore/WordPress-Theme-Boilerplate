@@ -1,7 +1,5 @@
 /* Prevent font size inflation */
 html {
-    -moz-text-size-adjust: none;
-    -webkit-text-size-adjust: none;
     text-size-adjust: none;
 }
 
@@ -12,10 +10,12 @@ figure, blockquote, dl, dd {
 }
 
 :first-child {
+    // stylelint-disable-next-line declaration-no-important
     margin-block-start: 0 !important;
 }
 
 :last-child {
+    // stylelint-disable-next-line declaration-no-important
     margin-block-end: 0 !important;
 }
 

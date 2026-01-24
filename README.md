@@ -144,16 +144,18 @@ Starts file watchers with auto-rebuild
 
 #### 🎨 Development Helpers
 
-| Command                        | Description                                     |
-| ------------------------------ | ----------------------------------------------- |
-| `npm run make:block-config`    | Create TypeScript block configuration           |
-| `npm run make:block-style`     | Create TypeScript block style variation         |
-| `npm run make:block`           | Create a block pattern                          |
-| `npm run make:pattern`         | Create a block pattern                          |
-| `npm run css:clamp`            | Calculate CSS clamp values                      |
-| `npm run css:color`            | Convert color notations (rgb, hex, oklch)       |
-| `npm run css:contrast`         | Calculate color contrast ratios                 |
-| `npm run generate:theme-types` | Generate TypeScript types from WordPress schema |
+| Command                        | Description                                           |
+| ------------------------------ | ----------------------------------------------------- |
+| `npm run make:block-config`    | Create TypeScript block configuration                 |
+| `npm run make:block-style`     | Create TypeScript block style variation               |
+| `npm run make:block`           | Create a block pattern                                |
+| `npm run make:pattern`         | Create a block pattern                                |
+| `npm run make:starter-content` | Scaffold a starter content pattern interactively      |
+| `npm run make:query-loop`      | Scaffold a query loop pattern via interactive prompts |
+| `npm run css:clamp`            | Calculate CSS clamp values                            |
+| `npm run css:color`            | Convert color notations (rgb, hex, oklch)             |
+| `npm run css:contrast`         | Calculate color contrast ratios                       |
+| `npm run generate:theme-types` | Generate TypeScript types from WordPress schema       |
 
 #### 🏗️ Build Commands
 

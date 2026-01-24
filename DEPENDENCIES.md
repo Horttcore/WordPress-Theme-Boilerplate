@@ -28,6 +28,7 @@ Here are a for what each dependency is used
 -   **laravel/prompts:** Interactive CLI prompts for build scripts
 -   **ralfhortt/wp-assets:** Registering/Enqueing assets
 -   **ralfhortt/wp-image-sizes:** Easier image registration
+-   **ralfhortt/wp-block:** Modern block registration helpers for manifest-driven blocks, variations, and defaults
 
 ### Dev
 

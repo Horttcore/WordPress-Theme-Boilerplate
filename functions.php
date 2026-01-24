@@ -14,7 +14,7 @@ declare(strict_types=1);
  */
 
 use RalfHortt\Assets\Script;
-use RalfHortt\Assets\Style;
+use RalfHortt\WPBlock\BlockManifest;
 
 /**
  * ------------------------------------------------------------------------------

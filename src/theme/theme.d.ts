@@ -172,7 +172,7 @@ export interface SettingsAppearanceToolsProperties {
 	 * - background: backgroundImage, backgroundSize
 	 * - border: color, radius, style, width
 	 * - color: link, heading, button, caption
-	 * - dimensions: aspectRatio, minHeight, width
+	 * - dimensions: aspectRatio, height, minHeight, width
 	 * - position: sticky
 	 * - spacing: blockGap, margin, padding
 	 * - typography: lineHeight
@@ -380,6 +380,10 @@ export interface SettingsDimensionsProperties {
 			[k: string]: unknown;
 		}[];
 		/**
+		 * Allow users to set custom height.
+		 */
+		height?: boolean;
+		/**
 		 * Allow users to set custom minimum height.
 		 */
 		minHeight?: boolean;
@@ -387,6 +391,24 @@ export interface SettingsDimensionsProperties {
 		 * Allow users to set custom width.
 		 */
 		width?: boolean;
+		/**
+		 * Dimension size presets for dimension block supports.
+		 * Generates a custom property (`--wp--preset--dimension--{slug}`) per preset value.
+		 */
+		dimensionSizes?: {
+			/**
+			 * Name of the dimension size preset, translatable.
+			 */
+			name?: string;
+			/**
+			 * Unique identifier for the dimension size preset.
+			 */
+			slug?: string;
+			/**
+			 * CSS dimension value, including units.
+			 */
+			size?: string;
+		}[];
 	};
 	[k: string]: unknown;
 }
@@ -788,6 +810,7 @@ export interface SettingsBlocksPropertiesComplete {
 	"core/audio"?: SettingsPropertiesComplete;
 	"core/avatar"?: SettingsPropertiesComplete;
 	"core/block"?: SettingsPropertiesComplete;
+	"core/breadcrumbs"?: SettingsPropertiesComplete;
 	"core/button"?: SettingsPropertiesComplete;
 	"core/buttons"?: SettingsPropertiesComplete;
 	"core/calendar"?: SettingsPropertiesComplete;
@@ -1052,6 +1075,10 @@ export interface StylesProperties {
 		 */
 		aspectRatio?: string | RefComplete;
 		/**
+		 * Sets the `height` CSS property.
+		 */
+		height?: string | RefComplete;
+		/**
 		 * Sets the `min-height` CSS property.
 		 */
 		minHeight?: string | RefComplete;
@@ -1249,6 +1276,7 @@ export interface StylesBlocksPropertiesComplete {
 	"core/audio"?: StylesPropertiesAndElementsComplete;
 	"core/avatar"?: StylesPropertiesAndElementsComplete;
 	"core/block"?: StylesPropertiesAndElementsComplete;
+	"core/breadcrumbs"?: StylesPropertiesAndElementsComplete;
 	"core/button"?: StylesPropertiesAndElementsComplete & StylesBlocksPseudoSelectorsProperties;
 	"core/buttons"?: StylesPropertiesAndElementsComplete;
 	"core/calendar"?: StylesPropertiesAndElementsComplete;
@@ -1363,6 +1391,7 @@ export interface StylesVariationBlocksPropertiesComplete {
 	"core/audio"?: StylesVariationBlockPropertiesComplete;
 	"core/avatar"?: StylesVariationBlockPropertiesComplete;
 	"core/block"?: StylesVariationBlockPropertiesComplete;
+	"core/breadcrumbs"?: StylesVariationBlockPropertiesComplete;
 	"core/button"?: StylesVariationBlockPropertiesComplete;
 	"core/buttons"?: StylesVariationBlockPropertiesComplete;
 	"core/calendar"?: StylesVariationBlockPropertiesComplete;

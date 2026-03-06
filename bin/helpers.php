@@ -117,7 +117,20 @@ function ct_prompt_namespace_block(string $label = 'Enter namespace/block'): str
 {
     return suggest(
         $label,
-        ct_get_available_blocks(),
+        function ($search) {
+            $blocks = ct_get_available_blocks();
+
+            // Return all blocks if search is empty
+            if (empty($search)) {
+                return $blocks;
+            }
+
+            // Filter blocks with partial matching (case-insensitive)
+            return array_filter(
+                $blocks,
+                fn($block) => stripos($block, $search) !== false
+            );
+        },
         'e.g. core/button',
         '',
         5,

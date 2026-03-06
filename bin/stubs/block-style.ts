@@ -2,13 +2,11 @@ import type { ThemeJson } from '../../../theme.d.js';
 
 const blockStyle: ThemeJson & {
   title: string;
-  slug: string;
   blockTypes: string[];
 } = {
   "$schema": "https://schemas.wp.org/trunk/theme.json",
   version: 3,
   title: "Title",
-  slug: "slug",
   blockTypes: [
     "namespace/block"
   ],

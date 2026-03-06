@@ -61,7 +61,6 @@ if (file_exists($destFile)) {
 $content = file_get_contents($stubFile);
 $content = str_replace('namespace/block', $namespace . '/' . $block, $content);
 $content = str_replace('"Title"', '"' . $styleName . '"', $content);
-$content = str_replace('"slug"', '"' . $slug . '"', $content);
 
 // Write to destination file
 file_put_contents($destFile, $content);

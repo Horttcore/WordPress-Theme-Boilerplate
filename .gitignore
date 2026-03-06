@@ -7,3 +7,4 @@ theme.json
 styles/*
 !styles/README.md
 theme.json
+theme.d.ts

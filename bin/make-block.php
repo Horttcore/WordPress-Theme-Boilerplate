@@ -2,6 +2,7 @@
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/helpers.php';
 
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\error;
@@ -19,13 +20,11 @@ $slug = trim($slug, '-');
 // Ask if user wants to create a dynamic block
 $isVariantDynamic = confirm('Create a dynamic block?', false);
 
-// Read theme name from package.json for dynamic namespace
-$packageJsonPath = __DIR__ . '/../package.json';
-$packageData = json_decode(file_get_contents($packageJsonPath), true);
-$themeName = $packageData['name'] ?? 'default-theme';
+// Get theme namespace automatically from package.json
+$themeName = ct_get_current_theme_textdomain();
 
-// Set target directory to src/blocks/$slug (without namespace)
-$targetDirArg = ' --target-dir ' . escapeshellarg($slug);
+// Set target directory to src/blocks/$namespace/$slug
+$targetDirArg = ' --target-dir ' . escapeshellarg($themeName . '/' . $slug);
 
 // Set namespace to theme name (dynamic)
 $namespaceArg = ' --namespace ' . escapeshellarg($themeName);

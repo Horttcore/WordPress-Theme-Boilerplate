@@ -1,8 +1,10 @@
 #!/usr/bin/env php
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/helpers.php';
+declare(strict_types=1);
+
+require __DIR__.'/../vendor/autoload.php';
+require __DIR__.'/helpers.php';
 
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\info;
@@ -11,16 +13,17 @@ use function Laravel\Prompts\text;
 /**
  * Slugify a string
  *
- * @param string $str The string to slugify
+ * @param  string  $str  The string to slugify
  * @return string The slugified string
  */
 function slugify($str)
 {
-    $str = strtolower($str);
+    $str = mb_strtolower($str);
     $str = preg_replace('/\s+/', '-', $str);
-    $str = preg_replace('/[^\w\-]+/', '', (string)$str);
-    $str = preg_replace('/\-\-+/', '-', (string)$str);
-    $str = trim((string)$str, '-');
+    $str = preg_replace('/[^\w\-]+/', '', (string) $str);
+    $str = preg_replace('/\-\-+/', '-', (string) $str);
+    $str = mb_trim((string) $str, '-');
+
     return $str;
 }
 
@@ -35,19 +38,19 @@ $styleName = text('Enter Style Name', 'e.g. Rounded Corners', '', true);
 $slug = slugify($styleName);
 
 // Define paths
-$blocksBaseDir = __DIR__ . '/../src/theme/blocks';
-$blockDir = $blocksBaseDir . '/' . $namespace . '/' . $block;
-$destFile = $blockDir . '/' . $block . '.' . $slug . '.ts';
-$stubFile = __DIR__ . '/stubs/block-style.ts';
+$blocksBaseDir = __DIR__.'/../src/blocks';
+$blockDir = $blocksBaseDir.'/'.$namespace.'/'.$block;
+$destFile = $blockDir.'/'.$block.'.'.$slug.'.ts';
+$stubFile = __DIR__.'/stubs/block-style.ts';
 
 // Check if stub file exists
-if (!file_exists($stubFile)) {
+if (! file_exists($stubFile)) {
     error("Stub file not found: $stubFile");
     exit(1);
 }
 
 // Create directories if they don't exist
-if (!is_dir($blockDir)) {
+if (! is_dir($blockDir)) {
     mkdir($blockDir, 0755, true);
 }
 
@@ -59,8 +62,8 @@ if (file_exists($destFile)) {
 
 // Read stub file and replace placeholders
 $content = file_get_contents($stubFile);
-$content = str_replace('namespace/block', $namespace . '/' . $block, $content);
-$content = str_replace('"Title"', '"' . $styleName . '"', $content);
+$content = str_replace('namespace/block', $namespace.'/'.$block, $content);
+$content = str_replace('"Title"', '"'.$styleName.'"', $content);
 
 // Write to destination file
 file_put_contents($destFile, $content);

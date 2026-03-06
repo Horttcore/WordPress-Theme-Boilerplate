@@ -8,7 +8,7 @@ const https = require("https");
 const SCHEMA_URL =
     "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/theme.json";
 const SCHEMA_PATH = path.join(__dirname, "..", "theme-schema.json");
-const OUTPUT_PATH = path.join(__dirname, "..", "src", "theme", "theme.d.ts");
+const OUTPUT_PATH = path.join(__dirname, "..", "src", "blocks", "theme.d.ts");
 
 /**
  * Download the schema from the URL

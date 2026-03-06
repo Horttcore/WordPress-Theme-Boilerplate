@@ -1,4 +1,4 @@
-import type { ThemeJson } from '../../../theme.d.js';
+import type { ThemeJson } from '../../theme.d.js';
 
 const blockStyle: ThemeJson & {
   title: string;

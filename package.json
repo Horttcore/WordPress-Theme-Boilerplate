@@ -20,18 +20,22 @@
         "make:block-style": "php bin/make-block-style.php",
         "make:block": "php bin/make-block.php",
         "make:pattern": "php bin/make-pattern.php",
-        "start": "wp-scripts start --source-path=src/blocks/ --blocks-manifest --experimental-modules --output-path=build/blocks & wp-scripts start src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts --output-path=build/assets & npm run watch:theme",
-        "watch:theme": "node --experimental-strip-types --no-warnings --watch-path=src/theme bin/build-theme-json.js"
+        "start": "concurrently --graceful-exit -n blocks,assets,theme -c \"cyan,magenta,green\" \"npm run watch:blocks\" \"npm run watch:assets\" \"npm run watch:theme\"",
+        "watch:blocks": "node bin/wp-scripts-filter.js start --source-path=src/blocks/ --blocks-manifest --experimental-modules --output-path=build/blocks",
+        "watch:assets": "node bin/wp-scripts-filter.js start src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts --output-path=build/assets",
+        "watch:theme": "node --experimental-strip-types --no-warnings --watch-path=src/blocks bin/build-theme-json.js"
     },
     "devDependencies": {
-        "@wordpress/icons": "^11.3.0",
-        "@wordpress/scripts": "^31.1.0",
+        "@wordpress/icons": "^11.8.0",
+        "@wordpress/scripts": "^31.6.0",
+        "baseline-browser-mapping": "^2.10.0",
+        "concurrently": "^9.2.1",
         "json-schema-to-typescript": "^15.0.4",
-        "postcss-custom-media": "^11.0.6",
+        "postcss-custom-media": "^12.0.1",
         "postcss-easing-gradients": "^3.0.1",
-        "stylelint": "^16.26.1",
-        "stylelint-order": "^7.0.0",
-        "stylelint-scss": "^6.12.1",
+        "stylelint": "^17.4.0",
+        "stylelint-order": "^7.0.1",
+        "stylelint-scss": "^7.0.0",
         "typescript": "^5.9.3"
     }
 }

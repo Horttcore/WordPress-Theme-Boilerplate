@@ -5,7 +5,8 @@ const path = require("path");
 const { pathToFileURL } = require("url");
 
 const THEME_DIR = path.join(__dirname, "..", "src", "theme");
-const BLOCKS_DIR = path.join(THEME_DIR, "blocks", "core");
+const BLOCKS_DIR = path.join(__dirname, "..", "src", "blocks", "core");
+const BLOCKS_CONFIG_DIR = path.join(__dirname, "..", "src", "blocks");
 const OUTPUT_PATH = path.join(__dirname, "..", "theme.json");
 
 /**
@@ -48,7 +49,13 @@ async function loadModule(filePath) {
         const module = await import(fileUrl);
         return module.default || module;
     } catch (error) {
-        console.error(`Error loading ${filePath}:`, error.message);
+        const fileName = path.basename(filePath);
+        console.error(`\n⚠ Error loading ${fileName}`);
+        console.error(`  File: ${filePath}`);
+        console.error(`  Issue: ${error.message}`);
+        console.error(
+            `  Tip: Check file syntax, TypeScript errors, and that exports are correct\n`
+        );
         return null;
     }
 }
@@ -64,9 +71,14 @@ async function loadBlocks() {
         const entries = await fs.readdir(BLOCKS_DIR, { withFileTypes: true });
         const directories = entries.filter((entry) => entry.isDirectory());
 
+        if (directories.length === 0) {
+            console.log("⚠ No block directories found in src/blocks/core/");
+        }
+
         for (const dir of directories) {
             const blockName = dir.name;
             const blockDir = path.join(BLOCKS_DIR, blockName);
+            let blockLoaded = false;
 
             // Load main block configuration (blockname.ts)
             const blockPath = path.join(blockDir, `${blockName}.ts`);
@@ -78,6 +90,7 @@ async function loadBlocks() {
                 if (config) {
                     blocks[blockName] = config;
                     console.log(`✓ Loaded block: ${blockName}`);
+                    blockLoaded = true;
                 }
             } catch (error) {
                 // File doesn't exist, skip
@@ -108,9 +121,18 @@ async function loadBlocks() {
             } catch (error) {
                 // No styles found, skip
             }
+
+            if (
+                !blockLoaded &&
+                (await fs.readdir(blockDir)).filter((f) => f.endsWith(".ts")).length === 0
+            ) {
+                console.log(`⚠ Block directory "${blockName}" has no .ts files`);
+            }
         }
     } catch (error) {
-        console.log("No blocks directory found, skipping...");
+        console.error(`\n⚠ Error reading blocks directory: ${error.message}`);
+        console.error(`  Path: ${BLOCKS_DIR}`);
+        console.error(`  Tip: Check that src/blocks/core/ directory exists\n`);
     }
 
     return { blocks, blockStyles };
@@ -120,7 +142,7 @@ async function loadBlocks() {
  * Load theme configuration
  */
 async function loadTheme() {
-    const themePath = path.join(THEME_DIR, "theme.ts");
+    const themePath = path.join(BLOCKS_CONFIG_DIR, "theme.ts");
 
     try {
         await fs.access(themePath);
@@ -128,7 +150,8 @@ async function loadTheme() {
         console.log(`✓ Loaded theme configuration`);
         return config || {};
     } catch (error) {
-        console.log("No theme file found, using empty object...");
+        console.log(`⚠ No theme.ts found (${BLOCKS_CONFIG_DIR}/theme.ts)`);
+        console.log(`  Using default theme configuration\n`);
         return {
             $schema: "https://schemas.wp.org/trunk/theme.json",
             version: 3,
@@ -141,7 +164,9 @@ async function loadTheme() {
  */
 async function buildThemeJson() {
     try {
-        console.log("Building theme.json...\n");
+        console.log("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        console.log("Building theme.json...");
+        console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
 
         // Load all components
         const theme = await loadTheme();
@@ -208,9 +233,10 @@ async function buildThemeJson() {
         // Write theme.json
         await fs.writeFile(OUTPUT_PATH, JSON.stringify(themeJson, null, "\t"));
 
-        console.log(`✓ theme.json generated successfully at ${OUTPUT_PATH}`);
+        console.log(`\n✓ theme.json built successfully`);
+        console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`);
     } catch (error) {
-        console.error("Error building theme.json:", error);
+        console.error(`\n✗ Error building theme.json:\n  ${error.message}\n`);
         process.exit(1);
     }
 }

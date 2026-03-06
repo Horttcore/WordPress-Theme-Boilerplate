@@ -6,9 +6,8 @@ This project uses TypeScript files with full type safety to manage WordPress the
 
 The theme.json configuration is split into modular TypeScript files:
 
--   **Theme**: `src/theme/theme.ts` - Base theme configuration
-
-All files are type-checked against the official WordPress theme.json schema.
+-   **Theme**: `src/blocks/theme.ts` - Base theme configuration
+-   **Block Configurations**: `src/blocks/core/` - Core WordPress block configurations
 
 ## Available Commands
 
@@ -56,7 +55,8 @@ npm run build:theme-json
 
 1. Edit TypeScript files in:
 
-    - `src/theme/theme.ts` for base configuration
+    - `src/blocks/theme.ts` for base configuration
+    - `src/blocks/core/` for core block configurations
 
 2. Build theme.json:
 
@@ -69,16 +69,24 @@ npm run build:theme-json
 ## File Structure
 
 ```
-src/theme/
+src/blocks/
 ├── theme.d.ts                 # TypeScript type definitions (auto-generated)
-├── theme.ts              # Base theme configuration
-└── blocks/
-    └── core/                  # Core block configurations
-        ├── button/
-        │   └── button.ts
-        ├── heading/
-        │   └── heading.ts
-        └── ...
+├── theme.ts                   # Base theme configuration
+├── core/                      # Core WordPress block configurations
+│   ├── button/
+│   │   └── button.ts
+│   ├── heading/
+│   │   └── heading.ts
+│   └── ...
+└── $namespace/                # Custom/3rd-party blocks
+    ├── custom-block/
+    │   ├── block.json         # Block definition
+    │   ├── index.ts
+    │   └── [optional] theme.json.ts  # Theme partial for this block
+    └── ...
+
+src/theme/
+└── README.md
 ```
 
 ## Type Safety Benefits
@@ -91,8 +99,8 @@ src/theme/
 ## Example: Adding Block Styles
 
 ```typescript
-// src/theme/blocks/core/button/button.ts
-import type { JSONSchemaForWordPressBlockThemeGlobalSettingsAndStyles } from "../../../theme.d.ts";
+// src/blocks/core/button/button.ts
+import type { ThemeJson } from '../../theme.d.js';
 
 const config: JSONSchemaForWordPressBlockThemeGlobalSettingsAndStyles = {
     $schema: "https://schemas.wp.org/trunk/theme.json",

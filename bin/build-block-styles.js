@@ -247,15 +247,108 @@ ${Object.entries(manifest)
  * Main execution
  */
 function main() {
-    console.log('Building block styles...');
+    const args = process.argv.slice(2);
+    const watchMode = args.includes('--watch') || args.includes('-w');
 
-    try {
-        buildBlockStyles();
-        generateManifest();
-        console.log('✓ Block styles build complete');
-    } catch (error) {
-        console.error('✗ Error building block styles:', error.message);
-        process.exit(1);
+    if (watchMode) {
+        console.log('Watching for SCSS changes in src/blocks/core/...');
+        watchBlockScssFiles();
+    } else {
+        console.log('Building block styles...');
+        try {
+            buildBlockStyles();
+            generateManifest();
+            console.log('✓ Block styles build complete');
+        } catch (error) {
+            console.error('✗ Error building block styles:', error.message);
+            process.exit(1);
+        }
+    }
+}
+
+/**
+ * Watch for SCSS file changes and rebuild
+ */
+function watchBlockScssFiles() {
+    const watchedFiles = new Map();
+    let rebuildTimeout;
+
+    const rebuild = () => {
+        // Debounce rebuilds to avoid multiple rapid builds
+        clearTimeout(rebuildTimeout);
+        rebuildTimeout = setTimeout(() => {
+            try {
+                console.log('\n📝 SCSS file changed, rebuilding...');
+                buildBlockStyles();
+                generateManifest();
+                console.log('✓ Block styles rebuilt\n');
+            } catch (error) {
+                console.error('✗ Error rebuilding block styles:', error.message);
+            }
+        }, 300);
+    };
+
+    const watchScssFile = (filePath) => {
+        if (watchedFiles.has(filePath)) {
+            return;
+        }
+
+        try {
+            const watcher = fs.watch(filePath, (eventType) => {
+                if (eventType === 'change') {
+                    rebuild();
+                }
+            });
+            watchedFiles.set(filePath, watcher);
+        } catch (error) {
+            // File might not exist yet, skip
+        }
+    };
+
+    const scanAndWatch = () => {
+        const blocks = getBlockDirectories();
+        blocks.forEach(blockName => {
+            const scssFiles = getBlockScssFiles(blockName);
+            if (scssFiles.style) watchScssFile(scssFiles.style);
+            if (scssFiles.editor) watchScssFile(scssFiles.editor);
+        });
+
+        // Re-scan for new files every 2 seconds
+        setTimeout(scanAndWatch, 2000);
+    };
+
+    scanAndWatch();
+    console.log('✓ Watching for SCSS changes (press Ctrl+C to stop)\n');
+}
+
+/**
+ * Main execution
+ */
+function main() {
+    const args = process.argv.slice(2);
+    const watchMode = args.includes('--watch') || args.includes('-w');
+
+    if (watchMode) {
+        console.log('Building block styles...');
+        try {
+            buildBlockStyles();
+            generateManifest();
+            console.log('✓ Block styles build complete');
+        } catch (error) {
+            console.error('✗ Error building block styles:', error.message);
+            process.exit(1);
+        }
+        watchBlockScssFiles();
+    } else {
+        console.log('Building block styles...');
+        try {
+            buildBlockStyles();
+            generateManifest();
+            console.log('✓ Block styles build complete');
+        } catch (error) {
+            console.error('✗ Error building block styles:', error.message);
+            process.exit(1);
+        }
     }
 }
 

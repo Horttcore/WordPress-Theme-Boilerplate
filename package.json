@@ -21,9 +21,10 @@
         "make:block-style": "php bin/make-block-style.php",
         "make:block": "php bin/make-block.php",
         "make:pattern": "php bin/make-pattern.php",
-        "start": "npm run generate:theme-types && node bin/build-block-styles.js && concurrently --graceful-exit -n blocks,assets,theme -c \"cyan,magenta,green\" \"npm run watch:blocks\" \"npm run watch:assets\" \"npm run watch:theme\"",
+        "start": "npm run generate:theme-types && node bin/build-block-styles.js && concurrently --graceful-exit -n blocks,assets,styles,theme -c \"cyan,magenta,blue,green\" \"npm run watch:blocks\" \"npm run watch:assets\" \"npm run watch:block-styles\" \"npm run watch:theme\"",
         "watch:blocks": "node bin/wp-scripts-filter.js start --source-path=src/blocks/ --blocks-manifest --experimental-modules --output-path=build/blocks",
         "watch:assets": "node bin/wp-scripts-filter.js start src/css/app.scss src/css/editor-styles.scss src/js/app.ts src/js/editor-app.ts --output-path=build/assets",
+        "watch:block-styles": "node bin/build-block-styles.js --watch",
         "watch:theme": "node --experimental-strip-types --no-warnings --watch-path=src/blocks bin/build-theme-json.js"
     },
     "devDependencies": {

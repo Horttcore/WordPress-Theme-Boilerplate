@@ -1,3 +1,0 @@
-# Blocks
-
-WordPress Block Elements

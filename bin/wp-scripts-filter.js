@@ -1,9 +1,39 @@
 #!/usr/bin/env node
 
+const fs = require("fs");
+const path = require("path");
 const { spawn } = require("child_process");
 
 const args = process.argv.slice(2);
 const suppressedLine = 'No entry file discovered in the "src/blocks/" directory.';
+
+/**
+ * Merge block SCSS entries into wp-scripts arguments
+ */
+function mergeBlockScssEntries() {
+    const entriesFile = path.join(__dirname, "../build/.block-entries.json");
+
+    if (!fs.existsSync(entriesFile)) {
+        return;
+    }
+
+    try {
+        const entries = JSON.parse(fs.readFileSync(entriesFile, "utf-8"));
+        const blockEntries = Object.values(entries);
+
+        if (blockEntries.length > 0) {
+            // Add block entries to the arguments
+            args.push(...blockEntries);
+        }
+    } catch (error) {
+        console.error("Error reading block entries:", error.message);
+    }
+}
+
+// Merge block SCSS entries if this is a build/start command
+if (args[0] === "start" || args[0] === "build") {
+    mergeBlockScssEntries();
+}
 
 // These prefixes indicate webpack noise that doesn't affect dev experience
 const noisyPrefixes = [

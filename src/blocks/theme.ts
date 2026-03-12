@@ -25,7 +25,13 @@ const config: ThemeJson = {
 			"heading": false
 		},
 		"custom": {
-			"color": {}
+			"color": {
+                "primary": "red",
+                "secondary": "blue",
+                "foreground": "yellow",
+                "background": "green"
+            },
+            "golem": "0px",
 		},
 		"dimensions": {
 			"aspectRatios": [],

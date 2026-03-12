@@ -17,7 +17,8 @@
 @use "4-components/header" as header;
 
 // Blocks
-// @use "5-blocks" as blocks;
+// Block styles are now auto-registered from src/blocks/core/{blockName}/style.scss
+// and compiled individually to build/blocks/{blockName}/style.css
 
 // Utilities
 @use "6-utilities/screen-reader-text" as screenReaderText;

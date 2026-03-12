@@ -23,7 +23,7 @@ use RalfHortt\WPBlock\BlockManifest;
  * Load composer autoloader file
  * ------------------------------------------------------------------------------
  */
-$autoloader = __DIR__ . '/vendor/autoload.php';
+$autoloader = __DIR__.'/vendor/autoload.php';
 
 if (is_readable($autoloader)) {
     include $autoloader;
@@ -56,8 +56,8 @@ add_action('after_setup_theme', function (): void {
      * @see https://github.com/Horttcore/wp-assets
      * ------------------------------------------------------------------------------
      */
-    (new Script('theme', get_template_directory_uri() . '/build/assets/app.ts.js', [], true))->register();
-    (new Style('theme', get_template_directory_uri() . '/build/assets/app.scss.css', []))->register();
+    (new Script('theme', get_template_directory_uri().'/build/assets/app.ts.js', [], true))->register();
+    (new Style('theme', get_template_directory_uri().'/build/assets/app.scss.css', []))->register();
 
     /**
      * ------------------------------------------------------------------------------
@@ -69,8 +69,13 @@ add_action('after_setup_theme', function (): void {
     // (new ImageSize('name', __('Label', 'TEXTDOMAIN'), 50, 50, true))->register();
 
     // Register blocks from a manifest file
-    (new BlockManifest(__DIR__ . '/build/blocks/blocks-manifest.php'))->register();
+    (new BlockManifest(__DIR__.'/build/blocks/blocks-manifest.php'))->register();
 });
+
+/**
+ * Register per-block custom styles from manifest
+ */
+require_once get_template_directory().'/inc/blocks/block-styles-registration.php';
 
 /**
  * ------------------------------------------------------------------------------

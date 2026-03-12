@@ -9,6 +9,8 @@ const config: Partial<ThemeJson> = {
 	"styles": {
 		"blocks": {
 			"core/button": {
+                "color": {
+                }
             }
 		}
 	}

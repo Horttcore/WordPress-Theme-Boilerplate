@@ -38,7 +38,8 @@
         "make:query-loop": "php bin/make-query-loop.php",
         "css:clamp": "php bin/css-clamp.php",
         "css:color": "php bin/css-color.php",
-        "css:contrast": "php bin/css-contrast.php"
+        "css:contrast": "php bin/css-contrast.php",
+        "svg:mask": "php bin/svg-to-mask.php"
     },
     "require-dev": {
         "phpstan/phpstan": "^2.1",

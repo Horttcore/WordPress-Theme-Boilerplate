@@ -17,12 +17,52 @@ const BLOCKS_DIR = path.join(__dirname, '../src/blocks/core');
 const BUILD_DIR = path.join(__dirname, '../build/blocks');
 const MANIFEST_PATH = path.join(__dirname, '../build/manifest.php');
 
+// Color codes for terminal output
+const colors = {
+    reset: '\x1b[0m',
+    dim: '\x1b[2m',
+    bright: '\x1b[1m',
+    green: '\x1b[32m',
+    yellow: '\x1b[33m',
+    red: '\x1b[31m',
+    cyan: '\x1b[36m',
+    gray: '\x1b[90m',
+};
+
+/**
+ * Format console output
+ */
+function log(message) {
+    console.log(message);
+}
+
+function logSuccess(message) {
+    console.log(`${colors.green}✓${colors.reset} ${message}`);
+}
+
+function logError(message) {
+    console.error(`${colors.red}✗${colors.reset} ${colors.red}${message}${colors.reset}`);
+}
+
+function logInfo(message) {
+    console.log(`${colors.cyan}•${colors.reset} ${message}`);
+}
+
+function logFile(file, size = null) {
+    const sizeStr = size ? ` ${colors.dim}(${size.toLocaleString()} bytes)${colors.reset}` : '';
+    console.log(`  ${colors.bright}${file}${colors.reset}${sizeStr}`);
+}
+
+function logWarning(message) {
+    console.log(`${colors.yellow}⚠${colors.reset}  ${message}`);
+}
+
 /**
  * Get all block directories
  */
 function getBlockDirectories() {
     if (!fs.existsSync(BLOCKS_DIR)) {
-        console.error(`Blocks directory not found: ${BLOCKS_DIR}`);
+        logError(`Blocks directory not found: ${BLOCKS_DIR}`);
         return [];
     }
 
@@ -96,8 +136,9 @@ function buildAndMoveScss(blockName, entryPath, outputCssName) {
         }
 
         if (result.status !== 0 && result.status !== null) {
-            if (result.stderr) console.error('  Build error:', result.stderr.substring(0, 200));
-            throw new Error(`wp-scripts build failed`);
+            const errorMsg = result.stderr || 'Unknown error';
+            const errorLines = errorMsg.split('\n').slice(0, 5).join('\n');
+            throw new Error(`Build failed: ${errorLines.substring(0, 200)}`);
         }
 
         // Now move the compiled files to the final location
@@ -124,27 +165,28 @@ function buildAndMoveScss(blockName, entryPath, outputCssName) {
             const sourcePath = path.join(tempDir, cssFile);
             const targetPath = path.join(blockBuildDir, `${outputCssName}.css`);
             fs.copyFileSync(sourcePath, targetPath);
-            console.log(`  ✓ ${blockName}/${outputCssName}.css`);
             
             if (rtlFile) {
                 const sourceRtlPath = path.join(tempDir, rtlFile);
                 const targetRtlPath = path.join(blockBuildDir, `${outputCssName}-rtl.css`);
                 fs.copyFileSync(sourceRtlPath, targetRtlPath);
             }
+            
+            return { success: true, cssFile: `${blockName}/${outputCssName}.css` };
         } else {
             // Create empty CSS file if nothing was generated
             fs.writeFileSync(path.join(blockBuildDir, `${outputCssName}.css`), '');
             fs.writeFileSync(path.join(blockBuildDir, `${outputCssName}-rtl.css`), '');
-            console.log(`  ✓ ${blockName}/${outputCssName}.css (empty)`);
+            return { success: true, cssFile: `${blockName}/${outputCssName}.css`, empty: true };
         }
-
-        // Clean up temporary directory
-        fs.rmSync(tempDir, { recursive: true, force: true });
-
-        return true;
     } catch (error) {
-        console.error(`  ✗ Failed to build ${blockName}:`, error.message);
-        throw error;
+        return { success: false, error: error.message };
+    } finally {
+        // Clean up temporary directory
+        const tempDir = path.join(path.dirname(BUILD_DIR), `.temp-build-${blockName}-${outputCssName}`);
+        if (fs.existsSync(tempDir)) {
+            fs.rmSync(tempDir, { recursive: true, force: true });
+        }
     }
 }
 
@@ -153,7 +195,8 @@ function buildAndMoveScss(blockName, entryPath, outputCssName) {
  */
 function buildBlockStyles() {
     const blocks = getBlockDirectories();
-    const builtBlocks = {};
+    const builtFiles = [];
+    const errors = [];
 
     // Ensure build directory exists
     if (!fs.existsSync(BUILD_DIR)) {
@@ -168,24 +211,25 @@ function buildBlockStyles() {
         }
 
         if (scssFiles.style) {
-            buildAndMoveScss(blockName, `src/blocks/core/${blockName}/style.scss`, 'style');
-            builtBlocks[blockName] = builtBlocks[blockName] || {};
-            builtBlocks[blockName].style = true;
+            const result = buildAndMoveScss(blockName, `src/blocks/core/${blockName}/style.scss`, 'style');
+            if (result.success) {
+                builtFiles.push({ file: result.cssFile, empty: result.empty });
+            } else {
+                errors.push({ block: blockName, type: 'style', error: result.error });
+            }
         }
 
         if (scssFiles.editor) {
-            buildAndMoveScss(blockName, `src/blocks/core/${blockName}/editor.scss`, 'editor');
-            builtBlocks[blockName] = builtBlocks[blockName] || {};
-            builtBlocks[blockName].editor = true;
+            const result = buildAndMoveScss(blockName, `src/blocks/core/${blockName}/editor.scss`, 'editor');
+            if (result.success) {
+                builtFiles.push({ file: result.cssFile, empty: result.empty });
+            } else {
+                errors.push({ block: blockName, type: 'editor', error: result.error });
+            }
         }
     });
 
-    if (Object.keys(builtBlocks).length === 0) {
-        console.log('ℹ No block SCSS files found');
-        return;
-    }
-
-    console.log(`✓ Built ${Object.keys(builtBlocks).length} block(s)`);
+    return { builtFiles, errors };
 }
 
 /**
@@ -194,7 +238,6 @@ function buildBlockStyles() {
 function generateManifest() {
     const blocks = getBlockDirectories();
     const buildHash = generateBuildHash();
-    const timestamp = Date.now();
 
     const manifest = {};
 
@@ -235,35 +278,12 @@ ${Object.entries(manifest)
     .join('\n')}
     ],
     'build_hash' => '${buildHash}',
-    'timestamp' => ${timestamp},
+    'timestamp' => ${Date.now()},
 ];
 `;
 
     fs.writeFileSync(MANIFEST_PATH, phpContent);
-    console.log(`✓ Generated manifest`);
-}
-
-/**
- * Main execution
- */
-function main() {
-    const args = process.argv.slice(2);
-    const watchMode = args.includes('--watch') || args.includes('-w');
-
-    if (watchMode) {
-        console.log('Watching for SCSS changes in src/blocks/core/...');
-        watchBlockScssFiles();
-    } else {
-        console.log('Building block styles...');
-        try {
-            buildBlockStyles();
-            generateManifest();
-            console.log('✓ Block styles build complete');
-        } catch (error) {
-            console.error('✗ Error building block styles:', error.message);
-            process.exit(1);
-        }
-    }
+    return buildHash;
 }
 
 /**
@@ -272,29 +292,44 @@ function main() {
 function watchBlockScssFiles() {
     const watchedFiles = new Map();
     let rebuildTimeout;
+    const trackedChanges = new Map(); // Track which files changed
 
     const rebuild = () => {
-        // Debounce rebuilds to avoid multiple rapid builds
         clearTimeout(rebuildTimeout);
         rebuildTimeout = setTimeout(() => {
-            try {
-                console.log('\n📝 SCSS file changed, rebuilding...');
-                buildBlockStyles();
+            const startTime = Date.now();
+            const result = buildBlockStyles();
+            
+            if (result.errors.length > 0) {
+                logError(`Build failed with ${result.errors.length} error(s):`);
+                result.errors.forEach(err => {
+                    logError(`  ${err.block}/${err.type}: ${err.error}`);
+                });
+            } else if (result.builtFiles.length > 0) {
+                const elapsed = Date.now() - startTime;
+                logInfo(`Rebuilt ${result.builtFiles.length} file(s) ${colors.dim}(${elapsed}ms)${colors.reset}`);
+                result.builtFiles.forEach(f => {
+                    logFile(f.file);
+                });
                 generateManifest();
-                console.log('✓ Block styles rebuilt\n');
-            } catch (error) {
-                console.error('✗ Error rebuilding block styles:', error.message);
             }
-        }, 300);
+            trackedChanges.clear();
+        }, 50); // Reduced debounce time for faster feedback
     };
 
-    const watchScssFile = (filePath) => {
+    const setupFileWatcher = (filePath) => {
         if (watchedFiles.has(filePath)) {
             return;
         }
 
         try {
-            const watcher = fs.watch(filePath, (eventType) => {
+            let lastChangeTime = 0;
+            const watcher = fs.watch(filePath, { persistent: true }, (eventType) => {
+                // Debounce file system events (sometimes fires multiple times)
+                const now = Date.now();
+                if (now - lastChangeTime < 100) return;
+                lastChangeTime = now;
+                
                 if (eventType === 'change') {
                     rebuild();
                 }
@@ -309,16 +344,16 @@ function watchBlockScssFiles() {
         const blocks = getBlockDirectories();
         blocks.forEach(blockName => {
             const scssFiles = getBlockScssFiles(blockName);
-            if (scssFiles.style) watchScssFile(scssFiles.style);
-            if (scssFiles.editor) watchScssFile(scssFiles.editor);
+            if (scssFiles.style) setupFileWatcher(scssFiles.style);
+            if (scssFiles.editor) setupFileWatcher(scssFiles.editor);
         });
 
-        // Re-scan for new files every 2 seconds
-        setTimeout(scanAndWatch, 2000);
+        // Re-scan for new files every 10 seconds (less frequent scanning)
+        setTimeout(scanAndWatch, 10000);
     };
 
     scanAndWatch();
-    console.log('✓ Watching for SCSS changes (press Ctrl+C to stop)\n');
+    logInfo(`Watching for SCSS changes ${colors.dim}(Ctrl+C to stop)${colors.reset}`);
 }
 
 /**
@@ -328,27 +363,39 @@ function main() {
     const args = process.argv.slice(2);
     const watchMode = args.includes('--watch') || args.includes('-w');
 
-    if (watchMode) {
-        console.log('Building block styles...');
-        try {
-            buildBlockStyles();
-            generateManifest();
-            console.log('✓ Block styles build complete');
-        } catch (error) {
-            console.error('✗ Error building block styles:', error.message);
+    const startTime = Date.now();
+
+    try {
+        const result = buildBlockStyles();
+        const elapsed = Date.now() - startTime;
+
+        if (result.errors.length > 0) {
+            logError(`Build failed with ${result.errors.length} error(s):`);
+            result.errors.forEach(err => {
+                logError(`  ${err.block}/${err.type}: ${err.error}`);
+            });
             process.exit(1);
         }
-        watchBlockScssFiles();
-    } else {
-        console.log('Building block styles...');
-        try {
-            buildBlockStyles();
-            generateManifest();
-            console.log('✓ Block styles build complete');
-        } catch (error) {
-            console.error('✗ Error building block styles:', error.message);
-            process.exit(1);
+
+        if (result.builtFiles.length === 0) {
+            logWarning(`No block SCSS files found`);
+        } else {
+            logInfo(`Built ${result.builtFiles.length} file(s) ${colors.dim}(${elapsed}ms)${colors.reset}`);
+            result.builtFiles.forEach(f => {
+                logFile(f.file);
+            });
         }
+
+        const buildHash = generateManifest();
+        logInfo(`Manifest generated ${colors.dim}(hash: ${buildHash})${colors.reset}`);
+
+        if (watchMode) {
+            log('');
+            watchBlockScssFiles();
+        }
+    } catch (error) {
+        logError(`Error building block styles: ${error.message}`);
+        process.exit(1);
     }
 }
 

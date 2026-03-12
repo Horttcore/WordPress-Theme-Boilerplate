@@ -1,11 +1,13 @@
 #!/usr/bin/env php
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+declare(strict_types=1);
 
-use function Laravel\Prompts\text;
-use function Laravel\Prompts\info;
+require __DIR__.'/../vendor/autoload.php';
+
 use function Laravel\Prompts\error;
+use function Laravel\Prompts\info;
+use function Laravel\Prompts\text;
 
 /**
  * CSS Contrast Checker - Calculate contrast ratios and accessibility compliance
@@ -152,14 +154,15 @@ $namedColors = [
     'white' => '#ffffff',
     'whitesmoke' => '#f5f5f5',
     'yellow' => '#ffff00',
-    'yellowgreen' => '#9acd32'
+    'yellowgreen' => '#9acd32',
 ];
 
 /**
  * Parse color input and convert to RGB values
  */
-function parseColor($color, $namedColors) {
-    $color = trim(strtolower((string) $color));
+function parseColor($color, $namedColors)
+{
+    $color = mb_trim(mb_strtolower((string) $color));
 
     // Named colors
     if (isset($namedColors[$color])) {
@@ -174,21 +177,22 @@ function parseColor($color, $namedColors) {
     // RGB/RGBA colors
     if (preg_match('/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*([\d.]+))?\s*\)$/i', $color, $matches)) {
         return [
-            'r' => (int)$matches[1],
-            'g' => (int)$matches[2],
-            'b' => (int)$matches[3],
-            'a' => isset($matches[4]) ? (float)$matches[4] : 1
+            'r' => (int) $matches[1],
+            'g' => (int) $matches[2],
+            'b' => (int) $matches[3],
+            'a' => isset($matches[4]) ? (float) $matches[4] : 1,
         ];
     }
 
     // HSL/HSLA colors
     if (preg_match('/^hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(?:,\s*([\d.]+))?\s*\)$/i', $color, $matches)) {
         $hsl = [
-            'h' => (int)$matches[1],
-            's' => (int)$matches[2],
-            'l' => (int)$matches[3],
-            'a' => isset($matches[4]) ? (float)$matches[4] : 1
+            'h' => (int) $matches[1],
+            's' => (int) $matches[2],
+            'l' => (int) $matches[3],
+            'a' => isset($matches[4]) ? (float) $matches[4] : 1,
         ];
+
         return hslToRgb($hsl['h'], $hsl['s'], $hsl['l'], $hsl['a']);
     }
 
@@ -198,61 +202,75 @@ function parseColor($color, $namedColors) {
 /**
  * Convert hex to RGB
  */
-function hexToRgb($hex) {
-    $hex = ltrim((string) $hex, '#');
+function hexToRgb($hex)
+{
+    $hex = mb_ltrim((string) $hex, '#');
 
-    if (strlen($hex) == 3) {
+    if (mb_strlen($hex) === 3) {
         $hex = $hex[0].$hex[0].$hex[1].$hex[1].$hex[2].$hex[2];
     }
 
     return [
-        'r' => hexdec(substr($hex, 0, 2)),
-        'g' => hexdec(substr($hex, 2, 2)),
-        'b' => hexdec(substr($hex, 4, 2)),
-        'a' => 1
+        'r' => hexdec(mb_substr($hex, 0, 2)),
+        'g' => hexdec(mb_substr($hex, 2, 2)),
+        'b' => hexdec(mb_substr($hex, 4, 2)),
+        'a' => 1,
     ];
 }
 
 /**
  * Convert HSL to RGB
  */
-function hslToRgb($h, $s, $l, $a = 1) {
+function hslToRgb($h, $s, $l, $a = 1)
+{
     $h /= 360;
     $s /= 100;
     $l /= 100;
 
-    if ($s == 0) {
+    if ($s === 0) {
         $r = $g = $b = $l;
     } else {
-        $hue2rgb = function($p, $q, $t) {
-            if ($t < 0) $t += 1;
-            if ($t > 1) $t -= 1;
-            if ($t < 1/6) return $p + ($q - $p) * 6 * $t;
-            if ($t < 1/2) return $q;
-            if ($t < 2/3) return $p + ($q - $p) * (2/3 - $t) * 6;
+        $hue2rgb = function ($p, $q, $t) {
+            if ($t < 0) {
+                $t += 1;
+            }
+            if ($t > 1) {
+                $t -= 1;
+            }
+            if ($t < 1 / 6) {
+                return $p + ($q - $p) * 6 * $t;
+            }
+            if ($t < 1 / 2) {
+                return $q;
+            }
+            if ($t < 2 / 3) {
+                return $p + ($q - $p) * (2 / 3 - $t) * 6;
+            }
+
             return $p;
         };
 
         $q = $l < 0.5 ? $l * (1 + $s) : $l + $s - $l * $s;
         $p = 2 * $l - $q;
 
-        $r = $hue2rgb($p, $q, $h + 1/3);
+        $r = $hue2rgb($p, $q, $h + 1 / 3);
         $g = $hue2rgb($p, $q, $h);
-        $b = $hue2rgb($p, $q, $h - 1/3);
+        $b = $hue2rgb($p, $q, $h - 1 / 3);
     }
 
     return [
         'r' => round($r * 255),
         'g' => round($g * 255),
         'b' => round($b * 255),
-        'a' => $a
+        'a' => $a,
     ];
 }
 
 /**
  * Calculate relative luminance of a color (WCAG 2.1 formula)
  */
-function calculateRelativeLuminance($r, $g, $b) {
+function calculateRelativeLuminance($r, $g, $b)
+{
     // Convert RGB values to sRGB
     $rsRGB = $r / 255;
     $gsRGB = $g / 255;
@@ -270,7 +288,8 @@ function calculateRelativeLuminance($r, $g, $b) {
 /**
  * Calculate contrast ratio between two colors (WCAG 2.1 formula)
  */
-function calculateContrastRatio($rgb1, $rgb2) {
+function calculateContrastRatio($rgb1, $rgb2)
+{
     $luminance1 = calculateRelativeLuminance($rgb1['r'], $rgb1['g'], $rgb1['b']);
     $luminance2 = calculateRelativeLuminance($rgb2['r'], $rgb2['g'], $rgb2['b']);
 
@@ -284,7 +303,8 @@ function calculateContrastRatio($rgb1, $rgb2) {
 /**
  * Get accessibility compliance status based on contrast ratio
  */
-function getAccessibilityStatus($contrastRatio): array {
+function getAccessibilityStatus($contrastRatio): array
+{
     $status = [];
 
     // WCAG 2.1 AA Standards
@@ -347,10 +367,36 @@ $contrastRatio = calculateContrastRatio($rgb1, $rgb2);
 $accessibilityStatus = getAccessibilityStatus($contrastRatio);
 
 // Display contrast ratio and accessibility information in compact format
-$ratio = number_format($contrastRatio, 2) . ":1";
-$aa_normal = $accessibilityStatus['AA_normal'] ? "✅" : "❌";
-$aa_large = $accessibilityStatus['AA_large'] ? "✅" : "❌";
-$aaa_normal = $accessibilityStatus['AAA_normal'] ? "✅" : "❌";
-$aaa_large = $accessibilityStatus['AAA_large'] ? "✅" : "❌";
+$ratio = number_format($contrastRatio, 2).':1';
+$aa_normal = $accessibilityStatus['AA_normal'] ? '✅' : '❌';
+$aa_large = $accessibilityStatus['AA_large'] ? '✅' : '❌';
+$aaa_normal = $accessibilityStatus['AAA_normal'] ? '✅' : '❌';
+$aaa_large = $accessibilityStatus['AAA_large'] ? '✅' : '❌';
 
 info("$colorInput1 vs $colorInput2 → Ratio: $ratio | AA: $aa_normal Normal $aa_large Large | AAA: $aaa_normal Normal $aaa_large Large");
+
+// Function to convert RGB to terminal escape code
+function rgbToTerminalColor($r, $g, $b)
+{
+    return "\033[38;2;{$r};{$g};{$b}m";
+}
+
+// Function to convert RGB to terminal background escape code
+function rgbToTerminalBg($r, $g, $b)
+{
+    return "\033[48;2;{$r};{$g};{$b}m";
+}
+
+// Reset terminal color
+$reset = "\033[0m";
+
+// Create color preview
+$fg_color = rgbToTerminalColor($rgb1['r'], $rgb1['g'], $rgb1['b']);
+$bg_color = rgbToTerminalBg($rgb2['r'], $rgb2['g'], $rgb2['b']);
+
+echo "\n";
+echo "Color Preview:\n";
+echo $bg_color.$fg_color.'  Lorem ipsum dolor sit amet  '.$reset."\n";
+echo $bg_color.$fg_color.'  The quick brown fox jumps  '.$reset."\n";
+echo $bg_color.$fg_color.'  AaBbCcDdEeFfGgHh 0123456789  '.$reset."\n";
+echo "\n";

@@ -7,14 +7,14 @@ require __DIR__.'/../vendor/autoload.php';
 
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\info;
-use function Laravel\Prompts\text;
+use function Laravel\Prompts\textarea;
 
 /**
  * Validate SVG content
  */
 function validateSvg($svg): bool
 {
-    $svg = trim((string) $svg);
+    $svg = mb_trim((string) $svg);
 
     if (empty($svg)) {
         return false;
@@ -39,10 +39,10 @@ function validateSvg($svg): bool
  */
 function svgToDataUri($svg): string
 {
-    $svg = trim((string) $svg);
+    $svg = mb_trim((string) $svg);
 
     // Ensure SVG has xmlns if not present
-    if (! preg_match('/xmlns\s*=/i', $svg)) {
+    if (! preg_match('/xmlns\s*=/', $svg)) {
         $svg = preg_replace(
             '/<svg/i',
             '<svg xmlns="http://www.w3.org/2000/svg"',
@@ -51,14 +51,15 @@ function svgToDataUri($svg): string
         );
     }
 
-    // URL encode the SVG, but keep it readable
-    // Only encode necessary characters
-    $encoded = $svg;
-    $encoded = str_replace(['"', '#', '%'], ['\'', '%23', '%25'], $encoded);
-    $encoded = str_replace(['<', '>'], ['%3C', '%3E'], $encoded);
-    $encoded = str_replace(' ', '%20', $encoded);
+    // Minimal Encoding für CSS-kompatible Data-URIs
+    // Zeilenumbrüche entfernen
+    $svg = str_replace(["\r", "\n"], '', $svg);
+    // Überflüssige Whitespaces am Anfang/Ende entfernen
+    $svg = mb_trim($svg);
+    // Doppelte Anführungszeichen durch einfache ersetzen
+    $svg = str_replace('"', "'", $svg);
 
-    return 'data:image/svg+xml;utf8,'.$encoded;
+    return 'data:image/svg+xml;utf8,'.$svg;
 }
 
 /**
@@ -66,34 +67,20 @@ function svgToDataUri($svg): string
  */
 function generateCssOutput($dataUri): string
 {
-    $css = <<<'CSS'
-/* SVG Mask Image */
-mask-image: url('{dataUri}');
-mask-size: contain;
-mask-repeat: no-repeat;
-mask-position: center;
+    $css = <<<CSS
+    mask-image: url("{$dataUri}");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    CSS;
 
-/* Usage Example */
-.element {
-  background-color: currentColor;
-  width: 24px; /* adjust size as needed */
-  height: 24px;
-  mask-image: url('{dataUri}');
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-}
-CSS;
-
-    return str_replace('{dataUri}', $dataUri, $css);
+    return $css;
 }
 
 // Get SVG input
-$svgInput = text(
+$svgInput = textarea(
     'Paste your SVG code',
-    'Example: <svg xmlns="http://www.w3.org/2000/svg">...</svg>',
-    '',
-    true
+    'Example: <svg xmlns="http://www.w3.org/2000/svg">...</svg>'
 );
 
 // Validate SVG

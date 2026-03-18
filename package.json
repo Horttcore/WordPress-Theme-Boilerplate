@@ -30,13 +30,13 @@
     "devDependencies": {
         "@wordpress/icons": "^11.8.0",
         "@wordpress/scripts": "^31.6.0",
-        "baseline-browser-mapping": "^2.10.0",
+        "baseline-browser-mapping": "^2.10.8",
         "concurrently": "^9.2.1",
         "json-schema-to-typescript": "^15.0.4",
         "postcss-custom-media": "^12.0.1",
         "postcss-easing-gradients": "^3.0.1",
         "stylelint": "^17.4.0",
-        "stylelint-order": "^7.0.1",
+        "stylelint-order": "^8.1.1",
         "stylelint-scss": "^7.0.0",
         "typescript": "^5.9.3"
     }

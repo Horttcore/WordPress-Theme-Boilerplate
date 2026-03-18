@@ -12,11 +12,10 @@
         ]
     },
     "require": {
-        "laravel/pint": "^1.22",
+        "laravel/pint": "*",
         "laravel/prompts": "*",
         "ralfhortt/wp-assets": "*",
-        "ralfhortt/wp-image-sizes": "*",
-        "ralfhortt/wp-block": "^2.3"
+        "ralfhortt/wp-block": "*"
     },
     "scripts": {
         "post-create-project-cmd": "composer run-script replace-textdomain && composer run-script copy-env",

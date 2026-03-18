@@ -8,12 +8,12 @@ declare(strict_types=1);
  *
  * - Composer autoloader
  * - Register assets
- * - Register image sizes
  * - Optimize WordPress output
  * ------------------------------------------------------------------------------
  */
 
 use RalfHortt\Assets\Script;
+use RalfHortt\Assets\Style;
 use RalfHortt\WPBlock\BlockManifest;
 
 /**
@@ -61,15 +61,12 @@ add_action('after_setup_theme', function (): void {
 
     /**
      * ------------------------------------------------------------------------------
-     * Define custom image sizes
+     * Register blocks from a manifest file
      *
-     * @see https://github.com/Horttcore/wp-image-sizes
+     * @see https://github.com/Horttcore/wp-block
      * ------------------------------------------------------------------------------
      */
-    // (new ImageSize('name', __('Label', 'TEXTDOMAIN'), 50, 50, true))->register();
-
-    // Register blocks from a manifest file
-    (new BlockManifest(__DIR__.'/build/blocks/blocks-manifest.php'))->register();
+    // (new BlockManifest(__DIR__.'/build/blocks/blocks-manifest.php'))->register();
 });
 
 /**

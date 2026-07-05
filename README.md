@@ -63,7 +63,7 @@ Step-by-step installation instructions including requirements (Composer, Node.js
 </td>
 <td width="33%" valign="top">
 
-### 🎨 [Theme.json Workflow](THEME-JSON-WORKFLOW.md)
+### 🎨 [Theme.json Workflow](.github/agents/THEME-JSON-WORKFLOW.md)
 
 Learn how to work with TypeScript-based theme.json configuration, including type safety benefits and daily development workflow.
 
@@ -82,6 +82,13 @@ Detailed breakdown of all npm and Composer dependencies, explaining what each pa
 ### 📝 [Changelog](CHANGELOG.md)
 
 Track version history and changes to the project.
+
+</td>
+<td width="33%" valign="top">
+
+### 🤖 [Agent Theme Guide](.github/agents/THEME-HOW-IT-WORKS.md)
+
+How the TypeScript-first theme pipeline works, where source-of-truth files live, and the expected agent workflow.
 
 </td>
 <td width="33%" valign="top">

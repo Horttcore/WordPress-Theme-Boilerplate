@@ -3,8 +3,8 @@
 
 declare(strict_types=1);
 
-require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/helpers.php';
+require __DIR__.'/../vendor/autoload.php';
+require __DIR__.'/helpers.php';
 
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\error;
@@ -17,8 +17,8 @@ use function Laravel\Prompts\text;
 $title = text('Enter pattern title', 'e.g. My Custom Pattern', '', true);
 
 // Convert title to kebab case for filename
-$slug = mb_strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', trim($title)));
-$slug = trim($slug, '-');
+$slug = mb_strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', mb_trim($title)));
+$slug = mb_trim($slug, '-');
 
 // Get pattern description
 $description = text('Enter pattern description (optional)', 'A brief description of what this pattern does', '');
@@ -47,7 +47,7 @@ $selectedCategories = multisearch(
     function (string $value) use ($categories) {
         return array_values(array_filter(
             $categories,
-            fn($category) => str_contains(mb_strtolower($category), mb_strtolower($value))
+            fn ($category): bool => str_contains(mb_strtolower($category), mb_strtolower($value))
         ));
     },
     'Start typing to search categories...'
@@ -56,7 +56,7 @@ $selectedCategories = multisearch(
 // Keywords for better searchability
 $keywordsInput = text('Enter keywords (comma-separated, optional)', 'keyword1, keyword2, keyword3');
 $keywords = [];
-if (!empty($keywordsInput)) {
+if (! empty($keywordsInput)) {
     $keywords = array_map('trim', explode(',', $keywordsInput));
     $keywords = array_filter($keywords); // Remove empty values
 }
@@ -70,7 +70,7 @@ $supportedBlocks = multisearch(
     function (string $value) use ($blockTypes) {
         return array_values(array_filter(
             $blockTypes,
-            fn($block) => is_string($block) && str_contains(mb_strtolower($block), mb_strtolower($value))
+            fn ($block): bool => is_string($block) && str_contains(mb_strtolower($block), mb_strtolower($value))
         ));
     },
     'Start typing to search blocks...'
@@ -83,21 +83,30 @@ $postTypes = ct_get_registered_post_types();
 $selectedPostTypes = [];
 $addMore = true;
 while ($addMore && count($selectedPostTypes) < 10) {
-    $postTypeHint = count($selectedPostTypes) === 0 ? 'Enter a post type (optional, press Enter to skip)' : 'Add another post type (optional, press Enter to finish)';
+    $postTypeHint = count($selectedPostTypes) === 0
+        ? 'Enter a post type (optional, press Enter to skip)'
+        : 'Add another post type (optional, press Enter to finish)';
+
     $selectedPostType = suggest(
         $postTypeHint,
         $postTypes,
         'Start typing to search post types or enter custom post type...'
     );
 
-    if (!empty($selectedPostType)) {
-        if (!in_array($selectedPostType, $selectedPostTypes)) {
-            $selectedPostTypes[] = $selectedPostType;
-        }
-        $addMore = false;
-    } else {
-        $addMore = false;
+    if (empty($selectedPostType)) {
+        break;
     }
+
+    if (! in_array($selectedPostType, $selectedPostTypes, true)) {
+        $selectedPostTypes[] = $selectedPostType;
+    }
+
+    if (count($selectedPostTypes) >= 10) {
+        info('Maximum of 10 post types reached.');
+        break;
+    }
+
+    $addMore = confirm('Add another post type?', false);
 }
 $supportedPostTypes = $selectedPostTypes;
 
@@ -124,7 +133,7 @@ $supportedTemplateTypes = multisearch(
     function (string $value) use ($templateTypeOptions) {
         return array_values(array_filter(
             $templateTypeOptions,
-            fn($templateType) => str_contains(mb_strtolower($templateType), mb_strtolower($value))
+            fn ($templateType): bool => str_contains(mb_strtolower($templateType), mb_strtolower($value))
         ));
     },
     'Start typing to search template types...'
@@ -145,12 +154,12 @@ $source = suggest(
 $patternContent = generatePatternContent($title, $description, $selectedCategories, $keywords, $supportedBlocks, $supportedPostTypes, $supportedTemplateTypes, $inserter, $source);
 
 // Define target file path
-$targetFile = __DIR__ . '/../patterns/' . $slug . '.php';
+$targetFile = __DIR__.'/../patterns/'.$slug.'.php';
 
 // Check if file already exists
 if (file_exists($targetFile)) {
     $overwrite = confirm("Pattern file '$slug.php' already exists. Overwrite?", false);
-    if (!$overwrite) {
+    if (! $overwrite) {
         info('Pattern creation cancelled.');
         exit(0);
     }
@@ -173,33 +182,33 @@ function generatePatternContent($title, $description, $selectedCategories, $keyw
 {
     $content = "<?php\n";
     $content .= "/**\n";
-    $content .= ' * Title: ' . $title . "\n";
-    $content .= ' * Slug: ' . ct_get_current_theme_textdomain() . '/' . mb_strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', trim($title))) . "\n";
-    $content .= ' * Description: ' . $description . "\n";
-    $content .= ' * Categories: ' . (!empty($selectedCategories) ? implode(', ', $selectedCategories) : '') . "\n";
+    $content .= ' * Title: '.$title."\n";
+    $content .= ' * Slug: '.ct_get_current_theme_textdomain().'/'.mb_strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', mb_trim($title)))."\n";
+    $content .= ' * Description: '.$description."\n";
+    $content .= ' * Categories: '.(! empty($selectedCategories) ? implode(', ', $selectedCategories) : '')."\n";
 
-    if (!empty($keywords)) {
-        $content .= ' * Keywords: ' . implode(', ', $keywords) . "\n";
+    if (! empty($keywords)) {
+        $content .= ' * Keywords: '.implode(', ', $keywords)."\n";
     }
 
-    if (!empty($supportedBlocks)) {
-        $content .= ' * Block Types: ' . implode(', ', $supportedBlocks) . "\n";
+    if (! empty($supportedBlocks)) {
+        $content .= ' * Block Types: '.implode(', ', $supportedBlocks)."\n";
     }
 
-    if (!empty($supportedPostTypes)) {
-        $content .= ' * Post Types: ' . implode(', ', $supportedPostTypes) . "\n";
+    if (! empty($supportedPostTypes)) {
+        $content .= ' * Post Types: '.implode(', ', $supportedPostTypes)."\n";
     }
 
-    if (!empty($supportedTemplateTypes)) {
-        $content .= ' * Template Types: ' . implode(', ', $supportedTemplateTypes) . "\n";
+    if (! empty($supportedTemplateTypes)) {
+        $content .= ' * Template Types: '.implode(', ', $supportedTemplateTypes)."\n";
     }
 
-    if (!$inserter) {
-        $content .= ' * Inserter: false' . "\n";
+    if (! $inserter) {
+        $content .= ' * Inserter: false'."\n";
     }
 
-    if (!empty($source)) {
-        $content .= ' * Source: ' . $source . "\n";
+    if (! empty($source)) {
+        $content .= ' * Source: '.$source."\n";
     }
 
     $content .= " */\n";
@@ -209,17 +218,16 @@ function generatePatternContent($title, $description, $selectedCategories, $keyw
     $content .= "<!-- wp:group -->\n";
     $content .= "<div class=\"wp-block-group\">\n";
     $content .= "\t<!-- wp:heading -->\n";
-    $content .= "\t<h2 class=\"wp-block-heading\">" . $title . "</h2>\n";
+    $content .= "\t<h2 class=\"wp-block-heading\">".$title."</h2>\n";
     $content .= "\t<!-- /wp:heading -->\n\n";
     $content .= "\t<!-- wp:paragraph -->\n";
-    $content .= "\t<p>" . $description . "</p>\n";
+    $content .= "\t<p>".$description."</p>\n";
     $content .= "\t<!-- /wp:paragraph -->\n";
     $content .= "</div>\n";
     $content .= "<!-- /wp:group -->\n";
 
     return $content;
 }
-
 
 /**
  * Get registered block types from WordPress
@@ -272,8 +280,9 @@ function getRegisteredBlockTypes()
         }
     }
 
-    if (!empty($coreBlocks)) {
+    if (! empty($coreBlocks)) {
         $coreBlocks[] = 'custom-block';
+
         return $coreBlocks;
     }
 

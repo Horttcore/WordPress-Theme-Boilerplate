@@ -15,19 +15,25 @@
         "laravel/pint": "*",
         "laravel/prompts": "*",
         "ralfhortt/wp-assets": "*",
-        "ralfhortt/wp-block": "*"
+        "ralfhortt/wp-block": "*",
+        "ralfhortt/wp-image-sizes": "*"
     },
     "scripts": {
         "post-create-project-cmd": "composer run-script replace-textdomain && composer run-script copy-env",
         "replace-textdomain": "DIR=$(basename $PWD); LC_ALL=C find ./ -not \\( -path \".//vendor/*\" -o -path \".//node_modules/*\" -o -path \".//.git/*\" \\) -type f \\( -iname '*.js' -o -iname '*.php' -o -iname '*.css' \\) -exec sed -i '' -e \"s/TEXTDOMAIN/${DIR}/g\" {} \\;",
-        "lint": "phpstan analyse .  --memory-limit=2048M",
+        "lint": [
+            "composer run lint:php",
+            "composer run lint:css",
+            "composer run lint:js"
+        ],
         "format": "pint",
         "refactor": "rector process",
         "refactor:dry": "rector process --dry-run",
         "lint:css": "npm run lint:css",
         "lint:css:fix": "npm run lint:css:fix",
-        "lint:php": "composer run-script lint",
+        "lint:php": "phpstan analyse .  --memory-limit=2048M",
         "lint:php:fix": "composer run-script format",
+        "lint:js": "",
         "format:prettier": "prettier --write .",
         "make:block": "php bin/make-block.php",
         "make:block-style": "php bin/make-block-style.php",
@@ -44,7 +50,8 @@
         "phpstan/phpstan": "^2.1",
         "szepeviktor/phpstan-wordpress": "^2.0",
         "phpstan/extension-installer": "^1.4",
-        "rector/rector": "^2.0"
+        "rector/rector": "^2.0",
+        "php-stubs/wordpress-stubs": "^6.9"
     },
     "config": {
         "allow-plugins": {

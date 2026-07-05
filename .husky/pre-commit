@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+set -e
+
+staged_php_files=$(git diff --cached --name-only --diff-filter=ACMR -- '*.php')
+
+if [ -n "$staged_php_files" ]; then
+	echo "Running Rector + Pint on staged PHP files..."
+	# Process only files in the current commit scope.
+	vendor/bin/rector process --no-progress-bar $staged_php_files
+	vendor/bin/pint $staged_php_files
+	echo "$staged_php_files" | xargs git add
+fi
+
+npm run lint

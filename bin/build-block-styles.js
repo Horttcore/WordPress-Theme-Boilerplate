@@ -135,11 +135,6 @@ function buildBlockStyles() {
             try {
                 const outputPath = path.join(blockBuildDir, 'style.css');
                 compileScss(scssFiles.style, outputPath);
-                
-                // Create RTL version (same content for now, can be enhanced)
-                fs.writeFileSync(path.join(blockBuildDir, 'style-rtl.css'), 
-                    fs.readFileSync(outputPath, 'utf-8'));
-                
                 builtFiles.push(`${blockName}/style.css`);
             } catch (error) {
                 errors.push({ block: blockName, type: 'style', error: error.message });
@@ -151,10 +146,6 @@ function buildBlockStyles() {
             try {
                 const outputPath = path.join(blockBuildDir, 'editor.css');
                 compileScss(scssFiles.editor, outputPath);
-                
-                fs.writeFileSync(path.join(blockBuildDir, 'editor-rtl.css'), 
-                    fs.readFileSync(outputPath, 'utf-8'));
-                
                 builtFiles.push(`${blockName}/editor.css`);
             } catch (error) {
                 errors.push({ block: blockName, type: 'editor', error: error.message });

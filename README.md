@@ -45,6 +45,7 @@
 </table>
 
 ---
+
 ---
 
 ## 📚 Documentation
@@ -88,38 +89,38 @@ Runs a production build for assets, blocks, and generated theme files.
 
 #### Build and Watch
 
-| Command | Description |
-| --- | --- |
-| `npm run build` | Full production build |
-| `npm start` | Start all development watchers |
-| `npm run build:theme` | Build root theme.json from TypeScript config |
-| `npm run watch:theme` | Watch TypeScript config and rebuild theme.json |
-| `npm run generate:theme-types` | Refresh schema-derived theme TypeScript types |
+| Command                        | Description                                    |
+| ------------------------------ | ---------------------------------------------- |
+| `npm run build`                | Full production build                          |
+| `npm start`                    | Start all development watchers                 |
+| `npm run build:theme`          | Build root theme.json from TypeScript config   |
+| `npm run watch:theme`          | Watch TypeScript config and rebuild theme.json |
+| `npm run generate:theme-types` | Refresh schema-derived theme TypeScript types  |
 
 #### Scaffolding and Helpers
 
-| Command | Description |
-| --- | --- |
-| `npm run make:block` | Scaffold a new block |
+| Command                     | Description                             |
+| --------------------------- | --------------------------------------- |
+| `npm run make:block`        | Scaffold a new block                    |
 | `npm run make:block-config` | Scaffold a TypeScript block config file |
-| `npm run make:block-style` | Scaffold a block style variation config |
-| `npm run make:pattern` | Scaffold a pattern file |
-| `npm run css:clamp` | CSS clamp helper |
-| `npm run css:color` | Color conversion helper |
-| `npm run css:contrast` | Contrast helper |
+| `npm run make:block-style`  | Scaffold a block style variation config |
+| `npm run make:pattern`      | Scaffold a pattern file                 |
+| `npm run css:clamp`         | CSS clamp helper                        |
+| `npm run css:color`         | Color conversion helper                 |
+| `npm run css:contrast`      | Contrast helper                         |
 
 #### Linting and Formatting
 
-| Command | Description |
-| --- | --- |
-| `npm run lint` | Run Stylelint and PHP lint checks |
-| `npm run lint:css` | Run Stylelint for SCSS |
-| `npm run lint:css:fix` | Auto-fix Stylelint issues |
-| `npm run lint:php` | Run PHP lint via Composer scripts |
-| `composer run lint:php` | Run PHPStan analysis |
-| `composer run format` | Format PHP with Pint |
-| `composer run refactor` | Apply Rector refactors |
-| `composer run refactor:dry` | Preview Rector refactors |
+| Command                     | Description                       |
+| --------------------------- | --------------------------------- |
+| `npm run lint`              | Run Stylelint and PHP lint checks |
+| `npm run lint:css`          | Run Stylelint for SCSS            |
+| `npm run lint:css:fix`      | Auto-fix Stylelint issues         |
+| `npm run lint:php`          | Run PHP lint via Composer scripts |
+| `composer run lint:php`     | Run PHPStan analysis              |
+| `composer run format`       | Format PHP with Pint              |
+| `composer run refactor`     | Apply Rector refactors            |
+| `composer run refactor:dry` | Preview Rector refactors          |
 
 ### Commit Workflow
 

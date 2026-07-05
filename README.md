@@ -45,64 +45,16 @@
 </table>
 
 ---
-
 ---
 
 ## 📚 Documentation
 
-Comprehensive guides to help you get started and understand the project structure:
-
-<table>
-<tr>
-<td width="33%" valign="top">
-
-### 📦 [Installation Guide](INSTALLATION.md)
-
-Step-by-step installation instructions including requirements (Composer, Node.js) and setup process.
-
-</td>
-<td width="33%" valign="top">
-
-### 🎨 [Theme.json Workflow](.github/agents/THEME-JSON-WORKFLOW.md)
-
-Learn how to work with TypeScript-based theme.json configuration, including type safety benefits and daily development workflow.
-
-</td>
-<td width="33%" valign="top">
-
-### 📋 [Dependencies](DEPENDENCIES.md)
-
-Detailed breakdown of all npm and Composer dependencies, explaining what each package does and why it's included.
-
-</td>
-</tr>
-<tr>
-<td width="33%" valign="top">
-
-### 📝 [Changelog](CHANGELOG.md)
-
-Track version history and changes to the project.
-
-</td>
-<td width="33%" valign="top">
-
-### 🤖 [Agent Theme Guide](.github/agents/THEME-HOW-IT-WORKS.md)
-
-How the TypeScript-first theme pipeline works, where source-of-truth files live, and the expected agent workflow.
-
-</td>
-<td width="33%" valign="top">
-
-### 📁 Folder READMEs
-
-Every major folder contains its own `README.md` with specific instructions for that section.
-
-</td>
-<td width="33%" valign="top">
-
-</td>
-</tr>
-</table>
+-   [INSTALLATION.md](INSTALLATION.md): setup and requirements
+-   [DEPENDENCIES.md](DEPENDENCIES.md): dependency overview
+-   [CHANGELOG.md](CHANGELOG.md): release history
+-   [.github/agents/THEME-HOW-IT-WORKS.md](.github/agents/THEME-HOW-IT-WORKS.md): high-level theme architecture
+-   [.github/agents/THEME-JSON-WORKFLOW.md](.github/agents/THEME-JSON-WORKFLOW.md): TypeScript theme.json workflow
+-   [.github/agents/THEME_AUTOCOMPLETION.md](.github/agents/THEME_AUTOCOMPLETION.md): preset and custom property autocomplete system
 
 ---
 
@@ -112,180 +64,92 @@ Every major folder contains its own `README.md` with specific instructions for t
 composer create-project ralfhortt/wordpress-theme-boilerplate
 ```
 
-> 📖 Check `INSTALLATION.md` for detailed installation steps
+For detailed setup, see [INSTALLATION.md](INSTALLATION.md).
 
 ---
 
 ## 💻 Development
 
-### ⚡ Quick Start
-
-<table>
-<tr>
-<td width="50%" valign="top">
-
-**🏗️ Production Build**
-
-```bash
-npm run build
-```
-
-Builds all assets and generates theme.json
-
-</td>
-<td width="50%" valign="top">
-
-**👀 Development Mode**
+### Quick Start
 
 ```bash
 npm start
 ```
 
-Starts file watchers with auto-rebuild
-
-</td>
-</tr>
-</table>
-
-### 🔧 Commands
-
-#### 🎨 Development Helpers
-
-| Command                        | Description                                           |
-| ------------------------------ | ----------------------------------------------------- |
-| `npm run make:block-config`    | Create TypeScript block configuration                 |
-| `npm run make:block-style`     | Create TypeScript block style variation               |
-| `npm run make:block`           | Create a block pattern                                |
-| `npm run make:pattern`         | Create a block pattern                                |
-| `npm run make:starter-content` | Scaffold a starter content pattern interactively      |
-| `npm run make:query-loop`      | Scaffold a query loop pattern via interactive prompts |
-| `npm run css:clamp`            | Calculate CSS clamp values                            |
-| `npm run css:color`            | Convert color notations (rgb, hex, oklch)             |
-| `npm run css:contrast`         | Calculate color contrast ratios                       |
-| `npm run generate:theme-types` | Generate TypeScript types from WordPress schema       |
-
-#### 🏗️ Build Commands
-
-| Command               | Description                            |
-| --------------------- | -------------------------------------- |
-| `npm run build:theme` | Build theme.json from TypeScript files |
-| `npm run watch:theme` | Watch and auto-rebuild theme files     |
-| `npm run build`       | Production build (includes theme.json) |
-| `npm start`           | Development mode with file watchers    |
-
-#### 🔍 Linters
-
-| Command             | Description                 |
-| ------------------- | --------------------------- |
-| `npm run lint:css`  | Run Stylelint for CSS/SCSS  |
-| `npm run lint:php`  | Run PHPStan analysis        |
-| `composer run lint` | Run PHPStan static analysis |
-
-**Available Tools:**
-
--   ![PHPStan](https://img.shields.io/badge/PHPStan-777BB4?style=flat-square&logo=php&logoColor=white) [PHPStan](https://phpstan.org/) - Static analysis
--   ![Stylelint](https://img.shields.io/badge/Stylelint-263238?style=flat-square&logo=stylelint&logoColor=white) [Stylelint](https://stylelint.io/) - CSS/SCSS linting
-
-#### 🔧 Fixers & Formatters
-
-| Command                        | Description                       |
-| ------------------------------ | --------------------------------- |
-| `npm run lint:css:fix`         | Auto-fix Stylelint issues         |
-| `npm run lint:php:fix`         | Format PHP with Laravel Pint      |
-| `composer run format`          | Format PHP code with Laravel Pint |
-| `composer run format:prettier` | Format all files with Prettier    |
-| `composer run refactor`        | Refactor PHP code with Rector     |
-| `composer run refactor:dry`    | Preview Rector changes            |
-
-**Available Tools:**
-
--   ![Pint](https://img.shields.io/badge/Pint-FF2D20?style=flat-square&logo=laravel&logoColor=white) [Laravel Pint](https://github.com/laravel/pint) - PHP formatter
--   ![Rector](https://img.shields.io/badge/Rector-777BB4?style=flat-square&logo=php&logoColor=white) [Rector](https://getrector.com/) - PHP refactoring
--   ![Stylelint](https://img.shields.io/badge/Stylelint-263238?style=flat-square&logo=stylelint&logoColor=white) [Stylelint](https://stylelint.io/) - Auto-fix CSS
--   ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=prettier&logoColor=black) [Prettier](https://prettier.io/) - Code formatter
-
-**Using Rector**
-
-If you don't have dev dependencies installed, run:
+Starts development watchers for assets, blocks, block styles, and theme configuration.
 
 ```bash
-composer install --no-interaction --prefer-dist
+npm run build
 ```
 
-Preview Rector changes (recommended):
+Runs a production build for assets, blocks, and generated theme files.
 
-```bash
-composer run refactor:dry
-```
+### Main Commands
 
-Apply Rector refactors:
+#### Build and Watch
 
-```bash
-composer run refactor
-```
+| Command | Description |
+| --- | --- |
+| `npm run build` | Full production build |
+| `npm start` | Start all development watchers |
+| `npm run build:theme` | Build root theme.json from TypeScript config |
+| `npm run watch:theme` | Watch TypeScript config and rebuild theme.json |
+| `npm run generate:theme-types` | Refresh schema-derived theme TypeScript types |
 
-You can also run Rector directly with the vendor binary:
+#### Scaffolding and Helpers
 
-```bash
-vendor/bin/rector process src --dry-run
-```
+| Command | Description |
+| --- | --- |
+| `npm run make:block` | Scaffold a new block |
+| `npm run make:block-config` | Scaffold a TypeScript block config file |
+| `npm run make:block-style` | Scaffold a block style variation config |
+| `npm run make:pattern` | Scaffold a pattern file |
+| `npm run css:clamp` | CSS clamp helper |
+| `npm run css:color` | Color conversion helper |
+| `npm run css:contrast` | Contrast helper |
 
-#### ⚙️ Project Setup
+#### Linting and Formatting
 
-| Command                           | Description                          |
-| --------------------------------- | ------------------------------------ |
-| `composer run replace-textdomain` | Replace textdomain with project name |
-| `composer run copy-env`           | Copy environment configuration files |
+| Command | Description |
+| --- | --- |
+| `npm run lint` | Run Stylelint and PHP lint checks |
+| `npm run lint:css` | Run Stylelint for SCSS |
+| `npm run lint:css:fix` | Auto-fix Stylelint issues |
+| `npm run lint:php` | Run PHP lint via Composer scripts |
+| `composer run lint:php` | Run PHPStan analysis |
+| `composer run format` | Format PHP with Pint |
+| `composer run refactor` | Apply Rector refactors |
+| `composer run refactor:dry` | Preview Rector refactors |
+
+### Commit Workflow
+
+This repository enforces commit quality checks through Husky hooks:
+
+-   Pre-commit: runs Rector and Pint on staged PHP files, then lint checks.
+-   Commit-msg: enforces Conventional Commits format.
+
+Example commit messages:
+
+-   `feat: add starter pattern scaffold`
+-   `fix: handle empty post type input`
+-   `chore: update lint tooling`
 
 ---
 
-## 🏗️ Build Process
+## 🏗️ Theme Architecture
 
-The theme uses **TypeScript** for theme.json configuration with full type safety:
+The project uses a TypeScript-first workflow for theme configuration.
 
-### 📁 Project Structure
+### Source of Truth
 
-```
-src/theme/
-├── theme.ts                    # Main theme configuration
-├── theme.d.ts                  # Auto-generated TypeScript types
-└── blocks/core/*/              # Block-specific settings and styles
-    ├── blockname.ts            # Block configuration
-    └── blockname.stylename.ts  # Block style variations → styles/blockname.stylename.json
-```
+-   `src/blocks/theme.ts`: base theme configuration
+-   `src/blocks/core/`: per-core-block config modules
+-   `theme.json`: generated output consumed by WordPress
 
-### ✨ Features
+### Build Flow
 
--   **🎯 Type Safety**: TypeScript types auto-generated from official WordPress theme.json schema
--   **⚡ No Compilation**: Node.js loads TypeScript directly with `--experimental-strip-types` flag
--   **🎨 Block Styles**: Style variations (files matching `blockname.*.ts`) automatically generate separate JSON files in `styles/` directory
--   **🔄 Live Reload**: Watch mode automatically rebuilds when TypeScript files change
+1. Edit files in `src/blocks/`.
+2. Run `npm run build:theme` or `npm run build`.
+3. Commit source changes and generated outputs as needed by your workflow.
 
-### 🚀 Workflows
-
-<table>
-<tr>
-<td width="50%" valign="top">
-
-**Production**
-
-```bash
-npm run build
-```
-
-Complete production build with theme.json generation
-
-</td>
-<td width="50%" valign="top">
-
-**Development**
-
-```bash
-npm start
-```
-
-File watchers with automatic theme.json rebuild
-
-</td>
-</tr>
-</table>
+For full details, see [.github/agents/THEME-JSON-WORKFLOW.md](.github/agents/THEME-JSON-WORKFLOW.md).
